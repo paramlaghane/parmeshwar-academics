@@ -331,11 +331,9 @@
 
         flex-direction:column;
 
-        justify-content:center;
+        gap:20px;
 
         padding:20px 0;
-
-        gap:20px;
 
     }
 
@@ -345,27 +343,29 @@
 
         justify-content:center;
 
-        gap:16px;
+    }
+
+    .hero-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-content{
+
+        text-align:center;
 
     }
 
     .hero{
 
-        padding:80px 20px;
+        padding:70px 20px;
 
     }
 
     .hero h2{
 
-        font-size:2.2rem;
-
-    }
-
-    .logo{
-
-        flex-direction:column;
-
-        text-align:center;
+        font-size:2.3rem;
 
     }
 
