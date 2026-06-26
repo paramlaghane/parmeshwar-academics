@@ -1,0 +1,141 @@
+/* =====================================================
+   Parmeshwar Academics
+   Pages.css
+   Homepage Styles
+===================================================== */
+
+
+/* ================= HEADER ================= */
+
+header{
+
+    background:var(--surface);
+
+    border-bottom:1px solid var(--border);
+
+    padding:18px 0;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+header h1{
+
+    font-size:1.8rem;
+
+    font-weight:700;
+
+}
+
+header p{
+
+    color:var(--text-secondary);
+
+    margin-top:4px;
+
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+
+    text-align:center;
+
+    padding:110px 20px;
+
+}
+
+.hero h2{
+
+    font-size:3rem;
+
+    margin-bottom:20px;
+
+    font-weight:700;
+
+}
+
+.hero p{
+
+    max-width:750px;
+
+    margin:auto;
+
+    color:var(--text-secondary);
+
+    font-size:1.15rem;
+
+    margin-bottom:40px;
+
+}
+
+
+/* ================= Featured Courses ================= */
+
+.course-card{
+
+    height:100%;
+
+}
+
+.course-card ul{
+
+    padding-left:18px;
+
+    list-style:disc;
+
+}
+
+.course-card li{
+
+    margin-bottom:10px;
+
+}
+
+
+/* ================= Latest Updates ================= */
+
+.card li{
+
+    margin-bottom:14px;
+
+}
+
+
+/* ================= Footer ================= */
+
+.footer{
+
+    margin-top:80px;
+
+}
+
+
+/* ================= Responsive ================= */
+
+@media(max-width:768px){
+
+.hero{
+
+    padding:70px 20px;
+
+}
+
+.hero h2{
+
+    font-size:2rem;
+
+}
+
+header h1{
+
+    font-size:1.4rem;
+
+}
+
+}
