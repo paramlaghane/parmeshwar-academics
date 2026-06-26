@@ -1,19 +1,15 @@
-/* =====================================================
-   Parmeshwar Academics
+ /* =====================================================
+   PU's Academics
    Pages.css
-   Homepage Styles
+   Version 2.0
 ===================================================== */
 
 
-/* ================= HEADER ================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
-header{
-
-    background:var(--surface);
-
-    border-bottom:1px solid var(--border);
-
-    padding:18px 0;
+.header{
 
     position:sticky;
 
@@ -21,26 +17,114 @@ header{
 
     z-index:1000;
 
+    background:var(--surface);
+
+    border-bottom:1px solid var(--border);
+
 }
 
-header h1{
+.nav-container{
 
-    font-size:1.8rem;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    min-height:80px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.logo-box{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#ffffff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.15rem;
 
     font-weight:700;
 
+    letter-spacing:.5px;
+
 }
 
-header p{
+.logo-text h1{
+
+    font-size:1.55rem;
+
+    font-weight:700;
+
+    margin-bottom:2px;
+
+}
+
+.logo-text p{
 
     color:var(--text-secondary);
 
-    margin-top:4px;
+    font-size:.9rem;
+
+}
+
+.nav-menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+
+}
+
+.nav-menu li{
+
+    list-style:none;
+
+}
+
+.nav-menu a{
+
+    color:var(--text);
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+.nav-menu a:hover{
+
+    color:var(--primary);
 
 }
 
 
-/* ================= HERO ================= */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
 
@@ -52,17 +136,17 @@ header p{
 
 .hero h2{
 
-    font-size:3rem;
-
-    margin-bottom:20px;
+    font-size:3.2rem;
 
     font-weight:700;
+
+    margin-bottom:24px;
 
 }
 
 .hero p{
 
-    max-width:750px;
+    max-width:760px;
 
     margin:auto;
 
@@ -70,35 +154,86 @@ header p{
 
     font-size:1.15rem;
 
+    line-height:1.8;
+
     margin-bottom:40px;
 
 }
 
 
-/* ================= Featured Courses ================= */
+/* =====================================================
+   SECTION TITLES
+===================================================== */
 
-.course-card{
-
-    height:100%;
-
-}
-
-.course-card ul{
-
-    padding-left:18px;
-
-    list-style:disc;
-
-}
-
-.course-card li{
+.section-title{
 
     margin-bottom:10px;
 
 }
 
+.section-subtitle{
 
-/* ================= Latest Updates ================= */
+    margin-bottom:40px;
+
+}
+
+
+/* =====================================================
+   COURSE CARDS
+===================================================== */
+
+.course-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+}
+
+.course-card h3{
+
+    margin-top:18px;
+
+    margin-bottom:12px;
+
+}
+
+.course-card p{
+
+    color:var(--text-secondary);
+
+    margin-bottom:18px;
+
+}
+
+.course-card ul{
+
+    list-style:disc;
+
+    padding-left:22px;
+
+    margin-bottom:24px;
+
+}
+
+.course-card li{
+
+    margin-bottom:8px;
+
+}
+
+.course-card .btn{
+
+    margin-top:auto;
+
+}
+
+
+/* =====================================================
+   LATEST UPDATES
+===================================================== */
 
 .card li{
 
@@ -107,35 +242,81 @@ header p{
 }
 
 
-/* ================= Footer ================= */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer{
 
     margin-top:80px;
 
-}
+    padding:60px 0;
 
+    text-align:center;
 
-/* ================= Responsive ================= */
-
-@media(max-width:768px){
-
-.hero{
-
-    padding:70px 20px;
+    border-top:1px solid var(--border);
 
 }
 
-.hero h2{
+.footer h3{
 
-    font-size:2rem;
+    margin-bottom:12px;
+
+}
+
+.footer p{
+
+    color:var(--text-secondary);
 
 }
 
-header h1{
 
-    font-size:1.4rem;
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-}
+@media(max-width:900px){
+
+    .nav-container{
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        padding:20px 0;
+
+        gap:20px;
+
+    }
+
+    .nav-menu{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:16px;
+
+    }
+
+    .hero{
+
+        padding:80px 20px;
+
+    }
+
+    .hero h2{
+
+        font-size:2.2rem;
+
+    }
+
+    .logo{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
 
 }
