@@ -8,320 +8,231 @@
 
     <title>PU's Academics</title>
 
+    <meta name="description"
+        content="PU's Academics - A Digital Learning Platform for Artificial Intelligence, Machine Learning, Programming and Research.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
 
-<header>
+    <!-- ================= HEADER ================= -->
 
-    <div class="container header-container">
+    <header>
 
-        <div class="logo">
+        <div class="container header-container">
 
-            <h1>PU's Academics</h1>
+            <div class="logo">
 
-            <p>Learn • Explore • Research</p>
+                <h1>PU's Academics</h1>
+
+                <p>Learn • Explore • Research</p>
+
+            </div>
+
+            <button id="themeToggle" aria-label="Toggle Theme" title="Toggle Theme">
+                🌙
+            </button>
 
         </div>
 
-        <button id="themeToggle" title="Toggle Theme">
-            🌙
-        </button>
+    </header>
 
-    </div>
+    <!-- ================= NAVIGATION ================= -->
 
-</header>
+    <nav>
 
-
-<nav>
-
-    <div class="container">
-
-        <ul>
-
-            <li><a href="#">Home</a></li>
-
-            <li><a href="courses/">Courses</a></li>
-
-            <li><a href="resources/">Resources</a></li>
-
-            <li><a href="question-bank/">Question Bank</a></li>
-
-            <li><a href="about/">About</a></li>
-
-        </ul>
-
-    </div>
-
-</nav>
-
-
-
-<section class="hero">
-
-    <div class="container">
-
-        <h2>
-
-            Welcome to PU's Academics
-
-        </h2>
-
-        <p>
-
-            Your digital learning platform for Artificial Intelligence,
-            Machine Learning, Programming and Research.
-
-        </p>
-
-        <a class="primary-btn" href="courses/">
-
-            Start Learning →
-
-        </a>
-
-    </div>
-
-</section>
-
-
-
-<section class="quick-access">
-
-    <div class="container">
-
-        <h2>
-
-            Quick Access
-
-        </h2>
-
-        <div class="grid-4">
-
-            <div class="card">
-
-                <h3>Lecture Notes</h3>
-
-                <p>Complete unit-wise notes.</p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>PPT Slides</h3>
-
-                <p>Presentation material.</p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Assignments</h3>
-
-                <p>Practice and submissions.</p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Question Bank</h3>
-
-                <p>University questions.</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<section>
-
-    <div class="container">
-
-        <h2>
-
-            Featured Course
-
-        </h2>
-
-        <div class="course-card">
-
-            <h3>
-
-                AI & ML Essentials
-
-            </h3>
-
-            <p>
-
-                Semester V
-
-            </p>
+        <div class="container">
 
             <ul>
 
-                <li>✓ 5 Units</li>
+                <li><a href="index.html">Home</a></li>
 
-                <li>✓ Lecture Notes</li>
+                <li><a href="courses/ai-ml-essentials/">Courses</a></li>
 
-                <li>✓ PPT Presentations</li>
+                <li><a href="#">Resources</a></li>
 
-                <li>✓ Assignments</li>
+                <li><a href="#">Question Bank</a></li>
 
-                <li>✓ Question Bank</li>
+                <li><a href="#">About</a></li>
 
             </ul>
 
-            <a class="primary-btn"
-
-                href="courses/ai-ml-essentials/">
-
-                Start Learning →
-
-            </a>
-
         </div>
 
-    </div>
+    </nav>
 
-</section>
+    <main>
 
+        <!-- ================= HERO ================= -->
 
+        <section class="hero">
 
-<section>
+            <div class="container">
 
-    <div class="container">
-
-        <h2>
-
-            Upcoming Courses
-
-        </h2>
-
-        <div class="grid-3">
-
-            <div class="card">
-
-                <h3>
-
-                    Python Programming
-
-                </h3>
+                <h2>Welcome to PU's Academics</h2>
 
                 <p>
 
-                    Coming Soon
+                    A Digital Learning Platform for Artificial Intelligence,
+                    Machine Learning, Programming and Research.
 
                 </p>
 
-            </div>
+                <a class="primary-btn" href="courses/ai-ml-essentials/">
 
-            <div class="card">
+                    Start Learning →
 
-                <h3>
-
-                    R Programming
-
-                </h3>
-
-                <p>
-
-                    Coming Soon
-
-                </p>
+                </a>
 
             </div>
 
-            <div class="card">
+        </section>
 
-                <h3>
+        <!-- ================= QUICK ACCESS ================= -->
 
-                    Machine Learning
+        <section class="quick-access">
 
-                </h3>
+            <div class="container">
 
-                <p>
+                <h2>Quick Access</h2>
 
-                    Coming Soon
+                <div class="grid-4">
 
-                </p>
+                    <div class="card">
+
+                        <h3>Lecture Notes</h3>
+
+                        <p>Structured notes for every unit.</p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>PPT Slides</h3>
+
+                        <p>Presentation material for classroom learning.</p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>Assignments</h3>
+
+                        <p>Practice exercises and submissions.</p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>Question Bank</h3>
+
+                        <p>University examination questions.</p>
+
+                    </div>
+
+                </div>
 
             </div>
+
+        </section>
+
+        <!-- ================= FEATURED COURSE ================= -->
+
+        <section>
+
+            <div class="container">
+
+                <h2>Featured Course</h2>
+
+                <div class="course-card">
+
+                    <h3>AI &amp; ML Essentials</h3>
+
+                    <p><strong>Semester V</strong></p>
+
+                    <ul>
+
+                        <li>5 Units</li>
+
+                        <li>Lecture Notes</li>
+
+                        <li>PPT Presentations</li>
+
+                        <li>Assignments</li>
+
+                        <li>Question Bank</li>
+
+                    </ul>
+
+                    <a class="primary-btn"
+                        href="courses/ai-ml-essentials/">
+
+                        Start Learning →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= LATEST UPDATES ================= -->
+
+        <section>
+
+            <div class="container">
+
+                <h2>Latest Updates</h2>
+
+                <div class="updates">
+
+                    <p>AI &amp; ML Essentials course has been launched.</p>
+
+                    <p>Chapter 1 content is now available.</p>
+
+                    <p>More courses will be added soon.</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <h3>PU's Academics</h3>
+
+            <p>Digital Learning Platform</p>
+
+            <p>
+                Developed &amp; Maintained by
+                <strong>Parmeshwar Laghane</strong>
+            </p>
+
+            <p style="margin-top:20px;">
+                © 2026 PU's Academics. All Rights Reserved.
+            </p>
 
         </div>
 
-    </div>
+    </footer>
 
-</section>
-
-
-
-<section>
-
-    <div class="container">
-
-        <h2>
-
-            Latest Updates
-
-        </h2>
-
-        <div class="updates">
-
-            <p>• AI & ML Essentials launched.</p>
-
-            <p>• Chapter 1 available.</p>
-
-            <p>• More courses coming soon.</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<footer>
-
-    <div class="container">
-
-        <h3>
-
-            PU's Academics
-
-        </h3>
-
-        <p>
-
-            A Digital Learning Platform
-
-        </p>
-
-        <p>
-
-            Developed & Maintained by
-
-            <strong>Parmeshwar Laghane</strong>
-
-        </p>
-
-    </div>
-
-</footer>
-
-<script src="assets/theme.js"></script>
+    <script src="assets/js/theme.js"></script>
 
 </body>
 
