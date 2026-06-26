@@ -159,7 +159,57 @@
     margin-bottom:40px;
 
 }
+/* =====================================================
+   HERO GRID
+===================================================== */
 
+.hero-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:50px;
+
+    align-items:center;
+
+}
+
+.hero-content{
+
+    text-align:left;
+
+}
+
+.hero-content h2{
+
+    margin-top:20px;
+
+}
+
+.hero-panel ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin-top:20px;
+
+}
+
+.hero-panel li{
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.hero-panel li:last-child{
+
+    border-bottom:none;
+
+}
 
 /* =====================================================
    SECTION TITLES
