@@ -1,0 +1,75 @@
+/* =====================================================
+   Parmeshwar Academics Design System
+   Version: 2.0
+   ===================================================== */
+
+/* ---------- DARK THEME (Default) ---------- */
+
+:root{
+
+    /* Backgrounds */
+    --background: #161616;
+    --surface: #262626;
+    --surface-hover: #333333;
+
+    /* Borders */
+    --border: #393939;
+
+    /* Brand */
+    --primary: #0F62FE;
+    --primary-hover: #0353E9;
+
+    /* Text */
+    --text: #F4F4F4;
+    --text-secondary: #C6C6C6;
+
+    /* Success */
+    --success: #24A148;
+
+    /* Warning */
+    --warning: #F1C21B;
+
+    /* Danger */
+    --danger: #DA1E28;
+
+    /* Border Radius */
+    --radius-small: 6px;
+    --radius: 10px;
+    --radius-large: 16px;
+
+    /* Shadows */
+    --shadow: 0 6px 18px rgba(0,0,0,.25);
+
+    /* Spacing */
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 48px;
+    --space-6: 64px;
+
+    /* Layout */
+    --container-width: 1200px;
+
+    /* Transition */
+    --transition: .25s ease;
+
+}
+
+
+/* ---------- LIGHT THEME ---------- */
+
+body.light{
+
+    --background: #FFFFFF;
+    --surface: #F4F4F4;
+    --surface-hover: #E8E8E8;
+
+    --border: #DDE1E6;
+
+    --text: #161616;
+    --text-secondary: #525252;
+
+    --shadow: 0 4px 14px rgba(0,0,0,.08);
+
+}
