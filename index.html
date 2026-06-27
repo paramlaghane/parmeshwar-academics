@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,54 +6,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Parmeshwar Academics</title>
+    <title>PU's Academics</title>
 
-    <!-- IBM Plex Sans -->
+    <meta name="description"
+        content="PU's Academics - A Digital Learning Platform for Artificial Intelligence, Machine Learning, Programming and Research.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <!-- CSS -->
-
-    <link rel="stylesheet" href="assets/css/variables.css">
-
-    <link rel="stylesheet" href="assets/css/layout.css">
-
-    <link rel="stylesheet" href="assets/css/components.css">
-    
-    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
 
-<header class="header">
+    <!-- ================= HEADER ================= -->
 
-    <div class="container nav-container">
+    <header>
 
-        <div class="logo">
+        <div class="container header-container">
 
-            <div class="logo-box">
-                PU's
-            </div>
+            <div class="logo">
 
-            <div class="logo-text">
                 <h1>PU's Academics</h1>
-                <p>Digital Learning Platform</p>
+
+                <p>Learn • Explore • Research</p>
+
             </div>
+
+            <button id="themeToggle" aria-label="Toggle Theme" title="Toggle Theme">
+                🌙
+            </button>
 
         </div>
 
-        <nav>
+    </header>
 
-            <ul class="nav-menu">
+    <!-- ================= NAVIGATION ================= -->
 
-                <li><a href="#">Dashboard</a></li>
+    <nav>
 
-                <li><a href="#">Courses</a></li>
+        <div class="container">
+
+            <ul>
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="courses/ai-ml-essentials/">Courses</a></li>
 
                 <li><a href="#">Resources</a></li>
 
@@ -61,248 +63,176 @@
 
                 <li><a href="#">About</a></li>
 
-                <li><a href="#">Contact</a></li>
-
             </ul>
-
-        </nav>
-
-    </div>
-
-</header>
-
-<main>
-
-<section class="hero">
-
-    <div class="container hero-grid">
-
-        <!-- Left Side -->
-
-        <div class="hero-content">
-
-            <span class="badge">
-                Welcome
-            </span>
-
-            <h2>
-                Welcome to
-                <br>
-                PU's Academics
-            </h2>
-
-            <p>
-
-                A modern digital learning platform designed for university students.
-                Access lecture notes, presentations, assignments, question banks,
-                practical resources, and much more from one place.
-
-            </p>
-
-            <a href="#courses" class="btn">
-                Explore Courses
-            </a>
 
         </div>
 
+    </nav>
 
-        <!-- Right Side -->
+    <main>
 
-        <div class="hero-panel">
+        <!-- ================= HERO ================= -->
 
-            <div class="card">
+        <section class="hero">
 
-                <h3>Quick Access</h3>
+            <div class="container">
 
-                <ul>
+                <h2>Welcome to PU's Academics</h2>
 
-                    <li>📚 Course Notes</li>
+                <p>
 
-                    <li>📝 Assignments</li>
+                    A Digital Learning Platform for Artificial Intelligence,
+                    Machine Learning, Programming and Research.
 
-                    <li>📄 Presentations</li>
+                </p>
 
-                    <li>❓ Question Bank</li>
+                <a class="primary-btn" href="courses/ai-ml-essentials/">
 
-                    <li>📥 Downloads</li>
+                    Start Learning →
 
-                </ul>
+                </a>
 
             </div>
 
+        </section>
+
+        <!-- ================= QUICK ACCESS ================= -->
+
+        <section class="quick-access">
+
+            <div class="container">
+
+                <h2>Quick Access</h2>
+
+                <div class="grid-4">
+
+                    <div class="card">
+
+                        <h3>Lecture Notes</h3>
+
+                        <p>Structured notes for every unit.</p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>PPT Slides</h3>
+
+                        <p>Presentation material for classroom learning.</p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>Assignments</h3>
+
+                        <p>Practice exercises and submissions.</p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>Question Bank</h3>
+
+                        <p>University examination questions.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= FEATURED COURSE ================= -->
+
+        <section>
+
+            <div class="container">
+
+                <h2>Featured Course</h2>
+
+                <div class="course-card">
+
+                    <h3>AI &amp; ML Essentials</h3>
+
+                    <p><strong>Semester V</strong></p>
+
+                    <ul>
+
+                        <li>5 Units</li>
+
+                        <li>Lecture Notes</li>
+
+                        <li>PPT Presentations</li>
+
+                        <li>Assignments</li>
+
+                        <li>Question Bank</li>
+
+                    </ul>
+
+                    <a class="primary-btn"
+                        href="courses/ai-ml-essentials/">
+
+                        Start Learning →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= LATEST UPDATES ================= -->
+
+        <section>
+
+            <div class="container">
+
+                <h2>Latest Updates</h2>
+
+                <div class="updates">
+
+                    <p>AI &amp; ML Essentials course has been launched.</p>
+
+                    <p>Chapter 1 content is now available.</p>
+
+                    <p>More courses will be added soon.</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <h3>PU's Academics</h3>
+
+            <p>Digital Learning Platform</p>
+
+            <p>
+                Developed &amp; Maintained by
+                <strong>Parmeshwar Laghane</strong>
+            </p>
+
+            <p style="margin-top:20px;">
+                © 2026 PU's Academics. All Rights Reserved.
+            </p>
+
         </div>
 
-    </div>
+    </footer>
 
-</section>
-
-<section id="courses">
-
-<div class="container">
-
-<h2 class="section-title">
-
-Featured Courses
-
-</h2>
-
-<p class="section-subtitle">
-
-Current and upcoming courses
-
-</p>
-
-<div class="grid grid-3">
-
-<div class="card course-card">
-
-<span class="badge">
-
-ACTIVE
-
-</span>
-
-<h3>
-
-🤖 AI & ML Essentials
-
-</h3>
-
-<p>
-
-Semester V
-
-</p>
-
-<ul>
-
-<li>✔ Notes</li>
-
-<li>✔ Assignments</li>
-
-<li>✔ Question Bank</li>
-
-<li>✔ PPT</li>
-
-</ul>
-
-<a href="courses/ai-ml-essentials/"
-
-class="btn">
-
-Open Course
-
-</a>
-
-</div>
-
-<div class="card course-card">
-
-<span class="badge">
-
-COMING SOON
-
-</span>
-
-<h3>
-
-🧠 Machine Learning
-
-</h3>
-
-<p>
-
-Course under development.
-
-</p>
-
-</div>
-
-<div class="card course-card">
-
-<span class="badge">
-
-COMING SOON
-
-</span>
-
-<h3>
-
-🐍 Python Programming
-
-</h3>
-
-<p>
-
-Course under development.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">
-
-Latest Updates
-
-</h2>
-
-<div class="card">
-
-<ul>
-
-<li>📌 Website Version 2 development started.</li>
-
-<li>📌 AI & ML Essentials course is being developed.</li>
-
-<li>📌 IBM Carbon-inspired interface.</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-<footer class="footer">
-
-<div class="container">
-
-<h3>
-
-Parmeshwar Academics
-
-</h3>
-
-<p>
-
-Teaching • Learning • Research
-
-</p>
-
-<br>
-
-<p>
-
-Version 2.0
-
-</p>
-
-</div>
-
-</footer>
+    <script src="assets/js/theme.js"></script>
 
 </body>
 
