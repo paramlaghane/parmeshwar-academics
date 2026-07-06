@@ -1,0 +1,438 @@
+/* ==========================================================
+   PU's Academics
+   Carbon Inspired Design System v1.0
+   ========================================================== */
+
+/* ==========================================================
+   COLOR TOKENS
+   (Inspired by IBM Carbon G100 Theme)
+   ========================================================== */
+
+:root {
+
+    --background: #161616;
+    --surface: #262626;
+    --surface-hover: #393939;
+
+    --primary: #0f62fe;
+    --primary-hover: #0353e9;
+
+    --text: #f4f4f4;
+    --text-secondary: #c6c6c6;
+
+    --border: #393939;
+
+    --success: #24a148;
+    --warning: #f1c21b;
+    --danger: #da1e28;
+
+    --radius: 6px;
+
+    --shadow:
+        0 4px 12px rgba(0,0,0,.30);
+
+    --transition:
+        all .25s ease;
+
+}
+
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+*,
+*::before,
+*::after{
+
+    margin:0;
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"IBM Plex Sans",sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+   ========================================================== */
+
+h1{
+
+    font-size:2.4rem;
+    font-weight:600;
+
+}
+
+h2{
+
+    font-size:2rem;
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+h3{
+
+    font-size:1.25rem;
+    font-weight:600;
+
+    margin-bottom:12px;
+
+}
+
+p{
+
+    color:var(--text-secondary);
+
+}
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+/* ==========================================================
+   CONTAINER
+   ========================================================== */
+
+.container{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+.site-header{
+
+    background:#1f1f1f;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.header-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px 0;
+
+}
+
+.site-title{
+
+    margin-bottom:4px;
+
+}
+
+.site-tagline{
+
+    font-size:.95rem;
+
+}
+
+/* ==========================================================
+   THEME BUTTON
+   ========================================================== */
+
+.theme-toggle{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    font-size:1rem;
+
+}
+
+.theme-toggle:hover{
+
+    background:var(--primary);
+
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero{
+
+    text-align:center;
+
+    padding:90px 0;
+
+}
+
+.hero h2{
+
+    font-size:3rem;
+
+    margin-bottom:20px;
+
+}
+
+.hero p{
+
+    width:min(700px,90%);
+
+    margin:0 auto 40px;
+
+    font-size:1.15rem;
+
+}
+
+/* ==========================================================
+   BUTTON
+   ========================================================== */
+
+.primary-button{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:14px 34px;
+
+    border-radius:4px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.primary-button:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   SECTION TITLE
+   ========================================================== */
+
+.section-title{
+
+    margin-bottom:35px;
+
+}
+
+/* ==========================================================
+   COURSE GRID
+   ========================================================== */
+
+.course-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:28px;
+
+    margin-bottom:80px;
+
+}
+
+/* ==========================================================
+   COURSE CARD
+   ========================================================== */
+
+.course-card{
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:28px;
+
+    transition:var(--transition);
+
+    min-height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.course-card:hover{
+
+    background:var(--surface-hover);
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.course-card h3{
+
+    min-height:60px;
+
+}
+
+.course-card p{
+
+    margin-bottom:auto;
+
+}
+
+.course-card a{
+
+    color:#78a9ff;
+
+    font-weight:600;
+
+}
+
+.course-card a:hover{
+
+    color:white;
+
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+footer{
+
+    border-top:1px solid var(--border);
+
+    text-align:center;
+
+    padding:60px 0;
+
+    margin-top:60px;
+
+    background:#1f1f1f;
+
+}
+
+footer h3{
+
+    margin-bottom:12px;
+
+}
+
+footer p{
+
+    margin-top:10px;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width:1100px){
+
+    .course-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .hero{
+
+        padding:70px 0;
+
+    }
+
+    .hero h2{
+
+        font-size:2.2rem;
+
+    }
+
+    .header-content{
+
+        flex-direction:column;
+
+        gap:18px;
+
+        text-align:center;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .course-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    h1{
+
+        font-size:2rem;
+
+    }
+
+    .hero h2{
+
+        font-size:1.8rem;
+
+    }
+
+    .primary-button{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+}
