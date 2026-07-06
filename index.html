@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0" />
+          content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="PU's Academics - Digital Learning Platform" />
+          content="PU's Academics - Digital Learning Platform for Artificial Intelligence, Machine Learning, Python Programming and Core Java">
 
     <title>PU's Academics</title>
 
@@ -24,209 +24,221 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- Carbon Design CSS -->
+    <!-- Carbon Theme -->
     <link rel="stylesheet"
           href="https://1.www.s81c.com/common/carbon/web-components/tag/latest/themes.css">
 
-    <!-- Custom CSS -->
+    <!-- Your Styles -->
     <link rel="stylesheet"
           href="assets/css/style.css">
 
     <!-- Carbon Web Components -->
-    <script type="module">
-        import "https://1.www.s81c.com/common/carbon/web-components/tag/latest/button.min.js";
-        import "https://1.www.s81c.com/common/carbon/web-components/tag/latest/tile.min.js";
-        import "https://1.www.s81c.com/common/carbon/web-components/tag/latest/grid.min.js";
+    <script type="module"
+            src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/button.min.js">
+    </script>
+
+    <script type="module"
+            src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/tile.min.js">
     </script>
 
 </head>
 
 <body class="cds-theme-zone-g100">
 
-<header class="hero-header">
+    <!-- ================= HEADER ================= -->
 
-    <div class="container">
+    <header class="site-header">
 
-        <div>
+        <div class="container">
 
-            <h1>PU's Academics</h1>
+            <div class="branding">
 
-            <p class="subtitle">
+                <h1>PU's Academics</h1>
+
+                <p class="tagline">
+                    Digital Learning Platform
+                </p>
+
+            </div>
+
+            <button id="themeToggle"
+                    class="theme-toggle"
+                    aria-label="Toggle theme">
+
+                🌙
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <h2>
+
+                Learn • Practice • Build • Succeed
+
+            </h2>
+
+            <p>
+
+                Explore carefully designed courses in Artificial Intelligence,
+                Machine Learning, Python Programming and Core Java.
+
+            </p>
+
+            <cds-button>
+
+                Browse Courses
+
+            </cds-button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= COURSES ================= -->
+
+    <main class="container">
+
+        <section>
+
+            <h2 class="section-title">
+
+                Available Courses
+
+            </h2>
+
+            <div class="course-grid">
+
+                <cds-tile class="course-card">
+
+                    <h3>AI &amp; ML Essentials</h3>
+
+                    <p>Theory Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>AI &amp; ML Essentials Practical</h3>
+
+                    <p>Practical Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>Python Programming</h3>
+
+                    <p>Theory Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>Python Programming Practical</h3>
+
+                    <p>Practical Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>Core Java</h3>
+
+                    <p>Theory Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>Core Java Practical</h3>
+
+                    <p>Practical Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>Machine Learning</h3>
+
+                    <p>Theory Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+                <cds-tile class="course-card">
+
+                    <h3>Machine Learning Practical</h3>
+
+                    <p>Practical Course</p>
+
+                    <span>Open Course →</span>
+
+                </cds-tile>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <h3>
+
+                PU's Academics
+
+            </h3>
+
+            <p>
 
                 Digital Learning Platform
 
             </p>
 
-        </div>
+            <p>
 
-        <button id="themeToggle"
-                class="theme-button">
+                Built using IBM Carbon Design System
 
-            🌙
+            </p>
 
-        </button>
+            <p>
 
-    </div>
+                © 2026 Parmeshwar Laghane
 
-</header>
-
-<main>
-
-<section class="hero">
-
-    <div class="container">
-
-        <h2>
-
-            Learn • Practice • Build • Succeed
-
-        </h2>
-
-        <p>
-
-            Explore comprehensive courses in Artificial Intelligence,
-            Machine Learning, Python Programming and Core Java.
-
-        </p>
-
-        <cds-button>
-
-            Browse Courses
-
-        </cds-button>
-
-    </div>
-
-</section>
-
-
-<section class="courses">
-
-    <div class="container">
-
-        <h2>
-
-            Courses
-
-        </h2>
-
-        <div class="course-grid">
-
-            <cds-tile class="course-card">
-
-                <h3>AI &amp; ML Essentials</h3>
-
-                <p>Theory</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>AI &amp; ML Essentials Practical</h3>
-
-                <p>Practical</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>Python Programming</h3>
-
-                <p>Theory</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>Python Programming Practical</h3>
-
-                <p>Practical</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>Core Java</h3>
-
-                <p>Theory</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>Core Java Practical</h3>
-
-                <p>Practical</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>Machine Learning</h3>
-
-                <p>Theory</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
-
-            <cds-tile class="course-card">
-
-                <h3>Machine Learning Practical</h3>
-
-                <p>Practical</p>
-
-                <span>Open Course →</span>
-
-            </cds-tile>
+            </p>
 
         </div>
 
-    </div>
+    </footer>
 
-</section>
+    <!-- Theme -->
 
-</main>
-
-<footer>
-
-    <div class="container">
-
-        <h3>
-
-            PU's Academics
-
-        </h3>
-
-        <p>
-
-            Digital Learning Platform
-
-        </p>
-
-        <p>
-
-            © 2026 Parmeshwar Laghane
-
-        </p>
-
-    </div>
-
-</footer>
-
-<script src="assets/js/theme.js"></script>
+    <script src="assets/js/theme.js"></script>
 
 </body>
 
