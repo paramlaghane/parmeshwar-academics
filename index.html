@@ -4,7 +4,6 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -24,38 +23,27 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- Carbon Theme -->
-    <link rel="stylesheet"
-          href="https://1.www.s81c.com/common/carbon/web-components/tag/latest/themes.css">
-
-    <!-- Your Styles -->
+    <!-- Custom Styles -->
     <link rel="stylesheet"
           href="assets/css/style.css">
 
-    <!-- Carbon Web Components -->
-    <script type="module"
-            src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/button.min.js">
-    </script>
-
-    <script type="module"
-            src="https://1.www.s81c.com/common/carbon/web-components/tag/latest/tile.min.js">
-    </script>
-
 </head>
 
-<body class="cds-theme-zone-g100">
+<body>
 
     <!-- ================= HEADER ================= -->
 
     <header class="site-header">
 
-        <div class="container">
+        <div class="container header-content">
 
-            <div class="branding">
+            <div>
 
-                <h1>PU's Academics</h1>
+                <h1 class="site-title">
+                    PU's Academics
+                </h1>
 
-                <p class="tagline">
+                <p class="site-tagline">
                     Digital Learning Platform
                 </p>
 
@@ -87,16 +75,17 @@
 
             <p>
 
-                Explore carefully designed courses in Artificial Intelligence,
+                Explore comprehensive courses in Artificial Intelligence,
                 Machine Learning, Python Programming and Core Java.
 
             </p>
 
-            <cds-button>
+            <a href="#courses"
+               class="primary-button">
 
                 Browse Courses
 
-            </cds-button>
+            </a>
 
         </div>
 
@@ -106,7 +95,7 @@
 
     <main class="container">
 
-        <section>
+        <section id="courses">
 
             <h2 class="section-title">
 
@@ -116,85 +105,197 @@
 
             <div class="course-grid">
 
-                <cds-tile class="course-card">
+                <!-- Card 1 -->
 
-                    <h3>AI &amp; ML Essentials</h3>
+                <article class="course-card">
 
-                    <p>Theory Course</p>
+                    <h3>
 
-                    <span>Open Course →</span>
+                        AI &amp; ML Essentials
 
-                </cds-tile>
+                    </h3>
 
-                <cds-tile class="course-card">
+                    <p>
 
-                    <h3>AI &amp; ML Essentials Practical</h3>
+                        Theory Course
 
-                    <p>Practical Course</p>
+                    </p>
 
-                    <span>Open Course →</span>
+                    <a href="courses/aiml-essentials/">
 
-                </cds-tile>
+                        Open Course →
 
-                <cds-tile class="course-card">
+                    </a>
 
-                    <h3>Python Programming</h3>
+                </article>
 
-                    <p>Theory Course</p>
+                <!-- Card 2 -->
 
-                    <span>Open Course →</span>
+                <article class="course-card">
 
-                </cds-tile>
+                    <h3>
 
-                <cds-tile class="course-card">
+                        AI &amp; ML Essentials Practical
 
-                    <h3>Python Programming Practical</h3>
+                    </h3>
 
-                    <p>Practical Course</p>
+                    <p>
 
-                    <span>Open Course →</span>
+                        Practical Course
 
-                </cds-tile>
+                    </p>
 
-                <cds-tile class="course-card">
+                    <a href="courses/aiml-essentials-practical/">
 
-                    <h3>Core Java</h3>
+                        Open Course →
 
-                    <p>Theory Course</p>
+                    </a>
 
-                    <span>Open Course →</span>
+                </article>
 
-                </cds-tile>
+                <!-- Card 3 -->
 
-                <cds-tile class="course-card">
+                <article class="course-card">
 
-                    <h3>Core Java Practical</h3>
+                    <h3>
 
-                    <p>Practical Course</p>
+                        Python Programming
 
-                    <span>Open Course →</span>
+                    </h3>
 
-                </cds-tile>
+                    <p>
 
-                <cds-tile class="course-card">
+                        Theory Course
 
-                    <h3>Machine Learning</h3>
+                    </p>
 
-                    <p>Theory Course</p>
+                    <a href="courses/python-programming/">
 
-                    <span>Open Course →</span>
+                        Open Course →
 
-                </cds-tile>
+                    </a>
 
-                <cds-tile class="course-card">
+                </article>
 
-                    <h3>Machine Learning Practical</h3>
+                <!-- Card 4 -->
 
-                    <p>Practical Course</p>
+                <article class="course-card">
 
-                    <span>Open Course →</span>
+                    <h3>
 
-                </cds-tile>
+                        Python Programming Practical
+
+                    </h3>
+
+                    <p>
+
+                        Practical Course
+
+                    </p>
+
+                    <a href="courses/python-programming-practical/">
+
+                        Open Course →
+
+                    </a>
+
+                </article>
+
+                <!-- Card 5 -->
+
+                <article class="course-card">
+
+                    <h3>
+
+                        Core Java
+
+                    </h3>
+
+                    <p>
+
+                        Theory Course
+
+                    </p>
+
+                    <a href="courses/core-java/">
+
+                        Open Course →
+
+                    </a>
+
+                </article>
+
+                <!-- Card 6 -->
+
+                <article class="course-card">
+
+                    <h3>
+
+                        Core Java Practical
+
+                    </h3>
+
+                    <p>
+
+                        Practical Course
+
+                    </p>
+
+                    <a href="courses/core-java-practical/">
+
+                        Open Course →
+
+                    </a>
+
+                </article>
+
+                <!-- Card 7 -->
+
+                <article class="course-card">
+
+                    <h3>
+
+                        Machine Learning
+
+                    </h3>
+
+                    <p>
+
+                        Theory Course
+
+                    </p>
+
+                    <a href="courses/machine-learning/">
+
+                        Open Course →
+
+                    </a>
+
+                </article>
+
+                <!-- Card 8 -->
+
+                <article class="course-card">
+
+                    <h3>
+
+                        Machine Learning Practical
+
+                    </h3>
+
+                    <p>
+
+                        Practical Course
+
+                    </p>
+
+                    <a href="courses/machine-learning-practical/">
+
+                        Open Course →
+
+                    </a>
+
+                </article>
 
             </div>
 
@@ -222,7 +323,7 @@
 
             <p>
 
-                Built using IBM Carbon Design System
+                Built with IBM Design Principles
 
             </p>
 
@@ -235,8 +336,6 @@
         </div>
 
     </footer>
-
-    <!-- Theme -->
 
     <script src="assets/js/theme.js"></script>
 
