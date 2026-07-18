@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <html lang="en">
 
@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0">
 
 <title>
 
-Experiment 1 | AI Smart Lighting System
+Practical No. 01 | AIML Essentials Practical
 
 </title>
 
@@ -26,7 +26,7 @@ crossorigin>
 rel="stylesheet">
 
 <link rel="stylesheet"
-href="../../../assets/css/style.css">
+href="../../assets/css/style.css">
 
 </head>
 
@@ -70,13 +70,14 @@ class="theme-toggle">
 
 <h2>
 
-Experiment 1
+Practical No. 01
 
 </h2>
 
 <p>
 
-AI-Based Smart Lighting System
+Logic and Knowledge Representation:
+Solving AI Logic Problems Using Boolean Logic and Truth Tables
 
 </p>
 
@@ -86,155 +87,63 @@ AI-Based Smart Lighting System
 
 <main class="container">
 
+<!-- ==========================================================
+AIM / THEORY
+========================================================== -->
+
 <section>
 
 <h2 class="section-title">
 
-Aim
+Aim / Theory
 
 </h2>
 
 <p>
 
-To understand the concept of Boolean Logic and implement a simple Artificial Intelligence based Smart Lighting System using logical operators and Python programming.
+Boolean logic is the foundation of Artificial Intelligence because it enables computers to represent facts and make logical decisions. In Boolean logic, every variable has only two possible values: True (1) or False (0). AI systems use logical operators such as AND, OR, and NOT to combine conditions and make decisions. These logical expressions are verified using truth tables, which list every possible combination of input values and the corresponding output. Boolean logic forms the basis of rule-based systems, expert systems, decision support systems, and knowledge representation techniques in AI.
 
 </p>
 
 </section>
 
+<hr>
+
+<!-- ==========================================================
+EXPERIMENT 1
+========================================================== -->
+
 <section>
 
 <h2 class="section-title">
 
-Learning Objectives
+Experiment 1
 
 </h2>
 
-<ul>
+<h3>
 
-<li>
+AI-Based Smart Lighting System
 
-Understand Boolean Logic in Artificial Intelligence.
+</h3>
 
-</li>
-
-<li>
-
-Use logical AND operator for AI decision making.
-
-</li>
-
-<li>
-
-Construct a truth table.
-
-</li>
-
-<li>
-
-Implement a simple AI program using Python.
-
-</li>
-
-<li>
-
-Interpret AI decisions using logical expressions.
-
-</li>
-
-</ul>
-
-</section>
-
-<section>
-
-<h2 class="section-title">
-
-Theory
-
-</h2>
-
-<p>
-
-Boolean Logic forms the foundation of Artificial Intelligence because intelligent systems often make decisions based on logical conditions. Every condition in Boolean Logic has only two possible values:
-
-</p>
-
-<ul>
-
-<li>
-
-True (1)
-
-</li>
-
-<li>
-
-False (0)
-
-</li>
-
-</ul>
-
-<p>
-
-AI systems combine these conditions using logical operators such as AND, OR and NOT. One of the most common applications is rule-based decision making where a system performs an action only if certain conditions are satisfied.
-
-</p>
-
-<p>
-
-In this experiment, an AI controller decides whether a room light should be switched ON. The decision depends on two conditions:
-
-</p>
-
-<ul>
-
-<li>
-
-Is it Dark?
-
-</li>
-
-<li>
-
-Is a Person Present?
-
-</li>
-
-</ul>
-
-<p>
-
-The light should switch ON only when both conditions are true.
-
-</p>
-
-</section>
-
-<section>
-
-<h2 class="section-title">
+<h3>
 
 Problem Statement
 
-</h2>
+</h3>
 
 <p>
 
-Design an Artificial Intelligence based Smart Lighting System that automatically switches ON the room light only when it is dark and a person is present inside the room.
+A smart home AI controller turns ON the room light only when it is dark and a person is present.
 
 </p>
 
-</section>
+<h3>
 
-<section>
+Variables
 
-<h2 class="section-title">
-
-Variables Used
-
-</h2>
+</h3>
 
 <table>
 
@@ -280,17 +189,49 @@ Variables Used
 
 </table>
 
-<section>
+<h3>
 
-<h2 class="section-title">
+Algorithm / Steps
 
-Boolean Expression
+</h3>
 
-</h2>
+<ol>
+
+<li>
+
+Define the Boolean variables.
+
+</li>
+
+<li>
+
+Write the Boolean expression.
+
+</li>
+
+<li>
+
+Prepare the truth table.
+
+</li>
+
+<li>
+
+Interpret the AI decision.
+
+</li>
+
+</ol>
+
+<h3>
+
+Working Solution
+
+</h3>
 
 <p>
 
-The Smart Lighting System follows the Boolean expression:
+<strong>Boolean Expression:</strong>
 
 </p>
 
@@ -300,38 +241,17 @@ L = D AND P
 
 </code></pre>
 
-</section>
-</section>
-
-<!-- ==========================================================
-     TRUTH TABLE
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-Truth Table
-
-</h2>
-
-<p>
-
-The following truth table verifies the Boolean expression.
-
-</p>
-
 <table>
 
 <thead>
 
 <tr>
 
-<th>Dark (D)</th>
+<th>D</th>
 
-<th>Person Present (P)</th>
+<th>P</th>
 
-<th>Light ON (L)</th>
+<th>L</th>
 
 </tr>
 
@@ -383,83 +303,22 @@ The following truth table verifies the Boolean expression.
 
 </table>
 
-</section>
+<p>
 
-<!-- ==========================================================
-     ALGORITHM
-========================================================== -->
+<strong>Observation:</strong>
 
-<section>
+The AI switches ON the light only when both conditions are true.
 
-<h2 class="section-title">
+</p>
 
-Algorithm
-
-</h2>
-
-<ol>
-
-<li>
-
-Start the program.
-
-</li>
-
-<li>
-
-Read whether it is dark (1 or 0).
-
-</li>
-
-<li>
-
-Read whether a person is present (1 or 0).
-
-</li>
-
-<li>
-
-Apply Boolean AND operation.
-
-</li>
-
-<li>
-
-If both conditions are true, switch ON the light.
-
-</li>
-
-<li>
-
-Otherwise keep the light OFF.
-
-</li>
-
-<li>
-
-Stop.
-
-</li>
-
-</ol>
-
-</section>
-
-<!-- ==========================================================
-     PYTHON PROGRAM
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
+<h3>
 
 Python Program
 
-</h2>
+</h3>
 
 <pre><code>
-# Practical 1
-# Experiment 1
+# Practical 1 - Experiment 1
 # AI-Based Smart Lighting System
 
 dark = int(input("Is it dark? (1=Yes, 0=No): "))
@@ -477,330 +336,237 @@ else:
 
 </section>
 
+<hr>
 <!-- ==========================================================
-     PROGRAM EXPLANATION
+EXPERIMENT 2
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-Program Explanation
+Experiment 2
 
 </h2>
 
-<ul>
+<h3>
 
-<li>
+AI-Based Medical Diagnosis System
 
-The program accepts two Boolean inputs from the user.
+</h3>
 
-</li>
+<h3>
 
-<li>
+Problem Statement
 
-The <strong>dark</strong> variable indicates whether the room is dark.
-
-</li>
-
-<li>
-
-The <strong>person</strong> variable indicates whether someone is present.
-
-</li>
-
-<li>
-
-The logical AND operator evaluates both conditions.
-
-</li>
-
-<li>
-
-The variable <strong>light</strong> becomes True only if both inputs are 1.
-
-</li>
-
-<li>
-
-The AI system then decides whether the light should be switched ON or OFF.
-
-</li>
-
-</ul>
-
-</section>
-
-<!-- ==========================================================
-     SAMPLE INPUT
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-Sample Input
-
-</h2>
-
-<pre><code>
-Is it dark? (1=Yes,0=No): 1
-
-Is a person present? (1=Yes,0=No): 1
-</code></pre>
-
-</section>
-
-<!-- ==========================================================
-     SAMPLE OUTPUT
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-Sample Output
-
-</h2>
-
-<pre><code>
-Smart Lighting Decision
-
-Light ON
-</code></pre>
-
-</section>
-<!-- ==========================================================
-     OBSERVATION
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-Observation
-
-</h2>
+</h3>
 
 <p>
 
-The Smart Lighting System switches ON the light only when both the conditions are true:
+An AI medical assistant recommends a flu screening test only when the patient has both fever and cough.
 
 </p>
 
-<ul>
+<h3>
 
-<li>It is dark.</li>
+Variables
 
-<li>A person is present.</li>
+</h3>
 
-</ul>
+<table>
 
-<p>
+<thead>
 
-If either condition is false, the light remains OFF. This demonstrates the working of the Boolean AND operator in Artificial Intelligence.
+<tr>
 
-</p>
+<th>Variable</th>
 
-</section>
+<th>Description</th>
 
-<!-- ==========================================================
-     RESULT
-========================================================== -->
+</tr>
 
-<section>
+</thead>
 
-<h2 class="section-title">
+<tbody>
 
-Result
+<tr>
 
-</h2>
+<td>F</td>
 
-<p>
+<td>Fever</td>
 
-The AI-Based Smart Lighting System was successfully implemented using Boolean Logic. The program correctly evaluated the given conditions and produced the expected output according to the truth table.
+</tr>
 
-</p>
+<tr>
 
-</section>
+<td>C</td>
 
-<!-- ==========================================================
-     KEY LEARNING POINTS
-========================================================== -->
+<td>Cough</td>
 
-<section>
+</tr>
 
-<h2 class="section-title">
+<tr>
 
-Key Learning Points
+<td>T</td>
 
-</h2>
+<td>Recommend Test</td>
 
-<ul>
+</tr>
+
+</tbody>
+
+</table>
+
+<h3>
+
+Algorithm / Steps
+
+</h3>
+
+<ol start="5">
 
 <li>
 
-Boolean Logic is the foundation of rule-based Artificial Intelligence systems.
+Define the Boolean variables.
 
 </li>
 
 <li>
 
-Logical operators enable computers to make intelligent decisions.
+Write the Boolean expression.
 
 </li>
 
 <li>
 
-Truth tables verify the correctness of logical expressions.
+Prepare the truth table.
 
 </li>
 
 <li>
 
-The AND operator produces True only when all input conditions are True.
-
-</li>
-
-<li>
-
-Python provides built-in logical operators for implementing AI decision-making systems.
-
-</li>
-
-</ul>
-
-</section>
-
-<!-- ==========================================================
-     VIVA QUESTIONS
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-Viva Questions
-
-</h2>
-
-<ol>
-
-<li>
-
-What is Boolean Logic?
-
-</li>
-
-<li>
-
-Who introduced Boolean Algebra?
-
-</li>
-
-<li>
-
-What are the possible values of a Boolean variable?
-
-</li>
-
-<li>
-
-Explain the AND operator with an example.
-
-</li>
-
-<li>
-
-What is a Truth Table?
-
-</li>
-
-<li>
-
-Why is Boolean Logic important in Artificial Intelligence?
-
-</li>
-
-<li>
-
-Name any three applications of Boolean Logic.
-
-</li>
-
-<li>
-
-Differentiate between AND and OR operators.
-
-</li>
-
-<li>
-
-How does Python evaluate logical expressions?
-
-</li>
-
-<li>
-
-What will be the output when Dark = 1 and Person = 0?
+Interpret the AI decision.
 
 </li>
 
 </ol>
 
+<h3>
+
+Working Solution
+
+</h3>
+
+<p>
+
+<strong>Boolean Expression:</strong>
+
+</p>
+
+<pre><code>
+
+T = F AND C
+
+</code></pre>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>F</th>
+
+<th>C</th>
+
+<th>T</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>0</td>
+
+<td>0</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>0</td>
+
+<td>1</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>1</td>
+
+<td>0</td>
+
+<td>0</td>
+
+</tr>
+
+<tr>
+
+<td>1</td>
+
+<td>1</td>
+
+<td>1</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+<strong>Observation:</strong>
+
+The AI recommends the medical test only when the patient has both fever and cough.
+
+</p>
+
+<h3>
+
+Python Program
+
+</h3>
+
+<pre><code>
+# Practical 1 - Experiment 2
+# AI Medical Assistant
+
+fever = int(input("Does the patient have fever? (1=Yes,0=No): "))
+cough = int(input("Does the patient have cough? (1=Yes,0=No): "))
+
+test = fever and cough
+
+print("\nMedical AI Decision")
+
+if test:
+    print("Recommend Flu Screening Test")
+else:
+    print("No Test Required")
+</code></pre>
+
 </section>
 
+<hr>
 <!-- ==========================================================
-     PRACTICE EXERCISES
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-Practice Exercises
-
-</h2>
-
-<ol>
-
-<li>
-
-Modify the Smart Lighting System by adding a third condition:
-Electricity Available.
-
-</li>
-
-<li>
-
-Develop an AI-based Smart Fan Controller using Boolean Logic.
-
-</li>
-
-<li>
-
-Design an AI Security Alarm System using Motion Sensor and Door Sensor.
-
-</li>
-
-<li>
-
-Replace the AND operator with the OR operator and observe the output.
-
-</li>
-
-<li>
-
-Prepare the truth tables for AND, OR and NOT operators.
-
-</li>
-
-</ol>
-
-</section>
-
-<!-- ==========================================================
-     NAVIGATION
+NAVIGATION
 ========================================================== -->
 
 <section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
@@ -808,14 +574,14 @@ Prepare the truth tables for AND, OR and NOT operators.
 <a href="index.html"
 class="primary-button">
 
-← Practical 1
+← Back to Practicals
 
 </a>
 
 <a href="experiment2.html"
 class="primary-button">
 
-Next Experiment →
+Next Practical →
 
 </a>
 
@@ -824,7 +590,7 @@ Next Experiment →
 </main>
 
 <!-- ==========================================================
-     FOOTER
+FOOTER
 ========================================================== -->
 
 <footer>
@@ -862,7 +628,7 @@ and Core Java.
 
 </footer>
 
-<script src="../../../assets/js/theme.js"></script>
+<script src="../../assets/js/theme.js"></script>
 
 </body>
 
