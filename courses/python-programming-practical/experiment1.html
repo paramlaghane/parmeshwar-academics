@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 01 | Python Programming Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 01
+
+</h2>
+
+<p>
+
+Calculate the Area of a Triangle in Python
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1. Aim
+
+</h2>
+
+<p>
+
+To write a Python program that calculates the area of a triangle using different formulas and approaches, demonstrating the use of variables, input, type conversion, operators, conditional statements, the math module, and user-defined functions.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PREREQUISITES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+2. Prerequisites
+
+</h2>
+
+<p>
+
+Before starting this practical, the student should be comfortable with:
+
+</p>
+
+<ul>
+
+<li>
+
+Variables and assignment (= vs ==) — covered in Theory Session 1.
+
+</li>
+
+<li>
+
+input always returns a string — covered in Theory Session 2.
+
+</li>
+
+<li>
+
+Type conversion — int, float.
+
+</li>
+
+<li>
+
+Arithmetic operators — +, -, *, /, **.
+
+</li>
+
+<li>
+
+Basic if-else.
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+ALGORITHM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Algorithm
+
+</h2>
+
+<h3>
+
+For ½ × b × h version
+
+</h3>
+
+<ol>
+
+<li>
+
+Start the program.
+
+</li>
+
+<li>
+
+Import the math module (optional, not strictly required here).
+
+</li>
+
+<li>
+
+Prompt the user to enter the base of the triangle.
+
+</li>
+
+<li>
+
+Read the value and convert to float.
+
+</li>
+
+<li>
+
+Prompt the user to enter the height.
+
+</li>
+
+<li>
+
+Read the value and convert to float.
+
+</li>
+
+<li>
+
+Compute area = 0.5 * base * height.
+
+</li>
+
+<li>
+
+Check (optional) that base > 0 and height > 0; else display error.
+
+</li>
+
+<li>
+
+Display the area with 2 decimal places.
+
+</li>
+
+<li>
+
+Stop.
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+FLOWCHART
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Flowchart
+
+</h2>
+
+<pre><code>
+
+   ┌──────────────┐
+   │    START     │
+   └──────┬───────┘
+          ▼
+   ┌─────────────────────┐
+   │ base = float(input) │
+   └──────┬──────────────┘
+          ▼
+   ┌──────────────────────┐
+   │ height=float(input)  │
+   └──────┬───────────────┘
+          ▼
+     ┌──────────────┐    NO    ┌─────────────────┐
+     │ base>0 AND   ├────────▶│ Print "Invalid" │
+     │ height>0 ?   │          └─────────────────┘
+     └──┬───────────┘
+        │ YES
+        ▼
+   ┌─────────────────────────┐
+   │ area = 0.5*base*height  │
+   └──────┬──────────────────┘
+          ▼
+   ┌──────────────────┐
+   │ print(f"Area =") │
+   └──────┬───────────┘
+          ▼
+   ┌──────────────┐
+   │     END      │
+   └──────────────┘
+
+</code></pre>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+PROGRAM 1A
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Program Codes
+
+</h2>
+
+<h3>
+
+Program 1A — Area using ½ × base × height 🟢
+
+</h3>
+
+<pre><code>
+"""
+Program 1A: Calculate area of a triangle using ½ × base × height.
+Course   : Python Programming (B.Sc. IT — Sem V)
+"""
+
+# --- Step 1: Read input ---
+base = float(input("Enter the base of the triangle (in cm): "))
+height = float(input("Enter the height of the triangle (in cm): "))
+
+# --- Step 2: Compute area ---
+area = 0.5 * base * height
+
+# --- Step 3: Display result ---
+print(f"Base   = {base} cm")
+print(f"Height = {height} cm")
+print(f"Area   = {area} cm²")
+</code></pre>
+
+<h3>
+
+Sample Run
+
+</h3>
+
+<pre><code>
+Enter the base of the triangle (in cm): 10
+Enter the height of the triangle (in cm): 6
+
+Base   = 10.0 cm
+Height = 6.0 cm
+Area   = 30.0 cm²
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAM 1B
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Program 1B — Area using ½ × base × height 🟡
+
+</h2>
+
+<pre><code>
+"""
+Program 1B: Validate inputs before computing area.
+"""
+
+base = float(input("Enter the base   : "))
+height = float(input("Enter the height: "))
+
+if base <= 0 or height <= 0:
+    print("Base and height must be positive numbers.")
+else:
+    area = 0.5 * base * height
+    print(f"Area of the triangle = {area:.2f} cm²")
+</code></pre>
+
+<h3>
+
+Sample Run
+
+</h3>
+
+<pre><code>
+Enter the base   : 7
+Enter the height: -3
+
+Base and height must be positive numbers.
+</code></pre>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="index.html"
+class="primary-button">
+
+← Back to Practicals
+
+</a>
+
+<a href="experiment2.html"
+class="primary-button">
+
+Next Practical →
+
+</a>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
