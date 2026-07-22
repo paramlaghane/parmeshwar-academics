@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 01 | Core Java Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 01
+
+</h2>
+
+<p>
+
+Broadcast a Program to Print "Hello World" on the Screen
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+PROGRAM 1A
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1.1 Program 1A – Simplest Java Program
+
+</h2>
+
+<pre><code>
+public class HelloWorld {
+
+    public static void main(String[] args) {
+
+        System.out.println("Hello, World!");
+
+    }
+
+}
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+LINE BY LINE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Line-by-Line Dissection
+
+</h2>
+
+<h3>
+
+Line 1
+
+</h3>
+
+<pre><code>
+public class HelloWorld {
+</code></pre>
+
+<p>
+
+Declares a public class named <strong>HelloWorld</strong>. Since it is a public class, the filename must be <strong>HelloWorld.java</strong>.
+
+</p>
+
+<h3>
+
+Line 2
+
+</h3>
+
+<pre><code>
+public static void main(String[] args) {
+</code></pre>
+
+<p>
+
+This is the entry point of every Java application. It consists of five parts:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>public</strong> – Allows the JVM to access this method.
+
+</li>
+
+<li>
+
+<strong>static</strong> – Allows the method to be called without creating an object.
+
+</li>
+
+<li>
+
+<strong>void</strong> – Indicates that the method does not return any value.
+
+</li>
+
+<li>
+
+<strong>main</strong> – The special method name that the JVM looks for to start program execution.
+
+</li>
+
+<li>
+
+<strong>String[] args</strong> – An array of strings used to receive command-line arguments.
+
+</li>
+
+</ul>
+
+<h3>
+
+Line 3
+
+</h3>
+
+<pre><code>
+System.out.println("Hello, World!");
+</code></pre>
+
+<p>
+
+Prints the text <strong>"Hello, World!"</strong> on the screen and moves the cursor to the next line.
+
+</p>
+
+<h3>
+
+Line 4
+
+</h3>
+
+<pre><code>
+}
+</code></pre>
+
+<p>
+
+Closes the <strong>main()</strong> method.
+
+</p>
+
+<h3>
+
+Line 5
+
+</h3>
+
+<pre><code>
+}
+</code></pre>
+
+<p>
+
+Closes the <strong>HelloWorld</strong> class.
+
+</p>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+PROGRAM 1B
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1.2 Program 1B – Displaying Your Name
+
+</h2>
+
+<pre><code>
+public class HelloBCA {
+
+    public static void main(String[] args) {
+
+        String name = "Param";
+
+        System.out.println("Hello, World!");
+        System.out.println("Welcome, " + name);
+        System.out.println("Java is simple.");
+
+    }
+
+}
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+COMMAND LINE ARGUMENTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1.3 Using Command-Line Arguments
+
+</h2>
+
+<pre><code>
+public class HelloArg {
+
+    public static void main(String[] args) {
+
+        // args[0] is the first command-line argument
+
+        if (args.length > 0) {
+
+            System.out.println("Hello, " + args[0] + "!");
+
+        } else {
+
+            System.out.println("Hello, World!");
+
+        }
+
+    }
+
+}
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NOTE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Note
+
+</h2>
+
+<p>
+
+<strong>args[0]</strong> represents the first command-line argument entered after the class name.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+RUNNING THE PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Running the Program
+
+</h2>
+
+<h3>
+
+Example 1
+
+</h3>
+
+<pre><code>
+java HelloArg
+</code></pre>
+
+<h3>
+
+Output
+
+</h3>
+
+<pre><code>
+Hello, World!
+</code></pre>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+COMPILATION PROCEDURE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Compilation Procedure
+
+</h2>
+
+<h3>
+
+8.1 Open the Command Prompt
+
+</h3>
+
+<h4>
+
+Windows
+
+</h4>
+
+<ul>
+
+<li>
+
+Press <strong>Win + R</strong>.
+
+</li>
+
+<li>
+
+Type <strong>cmd</strong>.
+
+</li>
+
+<li>
+
+Press <strong>Enter</strong>.
+
+</li>
+
+</ul>
+
+<h3>
+
+Navigate to the Program Folder
+
+</h3>
+
+<pre><code>
+C:> cd C:\BCA\param
+
+C:\BCA\param
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+COMPILE PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Compile the Program
+
+</h2>
+
+<pre><code>
+C:\BCA\Java\Practical1> javac HelloWorld.java
+</code></pre>
+
+<p>
+
+The command <strong>javac</strong> is the Java compiler.
+
+</p>
+
+<p>
+
+If the program contains no syntax errors, the compiler displays no message and returns directly to the command prompt.
+
+</p>
+
+<p>
+
+A new file named <strong>HelloWorld.class</strong> is created in the same folder.
+
+</p>
+
+<blockquote>
+
+To run a Java program, the source code must first be compiled into a <strong>.class</strong> file containing Java bytecode. The Java Virtual Machine (JVM) then interprets and executes this bytecode.
+
+</blockquote>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+RUN PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Run the Program
+
+</h2>
+
+<pre><code>
+C:\BCA\param> java HelloWorld
+</code></pre>
+
+<h3>
+
+Output
+
+</h3>
+
+<pre><code>
+Hello, World!
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="index.html"
+class="primary-button">
+
+← Back to Practicals
+
+</a>
+
+<a href="experiment2.html"
+class="primary-button">
+
+Next Practical →
+
+</a>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Core Java, Python Programming,
+Artificial Intelligence and Machine Learning.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
