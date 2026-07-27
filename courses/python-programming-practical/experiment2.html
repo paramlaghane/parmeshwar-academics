@@ -1,576 +1,446 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical No. 2 - Swapping Two Variables | Python Programming</title>
 
-<meta charset="UTF-8">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
 
-<title>Practical 02 | Python Programming</title>
+        header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com"
-crossorigin>
+        header p {
+            font-size: 17px;
+            opacity: 0.95;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
-rel="stylesheet">
+        nav {
+            background: #ffffff;
+            padding: 14px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
 
-<!-- Correct path for courses/python-programming/experiment2.html -->
-<link rel="stylesheet"
-href="../../assets/css/style.css">
+        nav a {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 600;
+            margin: 0 12px;
+        }
 
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .title-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #2563eb;
+        }
+
+        .title-card h2 {
+            color: #1d4ed8;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 28px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+        }
+
+        .section h2 {
+            color: #1d4ed8;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+        }
+
+        .objectives li,
+        .algorithm li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .objectives,
+        .algorithm {
+            padding-left: 25px;
+        }
+
+        .flowchart {
+            background: #f8fafc;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+            padding: 30px 15px;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .flow-box {
+            display: inline-block;
+            min-width: 220px;
+            padding: 12px 20px;
+            margin: 5px auto;
+            background: white;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .flow-start,
+        .flow-stop {
+            border-radius: 50px;
+            background: #eff6ff;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #2563eb;
+            line-height: 1.1;
+        }
+
+        .code-container {
+            background: #111827;
+            border-radius: 10px;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        pre {
+            margin: 0;
+            padding: 25px;
+            color: #e5e7eb;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            min-width: 700px;
+        }
+
+        .output {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 15px 18px;
+            margin-top: 18px;
+            border-radius: 5px;
+        }
+
+        .note strong {
+            color: #1d4ed8;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .section,
+            .title-card {
+                padding: 20px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="site-header">
-
-<div class="container header-content">
-
-<div>
-
-<h1 class="site-title">
-PU's Academics
-</h1>
-
-<p class="site-tagline">
-Learn Today. Lead Tomorrow.
-</p>
-
-</div>
-
-<button
-id="themeToggle"
-class="theme-toggle">
-
-🌙
-
-</button>
-
-</div>
-
-</header>
-
-
-<!-- ==========================================================
-HERO SECTION
-========================================================== -->
-
-<section class="hero">
-
-<div class="container">
-
-<h2>
-Python Programming Practical
-</h2>
-
-<p>
-Practical 02 — Swap the Values of Two Variables
-</p>
-
-</div>
-
-</section>
-
-
-<main class="container">
-
-
-<!-- ==========================================================
-PRACTICAL INFORMATION
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Practical 02
-</h2>
-
-<div class="course-card">
-
-<h3>
-Swap the Values of Two Variables
-</h3>
-
-<p>
-<b>Course :</b> Python Programming
-</p>
-
-<p>
-<b>Practical No. :</b> 02
-</p>
-
-</div>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-1. AIM
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-1. Aim
-</h2>
-
-<div class="course-card">
-
-<p>
-To write a Python program that swaps the values of two variables without using a third (temporary) variable, using different techniques
-</p>
-
-</div>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-4.1 THE SWAP PROBLEM
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-4.1 The "Swap" Problem
-</h2>
-
-<p>
-Given two variables x and y, after swap, x should hold the original value of y, and y should hold the original value of x.
-</p>
-
-<p>
-The naïve attempt in any language is:
-</p>
-
-
-<pre style="
-background:#f8f9fa;
-border:1px solid #d1d5db;
-padding:20px;
-overflow-x:auto;
-border-radius:8px;
-font-family:'Courier New',Courier,monospace;
-font-size:15px;
-line-height:1.5;
-"><code>x = 10
-y = 25
-x = y          # x now holds 25 — original 10 is LOST
-y = x          # y also becomes 25
-# Result: x = 25, y = 25  ❌  — swap failed!</code></pre>
-
-
-<p>
-Python, like every other programming language, evaluates the right-hand side first and then assigns that resulting value to the variable on the left (Ekmekci et al., 2016). The original value of x gets overwritten before we ever had a chance to read it. Hence a naive two-line swap is doomed — we need some auxiliary structure (temporary variable, arithmetic, packing, or XOR) to remember the original.
-</p>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-PROGRAM 2A
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Program 2A — Using a Temporary Variable 🟢
-</h2>
-
-
-<pre style="
-background:#f8f9fa;
-border:1px solid #d1d5db;
-padding:20px;
-overflow-x:auto;
-border-radius:8px;
-font-family:'Courier New',Courier,monospace;
-font-size:15px;
-line-height:1.5;
-"><code>"""
-Program 2A: Swap two integers EXPLICITLY (using a temp variable).
-This is the textbook "three-glass" swap — easy to read, easy to debug.
-"""
-
-# Read input
-x = int(input("Enter first number  (x): "))
-y = int(input("Enter second number (y): "))
-
-print(f"\nBefore swap → x = {x}, y = {y}")
-
-# Swap using a temporary variable
-temp = x         # remember x
-x    = y         # x becomes old y
-y    = temp      # y becomes remembered old x
-
-print(f"After  swap → x = {x}, y = {y}")</code></pre>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-SAMPLE RUN
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Sample Run
-</h2>
-
-
-<pre style="
-background:#111827;
-color:#f9fafb;
-padding:20px;
-overflow-x:auto;
-border-radius:8px;
-font-family:'Courier New',Courier,monospace;
-font-size:15px;
-line-height:1.5;
-"><code>Enter first number  (x): 10
-Enter second number (y): 25
-
-Before swap → x = 10, y = 25
-After  swap → x = 25, y = 10</code></pre>
-
-</section>
-
-<hr>
-<!-- ==========================================================
-PROGRAM EXPLANATION
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Program Explanation
-</h2>
-
-<div class="course-card">
-
-<p>
-The program uses a temporary variable to safely exchange the values of two variables.
-</p>
-
-<ul>
-
-<li>
-<strong>temp = x</strong> — stores the original value of <code>x</code>.
-</li>
-
-<li>
-<strong>x = y</strong> — assigns the original value of <code>y</code> to <code>x</code>.
-</li>
-
-<li>
-<strong>y = temp</strong> — assigns the original value of <code>x</code>, stored in <code>temp</code>, to <code>y</code>.
-</li>
-
-</ul>
-
-<p>
-This approach prevents the original value of <code>x</code> from being lost during the swap.
-</p>
-
-</div>
-
-</section>
-
-
-<hr>
-
-
-<!-- ==========================================================
-STEP-BY-STEP WORKING
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Step-by-Step Working
-</h2>
-
-<div class="course-card">
-
-<table class="content-table">
-
-<thead>
-
-<tr>
-
-<th>Step</th>
-
-<th>Statement</th>
-
-<th>x</th>
-
-<th>y</th>
-
-<th>temp</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>Initial</td>
-
-<td>Input values</td>
-
-<td>10</td>
-
-<td>25</td>
-
-<td>—</td>
-
-</tr>
-
-<tr>
-
-<td>1</td>
-
-<td><code>temp = x</code></td>
-
-<td>10</td>
-
-<td>25</td>
-
-<td>10</td>
-
-</tr>
-
-<tr>
-
-<td>2</td>
-
-<td><code>x = y</code></td>
-
-<td>25</td>
-
-<td>25</td>
-
-<td>10</td>
-
-</tr>
-
-<tr>
-
-<td>3</td>
-
-<td><code>y = temp</code></td>
-
-<td>25</td>
-
-<td>10</td>
-
-<td>10</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<hr>
-
-
-<!-- ==========================================================
-OBSERVATION
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Observation
-</h2>
-
-<div class="course-card">
-
-<p>
-The values of two variables are successfully exchanged using a temporary variable.
-</p>
-
-<p>
-For the input values <strong>x = 10</strong> and <strong>y = 25</strong>, the final values after swapping are <strong>x = 25</strong> and <strong>y = 10</strong>.
-</p>
-
-</div>
-
-</section>
-
-
-<hr>
-
-
-<!-- ==========================================================
-IMPORTANT POINT
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Important Point
-</h2>
-
-<div class="course-card">
-
-<p>
-The temporary variable approach is simple, readable, and easy to understand. However, the aim of this practical is to explore different techniques for swapping values, including approaches that do not require a third variable.
-</p>
-
-</div>
-
-</section>
-
-
-<hr>
-
-
-<!-- ==========================================================
-PRACTICAL NAVIGATION
-========================================================== -->
-
-<section>
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:15px;
-margin:30px 0;
-">
-
-<a href="experiment1.html"
-class="course-button">
-
-← Previous Practical
-
-</a>
-
-<a href="index.html"
-class="course-button">
-
-Python Practicals
-
-</a>
-
-<a href="#program-2b"
-class="course-button">
-
-Next Program →
-
-</a>
-
-</div>
-
-</section>
-<!-- ==========================================================
-END OF PRACTICAL CONTENT
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-Result
-</h2>
-
-<div class="course-card">
-
-<p>
-The Python program successfully swaps the values of two variables using a temporary variable.
-</p>
-
-</div>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-PRACTICAL NAVIGATION
-========================================================== -->
-
-<section>
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:15px;
-margin:30px 0;
-">
-
-<a href="experiment1.html"
-class="course-button">
-← Previous Practical
-</a>
-
-<a href="index.html"
-class="course-button">
-Python Practicals
-</a>
-
-<a href="experiment2.html"
-class="course-button">
-↑ Back to Top
-</a>
-
-</div>
-
-</section>
-
-
-</main>
-
-
-<!-- ==========================================================
-FOOTER
-========================================================== -->
-
-<footer class="site-footer">
-
-<div class="container">
-
-<p>
-© 2026 PU's Academics | Python Programming Learning Portal
-</p>
-
-</div>
-
-</footer>
-
-
-<!-- ==========================================================
-JAVASCRIPT
-========================================================== -->
-
-<script src="../../assets/js/main.js"></script>
+    <header>
+        <h1>Python Programming</h1>
+        <p>Practical Experiments</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="experiment1.html">Practical 1</a>
+        <a href="experiment2.html">Practical 2</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- Title -->
+        <div class="title-card">
+            <h2>Practical No. 2</h2>
+            <p>
+                <strong>Aim:</strong>
+                To write a Python program to swap the values of two variables
+                using a temporary variable.
+            </p>
+        </div>
+
+        <!-- Learning Objectives -->
+        <section class="section">
+            <h2>Learning Objectives</h2>
+
+            <p>After completing this practical, students will be able to:</p>
+
+            <ul class="objectives">
+                <li>Understand the concept of variables.</li>
+                <li>Learn how values are stored in variables.</li>
+                <li>Use a temporary variable to interchange values.</li>
+                <li>Display output using the <code>print()</code> function.</li>
+                <li>Understand the sequence of assignment statements.</li>
+            </ul>
+        </section>
+
+        <!-- Theory -->
+        <section class="section">
+            <h2>Theory</h2>
+
+            <p>
+                Swapping means exchanging the values of two variables.
+                It is one of the most fundamental programming operations and
+                is widely used in sorting algorithms, searching techniques,
+                and many other applications.
+            </p>
+
+            <p>
+                In this method, a third variable called a
+                <strong>temporary variable</strong> is used to store the value
+                of one variable while the values are exchanged.
+            </p>
+
+            <div class="note">
+                <strong>Key Concept:</strong>
+                The temporary variable acts as a safe storage location so that
+                the original value of the first variable is not lost during
+                the swapping process.
+            </div>
+        </section>
+
+        <!-- Algorithm -->
+        <section class="section">
+            <h2>Algorithm</h2>
+
+            <ol class="algorithm">
+                <li>Start the program.</li>
+                <li>Accept two numbers from the user.</li>
+                <li>Store the value of the first variable in a temporary variable.</li>
+                <li>Assign the value of the second variable to the first variable.</li>
+                <li>Assign the value stored in the temporary variable to the second variable.</li>
+                <li>Display the swapped values.</li>
+                <li>Stop the program.</li>
+            </ol>
+        </section>
+
+        <!-- Flowchart -->
+        <section class="section">
+            <h2>Flowchart</h2>
+
+            <div class="flowchart">
+
+                <div class="flow-box flow-start">
+                    Start
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="flow-box">
+                    Read Number1 and Number2
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="flow-box">
+                    temp = Number1
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="flow-box">
+                    Number1 = Number2
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="flow-box">
+                    Number2 = temp
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="flow-box">
+                    Display Swapped Values
+                </div>
+
+                <div class="arrow">↓</div>
+
+                <div class="flow-box flow-stop">
+                    Stop
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Program -->
+        <section class="section">
+            <h2>Program</h2>
+
+            <div class="code-container">
+<pre><code># Practical No. 2
+# Swap two variables using a temporary variable
+
+# Input from the user
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+
+print("\nBefore Swapping")
+print("First Number =", num1)
+print("Second Number =", num2)
+
+# Swapping using temporary variable
+temp = num1
+num1 = num2
+num2 = temp
+
+print("\nAfter Swapping")
+print("First Number =", num1)
+print("Second Number =", num2)</code></pre>
+            </div>
+        </section>
+
+        <!-- Explanation -->
+        <section class="section">
+            <h2>Program Explanation</h2>
+
+            <p>
+                The program first accepts two numbers from the user and stores
+                them in <code>num1</code> and <code>num2</code>.
+            </p>
+
+            <p>
+                Before swapping, the values of both variables are displayed.
+            </p>
+
+            <p>
+                The swapping is performed using three assignment statements:
+            </p>
+
+            <div class="note">
+                <p><strong>1.</strong> <code>temp = num1</code></p>
+                <p>
+                    The value of <code>num1</code> is copied into the temporary
+                    variable <code>temp</code>.
+                </p>
+
+                <br>
+
+                <p><strong>2.</strong> <code>num1 = num2</code></p>
+                <p>
+                    The value of <code>num2</code> is assigned to
+                    <code>num1</code>.
+                </p>
+
+                <br>
+
+                <p><strong>3.</strong> <code>num2 = temp</code></p>
+                <p>
+                    The original value of <code>num1</code>, which was stored
+                    safely in <code>temp</code>, is assigned to
+                    <code>num2</code>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sample Output -->
+        <section class="section">
+            <h2>Sample Output</h2>
+
+            <div class="output"><pre>Enter first number: 15
+Enter second number: 25
+
+Before Swapping
+First Number = 15
+Second Number = 25
+
+After Swapping
+First Number = 25
+Second Number = 15</pre></div>
+        </section>
+
+        <!-- Result -->
+        <section class="section">
+            <h2>Result</h2>
+
+            <p>
+                Thus, the Python program to swap the values of two variables
+                using a temporary variable was successfully executed.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p><strong>Python Programming Practical</strong></p>
+        <p>Practical No. 2 – Swapping Two Variables</p>
+    </footer>
 
 </body>
-
 </html>
