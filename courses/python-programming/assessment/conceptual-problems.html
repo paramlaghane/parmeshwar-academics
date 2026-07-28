@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Conceptual Problem Solving | Python Programming
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Internal Assessment
+
+</h2>
+
+<p>
+
+Assessment Parameter 2 – Conceptual Problem Solving
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+ASSESSMENT INFORMATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Assessment Parameter 2
+
+</h2>
+
+<div class="course-card">
+
+<h3>
+
+Conceptual Problem Solving
+
+</h3>
+
+<p>
+
+<b>Course :</b> Python Programming
+
+</p>
+
+<p>
+
+<b>Assessment Type :</b> Internal Assessment
+
+</p>
+
+<p>
+
+<b>Activity :</b> Conceptual Problem Solving
+
+</p>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROBLEM STATEMENT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Question
+
+</h2>
+
+<div class="course-card">
+
+<p>
+
+The BCA Department is developing a Python program to automate the analysis of classroom test results. The marks obtained by students in a class are stored in the following list:
+
+</p>
+
+<pre style="
+background:#ffffff;
+border:1px solid #d1d5db;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+font-family:'Courier New', Courier, monospace;
+font-size:15px;
+line-height:1.5;
+"><code>marks = [85, 42, -1, 67, 33, 999, 90, 51, 28]</code></pre>
+
+<p>
+
+The program must follow the rules given below.
+
+</p>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+RULES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Rules
+
+</h2>
+
+<div style="overflow-x:auto;">
+
+<table class="content-table">
+
+<thead>
+
+<tr>
+
+<th>
+
+Rule No.
+
+</th>
+
+<th>
+
+Rule
+
+</th>
+
+<th>
+
+Purpose
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+1
+
+</td>
+
+<td>
+
+A negative value indicates that the student was Absent.
+
+</td>
+
+<td>
+
+It should be skipped and counted as Absent, not as Fail.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+2
+
+</td>
+
+<td>
+
+Marks are classified as:<br><br>
+
+• Excellent: 80 and above<br>
+
+• Good: 60–79<br>
+
+• Average: 40–59<br>
+
+• Fail: Below 40
+
+</td>
+
+<td>
+
+Used for student performance analysis.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+3
+
+</td>
+
+<td>
+
+The value 999 is a sentinel value.
+
+</td>
+
+<td>
+
+It indicates the end of valid data, and the program must stop processing further elements.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAMMING REQUIREMENT
+========================================================== -->
+
+<section>
+
+<div class="course-card">
+
+<p>
+
+As a Python programmer, you are required to develop a solution that demonstrates the proper use of Python's conditional statements and looping constructs.
+
+</p>
+
+<p>
+
+Your program should include the following concepts:
+
+</p>
+
+<ul>
+
+<li>
+
+if-elif-else
+
+</li>
+
+<li>
+
+Nested control structure (nested if-else or nested loop)
+
+</li>
+
+<li>
+
+for loop with range()
+
+</li>
+
+<li>
+
+break
+
+</li>
+
+<li>
+
+continue
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+QUESTION (A)
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+(a) Program Development
+
+</h2>
+
+<div class="course-card">
+
+<p>
+
+Write a complete Python program that performs the following tasks:
+
+</p>
+
+<ol>
+
+<li>
+
+Traverse the marks list using for with range(len(marks)).
+
+</li>
+
+<li>
+
+Use the continue statement to skip negative values and count them as Absent.
+
+</li>
+
+<li>
+
+Use the break statement to terminate the loop immediately when the sentinel value 999 is encountered.
+
+</li>
+
+<li>
+
+Classify each valid mark using an if-elif-else statement into one of the following categories:
+
+</li>
+
+</ol>
+
+<ul>
+
+<li>
+
+Excellent
+
+</li>
+
+<li>
+
+Good
+
+</li>
+
+<li>
+
+Average
+
+</li>
+
+<li>
+
+Fail
+
+</li>
+
+</ul>
+
+<ol start="5">
+
+<li>
+
+Display the total number of students in each category in the following format:
+
+</li>
+
+</ol>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+EXPECTED FORMAT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Output Format
+
+</h2>
+
+<pre style="
+background:#ffffff;
+border:1px solid #d1d5db;
+padding:20px;
+overflow-x:auto;
+border-radius:8px;
+font-family:'Courier New', Courier, monospace;
+font-size:15px;
+line-height:1.5;
+"><code>Excellent : ___
+Good      : ___
+Average   : ___
+Fail      : ___
+Absent    : ___</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+QUESTION (B)
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+(b) Understanding break and continue (1 Mark)
+
+</h2>
+
+<div class="course-card">
+
+<p>
+
+Using the same marks list, explain the practical difference between the break and continue statements.
+
+</p>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+CONCEPTS TO BE DEMONSTRATED
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Concepts to be Demonstrated
+
+</h2>
+
+<div style="overflow-x:auto;">
+
+<table class="content-table">
+
+<thead>
+
+<tr>
+
+<th>
+
+Concept
+
+</th>
+
+<th>
+
+Application in the Problem
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+if-elif-else
+
+</td>
+
+<td>
+
+Classify valid marks as Excellent, Good, Average or Fail.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Nested control structure
+
+</td>
+
+<td>
+
+Use a nested if-else or nested loop as required.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+for loop with range()
+
+</td>
+
+<td>
+
+Traverse the list using range(len(marks)).
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+continue
+
+</td>
+
+<td>
+
+Skip negative marks after counting the student as Absent.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+break
+
+</td>
+
+<td>
+
+Stop processing when the sentinel value 999 is encountered.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+SUBMISSION INSTRUCTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Submission Instructions
+
+</h2>
+
+<div class="course-card">
+
+<ul>
+
+<li>
+
+Write the complete Python program according to the given requirements.
+
+</li>
+
+<li>
+
+Use the given marks list for testing the program.
+
+</li>
+
+<li>
+
+Use proper indentation and meaningful variable names.
+
+</li>
+
+<li>
+
+Demonstrate all the specified Python concepts in the program.
+
+</li>
+
+<li>
+
+Display the total number of students in each category in the required format.
+
+</li>
+
+<li>
+
+Answer the question on the practical difference between break and continue.
+
+</li>
+
+<li>
+
+Write your Name, Roll Number, Class and Assessment Parameter at the top of the submission.
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section>
+
+<div style="display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:15px;">
+
+<a href="concept-mapping.html"
+class="course-button">
+
+← Concept Mapping
+
+</a>
+
+<a href="../index.html"
+class="course-button">
+
+← Back to Python Programming
+
+</a>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 PU's Academics | Python Programming Learning Portal
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../../assets/js/main.js"></script>
+
+</body>
+
+</html>
