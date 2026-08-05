@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 03 | Core Java Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 03
+
+</h2>
+
+<p>
+
+Java Programs to Calculate the Area and Perimeter (Circumference) of a Circle
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+TITLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Java Programs to Calculate the Area and Perimeter (Circumference) of a Circle
+
+</h2>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1. Aim
+
+</h2>
+
+<p>
+
+To write, compile, execute, and test Java programs that calculate the area and perimeter (circumference) of a circle using progressively richer Java features such as arithmetic operations, predefined constants, keyboard input, and object-oriented programming concepts.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+FORMULA
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+2. Formula Used
+
+</h2>
+
+<h3>
+
+Area of Circle
+
+</h3>
+
+<pre><code>
+Area = π × r × r
+</code></pre>
+
+<h3>
+
+Circumference (Perimeter)
+
+</h3>
+
+<pre><code>
+Perimeter = 2 × π × r
+</code></pre>
+
+<p>
+
+where
+
+</p>
+
+<ul>
+
+<li><strong>π</strong> = 3.141592653589793 (<code>Math.PI</code>)</li>
+
+<li><strong>r</strong> = Radius of the circle</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+INTRODUCTION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Introduction
+
+</h2>
+
+<p>
+
+A circle is a two-dimensional geometric figure defined by its radius. In Java, the predefined constant <code>Math.PI</code> provides an accurate value of π for mathematical calculations.
+
+</p>
+
+<p>
+
+In this practical, we calculate both the area and the perimeter (circumference) of a circle. The first program accepts the radius from the keyboard using the <code>Scanner</code> class, while the second program introduces object-oriented programming concepts using a user-defined class.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAM 1
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Program 1 – Using Scanner for User Input
+
+</h2>
+
+<h3>
+
+Aim
+
+</h3>
+
+<p>
+
+To write a Java program that accepts the radius from the keyboard and calculates the area and perimeter of the circle.
+
+</p>
+
+<h3>
+
+Algorithm
+
+</h3>
+
+<ol>
+
+<li>Start the program.</li>
+
+<li>Import the <code>Scanner</code> class.</li>
+
+<li>Create a <code>Scanner</code> object.</li>
+
+<li>Accept the radius from the user.</li>
+
+<li>Calculate the area.</li>
+
+<li>Calculate the perimeter.</li>
+
+<li>Display the results.</li>
+
+<li>Close the scanner.</li>
+
+<li>Stop the program.</li>
+
+</ol>
+
+<h3>
+
+Program
+
+</h3>
+
+<pre><code>
+import java.util.Scanner;
+
+public class CircleDemo {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter radius of the circle: ");
+        double r = sc.nextDouble();
+
+        double area = Math.PI * r * r;
+        double perimeter = 2 * Math.PI * r;
+
+        System.out.println("Area of the circle = " + area);
+        System.out.println("Perimeter of the circle = " + perimeter);
+
+        sc.close();
+    }
+}
+</code></pre>
+
+<h3>
+
+Sample Output
+
+</h3>
+
+<pre><code>
+Enter radius of the circle: 10
+
+Area of the circle = 314.1592653589793
+Perimeter of the circle = 62.83185307179586
+</code></pre>
+
+<h3>
+
+Explanation
+
+</h3>
+
+<ul>
+
+<li><code>import java.util.Scanner;</code> imports the Scanner class.</li>
+
+<li><code>Scanner sc = new Scanner(System.in);</code> creates an object to read keyboard input.</li>
+
+<li><code>nextDouble()</code> reads a decimal number entered by the user.</li>
+
+<li><code>Math.PI</code> is used for accurate calculations.</li>
+
+<li><code>area = Math.PI * r * r;</code> calculates the area of the circle.</li>
+
+<li><code>perimeter = 2 * Math.PI * r;</code> calculates the circumference (perimeter).</li>
+
+<li><code>sc.close();</code> releases the resources used by the Scanner object.</li>
+
+</ul>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+PROGRAM 2
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Program 2 – Using a User-Defined Class
+
+</h2>
+
+<h3>
+
+Aim
+
+</h3>
+
+<p>
+
+To write a Java program that defines a <code>Circle</code> class with data members and methods to calculate the area and perimeter of a circle.
+
+</p>
+
+<h3>
+
+Algorithm
+
+</h3>
+
+<ol>
+
+<li>Create a class named <code>Circle</code>.</li>
+
+<li>Declare a data member <code>radius</code>.</li>
+
+<li>Create a constructor to initialize the radius.</li>
+
+<li>Create methods to calculate the area and perimeter.</li>
+
+<li>Create an object of the <code>Circle</code> class.</li>
+
+<li>Call the methods and display the results.</li>
+
+<li>Stop the program.</li>
+
+</ol>
+
+<h3>
+
+Program
+
+</h3>
+
+<pre><code>
+class Circle {
+
+    double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+
+    double calculatePerimeter() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+public class CircleDemo {
+
+    public static void main(String[] args) {
+
+        Circle c = new Circle(10);
+
+        System.out.println("Radius = " + c.radius);
+        System.out.println("Area = " + c.calculateArea());
+        System.out.println("Perimeter = " + c.calculatePerimeter());
+    }
+}
+</code></pre>
+
+<h3>
+
+Output
+
+</h3>
+
+<pre><code>
+Radius = 10.0
+Area = 314.1592653589793
+Perimeter = 62.83185307179586
+</code></pre>
+
+<h3>
+
+Explanation
+
+</h3>
+
+<ul>
+
+<li><code>Circle</code> is a user-defined class.</li>
+
+<li>The constructor initializes the radius of the object.</li>
+
+<li>The keyword <code>this</code> refers to the current object.</li>
+
+<li>The methods <code>calculateArea()</code> and <code>calculatePerimeter()</code> perform the required calculations.</li>
+
+<li>An object of the <code>Circle</code> class is created using the <code>new</code> keyword.</li>
+
+<li>This program introduces the object-oriented programming concepts covered in Unit 2.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+COMPARISON
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+6. Comparison of the Two Programs
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Program 1</th>
+
+<th>Program 2</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Uses the <code>Scanner</code> class for user input.</td>
+
+<td>Uses a user-defined <code>Circle</code> class.</td>
+
+</tr>
+
+<tr>
+
+<td>Demonstrates keyboard input.</td>
+
+<td>Demonstrates object-oriented programming.</td>
+
+</tr>
+
+<tr>
+
+<td>Calculations are performed directly in the <code>main()</code> method.</td>
+
+<td>Calculations are performed using class methods.</td>
+
+</tr>
+
+<tr>
+
+<td>Suitable for beginners learning Java input and arithmetic.</td>
+
+<td>Suitable for understanding classes, constructors, objects, and methods.</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+VIVA QUESTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Viva Questions
+
+</h2>
+
+<ol>
+
+<li>What is the purpose of the <code>double</code> data type?</li>
+
+<li>Why is <code>Math.PI</code> preferred over <code>3.14</code>?</li>
+
+<li>Which package contains the <code>Math</code> class?</li>
+
+<li>Why is no <code>import</code> statement required for the <code>Math</code> class?</li>
+
+<li>What is the purpose of the <code>Scanner</code> class?</li>
+
+<li>What is the difference between <code>nextInt()</code> and <code>nextDouble()</code>?</li>
+
+<li>Why should we call <code>sc.close()</code>?</li>
+
+<li>What is a constructor?</li>
+
+<li>What is the purpose of the <code>this</code> keyword?</li>
+
+<li>What is the purpose of the <code>new</code> keyword?</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+KEY POINTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Key Points to Remember
+
+</h2>
+
+<ul>
+
+<li><code>Math.PI</code> provides an accurate value of π.</li>
+
+<li>The <code>double</code> data type is suitable for decimal arithmetic.</li>
+
+<li>The <code>Scanner</code> class is used for accepting user input.</li>
+
+<li>Always close the <code>Scanner</code> object after use.</li>
+
+<li>A constructor initializes an object when it is created.</li>
+
+<li>The <code>this</code> keyword refers to the current object.</li>
+
+<li>The <code>new</code> keyword creates an object in memory.</li>
+
+<li>Methods help organize code and improve reusability.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+CONCLUSION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+9. Conclusion
+
+</h2>
+
+<p>
+
+In this practical, we learned how to calculate the area and perimeter (circumference) of a circle using Java. We used the <code>double</code> data type for decimal arithmetic, the predefined constant <code>Math.PI</code> for accurate calculations, and the <code>Scanner</code> class for accepting keyboard input. Finally, we implemented the solution using a user-defined <code>Circle</code> class with a constructor and methods, introducing the fundamental concepts of object-oriented programming in Java.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="experiment2.html"
+class="primary-button">
+
+← Previous Practical
+
+</a>
+
+<a href="index.html"
+class="primary-button">
+
+Back to Practicals
+
+</a>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
