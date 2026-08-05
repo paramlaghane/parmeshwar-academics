@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 02 | AIML Essentials Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 02
+
+</h2>
+
+<p>
+
+Bayes' Theorem: Fire Detection Using Smoke
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+TITLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Bayes' Theorem: Fire Detection Using Smoke
+
+</h2>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1. Aim
+
+</h2>
+
+<p>
+
+To apply Bayes' Theorem to determine the probability that a fire has occurred when smoke is detected. This practical demonstrates how Artificial Intelligence systems update their beliefs when new evidence becomes available.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+THEORY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+2. Theory
+
+</h2>
+
+<p>
+
+Bayes' Theorem is a mathematical formula used to update the probability of a hypothesis when new evidence becomes available. It combines prior knowledge with observed evidence to calculate an updated probability called the <strong>posterior probability</strong>.
+
+</p>
+
+<p>
+
+The formula for Bayes' Theorem is
+
+</p>
+
+<pre><code>
+P(Fire | Smoke)
+=
+[P(Smoke | Fire) × P(Fire)]
+----------------------------
+       P(Smoke)
+</code></pre>
+
+<p>
+
+where
+
+</p>
+
+<ul>
+
+<li><strong>P(Fire)</strong> = Prior probability of fire</li>
+
+<li><strong>P(Smoke | Fire)</strong> = Probability of detecting smoke when there is a fire (Likelihood)</li>
+
+<li><strong>P(Smoke)</strong> = Probability of observing smoke (Evidence)</li>
+
+<li><strong>P(Fire | Smoke)</strong> = Posterior probability of fire after observing smoke</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROBLEM SETUP
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Problem Setup
+
+</h2>
+
+<p>
+
+Suppose a smart building is equipped with smoke sensors.
+
+</p>
+
+<p>
+
+Assume the following probabilities:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>Prior probability of fire</strong>
+
+<pre><code>P(Fire) = 1% = 0.01</code></pre>
+
+</li>
+
+<li>
+
+<strong>Probability of detecting smoke when there is a fire</strong>
+
+<pre><code>P(Smoke | Fire) = 90% = 0.90</code></pre>
+
+</li>
+
+<li>
+
+<strong>Probability of observing smoke</strong>
+
+<pre><code>P(Smoke) = 10% = 0.10</code></pre>
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+CALCULATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Applying Bayes' Theorem
+
+</h2>
+
+<p>
+
+Substitute the given values into Bayes' Theorem.
+
+</p>
+
+<pre><code>
+P(Fire | Smoke)
+
+= (P(Smoke | Fire) × P(Fire))
+  ---------------------------
+          P(Smoke)
+
+= (0.90 × 0.01)
+  -------------
+      0.10
+
+= 0.009
+  -----
+  0.10
+
+= 0.09
+</code></pre>
+
+<p>
+
+Therefore,
+
+</p>
+
+<pre><code>
+P(Fire | Smoke) = 9%
+</code></pre>
+
+<p>
+
+This means that when smoke is detected, the probability that a fire is actually occurring increases from <strong>1%</strong> to <strong>9%</strong>.
+
+</p>
+
+<p>
+
+This example demonstrates how Artificial Intelligence systems update their beliefs when new evidence becomes available.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+ALGORITHM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Algorithm
+
+</h2>
+
+<ol>
+
+<li>Assume the prior probability of fire.</li>
+
+<li>Assume the probability of observing smoke when there is a fire.</li>
+
+<li>Assume the probability of observing smoke.</li>
+
+<li>Apply Bayes' Theorem.</li>
+
+<li>Calculate the posterior probability of fire.</li>
+
+<li>Display the result.</li>
+
+</ol>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+OBSERVATION TABLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+6. Observation Table
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Parameter</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Prior Probability, P(Fire)</td>
+
+<td>0.01</td>
+
+</tr>
+
+<tr>
+
+<td>Likelihood, P(Smoke | Fire)</td>
+
+<td>0.90</td>
+
+</tr>
+
+<tr>
+
+<td>Evidence, P(Smoke)</td>
+
+<td>0.10</td>
+
+</tr>
+
+<tr>
+
+<td>Posterior Probability, P(Fire | Smoke)</td>
+
+<td>0.09</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PYTHON PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Python Program
+
+</h2>
+
+<pre><code>
+# Bayes' Theorem for Fire Detection
+
+# Prior probability
+p_fire = 0.01
+
+# Likelihood
+p_smoke_given_fire = 0.90
+
+# Evidence
+p_smoke = 0.10
+
+# Apply Bayes' Theorem
+posterior = (p_smoke_given_fire * p_fire) / p_smoke
+
+print("Prior Probability P(Fire) =", p_fire)
+print("Likelihood P(Smoke|Fire) =", p_smoke_given_fire)
+print("Evidence P(Smoke) =", p_smoke)
+print("Posterior Probability P(Fire|Smoke) =", round(posterior, 2))
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAM EXPLANATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Program Explanation
+
+</h2>
+
+<ul>
+
+<li>The variable <code>p_fire</code> stores the prior probability that a fire has occurred.</li>
+
+<li>The variable <code>p_smoke_given_fire</code> stores the likelihood of detecting smoke when a fire is present.</li>
+
+<li>The variable <code>p_smoke</code> stores the probability of observing smoke.</li>
+
+<li>The posterior probability is calculated by directly applying Bayes' Theorem.</li>
+
+<li>The <code>round()</code> function displays the posterior probability rounded to two decimal places.</li>
+
+<li>The <code>print()</code> function displays all probabilities in a clear and readable format.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+SAMPLE OUTPUT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+9. Sample Output
+
+</h2>
+
+<pre><code>
+Prior Probability P(Fire) = 0.01
+Likelihood P(Smoke|Fire) = 0.9
+Evidence P(Smoke) = 0.1
+Posterior Probability P(Fire|Smoke) = 0.09
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+KEY POINTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+10. Key Points to Remember
+
+</h2>
+
+<ul>
+
+<li>Bayes' Theorem updates an existing belief using new evidence.</li>
+
+<li><strong>Prior Probability</strong> represents the initial belief before observing evidence.</li>
+
+<li><strong>Likelihood</strong> represents the probability of observing the evidence when the hypothesis is true.</li>
+
+<li><strong>Evidence</strong> is the overall probability of observing the evidence.</li>
+
+<li><strong>Posterior Probability</strong> is the updated probability after considering the evidence.</li>
+
+<li>Bayes' Theorem is widely used in Artificial Intelligence, Machine Learning, medical diagnosis, spam filtering, robotics, and decision-making systems.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+RESULT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+11. Result
+
+</h2>
+
+<p>
+
+Using Bayes' Theorem, the probability of fire increased from <strong>1%</strong> (prior probability) to <strong>9%</strong> (posterior probability) after smoke was detected. This demonstrates how Bayes' Theorem updates beliefs based on new evidence and forms the foundation of probabilistic reasoning in Artificial Intelligence.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="experiment1.html"
+class="primary-button">
+
+← Previous Practical
+
+</a>
+
+<a href="index.html"
+class="primary-button">
+
+Back to Practicals
+
+</a>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
