@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 02 | Core Java Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 02
+
+</h2>
+
+<p>
+
+Star Pattern Programs Using Nested <code>for</code> Loops
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+TITLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Star Pattern Programs Using Nested for Loops
+
+</h2>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1. Aim
+
+</h2>
+
+<p>
+
+To write, compile, execute, and test Java programs that use nested <code>for</code> loops to display various star (<code>*</code>) patterns on the screen.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+INTRODUCTION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+2. Introduction
+
+</h2>
+
+<p>
+
+Nested <code>for</code> loops are widely used in Java to solve problems that involve rows and columns. In pattern programming, the outer loop controls the number of rows, while the inner loop controls the number of symbols printed in each row.
+
+</p>
+
+<p>
+
+By changing the starting value, ending value, or direction of the loops, different patterns such as rectangles, triangles, pyramids, and diamonds can be generated. Pattern programs are an excellent way to understand nested loops and logical thinking.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAM 1
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Program 1 – Solid Rectangle of Stars
+
+</h2>
+
+<h3>
+
+Aim
+
+</h3>
+
+<p>
+
+Display a 5 × 5 rectangle of stars.
+
+</p>
+
+<h3>
+
+Algorithm
+
+</h3>
+
+<ol>
+
+<li>Start the program.</li>
+
+<li>Declare two variables: <code>rows = 5</code> and <code>cols = 5</code>.</li>
+
+<li>Use an outer loop to print each row.</li>
+
+<li>Use an inner loop to print five stars in each row.</li>
+
+<li>After printing one row, move to the next line.</li>
+
+<li>Repeat until all rows are printed.</li>
+
+<li>Stop the program.</li>
+
+</ol>
+
+<h3>
+
+Program
+
+</h3>
+
+<pre><code>
+public class Pattern1Rectangle {
+
+    public static void main(String[] args) {
+
+        int rows = 5;
+        int cols = 5;
+
+        for (int i = 1; i <= rows; i++) {
+
+            for (int j = 1; j <= cols; j++) {
+                System.out.print("* ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+</code></pre>
+
+<h3>
+
+Output
+
+</h3>
+
+<pre><code>
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+</code></pre>
+
+<h3>
+
+Explanation
+
+</h3>
+
+<ul>
+
+<li>The outer loop executes five times, producing five rows.</li>
+
+<li>The inner loop executes five times for each row, printing five stars.</li>
+
+<li><code>System.out.print()</code> prints stars on the same line.</li>
+
+<li><code>System.out.println()</code> moves the cursor to the next line after each row.</li>
+
+<li>Since both loops execute five times, a 5 × 5 solid rectangle is displayed.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAM 2
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Program 2 – Left-Aligned Right-Angled Triangle
+
+</h2>
+
+<h3>
+
+Aim
+
+</h3>
+
+<p>
+
+Display a right-angled triangle in which row <code>i</code> contains <code>i</code> stars.
+
+</p>
+
+<h3>
+
+Algorithm
+
+</h3>
+
+<ol>
+
+<li>Start the program.</li>
+
+<li>Declare <code>n = 5</code>.</li>
+
+<li>Use an outer loop from 1 to <code>n</code>.</li>
+
+<li>Use an inner loop from 1 to the current row number.</li>
+
+<li>Print <code>"* "</code> in each iteration.</li>
+
+<li>Move to the next line after each row.</li>
+
+<li>Stop the program.</li>
+
+</ol>
+
+<h3>
+
+Program
+
+</h3>
+
+<pre><code>
+public class Pattern2RightTriangle {
+
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        for (int i = 1; i <= n; i++) {
+
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+</code></pre>
+
+<h3>
+
+Output
+
+</h3>
+
+<pre><code>
+*
+* *
+* * *
+* * * *
+* * * * *
+</code></pre>
+
+<h3>
+
+Explanation
+
+</h3>
+
+<ul>
+
+<li>The outer loop controls the number of rows.</li>
+
+<li>The inner loop prints stars.</li>
+
+<li>The condition <code>j <= i</code> causes the number of stars to increase with each row.</li>
+
+<li>As the row number increases, the triangle becomes wider.</li>
+
+</ul>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+PROGRAM 3
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Program 3 – Inverted Right-Angled Triangle
+
+</h2>
+
+<h3>
+
+Aim
+
+</h3>
+
+<p>
+
+Display an inverted right-angled triangle.
+
+</p>
+
+<h3>
+
+Algorithm
+
+</h3>
+
+<ol>
+
+<li>Start the program.</li>
+
+<li>Declare <code>n = 5</code>.</li>
+
+<li>Use an outer loop from <code>n</code> down to <code>1</code>.</li>
+
+<li>Use an inner loop from <code>1</code> to the current row number.</li>
+
+<li>Print <code>"* "</code> in each iteration.</li>
+
+<li>Move to the next line after each row.</li>
+
+<li>Stop the program.</li>
+
+</ol>
+
+<h3>
+
+Program
+
+</h3>
+
+<pre><code>
+public class Pattern3InvertedTriangle {
+
+    public static void main(String[] args) {
+
+        int n = 5;
+
+        for (int i = n; i >= 1; i--) {
+
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+</code></pre>
+
+<h3>
+
+Output
+
+</h3>
+
+<pre><code>
+* * * * *
+* * * *
+* * *
+* *
+*
+</code></pre>
+
+<h3>
+
+Explanation
+
+</h3>
+
+<ul>
+
+<li>The outer loop executes in reverse order, from <code>5</code> down to <code>1</code>.</li>
+
+<li>The inner loop prints stars equal to the current row number.</li>
+
+<li>Each successive row contains one fewer star than the previous row.</li>
+
+<li>Changing only the direction of the outer loop converts the right-angled triangle into an inverted triangle.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+SUMMARY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+6. Summary of Pattern Programs
+
+</h2>
+
+<p>
+
+The three programs in this practical demonstrate how nested <code>for</code> loops can be used to generate different star patterns. In every program, the outer loop controls the number of rows, while the inner loop controls the number of stars printed in each row.
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Program</th>
+
+<th>Outer Loop</th>
+
+<th>Inner Loop</th>
+
+<th>Pattern Produced</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Program 1</td>
+
+<td>1 to 5</td>
+
+<td>1 to 5</td>
+
+<td>Solid Rectangle</td>
+
+</tr>
+
+<tr>
+
+<td>Program 2</td>
+
+<td>1 to 5</td>
+
+<td>1 to current row</td>
+
+<td>Right-Angled Triangle</td>
+
+</tr>
+
+<tr>
+
+<td>Program 3</td>
+
+<td>5 down to 1</td>
+
+<td>1 to current row</td>
+
+<td>Inverted Triangle</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+KEY POINTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Key Points to Remember
+
+</h2>
+
+<ul>
+
+<li>The outer loop determines the number of rows.</li>
+
+<li>The inner loop determines the number of stars printed in each row.</li>
+
+<li>Changing the loop limits changes the pattern.</li>
+
+<li><code>System.out.print()</code> prints output on the same line.</li>
+
+<li><code>System.out.println()</code> moves the cursor to the next line.</li>
+
+<li>Nested loops are commonly used for pattern printing, matrices, and two-dimensional data processing.</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+CONCLUSION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Conclusion
+
+</h2>
+
+<p>
+
+In this practical, we successfully used nested <code>for</code> loops to generate three different star patterns: a solid rectangle, a left-aligned right-angled triangle, and an inverted right-angled triangle. The practical demonstrates how the outer loop controls the rows, while the inner loop controls the number of stars printed in each row. By modifying loop conditions, different patterns can be created, strengthening the understanding of nested loops and logical program design in Java.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="experiment1.html"
+class="primary-button">
+
+← Previous Practical
+
+</a>
+
+<a href="index.html"
+class="primary-button">
+
+Back to Practicals
+
+</a>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
