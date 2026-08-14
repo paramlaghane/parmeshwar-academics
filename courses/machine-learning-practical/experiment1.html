@@ -1,51 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 01 | Machine Learning Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
 PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
 Learn Today. Lead Tomorrow.
 
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
 🌙
+
+</button>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
 Practical No. 01
-FIND-S Algorithm
+
+</h2>
+
+<p>
 
 FIND-S Algorithm
+
+</p>
+
+</div>
+
+</section>
+
+<main class="container">
+
+<!-- ==========================================================
+TITLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+FIND-S Algorithm
+
+</h2>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 1. Aim
-To implement and demonstrate the FIND-S algorithm for finding the most specific hypothesis from a given set of training examples, where the training data is read from a CSV file.
+
+</h2>
+
+<p>
+
+To <strong>implement and demonstrate the FIND-S algorithm</strong> for finding the <strong>most specific hypothesis</strong> from a given set of training examples, where the training data is read from a <strong>CSV file</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+LEARNING OBJECTIVES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
 
 2. Learning Objectives
+
+</h2>
+
+<p>
+
 After completing this practical, students should be able to:
 
-Understand the concept of hypothesis in concept learning.
-Understand the FIND-S algorithm.
-Identify positive and negative training examples.
+</p>
+
+<ol>
+
+<li>
+
+Understand the concept of <strong>hypothesis</strong> in concept learning.
+
+</li>
+
+<li>
+
+Understand the <strong>FIND-S algorithm</strong>.
+
+</li>
+
+<li>
+
+Identify <strong>positive and negative training examples</strong>.
+
+</li>
+
+<li>
+
 Generalize a hypothesis when attribute values differ.
-Implement FIND-S using Python and Pandas.
-Read training data from a CSV file.
+
+</li>
+
+<li>
+
+Implement FIND-S using <strong>Python and Pandas</strong>.
+
+</li>
+
+<li>
+
+Read training data from a <strong>CSV file</strong>.
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+DATASET
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 3. Dataset
+
+</h2>
+
+<p>
+
 Create a CSV file named:
 
+</p>
+
+<pre><code>
 training_data.csv
-Save it in the same folder as your Python program.
+</code></pre>
+
+<p>
+
+Save it in the <strong>same folder</strong> as your Python program.
+
+</p>
+
+<h3>
 
 training_data.csv
+
+</h3>
+
+<pre><code>
 Sky,Temp,Humidity,Wind,Water,Forecast,EnjoySport
 Sunny,Warm,Normal,Strong,Warm,Same,Yes
 Sunny,Warm,High,Strong,Warm,Same,Yes
 Rainy,Cold,High,Strong,Warm,Change,No
 Sunny,Warm,High,Strong,Cool,Change,Yes
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+CONCEPT OF FIND-S
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 4. Concept of FIND-S
-The FIND-S algorithm starts with the most specific hypothesis and gradually generalizes it using positive training examples.
+
+</h2>
+
+<p>
+
+The <strong>FIND-S algorithm</strong> starts with the <strong>most specific hypothesis</strong> and gradually generalizes it using <strong>positive training examples</strong>.
+
+</p>
+
+<h3>
 
 Initial Hypothesis
-h = <∅, ∅, ∅, ∅, ∅, ∅>
-Here, ∅ represents the most specific value.
+
+</h3>
+
+<pre><code>
+h = &lt;∅, ∅, ∅, ∅, ∅, ∅&gt;
+</code></pre>
+
+<p>
+
+Here, <code>∅</code> represents the <strong>most specific value</strong>.
+
+</p>
+
+<h3>
 
 Important Rule
-Positive example (Yes) → used to update the hypothesis.
-Negative example (No) → ignored by FIND-S.
-If the attribute value is different from the current hypothesis, replace it with ?.
-? means any value is acceptable.
+
+</h3>
+
+<ul>
+
+<li>
+
+<strong>Positive example (Yes)</strong> → used to update the hypothesis.
+
+</li>
+
+<li>
+
+<strong>Negative example (No)</strong> → ignored by FIND-S.
+
+</li>
+
+<li>
+
+If the attribute value is different from the current hypothesis, replace it with <code>?</code>.
+
+</li>
+
+<li>
+
+<code>?</code> means <strong>any value is acceptable</strong>.
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+FIND-S ALGORITHM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 5. FIND-S Algorithm
+
+</h2>
+
+<pre><code>
 Step 1: Initialize the hypothesis h with the most specific values.
 
-        h = <∅, ∅, ∅, ∅, ∅, ∅>
+        h = &lt;∅, ∅, ∅, ∅, ∅, ∅&gt;
 
 Step 2: Read each training example.
 
@@ -64,10 +338,35 @@ Step 4: If the example is negative (No):
 Step 5: Repeat Steps 2–4 for all training examples.
 
 Step 6: Display the final hypothesis.
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PYTHON PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 6. Python Program
+
+</h2>
+
+<p>
+
 Create a Python file named:
 
+</p>
+
+<pre><code>
 find_s.py
+</code></pre>
+
+<pre><code>
 import pandas as pd
 
 # Read training data from CSV file
@@ -106,57 +405,394 @@ for i, row in features.iterrows():
 # Display final hypothesis
 print("\nFinal Most-Specific Hypothesis:")
 print(h)
-7. Program Explanation
-pd.read_csv() reads the training data from the CSV file.
-df.iloc[:, :-1] selects all columns except the last column as features.
-df.iloc[:, -1] selects EnjoySport as the target label.
-The hypothesis is initialized with None, representing the most specific hypothesis.
-FIND-S processes only examples whose target label is Yes.
-For the first positive example, the hypothesis is initialized with its attribute values.
-When a later positive example has a different attribute value, that attribute is generalized to ?.
-Negative examples are ignored by the FIND-S algorithm.
-8. Expected Output
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+EXPECTED OUTPUT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Expected Output
+
+</h2>
+
+<pre><code>
 After row 0: ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same']
 After row 1: ['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']
 After row 3: ['Sunny', 'Warm', '?', 'Strong', '?', '?']
 
 Final Most-Specific Hypothesis:
 ['Sunny', 'Warm', '?', 'Strong', '?', '?']
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PROGRAM EXPLANATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Program Explanation
+
+</h2>
+
+<ul>
+
+<li>
+
+<code>pd.read_csv("training_data.csv")</code> reads the training data from the CSV file.
+
+</li>
+
+<li>
+
+<code>df.iloc[:, :-1]</code> selects all columns except the last column as the input features.
+
+</li>
+
+<li>
+
+<code>df.iloc[:, -1]</code> selects the last column, <code>EnjoySport</code>, as the target label.
+
+</li>
+
+<li>
+
+The hypothesis is initialized using <code>None</code>, representing the most specific hypothesis before processing the first positive example.
+
+</li>
+
+<li>
+
+FIND-S considers only training examples whose target label is <code>Yes</code>.
+
+</li>
+
+<li>
+
+For the first positive example, the hypothesis is initialized with its attribute values.
+
+</li>
+
+<li>
+
+When a later positive example contains a different value for an attribute, the corresponding hypothesis value is generalized to <code>?</code>.
+
+</li>
+
+<li>
+
+Negative examples are ignored by the FIND-S algorithm.
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+OBSERVATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 9. Observation and Interpretation
-The first positive example initializes the hypothesis with the exact attribute values of that example. The second positive example differs in the Humidity attribute, so the hypothesis for Humidity becomes ?. The third training example is negative and is therefore ignored. The final positive example differs in the Water and Forecast attributes, causing those attributes to become ?.
 
-Therefore, the final most-specific hypothesis is:
+</h2>
 
+<p>
+
+The first positive example initializes the hypothesis with its exact attribute values.
+
+</p>
+
+<pre><code>
+['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same']
+</code></pre>
+
+<p>
+
+The second positive example differs from the first example in the <strong>Humidity</strong> attribute. Therefore, the hypothesis for Humidity is generalized to <code>?</code>.
+
+</p>
+
+<pre><code>
+['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']
+</code></pre>
+
+<p>
+
+The third training example is negative and is therefore ignored by FIND-S.
+
+</p>
+
+<p>
+
+The fourth example is positive. It differs from the current hypothesis in the <strong>Water</strong> and <strong>Forecast</strong> attributes. These attributes are therefore generalized to <code>?</code>.
+
+</p>
+
+<pre><code>
 ['Sunny', 'Warm', '?', 'Strong', '?', '?']
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+KEY POINTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 10. Key Points to Remember
-FIND-S is a concept-learning algorithm.
-It starts with the most specific hypothesis.
+
+</h2>
+
+<ul>
+
+<li>
+
+FIND-S is a concept-learning algorithm used to find the most specific hypothesis consistent with positive training examples.
+
+</li>
+
+<li>
+
+The algorithm starts with the most specific hypothesis.
+
+</li>
+
+<li>
+
 Only positive training examples are used to update the hypothesis.
-Negative examples are ignored.
-The symbol ? represents any acceptable value.
+
+</li>
+
+<li>
+
+Negative training examples are ignored.
+
+</li>
+
+<li>
+
+The symbol <code>?</code> represents any acceptable value.
+
+</li>
+
+<li>
+
 When attribute values differ between positive examples, the hypothesis is generalized.
-Pandas can be used to conveniently read and process CSV training data.
+
+</li>
+
+<li>
+
+Pandas provides convenient functions for reading and processing CSV datasets.
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+RESULT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 11. Result
+
+</h2>
+
+<p>
+
 The FIND-S algorithm was successfully implemented using Python and Pandas. The training data was read from a CSV file, and the most specific hypothesis was obtained by considering the positive training examples and generalizing the hypothesis whenever attribute values differed.
 
-Final Most-Specific Hypothesis:
+</p>
+
+<p>
+
+The final most-specific hypothesis obtained is:
+
+</p>
+
+<pre><code>
 ['Sunny', 'Warm', '?', 'Strong', '?', '?']
+</code></pre>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+VIVA QUESTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
 12. Viva Questions
+
+</h2>
+
+<ol>
+
+<li>
+
 What is concept learning in Machine Learning?
+
+</li>
+
+<li>
+
 What is a hypothesis?
+
+</li>
+
+<li>
+
 What is the FIND-S algorithm?
+
+</li>
+
+<li>
+
 Why does FIND-S start with the most specific hypothesis?
+
+</li>
+
+<li>
+
 Why are negative examples ignored by FIND-S?
-What does the symbol ? represent in a hypothesis?
+
+</li>
+
+<li>
+
+What does the symbol <code>?</code> represent in a hypothesis?
+
+</li>
+
+<li>
+
 What happens when two positive examples have different attribute values?
+
+</li>
+
+<li>
+
 Why is Pandas used in this practical?
+
+</li>
+
+<li>
+
 Which function is used to read a CSV file using Pandas?
+
+</li>
+
+<li>
+
 What is the final hypothesis obtained from the given dataset?
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="index.html"
+class="primary-button">
+
 ← Back to Practicals
+
+</a>
+
+<a href="experiment2.html"
+class="primary-button">
+
 Next Practical →
+
+</a>
+
+</section>
+
+</main>
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
 PU's Academics
+
+</h3>
+
+<p>
+
 Learn Today. Lead Tomorrow.
 
-Digital Learning Platform for Python Programming, Artificial Intelligence, Machine Learning and Core Java.
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
 
 © 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
