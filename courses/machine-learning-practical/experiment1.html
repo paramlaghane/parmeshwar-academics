@@ -1,0 +1,162 @@
+PU's Academics
+Learn Today. Lead Tomorrow.
+
+🌙
+Practical No. 01
+FIND-S Algorithm
+
+FIND-S Algorithm
+1. Aim
+To implement and demonstrate the FIND-S algorithm for finding the most specific hypothesis from a given set of training examples, where the training data is read from a CSV file.
+
+2. Learning Objectives
+After completing this practical, students should be able to:
+
+Understand the concept of hypothesis in concept learning.
+Understand the FIND-S algorithm.
+Identify positive and negative training examples.
+Generalize a hypothesis when attribute values differ.
+Implement FIND-S using Python and Pandas.
+Read training data from a CSV file.
+3. Dataset
+Create a CSV file named:
+
+training_data.csv
+Save it in the same folder as your Python program.
+
+training_data.csv
+Sky,Temp,Humidity,Wind,Water,Forecast,EnjoySport
+Sunny,Warm,Normal,Strong,Warm,Same,Yes
+Sunny,Warm,High,Strong,Warm,Same,Yes
+Rainy,Cold,High,Strong,Warm,Change,No
+Sunny,Warm,High,Strong,Cool,Change,Yes
+4. Concept of FIND-S
+The FIND-S algorithm starts with the most specific hypothesis and gradually generalizes it using positive training examples.
+
+Initial Hypothesis
+h = <∅, ∅, ∅, ∅, ∅, ∅>
+Here, ∅ represents the most specific value.
+
+Important Rule
+Positive example (Yes) → used to update the hypothesis.
+Negative example (No) → ignored by FIND-S.
+If the attribute value is different from the current hypothesis, replace it with ?.
+? means any value is acceptable.
+5. FIND-S Algorithm
+Step 1: Initialize the hypothesis h with the most specific values.
+
+        h = <∅, ∅, ∅, ∅, ∅, ∅>
+
+Step 2: Read each training example.
+
+Step 3: If the example is positive (Yes):
+
+        For each attribute:
+            If h[i] = ∅
+                Set h[i] = x[i]
+
+            Else if h[i] ≠ x[i]
+                Set h[i] = ?
+
+Step 4: If the example is negative (No):
+        Do not change the hypothesis.
+
+Step 5: Repeat Steps 2–4 for all training examples.
+
+Step 6: Display the final hypothesis.
+6. Python Program
+Create a Python file named:
+
+find_s.py
+import pandas as pd
+
+# Read training data from CSV file
+df = pd.read_csv("training_data.csv")
+
+# Separate features and target
+features = df.iloc[:, :-1]
+labels = df.iloc[:, -1]
+
+# Number of attributes
+n = len(features.columns)
+
+# Initialize the most specific hypothesis
+h = [None] * n
+
+# Process each training example
+for i, row in features.iterrows():
+
+    y = labels.iloc[i]
+
+    # FIND-S considers only positive examples
+    if y == "Yes":
+
+        for j, value in enumerate(row):
+
+            # First positive example
+            if h[j] is None:
+                h[j] = value
+
+            # Generalize when values are different
+            elif h[j] != value:
+                h[j] = "?"
+
+        print(f"After row {i}: {h}")
+
+# Display final hypothesis
+print("\nFinal Most-Specific Hypothesis:")
+print(h)
+7. Program Explanation
+pd.read_csv() reads the training data from the CSV file.
+df.iloc[:, :-1] selects all columns except the last column as features.
+df.iloc[:, -1] selects EnjoySport as the target label.
+The hypothesis is initialized with None, representing the most specific hypothesis.
+FIND-S processes only examples whose target label is Yes.
+For the first positive example, the hypothesis is initialized with its attribute values.
+When a later positive example has a different attribute value, that attribute is generalized to ?.
+Negative examples are ignored by the FIND-S algorithm.
+8. Expected Output
+After row 0: ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same']
+After row 1: ['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']
+After row 3: ['Sunny', 'Warm', '?', 'Strong', '?', '?']
+
+Final Most-Specific Hypothesis:
+['Sunny', 'Warm', '?', 'Strong', '?', '?']
+9. Observation and Interpretation
+The first positive example initializes the hypothesis with the exact attribute values of that example. The second positive example differs in the Humidity attribute, so the hypothesis for Humidity becomes ?. The third training example is negative and is therefore ignored. The final positive example differs in the Water and Forecast attributes, causing those attributes to become ?.
+
+Therefore, the final most-specific hypothesis is:
+
+['Sunny', 'Warm', '?', 'Strong', '?', '?']
+10. Key Points to Remember
+FIND-S is a concept-learning algorithm.
+It starts with the most specific hypothesis.
+Only positive training examples are used to update the hypothesis.
+Negative examples are ignored.
+The symbol ? represents any acceptable value.
+When attribute values differ between positive examples, the hypothesis is generalized.
+Pandas can be used to conveniently read and process CSV training data.
+11. Result
+The FIND-S algorithm was successfully implemented using Python and Pandas. The training data was read from a CSV file, and the most specific hypothesis was obtained by considering the positive training examples and generalizing the hypothesis whenever attribute values differed.
+
+Final Most-Specific Hypothesis:
+['Sunny', 'Warm', '?', 'Strong', '?', '?']
+12. Viva Questions
+What is concept learning in Machine Learning?
+What is a hypothesis?
+What is the FIND-S algorithm?
+Why does FIND-S start with the most specific hypothesis?
+Why are negative examples ignored by FIND-S?
+What does the symbol ? represent in a hypothesis?
+What happens when two positive examples have different attribute values?
+Why is Pandas used in this practical?
+Which function is used to read a CSV file using Pandas?
+What is the final hypothesis obtained from the given dataset?
+← Back to Practicals
+Next Practical →
+PU's Academics
+Learn Today. Lead Tomorrow.
+
+Digital Learning Platform for Python Programming, Artificial Intelligence, Machine Learning and Core Java.
+
+© 2026 PU's Academics. All Rights Reserved.
