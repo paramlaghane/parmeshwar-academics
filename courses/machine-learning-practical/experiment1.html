@@ -19,7 +19,7 @@ Practical No. 01 | Machine Learning Practical
 href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
+href="https://fonts.googleapis.com"
 crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
@@ -76,7 +76,7 @@ Practical No. 01
 
 <p>
 
-FIND-S Algorithm
+Installation of Python and Machine Learning Libraries and Basic Machine Learning Workflow
 
 </p>
 
@@ -94,7 +94,7 @@ TITLE
 
 <h2 class="section-title">
 
-FIND-S Algorithm
+Installation of Python and Machine Learning Libraries and Basic Machine Learning Workflow
 
 </h2>
 
@@ -116,7 +116,7 @@ AIM
 
 <p>
 
-To <strong>implement and demonstrate the FIND-S algorithm</strong> for finding the <strong>most specific hypothesis</strong> from a given set of training examples, where the training data is read from a <strong>CSV file</strong>.
+To install and configure Python and the required Machine Learning libraries, and to demonstrate the basic Machine Learning workflow using the Iris dataset.
 
 </p>
 
@@ -125,20 +125,20 @@ To <strong>implement and demonstrate the FIND-S algorithm</strong> for finding t
 <hr>
 
 <!-- ==========================================================
-LEARNING OBJECTIVES
+OBJECTIVES
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-2. Learning Objectives
+2. Objectives
 
 </h2>
 
 <p>
 
-After completing this practical, students should be able to:
+After completing this practical, students will be able to:
 
 </p>
 
@@ -146,41 +146,457 @@ After completing this practical, students should be able to:
 
 <li>
 
-Understand the concept of <strong>hypothesis</strong> in concept learning.
+Install Python on a computer.
 
 </li>
 
 <li>
 
-Understand the <strong>FIND-S algorithm</strong>.
+Install the basic Machine Learning libraries:
+
+<ul>
+
+<li>NumPy</li>
+
+<li>Pandas</li>
+
+<li>Matplotlib</li>
+
+<li>Scikit-learn</li>
+
+</ul>
 
 </li>
 
 <li>
 
-Identify <strong>positive and negative training examples</strong>.
+Verify that the libraries are installed correctly.
 
 </li>
 
 <li>
 
-Generalize a hypothesis when attribute values differ.
+Load and explore the Iris dataset.
 
 </li>
 
 <li>
 
-Implement FIND-S using <strong>Python and Pandas</strong>.
+Perform basic data visualization.
 
 </li>
 
 <li>
 
-Read training data from a <strong>CSV file</strong>.
+Divide the dataset into training and testing sets.
+
+</li>
+
+<li>
+
+Train a k-Nearest Neighbours (k-NN) classification model.
+
+</li>
+
+<li>
+
+Evaluate the model using accuracy, confusion matrix, and classification report.
+
+</li>
+
+<li>
+
+Predict the class of a new data sample.
+
+</li>
+
+<li>
+
+Understand the basic steps of a Machine Learning workflow.
 
 </li>
 
 </ol>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+THEORY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Theory
+
+</h2>
+
+<h3>
+
+3.1 What is Machine Learning?
+
+</h3>
+
+<p>
+
+Machine Learning (ML) is a branch of Artificial Intelligence in which computers learn patterns from data and use these patterns to make predictions or decisions.
+
+</p>
+
+<p>
+
+Instead of writing rules for every possible situation, we provide data to the machine learning algorithm. The algorithm learns from the data and uses the learned patterns to make predictions on new data.
+
+</p>
+
+<h4>
+
+Example
+
+</h4>
+
+<p>
+
+Suppose we have information about flowers such as:
+
+</p>
+
+<ul>
+
+<li>Sepal length</li>
+
+<li>Sepal width</li>
+
+<li>Petal length</li>
+
+<li>Petal width</li>
+
+</ul>
+
+<p>
+
+Using these features, a Machine Learning model can learn to identify the species of a flower.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+TYPES OF MACHINE LEARNING
+========================================================== -->
+
+<section>
+
+<h3>
+
+3.2 Types of Machine Learning
+
+</h3>
+
+<p>
+
+The major types of Machine Learning are:
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Type
+
+</th>
+
+<th>
+
+Description
+
+</th>
+
+<th>
+
+Examples
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+Supervised Learning
+
+</td>
+
+<td>
+
+The model learns from labelled data.
+
+</td>
+
+<td>
+
+Classification, Regression
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Unsupervised Learning
+
+</td>
+
+<td>
+
+The model finds patterns in unlabelled data.
+
+</td>
+
+<td>
+
+Clustering, Dimensionality Reduction
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Reinforcement Learning
+
+</td>
+
+<td>
+
+The model learns through rewards and penalties.
+
+</td>
+
+<td>
+
+Robotics, Game Playing
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+In this practical, we use <strong>Supervised Learning</strong>, because the Iris dataset contains known class labels.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+PYTHON LIBRARIES
+========================================================== -->
+
+<section>
+
+<h3>
+
+3.3 Python Libraries Used
+
+</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Library
+
+</th>
+
+<th>
+
+Purpose
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+NumPy
+
+</td>
+
+<td>
+
+Numerical calculations and array operations
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Pandas
+
+</td>
+
+<td>
+
+Data handling and DataFrame operations
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Matplotlib
+
+</td>
+
+<td>
+
+Data visualization
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Scikit-learn
+
+</td>
+
+<td>
+
+Machine Learning algorithms and evaluation
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+<!-- ==========================================================
+MACHINE LEARNING WORKFLOW
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Basic Machine Learning Workflow
+
+</h2>
+
+<p>
+
+A typical Machine Learning workflow consists of the following steps:
+
+</p>
+
+<ol>
+
+<li>
+
+<strong>Define the problem</strong>
+
+</li>
+
+<li>
+
+<strong>Collect the data</strong>
+
+</li>
+
+<li>
+
+<strong>Explore and clean the data</strong>
+
+</li>
+
+<li>
+
+<strong>Visualize the data</strong>
+
+</li>
+
+<li>
+
+<strong>Prepare the data</strong>
+
+</li>
+
+<li>
+
+<strong>Select and train a Machine Learning model</strong>
+
+</li>
+
+<li>
+
+<strong>Evaluate the model</strong>
+
+</li>
+
+<li>
+
+<strong>Make predictions</strong>
+
+</li>
+
+</ol>
+
+<p>
+
+In this practical, all these steps are demonstrated using the Iris dataset.
+
+</p>
 
 </section>
 
@@ -194,109 +610,139 @@ DATASET
 
 <h2 class="section-title">
 
-3. Dataset
+5. Dataset Used — Iris Dataset
 
 </h2>
 
 <p>
 
-Create a CSV file named:
+The Iris dataset is a commonly used dataset for learning Machine Learning.
 
 </p>
-
-<pre><code>
-training_data.csv
-</code></pre>
 
 <p>
 
-Save it in the <strong>same folder</strong> as your Python program.
+It contains:
 
 </p>
 
+<ul>
+
+<li><strong>150 samples</strong></li>
+
+<li><strong>4 features</strong></li>
+
+<li><strong>3 classes</strong></li>
+
+</ul>
+
 <h3>
 
-training_data.csv
+Features
 
 </h3>
 
-<pre><code>
-Sky,Temp,Humidity,Wind,Water,Forecast,EnjoySport
-Sunny,Warm,Normal,Strong,Warm,Same,Yes
-Sunny,Warm,High,Strong,Warm,Same,Yes
-Rainy,Cold,High,Strong,Warm,Change,No
-Sunny,Warm,High,Strong,Cool,Change,Yes
-</code></pre>
+<ol>
+
+<li>Sepal Length</li>
+
+<li>Sepal Width</li>
+
+<li>Petal Length</li>
+
+<li>Petal Width</li>
+
+</ol>
+
+<h3>
+
+Classes
+
+</h3>
+
+<ol>
+
+<li>Setosa</li>
+
+<li>Versicolor</li>
+
+<li>Virginica</li>
+
+</ol>
+
+<p>
+
+Each class contains 50 samples.
+
+</p>
+
+<p>
+
+The Iris dataset is already available in Scikit-learn, so no separate download is required.
+
+</p>
 
 </section>
 
 <hr>
 
 <!-- ==========================================================
-CONCEPT OF FIND-S
+SOFTWARE REQUIREMENTS
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-4. Concept of FIND-S
+6. Software Requirements
 
 </h2>
 
-<p>
-
-The <strong>FIND-S algorithm</strong> starts with the <strong>most specific hypothesis</strong> and gradually generalizes it using <strong>positive training examples</strong>.
-
-</p>
-
 <h3>
 
-Initial Hypothesis
-
-</h3>
-
-<pre><code>
-h = &lt;∅, ∅, ∅, ∅, ∅, ∅&gt;
-</code></pre>
-
-<p>
-
-Here, <code>∅</code> represents the <strong>most specific value</strong>.
-
-</p>
-
-<h3>
-
-Important Rule
+Hardware
 
 </h3>
 
 <ul>
 
-<li>
+<li>Computer or laptop</li>
 
-<strong>Positive example (Yes)</strong> → used to update the hypothesis.
+<li>Minimum 2 GB RAM recommended</li>
 
-</li>
+</ul>
 
-<li>
+<h3>
 
-<strong>Negative example (No)</strong> → ignored by FIND-S.
+Software
 
-</li>
+</h3>
 
-<li>
+<ul>
 
-If the attribute value is different from the current hypothesis, replace it with <code>?</code>.
+<li>Windows / Linux / macOS</li>
 
-</li>
+<li>Python 3.9 or later</li>
 
-<li>
+<li>Jupyter Notebook / VS Code / PyCharm / Google Colab</li>
 
-<code>?</code> means <strong>any value is acceptable</strong>.
+</ul>
 
-</li>
+<h3>
+
+Required Libraries
+
+</h3>
+
+<ul>
+
+<li>NumPy</li>
+
+<li>Pandas</li>
+
+<li>Matplotlib</li>
+
+<li>Scikit-learn</li>
 
 </ul>
 
@@ -305,39 +751,83 @@ If the attribute value is different from the current hypothesis, replace it with
 <hr>
 
 <!-- ==========================================================
-FIND-S ALGORITHM
+PROCEDURE
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-5. FIND-S Algorithm
+7. Procedure
 
 </h2>
 
+<h3>
+
+Step 1: Install Python
+
+</h3>
+
+<p>
+
+Download and install Python from the official Python website.
+
+</p>
+
+<p>
+
+During Windows installation, select:
+
+</p>
+
 <pre><code>
-Step 1: Initialize the hypothesis h with the most specific values.
+Add Python to PATH
+</code></pre>
 
-        h = &lt;∅, ∅, ∅, ∅, ∅, ∅&gt;
+<p>
 
-Step 2: Read each training example.
+After installation, open Command Prompt and check the Python version:
 
-Step 3: If the example is positive (Yes):
+</p>
 
-        For each attribute:
-            If h[i] = ∅
-                Set h[i] = x[i]
+<pre><code>
+python --version
+</code></pre>
 
-            Else if h[i] ≠ x[i]
-                Set h[i] = ?
+<p>
 
-Step 4: If the example is negative (No):
-        Do not change the hypothesis.
+Also check the pip version:
 
-Step 5: Repeat Steps 2–4 for all training examples.
+</p>
 
-Step 6: Display the final hypothesis.
+<pre><code>
+pip --version
+</code></pre>
+
+<h3>
+
+Step 2: Install Required Libraries
+
+</h3>
+
+<p>
+
+Open Command Prompt or Terminal and execute:
+
+</p>
+
+<pre><code>
+pip install numpy pandas matplotlib scikit-learn
+</code></pre>
+
+<p>
+
+If the libraries are already installed, they can be upgraded using:
+
+</p>
+
+<pre><code>
+pip install --upgrade numpy pandas matplotlib scikit-learn
 </code></pre>
 
 </section>
@@ -345,158 +835,148 @@ Step 6: Display the final hypothesis.
 <hr>
 
 <!-- ==========================================================
-PYTHON PROGRAM
+VERIFY INSTALLATION
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-6. Python Program
+8. Verify the Installation
 
 </h2>
 
 <p>
 
-Create a Python file named:
+Create a Python program or Jupyter Notebook and execute the following code:
 
 </p>
 
 <pre><code>
-find_s.py
-</code></pre>
+import sys
 
-<pre><code>
+import numpy as np
+
 import pandas as pd
 
-# Read training data from CSV file
-df = pd.read_csv("training_data.csv")
+import matplotlib
 
-# Separate features and target
-features = df.iloc[:, :-1]
-labels = df.iloc[:, -1]
+import sklearn
 
-# Number of attributes
-n = len(features.columns)
+print("Python Version:", sys.version)
 
-# Initialize the most specific hypothesis
-h = [None] * n
+print("NumPy Version:", np.__version__)
 
-# Process each training example
-for i, row in features.iterrows():
+print("Pandas Version:", pd.__version__)
 
-    y = labels.iloc[i]
+print("Matplotlib Version:", matplotlib.__version__)
 
-    # FIND-S considers only positive examples
-    if y == "Yes":
+print("Scikit-learn Version:", sklearn.__version__)
 
-        for j, value in enumerate(row):
-
-            # First positive example
-            if h[j] is None:
-                h[j] = value
-
-            # Generalize when values are different
-            elif h[j] != value:
-                h[j] = "?"
-
-        print(f"After row {i}: {h}")
-
-# Display final hypothesis
-print("\nFinal Most-Specific Hypothesis:")
-print(h)
+print("\nAll libraries imported successfully.")
 </code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<p>
+
+The program should display the installed versions of Python, NumPy, Pandas, Matplotlib, and Scikit-learn.
+
+</p>
 
 </section>
 
 <hr>
 
 <!-- ==========================================================
-EXPECTED OUTPUT
+BASIC ML WORKFLOW
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-7. Expected Output
+9. Basic Machine Learning Workflow Using Iris Dataset
 
 </h2>
+
+<h3>
+
+Step 1: Import Required Libraries
+
+</h3>
 
 <pre><code>
-After row 0: ['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same']
-After row 1: ['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']
-After row 3: ['Sunny', 'Warm', '?', 'Strong', '?', '?']
+import numpy as np
 
-Final Most-Specific Hypothesis:
-['Sunny', 'Warm', '?', 'Strong', '?', '?']
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.preprocessing import StandardScaler
+
+from sklearn.neighbors import KNeighborsClassifier
+
+from sklearn.metrics import accuracy_score
+
+from sklearn.metrics import confusion_matrix
+
+from sklearn.metrics import classification_report
 </code></pre>
 
-</section>
+<h3>
 
-<hr>
+Step 2: Load the Iris Dataset
 
-<!-- ==========================================================
-PROGRAM EXPLANATION
-========================================================== -->
+</h3>
 
-<section>
+<pre><code>
+iris = load_iris()
 
-<h2 class="section-title">
+X = iris.data
 
-8. Program Explanation
+y = iris.target
 
-</h2>
+print("Feature names:")
+
+print(iris.feature_names)
+
+print("\nTarget names:")
+
+print(iris.target_names)
+
+print("\nNumber of samples:", X.shape[0])
+
+print("Number of features:", X.shape[1])
+</code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<p>
+
+The output should show:
+
+</p>
 
 <ul>
 
-<li>
+<li>150 samples</li>
 
-<code>pd.read_csv("training_data.csv")</code> reads the training data from the CSV file.
+<li>4 features</li>
 
-</li>
-
-<li>
-
-<code>df.iloc[:, :-1]</code> selects all columns except the last column as the input features.
-
-</li>
-
-<li>
-
-<code>df.iloc[:, -1]</code> selects the last column, <code>EnjoySport</code>, as the target label.
-
-</li>
-
-<li>
-
-The hypothesis is initialized using <code>None</code>, representing the most specific hypothesis before processing the first positive example.
-
-</li>
-
-<li>
-
-FIND-S considers only training examples whose target label is <code>Yes</code>.
-
-</li>
-
-<li>
-
-For the first positive example, the hypothesis is initialized with its attribute values.
-
-</li>
-
-<li>
-
-When a later positive example contains a different value for an attribute, the corresponding hypothesis value is generalized to <code>?</code>.
-
-</li>
-
-<li>
-
-Negative examples are ignored by the FIND-S algorithm.
-
-</li>
+<li>3 target classes</li>
 
 </ul>
 
@@ -505,118 +985,691 @@ Negative examples are ignored by the FIND-S algorithm.
 <hr>
 
 <!-- ==========================================================
-OBSERVATION
+CREATE DATAFRAME
+========================================================== -->
+
+<section>
+
+<h3>
+
+Step 3: Create a Pandas DataFrame
+
+</h3>
+
+<pre><code>
+df = pd.DataFrame(
+
+    X,
+
+    columns=iris.feature_names
+
+)
+
+df["species"] = pd.Categorical.from_codes(
+
+    iris.target,
+
+    iris.target_names
+
+)
+
+print(df.head())
+</code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<p>
+
+The first five records of the Iris dataset will be displayed.
+
+</p>
+
+</section>
+
+<hr>
+
+<!-- PART 2 CONTINUES HERE -->
+        <!-- ==========================================================
+EXPLORE THE DATASET
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-9. Observation and Interpretation
+10. Explore the Dataset
+
+</h2>
+
+<h3>
+
+10.1 Display Dataset Information
+
+</h3>
+
+<pre><code>
+print("Dataset Shape:")
+
+print(df.shape)
+
+print("\nDataset Information:")
+
+df.info()
+</code></pre>
+
+
+<h3>
+
+10.2 Display Statistical Summary
+
+</h3>
+
+<pre><code>
+print(df.describe())
+</code></pre>
+
+<p>
+
+The <code>describe()</code> function provides statistical information such as:
+
+</p>
+
+<ul>
+
+<li>Count</li>
+
+<li>Mean</li>
+
+<li>Standard deviation</li>
+
+<li>Minimum</li>
+
+<li>Maximum</li>
+
+<li>Quartiles</li>
+
+</ul>
+
+
+<h3>
+
+10.3 Check Missing Values
+
+</h3>
+
+<pre><code>
+print(df.isnull().sum())
+</code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<p>
+
+All columns should show <strong>0 missing values</strong>.
+
+</p>
+
+
+<h3>
+
+10.4 Check Class Distribution
+
+</h3>
+
+<pre><code>
+print(df["species"].value_counts())
+</code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<pre><code>
+setosa        50
+versicolor    50
+virginica     50
+</code></pre>
+
+<p>
+
+Therefore, the dataset is balanced.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+DATA VISUALIZATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+11. Data Visualization
 
 </h2>
 
 <p>
 
-The first positive example initializes the hypothesis with its exact attribute values.
+Visualization helps us understand the data before building a Machine Learning model.
+
+</p>
+
+
+<h3>
+
+11.1 Histogram
+
+</h3>
+
+<p>
+
+A histogram shows the distribution of numerical features.
 
 </p>
 
 <pre><code>
-['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same']
+df.iloc[:, :4].hist(
+
+    bins=20,
+
+    figsize=(10, 8)
+
+)
+
+plt.tight_layout()
+
+plt.show()
+</code></pre>
+
+
+<h3>
+
+11.2 Box Plot
+
+</h3>
+
+<p>
+
+A box plot helps us understand the spread and distribution of data.
+
+</p>
+
+<pre><code>
+df.boxplot(
+
+    by="species",
+
+    figsize=(12, 8)
+
+)
+
+plt.suptitle("")
+
+plt.show()
+</code></pre>
+
+
+<h3>
+
+11.3 Scatter Plot
+
+</h3>
+
+<p>
+
+The following program displays the relationship between sepal length and sepal width.
+
+</p>
+
+<pre><code>
+plt.scatter(
+
+    df["sepal length (cm)"],
+
+    df["sepal width (cm)"],
+
+    c=iris.target
+
+)
+
+plt.xlabel("Sepal Length (cm)")
+
+plt.ylabel("Sepal Width (cm)")
+
+plt.title("Sepal Length vs Sepal Width")
+
+plt.show()
+</code></pre>
+
+
+<h3>
+
+11.4 Pair Plot Using Scatter Matrix
+
+</h3>
+
+<pre><code>
+from pandas.plotting import scatter_matrix
+
+scatter_matrix(
+
+    df.iloc[:, :4],
+
+    figsize=(10, 10),
+
+    diagonal="hist"
+
+)
+
+plt.show()
 </code></pre>
 
 <p>
 
-The second positive example differs from the first example in the <strong>Humidity</strong> attribute. Therefore, the hypothesis for Humidity is generalized to <code>?</code>.
+This helps us visualize the relationship between different features.
 
 </p>
 
+
+<h3>
+
+11.5 Correlation Matrix
+
+</h3>
+
 <pre><code>
-['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']
+corr = df.iloc[:, :4].corr()
+
+print(corr)
 </code></pre>
 
 <p>
 
-The third training example is negative and is therefore ignored by FIND-S.
+The correlation matrix shows the relationship between numerical features.
 
 </p>
 
 <p>
 
-The fourth example is positive. It differs from the current hypothesis in the <strong>Water</strong> and <strong>Forecast</strong> attributes. These attributes are therefore generalized to <code>?</code>.
+For example, petal length and petal width have a strong positive correlation.
 
 </p>
 
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+TRAIN TEST SPLIT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+12. Divide the Dataset into Training and Testing Data
+
+</h2>
+
+<p>
+
+The dataset is divided into:
+
+</p>
+
+<ul>
+
+<li><strong>70% training data</strong></li>
+
+<li><strong>30% testing data</strong></li>
+
+</ul>
+
 <pre><code>
-['Sunny', 'Warm', '?', 'Strong', '?', '?']
+X_train, X_test, y_train, y_test = train_test_split(
+
+    X,
+
+    y,
+
+    test_size=0.30,
+
+    random_state=42,
+
+    stratify=y
+
+)
+
+print("Training samples:", X_train.shape[0])
+
+print("Testing samples:", X_test.shape[0])
+</code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<pre><code>
+Training samples: 105
+
+Testing samples: 45
 </code></pre>
 
 </section>
 
 <hr>
 
+
 <!-- ==========================================================
-KEY POINTS
+FEATURE SCALING
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-10. Key Points to Remember
+13. Feature Scaling
 
 </h2>
 
+<p>
+
+k-NN is a distance-based algorithm. Therefore, feature scaling is useful to ensure that features with larger numerical values do not dominate the distance calculation.
+
+</p>
+
+<pre><code>
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+
+X_test = scaler.transform(X_test)
+</code></pre>
+
+<h3>
+
+Important Point
+
+</h3>
+
+<p>
+
+The scaler is fitted only on the training data.
+
+</p>
+
+<pre><code>
+scaler.fit_transform(X_train)
+</code></pre>
+
+<p>
+
+The same scaler is then used to transform the test data.
+
+</p>
+
+<pre><code>
+scaler.transform(X_test)
+</code></pre>
+
+<p>
+
+This prevents <strong>data leakage</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+TRAIN KNN MODEL
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+14. Train the k-NN Model
+
+</h2>
+
+<p>
+
+Create a k-Nearest Neighbours classifier with <strong>k = 3</strong>.
+
+</p>
+
+<pre><code>
+knn = KNeighborsClassifier(n_neighbors=3)
+
+knn.fit(X_train, y_train)
+</code></pre>
+
+<p>
+
+The model is now trained using the training dataset.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+MAKE PREDICTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+15. Make Predictions
+
+</h2>
+
+<p>
+
+Use the trained model to predict the classes of the test samples.
+
+</p>
+
+<pre><code>
+y_pred = knn.predict(X_test)
+
+print("Predicted classes:")
+
+print(y_pred)
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+MODEL EVALUATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+16. Evaluate the Model
+
+</h2>
+
+<h3>
+
+16.1 Accuracy
+
+</h3>
+
+<p>
+
+Accuracy indicates the percentage of correctly classified samples.
+
+</p>
+
+<pre><code>
+accuracy = accuracy_score(y_test, y_pred)
+
+print("Accuracy:", accuracy)
+</code></pre>
+
+
+<h3>
+
+16.2 Confusion Matrix
+
+</h3>
+
+<pre><code>
+cm = confusion_matrix(y_test, y_pred)
+
+print("Confusion Matrix:")
+
+print(cm)
+</code></pre>
+
+<p>
+
+The rows represent the actual classes and the columns represent the predicted classes.
+
+</p>
+
+
+<h3>
+
+16.3 Classification Report
+
+</h3>
+
+<pre><code>
+print("Classification Report:")
+
+print(
+
+    classification_report(
+
+        y_test,
+
+        y_pred,
+
+        target_names=iris.target_names
+
+    )
+
+)
+</code></pre>
+
+<p>
+
+The classification report provides:
+
+</p>
+
 <ul>
 
-<li>
+<li>Precision</li>
 
-FIND-S is a concept-learning algorithm used to find the most specific hypothesis consistent with positive training examples.
+<li>Recall</li>
 
-</li>
+<li>F1-score</li>
 
-<li>
-
-The algorithm starts with the most specific hypothesis.
-
-</li>
-
-<li>
-
-Only positive training examples are used to update the hypothesis.
-
-</li>
-
-<li>
-
-Negative training examples are ignored.
-
-</li>
-
-<li>
-
-The symbol <code>?</code> represents any acceptable value.
-
-</li>
-
-<li>
-
-When attribute values differ between positive examples, the hypothesis is generalized.
-
-</li>
-
-<li>
-
-Pandas provides convenient functions for reading and processing CSV datasets.
-
-</li>
+<li>Support</li>
 
 </ul>
 
 </section>
 
 <hr>
+
+
+<!-- ==========================================================
+NEW SAMPLE PREDICTION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+17. Predict a New Sample
+
+</h2>
+
+<p>
+
+Consider a new flower with the following measurements:
+
+</p>
+
+<ul>
+
+<li>Sepal length = 5.1 cm</li>
+
+<li>Sepal width = 3.5 cm</li>
+
+<li>Petal length = 1.4 cm</li>
+
+<li>Petal width = 0.2 cm</li>
+
+</ul>
+
+<pre><code>
+new_sample = np.array([
+
+    [5.1, 3.5, 1.4, 0.2]
+
+])
+
+new_sample_scaled = scaler.transform(new_sample)
+
+prediction = knn.predict(new_sample_scaled)
+
+print(
+
+    "Predicted Species:",
+
+    iris.target_names[prediction][0]
+
+)
+</code></pre>
+
+<h3>
+
+Expected Result
+
+</h3>
+
+<pre><code>
+Predicted Species: setosa
+</code></pre>
+
+</section>
+
+<hr>
+
 
 <!-- ==========================================================
 RESULT
@@ -626,109 +1679,97 @@ RESULT
 
 <h2 class="section-title">
 
-11. Result
+18. Result
 
 </h2>
 
 <p>
 
-The FIND-S algorithm was successfully implemented using Python and Pandas. The training data was read from a CSV file, and the most specific hypothesis was obtained by considering the positive training examples and generalizing the hypothesis whenever attribute values differed.
+The installation and configuration of Python and the required Machine Learning libraries were successfully completed.
 
 </p>
 
 <p>
 
-The final most-specific hypothesis obtained is:
+The Iris dataset was loaded and explored using Pandas. Data visualization was performed using Matplotlib. The dataset was divided into training and testing sets, scaled, and used to train a k-Nearest Neighbours classifier.
 
 </p>
 
-<pre><code>
-['Sunny', 'Warm', '?', 'Strong', '?', '?']
-</code></pre>
+<p>
+
+The trained model was evaluated using:
+
+</p>
+
+<ul>
+
+<li>Accuracy</li>
+
+<li>Confusion Matrix</li>
+
+<li>Classification Report</li>
+
+</ul>
+
+<p>
+
+Finally, the model was used to predict the species of a new flower sample.
+
+</p>
 
 </section>
 
 <hr>
 
+
 <!-- ==========================================================
-VIVA QUESTIONS
+CONCLUSION
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-12. Viva Questions
+19. Conclusion
 
 </h2>
 
-<ol>
+<p>
 
-<li>
+This practical introduced the basic Machine Learning workflow:
 
-What is concept learning in Machine Learning?
+</p>
 
-</li>
+<pre><code>
+Load Data
+      ↓
+Explore Data
+      ↓
+Visualize Data
+      ↓
+Prepare Data
+      ↓
+Split Data
+      ↓
+Scale Data
+      ↓
+Train Model
+      ↓
+Evaluate Model
+      ↓
+Predict
+</code></pre>
 
-<li>
+<p>
 
-What is a hypothesis?
+This workflow forms the foundation for the Machine Learning practicals that follow.
 
-</li>
-
-<li>
-
-What is the FIND-S algorithm?
-
-</li>
-
-<li>
-
-Why does FIND-S start with the most specific hypothesis?
-
-</li>
-
-<li>
-
-Why are negative examples ignored by FIND-S?
-
-</li>
-
-<li>
-
-What does the symbol <code>?</code> represent in a hypothesis?
-
-</li>
-
-<li>
-
-What happens when two positive examples have different attribute values?
-
-</li>
-
-<li>
-
-Why is Pandas used in this practical?
-
-</li>
-
-<li>
-
-Which function is used to read a CSV file using Pandas?
-
-</li>
-
-<li>
-
-What is the final hypothesis obtained from the given dataset?
-
-</li>
-
-</ol>
+</p>
 
 </section>
 
 <hr>
+
 
 <!-- ==========================================================
 NAVIGATION
@@ -753,6 +1794,7 @@ Next Practical →
 </section>
 
 </main>
+
 
 <!-- ==========================================================
 FOOTER
@@ -790,6 +1832,7 @@ Machine Learning and Core Java.
 </div>
 
 </footer>
+
 
 <script src="../../assets/js/theme.js"></script>
 
