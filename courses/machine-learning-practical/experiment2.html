@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 02 | Machine Learning Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 02
+
+</h2>
+
+<p>
+
+Data Preprocessing on a Real-World Dataset
+
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ==========================================================
+TITLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Data Preprocessing on a Real-World Dataset
+
+</h2>
+
+<p>
+
+This practical demonstrates the basic data preprocessing techniques required to prepare a real-world dataset for Machine Learning.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1. Aim
+
+</h2>
+
+<p>
+
+To perform data preprocessing on a real-world dataset by:
+
+</p>
+
+<ol>
+
+<li>
+
+Identifying and handling missing values.
+
+</li>
+
+<li>
+
+Applying normalization.
+
+</li>
+
+<li>
+
+Applying standardization.
+
+</li>
+
+<li>
+
+Dividing the dataset into training and testing sets.
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+LEARNING OUTCOMES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+2. Learning Outcomes
+
+</h2>
+
+<p>
+
+After completing this practical, the student will be able to:
+
+</p>
+
+<ol>
+
+<li>
+
+Explain the importance of data preprocessing in Machine Learning.
+
+</li>
+
+<li>
+
+Identify missing values in a dataset.
+
+</li>
+
+<li>
+
+Handle missing values using deletion and imputation techniques.
+
+</li>
+
+<li>
+
+Apply normalization and standardization using Scikit-learn.
+
+</li>
+
+<li>
+
+Differentiate between normalization and standardization.
+
+</li>
+
+<li>
+
+Split a dataset into training and testing sets.
+
+</li>
+
+<li>
+
+Prepare a real-world CSV dataset for Machine Learning.
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+THEORY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Theory
+
+</h2>
+
+
+<h3>
+
+3.1 What is Data Preprocessing?
+
+</h3>
+
+<p>
+
+Data preprocessing is the process of cleaning and transforming raw data into a suitable form for Machine Learning.
+
+</p>
+
+<p>
+
+Real-world datasets may contain:
+
+</p>
+
+<ul>
+
+<li>
+
+Missing values
+
+</li>
+
+<li>
+
+Categorical/text data
+
+</li>
+
+<li>
+
+Different numerical scales
+
+</li>
+
+<li>
+
+Unnecessary columns
+
+</li>
+
+<li>
+
+Inconsistent data
+
+</li>
+
+</ul>
+
+<p>
+
+Therefore, preprocessing is an important step before training a Machine Learning model.
+
+</p>
+
+
+<h3>
+
+3.2 Handling Missing Values
+
+</h3>
+
+<p>
+
+A missing value is generally represented as <code>NaN</code> in Pandas.
+
+</p>
+
+<p>
+
+There are two common ways to handle missing values:
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Method
+
+</th>
+
+<th>
+
+Description
+
+</th>
+
+<th>
+
+Suitable When
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+Deletion
+
+</td>
+
+<td>
+
+Remove rows or columns containing missing values.
+
+</td>
+
+<td>
+
+When very little useful information is present.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Imputation
+
+</td>
+
+<td>
+
+Replace missing values with mean, median or mode.
+
+</td>
+
+<td>
+
+When only a few values are missing.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+
+<h3>
+
+Common Methods
+
+</h3>
+
+<p>
+
+<strong>For numerical data:</strong>
+
+</p>
+
+<ul>
+
+<li>
+
+Mean
+
+</li>
+
+<li>
+
+Median
+
+</li>
+
+</ul>
+
+<p>
+
+<strong>For categorical data:</strong>
+
+</p>
+
+<ul>
+
+<li>
+
+Mode
+
+</li>
+
+</ul>
+
+<p>
+
+The median is often preferred for numerical data when outliers are present, while the mode is commonly used for categorical data.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+NORMALIZATION
+========================================================== -->
+
+<section>
+
+<h3>
+
+3.3 Normalization
+
+</h3>
+
+<p>
+
+Normalization transforms numerical values to a fixed range, usually <strong>0 to 1</strong>.
+
+</p>
+
+<p>
+
+<strong>Formula:</strong>
+
+</p>
+
+<pre><code>
+X_norm = (X - X_min) / (X_max - X_min)
+</code></pre>
+
+<p>
+
+After normalization:
+
+</p>
+
+<ul>
+
+<li>
+
+Minimum value becomes 0.
+
+</li>
+
+<li>
+
+Maximum value becomes 1.
+
+</li>
+
+<li>
+
+All other values lie between 0 and 1.
+
+</li>
+
+</ul>
+
+<p>
+
+Normalization is sensitive to outliers.
+
+</p>
+
+
+<!-- ==========================================================
+STANDARDIZATION
+========================================================== -->
+
+<h3>
+
+3.4 Standardization
+
+</h3>
+
+<p>
+
+Standardization transforms the data so that:
+
+</p>
+
+<ul>
+
+<li>
+
+Mean = 0
+
+</li>
+
+<li>
+
+Standard deviation = 1
+
+</li>
+
+</ul>
+
+<p>
+
+<strong>Formula:</strong>
+
+</p>
+
+<pre><code>
+Z = (X - μ) / σ
+</code></pre>
+
+<p>
+
+where:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>X</strong> = original value
+
+</li>
+
+<li>
+
+<strong>μ</strong> = mean
+
+</li>
+
+<li>
+
+<strong>σ</strong> = standard deviation
+
+</li>
+
+</ul>
+
+<p>
+
+Standardized values are not restricted to 0 and 1. They may be positive or negative.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+NORMALIZATION VS STANDARDIZATION
+========================================================== -->
+
+<section>
+
+<h3>
+
+3.5 Normalization vs Standardization
+
+</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Aspect
+
+</th>
+
+<th>
+
+Normalization
+
+</th>
+
+<th>
+
+Standardization
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+<strong>Main purpose</strong>
+
+</td>
+
+<td>
+
+Scale values to a fixed range.
+
+</td>
+
+<td>
+
+Centre and scale data.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<strong>Common range</strong>
+
+</td>
+
+<td>
+
+0 to 1
+
+</td>
+
+<td>
+
+Unbounded
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<strong>Mean</strong>
+
+</td>
+
+<td>
+
+Not necessarily 0
+
+</td>
+
+<td>
+
+0
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<strong>Standard deviation</strong>
+
+</td>
+
+<td>
+
+Not necessarily 1
+
+</td>
+
+<td>
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<strong>Scikit-learn class</strong>
+
+</td>
+
+<td>
+
+MinMaxScaler
+
+</td>
+
+<td>
+
+StandardScaler
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<strong>Effect of outliers</strong>
+
+</td>
+
+<td>
+
+More sensitive
+
+</td>
+
+<td>
+
+Generally less sensitive
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+TRAINING AND TESTING DATA
+========================================================== -->
+
+<section>
+
+<h3>
+
+3.6 Training and Testing Data
+
+</h3>
+
+<p>
+
+Before training a Machine Learning model, the dataset is generally divided into two parts:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>Training Data:</strong> used to train the model.
+
+</li>
+
+<li>
+
+<strong>Testing Data:</strong> used to evaluate the trained model.
+
+</li>
+
+</ul>
+
+<p>
+
+In this practical, we use:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>80% training data</strong>
+
+</li>
+
+<li>
+
+<strong>20% testing data</strong>
+
+</li>
+
+</ul>
+
+<p>
+
+For classification problems, <code>stratify=y</code> can be used to maintain approximately the same class proportion in both sets.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+REQUIREMENTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Requirements
+
+</h2>
+
+
+<h3>
+
+Hardware
+
+</h3>
+
+<ul>
+
+<li>
+
+Computer/Laptop
+
+</li>
+
+<li>
+
+Minimum 2 GB RAM
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Software
+
+</h3>
+
+<ul>
+
+<li>
+
+Python 3.9 or later
+
+</li>
+
+<li>
+
+Jupyter Notebook / VS Code / PyCharm
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Libraries
+
+</h3>
+
+<ul>
+
+<li>
+
+NumPy
+
+</li>
+
+<li>
+
+Pandas
+
+</li>
+
+<li>
+
+Matplotlib
+
+</li>
+
+<li>
+
+Scikit-learn
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Dataset
+
+</h3>
+
+<p>
+
+<strong>Titanic Dataset</strong>
+
+</p>
+
+<p>
+
+The Titanic dataset contains information about 891 passengers and includes missing values in columns such as Age, Cabin, and Embarked.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PROCEDURE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Procedure
+
+</h2>
+
+
+<h3>
+
+Step 1: Import Required Libraries
+
+</h3>
+
+<pre><code>
+import numpy as np
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+LOAD DATASET
+========================================================== -->
+
+<section>
+
+<h3>
+
+Step 2: Load the Titanic Dataset
+
+</h3>
+
+<p>
+
+The dataset can be loaded directly from a CSV file.
+
+</p>
+
+<pre><code>
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+
+df = pd.read_csv(url)
+
+print("Dataset loaded successfully.")
+</code></pre>
+
+<p>
+
+If the dataset has already been downloaded, it can be loaded from the local file:
+
+</p>
+
+<pre><code>
+df = pd.read_csv("titanic.csv")
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+EXPLORE DATASET
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+6. Explore the Dataset
+
+</h2>
+
+
+<h3>
+
+6.1 Display the Shape of the Dataset
+
+</h3>
+
+<pre><code>
+print("Dataset Shape:", df.shape)
+</code></pre>
+
+<p>
+
+The dataset contains:
+
+</p>
+
+<ul>
+
+<li>
+
+891 rows
+
+</li>
+
+<li>
+
+12 columns
+
+</li>
+
+</ul>
+
+
+<h3>
+
+6.2 Display the First Five Records
+
+</h3>
+
+<pre><code>
+print(df.head())
+</code></pre>
+
+
+<h3>
+
+6.3 Display Column Names
+
+</h3>
+
+<pre><code>
+print("Column Names:")
+
+print(df.columns.tolist())
+</code></pre>
+
+
+<h3>
+
+6.4 Display Dataset Information
+
+</h3>
+
+<pre><code>
+print("Dataset Information:")
+
+df.info()
+</code></pre>
+
+<p>
+
+This displays:
+
+</p>
+
+<ul>
+
+<li>
+
+Column names
+
+</li>
+
+<li>
+
+Number of non-null values
+
+</li>
+
+<li>
+
+Data types
+
+</li>
+
+</ul>
+
+
+<h3>
+
+6.5 Display Statistical Summary
+
+</h3>
+
+<pre><code>
+print("Statistical Summary:")
+
+print(df.describe())
+</code></pre>
+
+<p>
+
+The <code>describe()</code> function provides:
+
+</p>
+
+<ul>
+
+<li>
+
+Count
+
+</li>
+
+<li>
+
+Mean
+
+</li>
+
+<li>
+
+Standard deviation
+
+</li>
+
+<li>
+
+Minimum
+
+</li>
+
+<li>
+
+Maximum
+
+</li>
+
+<li>
+
+Quartiles
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+MISSING VALUES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Detect Missing Values
+
+</h2>
+
+<h3>
+
+7.1 Count Missing Values
+
+</h3>
+
+<pre><code>
+print("Missing Values:")
+
+print(df.isnull().sum())
+</code></pre>
+
+<p>
+
+The output shows the number of missing values present in each column.
+
+</p>
+
+<h3>
+
+7.2 Missing Value Percentage
+
+</h3>
+
+<pre><code>
+missing_percentage = (
+
+    df.isnull().sum() / len(df)
+
+) * 100
+
+print("Missing Value Percentage:")
+
+print(missing_percentage)
+</code></pre>
+
+<p>
+
+This helps identify columns that contain a significant percentage of missing values.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+HANDLE MISSING VALUES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Handle Missing Values
+
+</h2>
+
+<h3>
+
+8.1 Handle Age Using Median
+
+</h3>
+
+<p>
+
+The <code>Age</code> column contains missing numerical values. We replace these missing values with the median age.
+
+</p>
+
+<pre><code>
+age_median = df["Age"].median()
+
+df["Age"] = df["Age"].fillna(age_median)
+
+print("Missing Age values after imputation:")
+
+print(df["Age"].isnull().sum())
+</code></pre>
+
+<h3>
+
+8.2 Handle Embarked Using Mode
+
+</h3>
+
+<p>
+
+The <code>Embarked</code> column contains categorical values. Missing values are replaced using the mode.
+
+</p>
+
+<pre><code>
+embarked_mode = df["Embarked"].mode()[0]
+
+df["Embarked"] = df["Embarked"].fillna(embarked_mode)
+
+print("Missing Embarked values after imputation:")
+
+print(df["Embarked"].isnull().sum())
+</code></pre>
+
+
+<h3>
+
+8.3 Handle Cabin Column
+
+</h3>
+
+<p>
+
+The <code>Cabin</code> column contains a large number of missing values. For this practical, the column is removed because it contains too much missing information.
+
+</p>
+
+<pre><code>
+df = df.drop(columns=["Cabin"])
+
+print("Cabin column removed.")
+</code></pre>
+
+
+<h3>
+
+8.4 Verify Missing Values
+
+</h3>
+
+<pre><code>
+print("Missing Values After Preprocessing:")
+
+print(df.isnull().sum())
+</code></pre>
+
+<p>
+
+The selected missing values have now been handled.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+SELECT FEATURES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+9. Select Features and Target
+
+</h2>
+
+<p>
+
+For this practical, the target variable is <code>Survived</code>.
+
+</p>
+
+<p>
+
+We select the following numerical features:
+
+</p>
+
+<ul>
+
+<li>Age</li>
+
+<li>Fare</li>
+
+<li>SibSp</li>
+
+<li>Parch</li>
+
+</ul>
+
+<pre><code>
+features = [
+
+    "Age",
+
+    "Fare",
+
+    "SibSp",
+
+    "Parch"
+
+]
+
+X = df[features]
+
+y = df["Survived"]
+
+print("Features:")
+
+print(X.head())
+
+print("\nTarget:")
+
+print(y.head())
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+TRAIN TEST SPLIT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+10. Split the Dataset into Training and Testing Sets
+
+</h2>
+
+<p>
+
+The dataset is divided into:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>80% Training Data</strong>
+
+</li>
+
+<li>
+
+<strong>20% Testing Data</strong>
+
+</li>
+
+</ul>
+
+<p>
+
+The <code>train_test_split()</code> function is used for this purpose.
+
+</p>
+
+<pre><code>
+X_train, X_test, y_train, y_test = train_test_split(
+
+    X,
+
+    y,
+
+    test_size=0.20,
+
+    random_state=42,
+
+    stratify=y
+
+)
+
+print("Training Data Shape:", X_train.shape)
+
+print("Testing Data Shape:", X_test.shape)
+</code></pre>
+
+<h3>
+
+Explanation
+
+</h3>
+
+<ul>
+
+<li>
+
+<code>X</code> contains the input features.
+
+</li>
+
+<li>
+
+<code>y</code> contains the target variable.
+
+</li>
+
+<li>
+
+<code>test_size=0.20</code> reserves 20% of the data for testing.
+
+</li>
+
+<li>
+
+<code>random_state=42</code> ensures reproducible splitting.
+
+</li>
+
+<li>
+
+<code>stratify=y</code> maintains the class distribution in the training and testing sets.
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+NORMALIZATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+11. Normalization
+
+</h2>
+
+<p>
+
+Normalization scales numerical features to a specified range, usually between 0 and 1.
+
+</p>
+
+<p>
+
+Scikit-learn provides the <code>MinMaxScaler</code> class for normalization.
+
+</p>
+
+<h3>
+
+11.1 Apply Min-Max Normalization
+
+</h3>
+
+<pre><code>
+from sklearn.preprocessing import MinMaxScaler
+
+normalizer = MinMaxScaler()
+
+X_train_normalized = normalizer.fit_transform(X_train)
+
+X_test_normalized = normalizer.transform(X_test)
+
+print("Normalized Training Data:")
+
+print(X_train_normalized[:5])
+</code></pre>
+
+<h3>
+
+Important Point
+
+</h3>
+
+<p>
+
+The scaler is fitted only on the training data.
+
+</p>
+
+<pre><code>
+normalizer.fit_transform(X_train)
+</code></pre>
+
+<p>
+
+The same fitted scaler is then used to transform the testing data.
+
+</p>
+
+<pre><code>
+normalizer.transform(X_test)
+</code></pre>
+
+<p>
+
+This prevents information from the testing data from influencing the preprocessing process.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+STANDARDIZATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+12. Standardization
+
+</h2>
+
+<p>
+
+Standardization transforms numerical features so that they have approximately:
+
+</p>
+
+<ul>
+
+<li>
+
+Mean = 0
+
+</li>
+
+<li>
+
+Standard deviation = 1
+
+</li>
+
+</ul>
+
+<p>
+
+Scikit-learn provides the <code>StandardScaler</code> class.
+
+</p>
+
+<h3>
+
+12.1 Apply Standardization
+
+</h3>
+
+<pre><code>
+from sklearn.preprocessing import StandardScaler
+
+standardizer = StandardScaler()
+
+X_train_standardized = standardizer.fit_transform(X_train)
+
+X_test_standardized = standardizer.transform(X_test)
+
+print("Standardized Training Data:")
+
+print(X_train_standardized[:5])
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+COMPARE SCALING
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+13. Compare Normalization and Standardization
+
+</h2>
+
+<h3>
+
+13.1 Original Data
+
+</h3>
+
+<pre><code>
+print("Original Training Data:")
+
+print(X_train.head())
+</code></pre>
+
+
+<h3>
+
+13.2 Normalized Data
+
+</h3>
+
+<pre><code>
+print("Normalized Training Data:")
+
+print(X_train_normalized[:5])
+</code></pre>
+
+
+<h3>
+
+13.3 Standardized Data
+
+</h3>
+
+<pre><code>
+print("Standardized Training Data:")
+
+print(X_train_standardized[:5])
+</code></pre>
+
+
+<p>
+
+The normalized values are generally between 0 and 1, whereas standardized values may be positive or negative because the data is centred around zero.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+VISUALIZE PREPROCESSED DATA
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+14. Visualization Before and After Scaling
+
+</h2>
+
+<h3>
+
+14.1 Original Data Distribution
+
+</h3>
+
+<pre><code>
+X_train.hist(
+
+    figsize=(10, 8)
+
+)
+
+plt.suptitle("Original Training Data")
+
+plt.tight_layout()
+
+plt.show()
+</code></pre>
+
+
+<h3>
+
+14.2 Normalized Data Distribution
+
+</h3>
+
+<pre><code>
+normalized_df = pd.DataFrame(
+
+    X_train_normalized,
+
+    columns=features
+
+)
+
+normalized_df.hist(
+
+    figsize=(10, 8)
+
+)
+
+plt.suptitle("Normalized Training Data")
+
+plt.tight_layout()
+
+plt.show()
+</code></pre>
+
+
+<h3>
+
+14.3 Standardized Data Distribution
+
+</h3>
+
+<pre><code>
+standardized_df = pd.DataFrame(
+
+    X_train_standardized,
+
+    columns=features
+
+)
+
+standardized_df.hist(
+
+    figsize=(10, 8)
+
+)
+
+plt.suptitle("Standardized Training Data")
+
+plt.tight_layout()
+
+plt.show()
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+COMPLETE PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+15. Complete Python Program
+
+</h2>
+
+<p>
+
+The following program combines the major steps performed in this practical.
+
+</p>
+
+<pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+
+
+# --------------------------------------------------
+# Step 1: Load Dataset
+# --------------------------------------------------
+
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+
+df = pd.read_csv(url)
+
+print("Dataset loaded successfully.")
+
+print("\nDataset Shape:")
+print(df.shape)
+
+
+# --------------------------------------------------
+# Step 2: Explore Dataset
+# --------------------------------------------------
+
+print("\nFirst Five Records:")
+print(df.head())
+
+print("\nDataset Information:")
+df.info()
+
+print("\nStatistical Summary:")
+print(df.describe())
+
+
+# --------------------------------------------------
+# Step 3: Check Missing Values
+# --------------------------------------------------
+
+print("\nMissing Values:")
+print(df.isnull().sum())
+
+
+# --------------------------------------------------
+# Step 4: Handle Missing Values
+# --------------------------------------------------
+
+df["Age"] = df["Age"].fillna(
+
+    df["Age"].median()
+
+)
+
+df["Embarked"] = df["Embarked"].fillna(
+
+    df["Embarked"].mode()[0]
+
+)
+
+df = df.drop(columns=["Cabin"])
+
+
+print("\nMissing Values After Preprocessing:")
+print(df.isnull().sum())
+
+
+# --------------------------------------------------
+# Step 5: Select Features and Target
+# --------------------------------------------------
+
+features = [
+
+    "Age",
+
+    "Fare",
+
+    "SibSp",
+
+    "Parch"
+
+]
+
+X = df[features]
+
+y = df["Survived"]
+
+
+# --------------------------------------------------
+# Step 6: Train-Test Split
+# --------------------------------------------------
+
+X_train, X_test, y_train, y_test = train_test_split(
+
+    X,
+
+    y,
+
+    test_size=0.20,
+
+    random_state=42,
+
+    stratify=y
+
+)
+
+print("\nTraining Data Shape:")
+print(X_train.shape)
+
+print("\nTesting Data Shape:")
+print(X_test.shape)
+
+
+# --------------------------------------------------
+# Step 7: Normalization
+# --------------------------------------------------
+
+normalizer = MinMaxScaler()
+
+X_train_normalized = normalizer.fit_transform(X_train)
+
+X_test_normalized = normalizer.transform(X_test)
+
+
+# --------------------------------------------------
+# Step 8: Standardization
+# --------------------------------------------------
+
+standardizer = StandardScaler()
+
+X_train_standardized = standardizer.fit_transform(X_train)
+
+X_test_standardized = standardizer.transform(X_test)
+
+
+# --------------------------------------------------
+# Step 9: Display Results
+# --------------------------------------------------
+
+print("\nOriginal Training Data:")
+print(X_train.head())
+
+print("\nNormalized Training Data:")
+print(X_train_normalized[:5])
+
+print("\nStandardized Training Data:")
+print(X_train_standardized[:5])
+
+
+print("\nData preprocessing completed successfully.")
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+EXPECTED OUTPUT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+16. Expected Output
+
+</h2>
+
+<pre><code>
+Dataset loaded successfully.
+
+Dataset Shape:
+(891, 12)
+
+Missing Values:
+
+Age         177
+Cabin       687
+Embarked      2
+...
+
+Missing Values After Preprocessing:
+
+Age         0
+Embarked    0
+...
+
+Training Data Shape:
+(712, 4)
+
+Testing Data Shape:
+(179, 4)
+
+Data preprocessing completed successfully.
+</code></pre>
+
+<p>
+
+The exact numerical values displayed for the normalized and standardized data may vary depending on the dataset and train-test split.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+OBSERVATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+17. Observation
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Operation
+
+</th>
+
+<th>
+
+Observation
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+Missing value detection
+
+</td>
+
+<td>
+
+Missing values were identified in the Titanic dataset.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Age imputation
+
+</td>
+
+<td>
+
+Missing Age values were replaced using the median.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Embarked imputation
+
+</td>
+
+<td>
+
+Missing Embarked values were replaced using the mode.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Cabin handling
+
+</td>
+
+<td>
+
+Cabin was removed because of a large number of missing values.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Normalization
+
+</td>
+
+<td>
+
+Features were scaled to approximately the range 0 to 1.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Standardization
+
+</td>
+
+<td>
+
+Features were transformed to have approximately mean 0 and standard deviation 1.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Train-test split
+
+</td>
+
+<td>
+
+80% data was used for training and 20% for testing.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+RESULT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+18. Result
+
+</h2>
+
+<p>
+
+The Titanic dataset was successfully preprocessed using Python, Pandas, NumPy, and Scikit-learn.
+
+</p>
+
+<p>
+
+Missing values were identified and handled using median and mode imputation. The dataset was divided into training and testing sets using an 80:20 ratio.
+
+</p>
+
+<p>
+
+Normalization was performed using <code>MinMaxScaler</code>, while standardization was performed using <code>StandardScaler</code>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CONCLUSION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+19. Conclusion
+
+</h2>
+
+<p>
+
+In this practical, we learned how to preprocess a real-world dataset before applying Machine Learning algorithms.
+
+</p>
+
+<p>
+
+We learned to identify and handle missing values, perform normalization and standardization, and divide the dataset into training and testing sets.
+
+</p>
+
+<p>
+
+These preprocessing techniques are important because the quality and scale of input data can significantly affect the performance of Machine Learning models.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+VIVA QUESTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+20. Viva Questions
+
+</h2>
+
+<ol>
+
+<li>
+
+What is data preprocessing?
+
+</li>
+
+<li>
+
+Why is data preprocessing necessary in Machine Learning?
+
+</li>
+
+<li>
+
+What is a missing value?
+
+</li>
+
+<li>
+
+How can missing values be handled?
+
+</li>
+
+<li>
+
+Why is median used for numerical missing values?
+
+</li>
+
+<li>
+
+Why is mode commonly used for categorical missing values?
+
+</li>
+
+<li>
+
+What is normalization?
+
+</li>
+
+<li>
+
+What is standardization?
+
+</li>
+
+<li>
+
+What is the difference between MinMaxScaler and StandardScaler?
+
+</li>
+
+<li>
+
+Why should the scaler be fitted only on the training data?
+
+</li>
+
+<li>
+
+What is data leakage?
+
+</li>
+
+<li>
+
+What is the purpose of train_test_split()?
+
+</li>
+
+<li>
+
+Why do we divide data into training and testing sets?
+
+</li>
+
+<li>
+
+What does test_size=0.20 mean?
+
+</li>
+
+<li>
+
+What is the purpose of random_state?
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="experiment1.html"
+class="primary-button">
+
+← Previous Practical
+
+</a>
+
+<a href="index.html"
+class="primary-button">
+
+Back to Practicals
+
+</a>
+
+<a href="experiment3.html"
+class="primary-button">
+
+Next Practical →
+
+</a>
+
+</section>
+
+</main>
+
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
