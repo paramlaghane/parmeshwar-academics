@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <html lang="en">
 
@@ -77,7 +77,7 @@ Practical No. 03
 
 <p>
 
-Bayesian Network — Construction and Inference
+Simple Bayesian Network
 
 </p>
 
@@ -97,9 +97,15 @@ TITLE
 
 <h2 class="section-title">
 
-Bayesian Network — Construction and Inference
+AIML Essentials Practical – Practical No. 3
 
 </h2>
+
+<h3>
+
+EXPERIMENT 3: Simple Bayesian Network
+
+</h3>
 
 </section>
 
@@ -120,7 +126,9 @@ AIM
 
 <p>
 
-To construct a simple Bayesian Network using Python and perform probabilistic inference using Conditional Probability Tables (CPTs).
+To construct a simple <strong>Bayesian Network</strong>, define
+<strong>Conditional Probability Tables (CPTs)</strong>, and perform
+inference based on observed evidence.
 
 </p>
 
@@ -130,14 +138,14 @@ To construct a simple Bayesian Network using Python and perform probabilistic in
 
 
 <!-- ==========================================================
-OBJECTIVES
+LEARNING OBJECTIVES
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-2. Objectives
+2. Learning Objectives
 
 </h2>
 
@@ -151,25 +159,31 @@ After completing this practical, students will be able to:
 
 <li>
 
-Understand the basic concept of a Bayesian Network.
+Understand the basic structure of a Bayesian Network.
 
 </li>
 
 <li>
 
-Construct a simple Bayesian Network.
+Represent relationships between variables using a simple directed graph.
 
 </li>
 
 <li>
 
-Define Conditional Probability Tables (CPTs).
+Understand and construct a Conditional Probability Table (CPT).
 
 </li>
 
 <li>
 
-Calculate probabilities using the network.
+Perform simple probabilistic inference using observed evidence.
+
+</li>
+
+<li>
+
+Understand how new evidence updates an initial belief.
 
 </li>
 
@@ -181,27 +195,21 @@ Calculate probabilities using the network.
 
 
 <!-- ==========================================================
-THEORY
+INTRODUCTION
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-3. Theory
+3. Introduction
 
 </h2>
 
-
-<h3>
-
-3.1 What is a Bayesian Network?
-
-</h3>
-
 <p>
 
-A <strong>Bayesian Network</strong> is a graphical model used to represent uncertain events and their relationships.
+A <strong>Bayesian Network</strong> is a graphical representation of
+probabilistic relationships between different variables.
 
 </p>
 
@@ -215,19 +223,21 @@ It consists of:
 
 <li>
 
-<strong>Nodes</strong> → represent variables.
+<strong>Nodes</strong> – represent variables.
 
 </li>
 
 <li>
 
-<strong>Arrows</strong> → represent relationships between variables.
+<strong>Directed edges</strong> – represent relationships between
+variables.
 
 </li>
 
 <li>
 
-<strong>CPTs</strong> → represent probabilities.
+<strong>Conditional Probability Tables (CPTs)</strong> – represent the
+probabilities associated with the variables.
 
 </li>
 
@@ -235,36 +245,7 @@ It consists of:
 
 <p>
 
-In simple words:
-
-</p>
-
-<pre><code>
-Bayesian Network = Graph + Probability Tables
-</code></pre>
-
-<p>
-
-The graph is a <strong>Directed Acyclic Graph (DAG)</strong>, which means the arrows have a direction and there is no cycle.
-
-</p>
-
-
-<h3>
-
-3.2 Example: Wet Grass Problem
-
-</h3>
-
-<p>
-
-We use a simple example to understand the concept.
-
-</p>
-
-<p>
-
-Suppose:
+In this practical, we will use three variables:
 
 </p>
 
@@ -272,51 +253,70 @@ Suppose:
 
 <li>
 
-It may be <strong>Cloudy</strong>.
+<strong>Cloudy</strong>
 
 </li>
 
 <li>
 
-Cloudy weather may affect the <strong>Sprinkler</strong>.
+<strong>Rain Sprinkle</strong>
 
 </li>
 
 <li>
 
-Cloudy weather may affect <strong>Rain</strong>.
-
-</li>
-
-<li>
-
-Sprinkler and Rain may make the <strong>Grass Wet</strong>.
+<strong>Wet Grass</strong>
 
 </li>
 
 </ul>
 
 
-<h3>
+<p>
 
-Network
+The relationship can be represented as:
 
-</h3>
+</p>
 
 <pre><code>
-              Cloudy
-              /    \
-             ↓      ↓
-        Sprinkler   Rain
-             \      /
-              \    /
-               ↓  ↓
-             WetGrass
+        Cloudy
+           |
+           ↓
+    Rain Sprinkle
+           |
+           ↓
+       Wet Grass
 </code></pre>
+
 
 <p>
 
-This is the classic <strong>Wet Grass Bayesian Network</strong> used in the practical.
+Here:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>Cloudy</strong> influences the probability of
+<strong>Rain Sprinkle</strong>.
+
+</li>
+
+<li>
+
+<strong>Rain Sprinkle</strong> influences the probability of
+<strong>Wet Grass</strong>.
+
+</li>
+
+</ul>
+
+<p>
+
+This practical follows the same Bayesian idea from the course material:
+an initial belief is updated when new evidence becomes available.
 
 </p>
 
@@ -326,29 +326,133 @@ This is the classic <strong>Wet Grass Bayesian Network</strong> used in the prac
 
 
 <!-- ==========================================================
-CPT
+BAYESIAN NETWORK STRUCTURE
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-4. Conditional Probability Table (CPT)
+4. Bayesian Network Structure
 
 </h2>
 
 <p>
 
-A CPT tells us the probability of a variable when its parent is known.
+Our simple Bayesian Network is:
+
+</p>
+
+<pre><code>
+          Cloudy
+             |
+             ↓
+      Rain Sprinkle
+             |
+             ↓
+         Wet Grass
+</code></pre>
+
+
+<p>
+
+Each variable has two possible states.
 
 </p>
 
 
 <h3>
 
-Sprinkler given Cloudy
+Cloudy
 
 </h3>
+
+<ul>
+
+<li>
+
+Cloudy
+
+</li>
+
+<li>
+
+Not Cloudy
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Rain Sprinkle
+
+</h3>
+
+<ul>
+
+<li>
+
+Rain
+
+</li>
+
+<li>
+
+No Rain
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Wet Grass
+
+</h3>
+
+<ul>
+
+<li>
+
+Wet
+
+</li>
+
+<li>
+
+Dry
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+DATASET
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Dataset
+
+</h2>
+
+<p>
+
+Suppose the following observations were recorded for
+<strong>100 days</strong>:
+
+</p>
+
 
 <table>
 
@@ -364,13 +468,19 @@ Cloudy
 
 <th>
 
-P(Sprinkler = True)
+Rain Sprinkle
 
 </th>
 
 <th>
 
-P(Sprinkler = False)
+Wet Grass
+
+</th>
+
+<th>
+
+Number of Days
 
 </th>
 
@@ -382,45 +492,109 @@ P(Sprinkler = False)
 
 <tr>
 
-<td>
+<td>Cloudy</td>
 
-True
+<td>Rain</td>
 
-</td>
+<td>Wet</td>
 
-<td>
-
-0.1
-
-</td>
-
-<td>
-
-0.9
-
-</td>
+<td>40</td>
 
 </tr>
 
 <tr>
 
-<td>
+<td>Cloudy</td>
 
-False
+<td>Rain</td>
 
-</td>
+<td>Dry</td>
 
-<td>
+<td>5</td>
 
-0.5
+</tr>
 
-</td>
+<tr>
 
-<td>
+<td>Cloudy</td>
 
-0.5
+<td>No Rain</td>
 
-</td>
+<td>Wet</td>
+
+<td>5</td>
+
+</tr>
+
+<tr>
+
+<td>Cloudy</td>
+
+<td>No Rain</td>
+
+<td>Dry</td>
+
+<td>10</td>
+
+</tr>
+
+<tr>
+
+<td>Not Cloudy</td>
+
+<td>Rain</td>
+
+<td>Wet</td>
+
+<td>5</td>
+
+</tr>
+
+<tr>
+
+<td>Not Cloudy</td>
+
+<td>Rain</td>
+
+<td>Dry</td>
+
+<td>5</td>
+
+</tr>
+
+<tr>
+
+<td>Not Cloudy</td>
+
+<td>No Rain</td>
+
+<td>Wet</td>
+
+<td>2</td>
+
+</tr>
+
+<tr>
+
+<td>Not Cloudy</td>
+
+<td>No Rain</td>
+
+<td>Dry</td>
+
+<td>28</td>
+
+</tr>
+
+<tr>
+
+<td><strong>Total</strong></td>
+
+<td></td>
+
+<td></td>
+
+<td><strong>100</strong></td>
 
 </tr>
 
@@ -429,9 +603,245 @@ False
 </table>
 
 
+<p>
+
+This dataset will be used to calculate the probabilities required for the
+Bayesian Network.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PRIOR PROBABILITY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+6. Step 1 – Find the Prior Probability
+
+</h2>
+
+<p>
+
+The <strong>prior probability</strong> represents our belief before
+observing new evidence.
+
+</p>
+
+<p>
+
+Suppose we want to find the probability that it is cloudy.
+
+</p>
+
+
+<p>
+
+From the data:
+
+</p>
+
+<pre><code>
+Cloudy days = 40 + 5 + 5 + 10
+
+             = 60 days
+
+Total days = 100
+</code></pre>
+
+
+<p>
+
+Therefore,
+
+</p>
+
+<pre><code>
+P(Cloudy) = 60 / 100
+
+          = 0.60
+</code></pre>
+
+
+<p>
+
+Therefore:
+
+</p>
+
+<pre><code>
+P(Cloudy) = 0.60 or 60%
+</code></pre>
+
+
+<p>
+
+Similarly,
+
+</p>
+
+<pre><code>
+P(Not Cloudy) = 40 / 100
+
+              = 0.40
+</code></pre>
+
+
+<p>
+
+The idea of prior probability follows the course material, where the
+prior represents our belief before observing the evidence.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CPT RAIN SPRINKLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Step 2 – Define the Conditional Probability Table (CPT)
+
+</h2>
+
+<p>
+
+We first create the CPT for <strong>Rain Sprinkle</strong>.
+
+</p>
+
+
 <h3>
 
-Rain given Cloudy
+CPT for Rain Sprinkle
+
+</h3>
+
+
+<h4>
+
+When it is Cloudy
+
+</h4>
+
+<p>
+
+There are 60 cloudy days.
+
+</p>
+
+<p>
+
+Among these:
+
+</p>
+
+<ul>
+
+<li>
+
+45 days had rain.
+
+</li>
+
+<li>
+
+15 days had no rain.
+
+</li>
+
+</ul>
+
+
+<p>
+
+Therefore,
+
+</p>
+
+<pre><code>
+P(Rain | Cloudy) = 45 / 60
+
+                 = 0.75
+</code></pre>
+
+<pre><code>
+P(No Rain | Cloudy) = 15 / 60
+
+                    = 0.25
+</code></pre>
+
+
+<h4>
+
+When it is Not Cloudy
+
+</h4>
+
+<p>
+
+There are 40 non-cloudy days.
+
+</p>
+
+<p>
+
+Among these:
+
+</p>
+
+<ul>
+
+<li>
+
+10 days had rain.
+
+</li>
+
+<li>
+
+30 days had no rain.
+
+</li>
+
+</ul>
+
+
+<p>
+
+Therefore,
+
+</p>
+
+<pre><code>
+P(Rain | Not Cloudy) = 10 / 40
+
+                     = 0.25
+</code></pre>
+
+<pre><code>
+P(No Rain | Not Cloudy) = 30 / 40
+
+                        = 0.75
+</code></pre>
+
+
+<h3>
+
+CPT for Rain Sprinkle
 
 </h3>
 
@@ -444,91 +854,6 @@ Rain given Cloudy
 <th>
 
 Cloudy
-
-</th>
-
-<th>
-
-P(Rain = True)
-
-</th>
-
-<th>
-
-P(Rain = False)
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>
-
-True
-
-</td>
-
-<td>
-
-0.8
-
-</td>
-
-<td>
-
-0.2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-False
-
-</td>
-
-<td>
-
-0.2
-
-</td>
-
-<td>
-
-0.8
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-
-<h3>
-
-WetGrass given Sprinkler and Rain
-
-</h3>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-
-Sprinkler
 
 </th>
 
@@ -540,13 +865,7 @@ Rain
 
 <th>
 
-P(WetGrass = True)
-
-</th>
-
-<th>
-
-P(WetGrass = False)
+No Rain
 
 </th>
 
@@ -560,25 +879,19 @@ P(WetGrass = False)
 
 <td>
 
-True
+Cloudy
 
 </td>
 
 <td>
 
-True
+0.75
 
 </td>
 
 <td>
 
-0.99
-
-</td>
-
-<td>
-
-0.01
+0.25
 
 </td>
 
@@ -588,81 +901,19 @@ True
 
 <td>
 
-True
+Not Cloudy
 
 </td>
 
 <td>
 
-False
+0.25
 
 </td>
 
 <td>
 
-0.90
-
-</td>
-
-<td>
-
-0.10
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-False
-
-</td>
-
-<td>
-
-True
-
-</td>
-
-<td>
-
-0.90
-
-</td>
-
-<td>
-
-0.10
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-False
-
-</td>
-
-<td>
-
-False
-
-</td>
-
-<td>
-
-0.00
-
-</td>
-
-<td>
-
-1.00
+0.75
 
 </td>
 
@@ -672,11 +923,18 @@ False
 
 </table>
 
+
 <p>
 
-These are the CPT values used in the practical.
+Notice that each row adds up to 1:
 
 </p>
+
+<pre><code>
+0.75 + 0.25 = 1
+
+0.25 + 0.75 = 1
+</code></pre>
 
 </section>
 
@@ -684,335 +942,785 @@ These are the CPT values used in the practical.
 
 
 <!-- ==========================================================
-REQUIREMENTS
+WET GRASS CPT
 ========================================================== -->
 
 <section>
 
 <h2 class="section-title">
 
-5. Requirements
+8. Step 3 – Define CPT for Wet Grass
 
 </h2>
 
+<p>
 
-<h3>
+Now we calculate the probability of <strong>Wet Grass</strong> based on
+whether there is rain.
 
-Software
-
-</h3>
-
-<ul>
-
-<li>
-
-Python 3.9 or later
-
-</li>
-
-<li>
-
-Jupyter Notebook / VS Code
-
-</li>
-
-</ul>
+</p>
 
 
 <h3>
 
-Library
+When there is Rain
 
 </h3>
 
 <p>
 
-Install <strong>pgmpy</strong> using:
+There are:
 
 </p>
 
 <pre><code>
-pip install pgmpy
+40 + 5 + 5 + 5 = 55 rainy days
 </code></pre>
+
 
 <p>
 
-Verify the installation:
+Among these, grass was wet on:
 
 </p>
 
 <pre><code>
-import pgmpy
-
-print(pgmpy.__version__)
+40 + 5 + 5 = 50 days
 </code></pre>
+
 
 <p>
 
-The practical uses <strong>pgmpy</strong> for Bayesian Network construction and inference.
+Therefore,
 
 </p>
 
-</section>
+<pre><code>
+P(Wet Grass | Rain) = 50 / 55
 
-<hr>
+                    ≈ 0.91
+</code></pre>
 
 
-<!-- ==========================================================
-PROCEDURE
-========================================================== -->
+<p>
 
-<section>
+And:
 
-<h2 class="section-title">
+</p>
 
-6. Procedure
+<pre><code>
+P(Dry Grass | Rain) = 5 / 55
 
-</h2>
+                    ≈ 0.09
+</code></pre>
 
 
 <h3>
 
-Step 1: Import Libraries
+When there is No Rain
 
 </h3>
-
-<pre><code>
-from pgmpy.models import BayesianNetwork
-
-from pgmpy.factors.discrete import TabularCPD
-
-from pgmpy.inference import VariableElimination
-</code></pre>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-CREATE NETWORK
-========================================================== -->
-
-<section>
-
-<h3>
-
-Step 2: Create the Bayesian Network
-
-</h3>
-
-<pre><code>
-model = BayesianNetwork([
-
-    ("Cloudy", "Sprinkler"),
-
-    ("Cloudy", "Rain"),
-
-    ("Sprinkler", "WetGrass"),
-
-    ("Rain", "WetGrass")
-
-])
-</code></pre>
 
 <p>
 
-This creates the following relationships:
+There are:
 
 </p>
 
 <pre><code>
-Cloudy → Sprinkler
-
-Cloudy → Rain
-
-Sprinkler → WetGrass
-
-Rain → WetGrass
+5 + 10 + 2 + 28 = 45 days
 </code></pre>
 
-</section>
 
-<hr>
+<p>
+
+Among these, grass was wet on:
+
+</p>
+
+<pre><code>
+5 + 2 = 7 days
+</code></pre>
 
 
-<!-- ==========================================================
-DEFINE CPT CLOUDY
-========================================================== -->
+<p>
 
-<section>
+Therefore,
+
+</p>
+
+<pre><code>
+P(Wet Grass | No Rain) = 7 / 45
+
+                       ≈ 0.16
+</code></pre>
+
+
+<p>
+
+And:
+
+</p>
+
+<pre><code>
+P(Dry Grass | No Rain) = 38 / 45
+
+                       ≈ 0.84
+</code></pre>
+
 
 <h3>
 
-Step 3: Define CPTs
+CPT for Wet Grass
 
 </h3>
 
-<h4>
+<table>
 
-Cloudy
+<thead>
 
-</h4>
+<tr>
 
-<pre><code>
-cpd_cloudy = TabularCPD(
+<th>
 
-    variable="Cloudy",
+Rain Sprinkle
 
-    variable_card=2,
+</th>
 
-    values=[[0.5], [0.5]],
+<th>
 
-    state_names={
-        "Cloudy": ["True", "False"]
-    }
+Wet Grass
 
-)
-</code></pre>
+</th>
 
+<th>
 
-<h4>
+Dry Grass
 
-Sprinkler
+</th>
 
-</h4>
+</tr>
 
-<pre><code>
-cpd_sprinkler = TabularCPD(
+</thead>
 
-    variable="Sprinkler",
+<tbody>
 
-    variable_card=2,
+<tr>
 
-    values=[
-
-        [0.1, 0.5],
-
-        [0.9, 0.5]
-
-    ],
-
-    evidence=["Cloudy"],
-
-    evidence_card=[2],
-
-    state_names={
-
-        "Sprinkler": ["True", "False"],
-
-        "Cloudy": ["True", "False"]
-
-    }
-
-)
-</code></pre>
-
-
-<h4>
+<td>
 
 Rain
 
-</h4>
+</td>
 
-<pre><code>
-cpd_rain = TabularCPD(
+<td>
 
-    variable="Rain",
+0.91
 
-    variable_card=2,
+</td>
 
-    values=[
+<td>
 
-        [0.8, 0.2],
+0.09
 
-        [0.2, 0.8]
+</td>
 
-    ],
+</tr>
 
-    evidence=["Cloudy"],
+<tr>
 
-    evidence_card=[2],
+<td>
 
-    state_names={
+No Rain
 
-        "Rain": ["True", "False"],
+</td>
 
-        "Cloudy": ["True", "False"]
+<td>
 
-    }
+0.16
 
-)
-</code></pre>
+</td>
+
+<td>
+
+0.84
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 
-<h4>
+<p>
 
-WetGrass
+Again, each row approximately adds up to 1.
 
-</h4>
-
-<pre><code>
-cpd_wetgrass = TabularCPD(
-
-    variable="WetGrass",
-
-    variable_card=2,
-
-    values=[
-
-        [0.99, 0.90, 0.90, 0.00],
-
-        [0.01, 0.10, 0.10, 1.00]
-
-    ],
-
-    evidence=["Sprinkler", "Rain"],
-
-    evidence_card=[2, 2],
-
-    state_names={
-
-        "WetGrass": ["True", "False"],
-
-        "Sprinkler": ["True", "False"],
-
-        "Rain": ["True", "False"]
-
-    }
-
-)
-</code></pre>
+</p>
 
 </section>
 
 <hr>
 <!-- ==========================================================
-ADD CPTs AND CHECK MODEL
+STEP 3 – CPT FOR WET GRASS
 ========================================================== -->
 
 <section>
 
+<h2 class="section-title">
+
+8. Step 3 – Define CPT for Wet Grass
+
+</h2>
+
+<p>
+
+Now we calculate the probability of <strong>Wet Grass</strong> based on whether there is rain.
+
+</p>
+
 <h3>
 
-Step 4: Add CPTs and Check the Model
+When there is Rain
 
 </h3>
 
+<p>
+
+There are:
+
+</p>
+
 <pre><code>
-model.add_cpds(
+40 + 5 + 5 + 5 = 55 rainy days
+</code></pre>
 
-    cpd_cloudy,
+<p>
 
-    cpd_sprinkler,
+Among these, grass was wet on:
 
-    cpd_rain,
+</p>
 
-    cpd_wetgrass
+<pre><code>
+40 + 5 + 5 = 50 days
+</code></pre>
 
-)
+<p>
 
-print("Model is valid:", model.check_model())
+Therefore,
+
+</p>
+
+<pre><code>
+P(Wet Grass | Rain) = 50 / 55 ≈ 0.91
+
+P(Dry Grass | Rain) = 5 / 55 ≈ 0.09
+</code></pre>
+
+<h3>
+
+When there is No Rain
+
+</h3>
+
+<p>
+
+There are:
+
+</p>
+
+<pre><code>
+5 + 10 + 2 + 28 = 45 days
+</code></pre>
+
+<p>
+
+Among these, grass was wet on:
+
+</p>
+
+<pre><code>
+5 + 2 = 7 days
+</code></pre>
+
+<p>
+
+Therefore,
+
+</p>
+
+<pre><code>
+P(Wet Grass | No Rain) = 7 / 45 ≈ 0.16
+
+P(Dry Grass | No Rain) = 38 / 45 ≈ 0.84
+</code></pre>
+
+<h3>
+
+CPT for Wet Grass
+
+</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Rain Sprinkle</th>
+
+<th>Wet Grass</th>
+
+<th>Dry Grass</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Rain</td>
+
+<td>0.91</td>
+
+<td>0.09</td>
+
+</tr>
+
+<tr>
+
+<td>No Rain</td>
+
+<td>0.16</td>
+
+<td>0.84</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+Again, each row approximately adds up to 1.
+
+</p>
+
+<pre><code>
+0.91 + 0.09 = 1
+
+0.16 + 0.84 = 1
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+STEP 4 – PERFORM INFERENCE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+9. Step 4 – Perform Inference
+
+</h2>
+
+<p>
+
+Suppose we observe the following evidence:
+
+</p>
+
+<p>
+
+<strong>Evidence: It is Cloudy.</strong>
+
+</p>
+
+<p>
+
+We want to find:
+
+</p>
+
+<pre><code>
+P(Rain | Cloudy)
+</code></pre>
+
+<p>
+
+From the CPT:
+
+</p>
+
+<pre><code>
+P(Rain | Cloudy) = 0.75
+</code></pre>
+
+<p>
+
+Therefore:
+
+</p>
+
+<p>
+
+<strong>Probability of Rain given Cloudy = 75%</strong>
+
+</p>
+
+<p>
+
+This means that after observing that the sky is cloudy, the probability of rain is 75%.
+
+</p>
+
+<p>
+
+This demonstrates the basic Bayesian idea that new evidence can change our belief about an event.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+INFERENCE FOR WET GRASS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+10. Inference for Wet Grass
+
+</h2>
+
+<p>
+
+Now suppose we observe:
+
+</p>
+
+<p>
+
+<strong>Evidence: It is raining.</strong>
+
+</p>
+
+<p>
+
+We want to find:
+
+</p>
+
+<pre><code>
+P(Wet Grass | Rain)
+</code></pre>
+
+<p>
+
+From the CPT:
+
+</p>
+
+<pre><code>
+P(Wet Grass | Rain) ≈ 0.91
+</code></pre>
+
+<p>
+
+Therefore:
+
+</p>
+
+<p>
+
+<strong>Probability of Wet Grass given Rain ≈ 91%</strong>
+
+</p>
+
+<p>
+
+Thus, observing rain gives us a high probability that the grass will be wet.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+INFERENCE WITH NO RAIN
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+11. Inference with No Rain
+
+</h2>
+
+<p>
+
+Now suppose the evidence is:
+
+</p>
+
+<p>
+
+<strong>Evidence: There is no rain.</strong>
+
+</p>
+
+<p>
+
+We want to find:
+
+</p>
+
+<pre><code>
+P(Wet Grass | No Rain)
+</code></pre>
+
+<p>
+
+From the CPT:
+
+</p>
+
+<pre><code>
+P(Wet Grass | No Rain) ≈ 0.16
+</code></pre>
+
+<p>
+
+Therefore:
+
+</p>
+
+<p>
+
+<strong>Probability of Wet Grass given No Rain ≈ 16%</strong>
+
+</p>
+
+<p>
+
+Thus, when there is no rain, the probability of wet grass is much lower.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+SUMMARY OF INFERENCE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+12. Summary of Inference
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Observed Evidence</th>
+
+<th>Inference</th>
+
+<th>Probability</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Cloudy</td>
+
+<td>P(Rain | Cloudy)</td>
+
+<td>75%</td>
+
+</tr>
+
+<tr>
+
+<td>Rain</td>
+
+<td>P(Wet Grass | Rain)</td>
+
+<td>91%</td>
+
+</tr>
+
+<tr>
+
+<td>No Rain</td>
+
+<td>P(Wet Grass | No Rain)</td>
+
+<td>16%</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+This demonstrates how a Bayesian Network can use observed evidence to determine the probability of another event.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PYTHON PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+13. Python Program
+
+</h2>
+
+<pre><code>
+# Practical 3: Simple Bayesian Network
+# Cloudy -> Rain Sprinkle -> Wet Grass
+
+# Prior Probability
+
+P_cloudy = 0.60
+P_not_cloudy = 0.40
+
+
+# CPT for Rain Sprinkle
+
+CPT_rain = {
+    "Cloudy": {
+        "Rain": 0.75,
+        "No Rain": 0.25
+    },
+
+    "Not Cloudy": {
+        "Rain": 0.25,
+        "No Rain": 0.75
+    }
+}
+
+
+# CPT for Wet Grass
+
+CPT_grass = {
+    "Rain": {
+        "Wet Grass": 0.91,
+        "Dry Grass": 0.09
+    },
+
+    "No Rain": {
+        "Wet Grass": 0.16,
+        "Dry Grass": 0.84
+    }
+}
+
+
+# Display CPT for Rain
+
+print("CPT for Rain Sprinkle")
+print("----------------------")
+
+for condition, probability in CPT_rain.items():
+
+    print(condition)
+
+    print("  P(Rain)     =", probability["Rain"])
+
+    print("  P(No Rain)  =", probability["No Rain"])
+
+
+# Display CPT for Wet Grass
+
+print("\nCPT for Wet Grass")
+print("-----------------")
+
+for condition, probability in CPT_grass.items():
+
+    print(condition)
+
+    print("  P(Wet Grass) =", probability["Wet Grass"])
+
+    print("  P(Dry Grass) =", probability["Dry Grass"])
+
+
+# Inference 1: Cloudy -> Rain
+
+evidence = "Cloudy"
+
+print("\nEvidence:", evidence)
+
+probability = CPT_rain[evidence]["Rain"]
+
+print("P(Rain | Cloudy) =", probability)
+
+print("Probability of Rain =", probability * 100, "%")
+
+
+# Inference 2: Rain -> Wet Grass
+
+evidence = "Rain"
+
+print("\nEvidence:", evidence)
+
+probability = CPT_grass[evidence]["Wet Grass"]
+
+print("P(Wet Grass | Rain) =", probability)
+
+print("Probability of Wet Grass =", probability * 100, "%")
+
+
+# Inference 3: No Rain -> Wet Grass
+
+evidence = "No Rain"
+
+print("\nEvidence:", evidence)
+
+probability = CPT_grass[evidence]["Wet Grass"]
+
+print("P(Wet Grass | No Rain) =", probability)
+
+print("Probability of Wet Grass =", probability * 100, "%")
 </code></pre>
 
 <h3>
@@ -1022,415 +1730,38 @@ Expected Output
 </h3>
 
 <pre><code>
-Model is valid: True
+CPT for Rain Sprinkle
+----------------------
+Cloudy
+  P(Rain)     = 0.75
+  P(No Rain)  = 0.25
+
+Not Cloudy
+  P(Rain)     = 0.25
+  P(No Rain)  = 0.75
+
+CPT for Wet Grass
+-----------------
+Rain
+  P(Wet Grass) = 0.91
+  P(Dry Grass) = 0.09
+
+No Rain
+  P(Wet Grass) = 0.16
+  P(Dry Grass) = 0.84
+
+Evidence: Cloudy
+P(Rain | Cloudy) = 0.75
+Probability of Rain = 75.0 %
+
+Evidence: Rain
+P(Wet Grass | Rain) = 0.91
+Probability of Wet Grass = 91.0 %
+
+Evidence: No Rain
+P(Wet Grass | No Rain) = 0.16
+Probability of Wet Grass = 16.0 %
 </code></pre>
-
-<p>
-
-The <strong>check_model()</strong> method verifies that the Bayesian Network and its CPTs are correctly defined.
-
-</p>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-PERFORM INFERENCE
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-7. Perform Inference
-
-</h2>
-
-<p>
-
-Inference means <strong>finding the probability of an event</strong> using the Bayesian Network.
-
-</p>
-
-<p>
-
-Create the inference object:
-
-</p>
-
-<pre><code>
-infer = VariableElimination(model)
-</code></pre>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-MARGINAL PROBABILITY
-========================================================== -->
-
-<section>
-
-<h3>
-
-7.1 Marginal Probability
-
-</h3>
-
-<p>
-
-Find the probability that the grass is wet.
-
-</p>
-
-<pre><code>
-result = infer.query(
-
-    variables=["WetGrass"]
-
-)
-
-print(result)
-</code></pre>
-
-<h3>
-
-Result
-
-</h3>
-
-<pre><code>
-P(WetGrass = True) = 0.6471
-</code></pre>
-
-<p>
-
-Before knowing anything else, there is approximately a <strong>64.71% probability that the grass is wet</strong>.
-
-</p>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-INFERENCE WITH EVIDENCE
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-8. Inference with Evidence
-
-</h2>
-
-<p>
-
-Now suppose we know that it is raining.
-
-</p>
-
-<p>
-
-Find:
-
-</p>
-
-<pre><code>
-P(WetGrass = True | Rain = True)
-</code></pre>
-
-<pre><code>
-result = infer.query(
-
-    variables=["WetGrass"],
-
-    evidence={"Rain": "True"}
-
-)
-
-print(result)
-</code></pre>
-
-<h3>
-
-Result
-
-</h3>
-
-<pre><code>
-P(WetGrass = True | Rain = True) = 0.9162
-</code></pre>
-
-<p>
-
-When we know that it is raining, the probability of wet grass increases from:
-
-</p>
-
-<pre><code>
-0.6471 → 0.9162
-</code></pre>
-
-<p>
-
-This shows how <strong>evidence changes probability</strong>.
-
-</p>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-EXPLAINING AWAY
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-9. Explaining Away
-
-</h2>
-
-<p>
-
-Now consider:
-
-</p>
-
-<pre><code>
-P(Sprinkler = True | WetGrass = True)
-</code></pre>
-
-<pre><code>
-print(
-
-    infer.query(
-
-        variables=["Sprinkler"],
-
-        evidence={"WetGrass": "True"}
-
-    )
-
-)
-</code></pre>
-
-<h3>
-
-Result
-
-</h3>
-
-<pre><code>
-P(Sprinkler = True | WetGrass = True) = 0.4301
-</code></pre>
-
-
-<p>
-
-Now suppose we also know that it rained:
-
-</p>
-
-<pre><code>
-print(
-
-    infer.query(
-
-        variables=["Sprinkler"],
-
-        evidence={
-
-            "WetGrass": "True",
-
-            "Rain": "True"
-
-        }
-
-    )
-
-)
-</code></pre>
-
-<h3>
-
-Result
-
-</h3>
-
-<pre><code>
-P(Sprinkler = True | WetGrass = True, Rain = True) = 0.1945
-</code></pre>
-
-
-<h3>
-
-Simple Explanation
-
-</h3>
-
-<p>
-
-Initially:
-
-</p>
-
-<pre><code>
-Wet grass → Sprinkler probability = 0.4301
-</code></pre>
-
-<p>
-
-After we learn that it rained:
-
-</p>
-
-<pre><code>
-Sprinkler probability = 0.1945
-</code></pre>
-
-<p>
-
-Why?
-
-</p>
-
-<p>
-
-Because <strong>rain provides another explanation for the wet grass</strong>.
-
-</p>
-
-<p>
-
-This reduction in the probability of one explanation after learning another explanation is called <strong>explaining away</strong>.
-
-</p>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-IMPORTANT RESULTS
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-10. Important Results
-
-</h2>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-
-Query
-
-</th>
-
-<th>
-
-Probability
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>
-
-P(WetGrass = True)
-
-</td>
-
-<td>
-
-0.6471
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-P(WetGrass = True | Rain = True)
-
-</td>
-
-<td>
-
-0.9162
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-P(Sprinkler = True | WetGrass = True)
-
-</td>
-
-<td>
-
-0.4301
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-P(Sprinkler = True | WetGrass = True, Rain = True)
-
-</td>
-
-<td>
-
-0.1945
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<p>
-
-These are the key results obtained from the specified network and CPTs.
-
-</p>
 
 </section>
 
@@ -1445,19 +1776,19 @@ RESULT
 
 <h2 class="section-title">
 
-11. Result
+14. Result
 
 </h2>
 
 <p>
 
-A simple Bayesian Network was successfully created using Python and pgmpy.
+A simple Bayesian Network <strong>Cloudy → Rain Sprinkle → Wet Grass</strong> was successfully constructed. The Conditional Probability Tables (CPTs) were defined, and inference was performed using observed evidence.
 
 </p>
 
 <p>
 
-The network was used to:
+The results show:
 
 </p>
 
@@ -1465,41 +1796,29 @@ The network was used to:
 
 <li>
 
-Define variables and their relationships.
+<strong>P(Rain | Cloudy) = 75%</strong>
 
 </li>
 
 <li>
 
-Define Conditional Probability Tables (CPTs).
+<strong>P(Wet Grass | Rain) ≈ 91%</strong>
 
 </li>
 
 <li>
 
-Validate the model.
-
-</li>
-
-<li>
-
-Calculate probabilities.
-
-</li>
-
-<li>
-
-Perform inference using evidence.
-
-</li>
-
-<li>
-
-Demonstrate explaining away.
+<strong>P(Wet Grass | No Rain) ≈ 16%</strong>
 
 </li>
 
 </ul>
+
+<p>
+
+Thus, the practical demonstrates how a Bayesian Network represents probabilistic relationships and how <strong>observed evidence can be used to update probabilities</strong>, which is the central idea of Bayesian reasoning.
+
+</p>
 
 </section>
 
@@ -1514,119 +1833,37 @@ CONCLUSION
 
 <h2 class="section-title">
 
-12. Conclusion
+15. Conclusion
 
 </h2>
 
 <p>
 
-In this practical, we learned that a Bayesian Network represents <strong>variables, relationships, and probabilities</strong>.
+In this practical, we constructed a simple Bayesian Network consisting of <strong>Cloudy, Rain Sprinkle, and Wet Grass</strong>. We calculated prior probabilities, constructed Conditional Probability Tables (CPTs), and performed inference using observed evidence.
 
 </p>
 
 <p>
 
-The main idea is:
+The practical demonstrates the important Bayesian reasoning process:
 
 </p>
 
 <pre><code>
-Build the Network → Define CPTs →
-Give Evidence → Calculate Updated Probability
+Build the Network
+        ↓
+Define CPTs
+        ↓
+Observe Evidence
+        ↓
+Calculate Updated Probability
 </code></pre>
 
 <p>
 
-We also learned that observing new evidence can change our belief about other variables.
+We learned that observing new evidence can change our belief about other variables. For example, knowing that it is cloudy gives a <strong>75% probability of rain</strong>, while observing rain gives approximately a <strong>91% probability of wet grass</strong>.
 
 </p>
-
-<p>
-
-The <strong>explaining-away</strong> example showed that when rain is observed, the probability that the sprinkler caused the wet grass decreases.
-
-</p>
-
-</section>
-
-<hr>
-
-
-<!-- ==========================================================
-VIVA QUESTIONS
-========================================================== -->
-
-<section>
-
-<h2 class="section-title">
-
-13. Viva Questions
-
-</h2>
-
-<ol>
-
-<li>
-
-What is a Bayesian Network?
-
-</li>
-
-<li>
-
-What is a Directed Acyclic Graph (DAG)?
-
-</li>
-
-<li>
-
-What do nodes represent in a Bayesian Network?
-
-</li>
-
-<li>
-
-What do arrows represent in a Bayesian Network?
-
-</li>
-
-<li>
-
-What is a Conditional Probability Table (CPT)?
-
-</li>
-
-<li>
-
-What is the purpose of the <strong>pgmpy</strong> library?
-
-</li>
-
-<li>
-
-What is probabilistic inference?
-
-</li>
-
-<li>
-
-What is the purpose of <strong>VariableElimination</strong>?
-
-</li>
-
-<li>
-
-What is meant by evidence in a Bayesian Network?
-
-</li>
-
-<li>
-
-What is explaining away?
-
-</li>
-
-</ol>
 
 </section>
 
@@ -1637,19 +1874,16 @@ What is explaining away?
 NAVIGATION
 ========================================================== -->
 
-<section
-style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
 
-<a
-href="index.html"
+<a href="index.html"
 class="primary-button">
 
 ← Back to Practicals
 
 </a>
 
-<a
-href="experiment4.html"
+<a href="experiment4.html"
 class="primary-button">
 
 Next Practical →
@@ -1657,7 +1891,6 @@ Next Practical →
 </a>
 
 </section>
-
 
 </main>
 
@@ -1667,6 +1900,8 @@ FOOTER
 ========================================================== -->
 
 <footer>
+
+<div class="container">
 
 <div class="container">
 
@@ -1684,8 +1919,8 @@ Learn Today. Lead Tomorrow.
 
 <p>
 
-Digital Learning Platform for Python Programming,
-Artificial Intelligence, Machine Learning and Core Java.
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
 
 </p>
 
@@ -1698,7 +1933,6 @@ Artificial Intelligence, Machine Learning and Core Java.
 </div>
 
 </footer>
-
 
 <script src="../../assets/js/theme.js"></script>
 
