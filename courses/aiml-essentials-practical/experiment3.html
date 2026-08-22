@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Practical No. 03 | AIML Essentials Practical
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Practical No. 03
+
+</h2>
+
+<p>
+
+Bayesian Network — Construction and Inference
+
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ==========================================================
+TITLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Bayesian Network — Construction and Inference
+
+</h2>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+1. Aim
+
+</h2>
+
+<p>
+
+To construct a simple Bayesian Network using Python and perform probabilistic inference using Conditional Probability Tables (CPTs).
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+OBJECTIVES
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+2. Objectives
+
+</h2>
+
+<p>
+
+After completing this practical, students will be able to:
+
+</p>
+
+<ol>
+
+<li>
+
+Understand the basic concept of a Bayesian Network.
+
+</li>
+
+<li>
+
+Construct a simple Bayesian Network.
+
+</li>
+
+<li>
+
+Define Conditional Probability Tables (CPTs).
+
+</li>
+
+<li>
+
+Calculate probabilities using the network.
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+THEORY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+3. Theory
+
+</h2>
+
+
+<h3>
+
+3.1 What is a Bayesian Network?
+
+</h3>
+
+<p>
+
+A <strong>Bayesian Network</strong> is a graphical model used to represent uncertain events and their relationships.
+
+</p>
+
+<p>
+
+It consists of:
+
+</p>
+
+<ul>
+
+<li>
+
+<strong>Nodes</strong> → represent variables.
+
+</li>
+
+<li>
+
+<strong>Arrows</strong> → represent relationships between variables.
+
+</li>
+
+<li>
+
+<strong>CPTs</strong> → represent probabilities.
+
+</li>
+
+</ul>
+
+<p>
+
+In simple words:
+
+</p>
+
+<pre><code>
+Bayesian Network = Graph + Probability Tables
+</code></pre>
+
+<p>
+
+The graph is a <strong>Directed Acyclic Graph (DAG)</strong>, which means the arrows have a direction and there is no cycle.
+
+</p>
+
+
+<h3>
+
+3.2 Example: Wet Grass Problem
+
+</h3>
+
+<p>
+
+We use a simple example to understand the concept.
+
+</p>
+
+<p>
+
+Suppose:
+
+</p>
+
+<ul>
+
+<li>
+
+It may be <strong>Cloudy</strong>.
+
+</li>
+
+<li>
+
+Cloudy weather may affect the <strong>Sprinkler</strong>.
+
+</li>
+
+<li>
+
+Cloudy weather may affect <strong>Rain</strong>.
+
+</li>
+
+<li>
+
+Sprinkler and Rain may make the <strong>Grass Wet</strong>.
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Network
+
+</h3>
+
+<pre><code>
+              Cloudy
+              /    \
+             ↓      ↓
+        Sprinkler   Rain
+             \      /
+              \    /
+               ↓  ↓
+             WetGrass
+</code></pre>
+
+<p>
+
+This is the classic <strong>Wet Grass Bayesian Network</strong> used in the practical.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CPT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+4. Conditional Probability Table (CPT)
+
+</h2>
+
+<p>
+
+A CPT tells us the probability of a variable when its parent is known.
+
+</p>
+
+
+<h3>
+
+Sprinkler given Cloudy
+
+</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Cloudy
+
+</th>
+
+<th>
+
+P(Sprinkler = True)
+
+</th>
+
+<th>
+
+P(Sprinkler = False)
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+True
+
+</td>
+
+<td>
+
+0.1
+
+</td>
+
+<td>
+
+0.9
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+False
+
+</td>
+
+<td>
+
+0.5
+
+</td>
+
+<td>
+
+0.5
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+
+<h3>
+
+Rain given Cloudy
+
+</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Cloudy
+
+</th>
+
+<th>
+
+P(Rain = True)
+
+</th>
+
+<th>
+
+P(Rain = False)
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+True
+
+</td>
+
+<td>
+
+0.8
+
+</td>
+
+<td>
+
+0.2
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+False
+
+</td>
+
+<td>
+
+0.2
+
+</td>
+
+<td>
+
+0.8
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+
+<h3>
+
+WetGrass given Sprinkler and Rain
+
+</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Sprinkler
+
+</th>
+
+<th>
+
+Rain
+
+</th>
+
+<th>
+
+P(WetGrass = True)
+
+</th>
+
+<th>
+
+P(WetGrass = False)
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+True
+
+</td>
+
+<td>
+
+True
+
+</td>
+
+<td>
+
+0.99
+
+</td>
+
+<td>
+
+0.01
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+True
+
+</td>
+
+<td>
+
+False
+
+</td>
+
+<td>
+
+0.90
+
+</td>
+
+<td>
+
+0.10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+False
+
+</td>
+
+<td>
+
+True
+
+</td>
+
+<td>
+
+0.90
+
+</td>
+
+<td>
+
+0.10
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+False
+
+</td>
+
+<td>
+
+False
+
+</td>
+
+<td>
+
+0.00
+
+</td>
+
+<td>
+
+1.00
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+These are the CPT values used in the practical.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+REQUIREMENTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+5. Requirements
+
+</h2>
+
+
+<h3>
+
+Software
+
+</h3>
+
+<ul>
+
+<li>
+
+Python 3.9 or later
+
+</li>
+
+<li>
+
+Jupyter Notebook / VS Code
+
+</li>
+
+</ul>
+
+
+<h3>
+
+Library
+
+</h3>
+
+<p>
+
+Install <strong>pgmpy</strong> using:
+
+</p>
+
+<pre><code>
+pip install pgmpy
+</code></pre>
+
+<p>
+
+Verify the installation:
+
+</p>
+
+<pre><code>
+import pgmpy
+
+print(pgmpy.__version__)
+</code></pre>
+
+<p>
+
+The practical uses <strong>pgmpy</strong> for Bayesian Network construction and inference.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PROCEDURE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+6. Procedure
+
+</h2>
+
+
+<h3>
+
+Step 1: Import Libraries
+
+</h3>
+
+<pre><code>
+from pgmpy.models import BayesianNetwork
+
+from pgmpy.factors.discrete import TabularCPD
+
+from pgmpy.inference import VariableElimination
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CREATE NETWORK
+========================================================== -->
+
+<section>
+
+<h3>
+
+Step 2: Create the Bayesian Network
+
+</h3>
+
+<pre><code>
+model = BayesianNetwork([
+
+    ("Cloudy", "Sprinkler"),
+
+    ("Cloudy", "Rain"),
+
+    ("Sprinkler", "WetGrass"),
+
+    ("Rain", "WetGrass")
+
+])
+</code></pre>
+
+<p>
+
+This creates the following relationships:
+
+</p>
+
+<pre><code>
+Cloudy → Sprinkler
+
+Cloudy → Rain
+
+Sprinkler → WetGrass
+
+Rain → WetGrass
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+DEFINE CPT CLOUDY
+========================================================== -->
+
+<section>
+
+<h3>
+
+Step 3: Define CPTs
+
+</h3>
+
+<h4>
+
+Cloudy
+
+</h4>
+
+<pre><code>
+cpd_cloudy = TabularCPD(
+
+    variable="Cloudy",
+
+    variable_card=2,
+
+    values=[[0.5], [0.5]],
+
+    state_names={
+        "Cloudy": ["True", "False"]
+    }
+
+)
+</code></pre>
+
+
+<h4>
+
+Sprinkler
+
+</h4>
+
+<pre><code>
+cpd_sprinkler = TabularCPD(
+
+    variable="Sprinkler",
+
+    variable_card=2,
+
+    values=[
+
+        [0.1, 0.5],
+
+        [0.9, 0.5]
+
+    ],
+
+    evidence=["Cloudy"],
+
+    evidence_card=[2],
+
+    state_names={
+
+        "Sprinkler": ["True", "False"],
+
+        "Cloudy": ["True", "False"]
+
+    }
+
+)
+</code></pre>
+
+
+<h4>
+
+Rain
+
+</h4>
+
+<pre><code>
+cpd_rain = TabularCPD(
+
+    variable="Rain",
+
+    variable_card=2,
+
+    values=[
+
+        [0.8, 0.2],
+
+        [0.2, 0.8]
+
+    ],
+
+    evidence=["Cloudy"],
+
+    evidence_card=[2],
+
+    state_names={
+
+        "Rain": ["True", "False"],
+
+        "Cloudy": ["True", "False"]
+
+    }
+
+)
+</code></pre>
+
+
+<h4>
+
+WetGrass
+
+</h4>
+
+<pre><code>
+cpd_wetgrass = TabularCPD(
+
+    variable="WetGrass",
+
+    variable_card=2,
+
+    values=[
+
+        [0.99, 0.90, 0.90, 0.00],
+
+        [0.01, 0.10, 0.10, 1.00]
+
+    ],
+
+    evidence=["Sprinkler", "Rain"],
+
+    evidence_card=[2, 2],
+
+    state_names={
+
+        "WetGrass": ["True", "False"],
+
+        "Sprinkler": ["True", "False"],
+
+        "Rain": ["True", "False"]
+
+    }
+
+)
+</code></pre>
+
+</section>
+
+<hr>
+<!-- ==========================================================
+ADD CPTs AND CHECK MODEL
+========================================================== -->
+
+<section>
+
+<h3>
+
+Step 4: Add CPTs and Check the Model
+
+</h3>
+
+<pre><code>
+model.add_cpds(
+
+    cpd_cloudy,
+
+    cpd_sprinkler,
+
+    cpd_rain,
+
+    cpd_wetgrass
+
+)
+
+print("Model is valid:", model.check_model())
+</code></pre>
+
+<h3>
+
+Expected Output
+
+</h3>
+
+<pre><code>
+Model is valid: True
+</code></pre>
+
+<p>
+
+The <strong>check_model()</strong> method verifies that the Bayesian Network and its CPTs are correctly defined.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PERFORM INFERENCE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+7. Perform Inference
+
+</h2>
+
+<p>
+
+Inference means <strong>finding the probability of an event</strong> using the Bayesian Network.
+
+</p>
+
+<p>
+
+Create the inference object:
+
+</p>
+
+<pre><code>
+infer = VariableElimination(model)
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+MARGINAL PROBABILITY
+========================================================== -->
+
+<section>
+
+<h3>
+
+7.1 Marginal Probability
+
+</h3>
+
+<p>
+
+Find the probability that the grass is wet.
+
+</p>
+
+<pre><code>
+result = infer.query(
+
+    variables=["WetGrass"]
+
+)
+
+print(result)
+</code></pre>
+
+<h3>
+
+Result
+
+</h3>
+
+<pre><code>
+P(WetGrass = True) = 0.6471
+</code></pre>
+
+<p>
+
+Before knowing anything else, there is approximately a <strong>64.71% probability that the grass is wet</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+INFERENCE WITH EVIDENCE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+8. Inference with Evidence
+
+</h2>
+
+<p>
+
+Now suppose we know that it is raining.
+
+</p>
+
+<p>
+
+Find:
+
+</p>
+
+<pre><code>
+P(WetGrass = True | Rain = True)
+</code></pre>
+
+<pre><code>
+result = infer.query(
+
+    variables=["WetGrass"],
+
+    evidence={"Rain": "True"}
+
+)
+
+print(result)
+</code></pre>
+
+<h3>
+
+Result
+
+</h3>
+
+<pre><code>
+P(WetGrass = True | Rain = True) = 0.9162
+</code></pre>
+
+<p>
+
+When we know that it is raining, the probability of wet grass increases from:
+
+</p>
+
+<pre><code>
+0.6471 → 0.9162
+</code></pre>
+
+<p>
+
+This shows how <strong>evidence changes probability</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+EXPLAINING AWAY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+9. Explaining Away
+
+</h2>
+
+<p>
+
+Now consider:
+
+</p>
+
+<pre><code>
+P(Sprinkler = True | WetGrass = True)
+</code></pre>
+
+<pre><code>
+print(
+
+    infer.query(
+
+        variables=["Sprinkler"],
+
+        evidence={"WetGrass": "True"}
+
+    )
+
+)
+</code></pre>
+
+<h3>
+
+Result
+
+</h3>
+
+<pre><code>
+P(Sprinkler = True | WetGrass = True) = 0.4301
+</code></pre>
+
+
+<p>
+
+Now suppose we also know that it rained:
+
+</p>
+
+<pre><code>
+print(
+
+    infer.query(
+
+        variables=["Sprinkler"],
+
+        evidence={
+
+            "WetGrass": "True",
+
+            "Rain": "True"
+
+        }
+
+    )
+
+)
+</code></pre>
+
+<h3>
+
+Result
+
+</h3>
+
+<pre><code>
+P(Sprinkler = True | WetGrass = True, Rain = True) = 0.1945
+</code></pre>
+
+
+<h3>
+
+Simple Explanation
+
+</h3>
+
+<p>
+
+Initially:
+
+</p>
+
+<pre><code>
+Wet grass → Sprinkler probability = 0.4301
+</code></pre>
+
+<p>
+
+After we learn that it rained:
+
+</p>
+
+<pre><code>
+Sprinkler probability = 0.1945
+</code></pre>
+
+<p>
+
+Why?
+
+</p>
+
+<p>
+
+Because <strong>rain provides another explanation for the wet grass</strong>.
+
+</p>
+
+<p>
+
+This reduction in the probability of one explanation after learning another explanation is called <strong>explaining away</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+IMPORTANT RESULTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+10. Important Results
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Query
+
+</th>
+
+<th>
+
+Probability
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+
+P(WetGrass = True)
+
+</td>
+
+<td>
+
+0.6471
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+P(WetGrass = True | Rain = True)
+
+</td>
+
+<td>
+
+0.9162
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+P(Sprinkler = True | WetGrass = True)
+
+</td>
+
+<td>
+
+0.4301
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+P(Sprinkler = True | WetGrass = True, Rain = True)
+
+</td>
+
+<td>
+
+0.1945
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+These are the key results obtained from the specified network and CPTs.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+RESULT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+11. Result
+
+</h2>
+
+<p>
+
+A simple Bayesian Network was successfully created using Python and pgmpy.
+
+</p>
+
+<p>
+
+The network was used to:
+
+</p>
+
+<ul>
+
+<li>
+
+Define variables and their relationships.
+
+</li>
+
+<li>
+
+Define Conditional Probability Tables (CPTs).
+
+</li>
+
+<li>
+
+Validate the model.
+
+</li>
+
+<li>
+
+Calculate probabilities.
+
+</li>
+
+<li>
+
+Perform inference using evidence.
+
+</li>
+
+<li>
+
+Demonstrate explaining away.
+
+</li>
+
+</ul>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CONCLUSION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+12. Conclusion
+
+</h2>
+
+<p>
+
+In this practical, we learned that a Bayesian Network represents <strong>variables, relationships, and probabilities</strong>.
+
+</p>
+
+<p>
+
+The main idea is:
+
+</p>
+
+<pre><code>
+Build the Network → Define CPTs →
+Give Evidence → Calculate Updated Probability
+</code></pre>
+
+<p>
+
+We also learned that observing new evidence can change our belief about other variables.
+
+</p>
+
+<p>
+
+The <strong>explaining-away</strong> example showed that when rain is observed, the probability that the sprinkler caused the wet grass decreases.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+VIVA QUESTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+13. Viva Questions
+
+</h2>
+
+<ol>
+
+<li>
+
+What is a Bayesian Network?
+
+</li>
+
+<li>
+
+What is a Directed Acyclic Graph (DAG)?
+
+</li>
+
+<li>
+
+What do nodes represent in a Bayesian Network?
+
+</li>
+
+<li>
+
+What do arrows represent in a Bayesian Network?
+
+</li>
+
+<li>
+
+What is a Conditional Probability Table (CPT)?
+
+</li>
+
+<li>
+
+What is the purpose of the <strong>pgmpy</strong> library?
+
+</li>
+
+<li>
+
+What is probabilistic inference?
+
+</li>
+
+<li>
+
+What is the purpose of <strong>VariableElimination</strong>?
+
+</li>
+
+<li>
+
+What is meant by evidence in a Bayesian Network?
+
+</li>
+
+<li>
+
+What is explaining away?
+
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section
+style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a
+href="index.html"
+class="primary-button">
+
+← Back to Practicals
+
+</a>
+
+<a
+href="experiment4.html"
+class="primary-button">
+
+Next Practical →
+
+</a>
+
+</section>
+
+
+</main>
+
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+
+PU's Academics
+
+</h3>
+
+<p>
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming,
+Artificial Intelligence, Machine Learning and Core Java.
+
+</p>
+
+<p>
+
+© 2026 PU's Academics. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
