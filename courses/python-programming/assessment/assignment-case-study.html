@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Internal Assessment 4 | Python Programming
+
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../../assets/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Internal Assessment 4
+
+</h2>
+
+<p>
+
+Case Study
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<main class="container">
+
+
+<!-- ==========================================================
+ASSESSMENT INFORMATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Assessment Component 4
+
+</h2>
+
+
+<div class="course-card">
+
+<h3>
+
+Case Study
+
+</h3>
+
+
+<p>
+
+<b>Course:</b> Python Programming
+
+</p>
+
+
+<p>
+
+<b>Assessment Type:</b> Internal Assessment
+
+</p>
+
+
+<p>
+
+<b>Activity:</b> Case Study
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+INSTRUCTIONS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Instructions
+
+</h2>
+
+
+<ol>
+
+<li>
+
+Choose <strong>ONE case study</strong> from the list given below.
+
+</li>
+
+
+<li>
+
+Prepare a <strong>case study report</strong> (4–6 pages, typed).
+
+</li>
+
+
+<li>
+
+<strong>Present</strong> your key findings.
+
+</li>
+
+
+<li>
+
+<strong>Submit the hard copy</strong> of the report and presentation
+slides, if used.
+
+</li>
+
+</ol>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+REPORT STRUCTURE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Case Study – Report Structure
+
+</h2>
+
+
+<div style="overflow-x:auto;">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Sr. No.
+
+</th>
+
+<th>
+
+Report Section
+
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>Problem Statement</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Concept &amp; Method</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Approach / Formulation &amp; Data</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>Implementation / Analysis &amp; Results</td>
+
+</tr>
+
+<tr>
+
+<td>5</td>
+
+<td>Discussion</td>
+
+</tr>
+
+<tr>
+
+<td>6</td>
+
+<td>Conclusion &amp; Takeaway</td>
+
+</tr>
+
+<tr>
+
+<td>7</td>
+
+<td>References</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+CASE STUDY 1
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Case Study 1 — Student Marks and Grade Calculator
+
+</h2>
+
+
+<h3>
+
+Problem Scenario
+
+</h3>
+
+
+<p>
+
+A college wants to develop a simple Python program to calculate a student's
+total marks, percentage, and grade based on marks obtained in different
+subjects.
+
+</p>
+
+
+<p>
+
+The program should accept the student's name and marks in
+<strong>five subjects</strong> as input and calculate the total marks and
+percentage. Based on the percentage, an appropriate grade should be
+displayed.
+
+</p>
+
+
+
+<h3>
+
+Task
+
+</h3>
+
+
+<p>
+
+Develop a Python program that:
+
+</p>
+
+
+<ol>
+
+<li>
+
+Accepts the student's name and marks in five subjects.
+
+</li>
+
+
+<li>
+
+Calculates the total marks.
+
+</li>
+
+
+<li>
+
+Calculates the percentage.
+
+</li>
+
+
+<li>
+
+Displays the student's name, total marks, and percentage.
+
+</li>
+
+
+<li>
+
+Displays a grade using suitable conditions, for example:
+
+<ul>
+
+<li>
+
+<strong>75% and above</strong> → Distinction
+
+</li>
+
+<li>
+
+<strong>60–74%</strong> → First Class
+
+</li>
+
+<li>
+
+<strong>50–59%</strong> → Second Class
+
+</li>
+
+<li>
+
+<strong>40–49%</strong> → Pass
+
+</li>
+
+<li>
+
+<strong>Below 40%</strong> → Fail
+
+</li>
+
+</ul>
+
+</li>
+
+
+<li>
+
+Display the output in a clear and meaningful format.
+
+</li>
+
+</ol>
+
+
+
+<h3>
+
+Python Concepts Involved
+
+</h3>
+
+
+<div class="course-card">
+
+<p>
+
+Variables, data types, input/output, operators, expressions, assignment
+statements, and basic conditional expressions.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+CASE STUDY 2
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Case Study 2 — Electricity Bill Calculator
+
+</h2>
+
+
+<h3>
+
+Problem Scenario
+
+</h3>
+
+
+<p>
+
+An electricity distribution company wants a simple Python program to
+calculate the electricity bill of a consumer based on the number of units
+consumed.
+
+</p>
+
+
+<p>
+
+The billing system uses different rates for different consumption levels.
+
+</p>
+
+
+
+<h3>
+
+Task
+
+</h3>
+
+
+<p>
+
+Develop a Python program that:
+
+</p>
+
+
+<ol>
+
+<li>
+
+Accepts the consumer's name and number of electricity units consumed.
+
+</li>
+
+
+<li>
+
+Calculates the bill using the following tariff:
+
+</li>
+
+</ol>
+
+
+
+<div style="overflow-x:auto;">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Units Consumed
+
+</th>
+
+<th>
+
+Rate
+
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+<td>
+
+First 100 units
+
+</td>
+
+<td>
+
+₹2 per unit
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+Next 100 units
+
+</td>
+
+<td>
+
+₹3 per unit
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+Next 300 units
+
+</td>
+
+<td>
+
+₹5 per unit
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+Above 500 units
+
+</td>
+
+<td>
+
+₹7 per unit
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+
+<ol start="3">
+
+<li>
+
+Uses <strong>conditional statements</strong> to determine the applicable
+charges.
+
+</li>
+
+
+<li>
+
+Create a <strong>user-defined function</strong> to calculate the
+electricity bill.
+
+</li>
+
+
+<li>
+
+Display the consumer's name, units consumed, and final bill amount.
+
+</li>
+
+
+<li>
+
+Test the program using at least <strong>three different inputs</strong>.
+
+</li>
+
+</ol>
+
+
+
+<h3>
+
+Python Concepts Involved
+
+</h3>
+
+
+<div class="course-card">
+
+<p>
+
+if-else, nested conditions, functions, parameters, return values,
+arithmetic operators, and input/output.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+CASE STUDY 3
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Case Study 3 — Student Text Analysis and Error Handling
+
+</h2>
+
+
+<h3>
+
+Problem Scenario
+
+</h3>
+
+
+<p>
+
+A college wants to analyze feedback provided by students. The feedback is
+entered as a text string, and the system should generate some basic
+information about the text.
+
+</p>
+
+
+<p>
+
+The program should also handle invalid input appropriately.
+
+</p>
+
+
+
+<h3>
+
+Task
+
+</h3>
+
+
+<p>
+
+Develop a Python program that:
+
+</p>
+
+
+<ol>
+
+<li>
+
+Accepts a sentence or feedback message from the user.
+
+</li>
+
+
+<li>
+
+Displays:
+
+<ul>
+
+<li>
+
+Number of characters
+
+</li>
+
+<li>
+
+Number of words
+
+</li>
+
+<li>
+
+Number of vowels
+
+</li>
+
+<li>
+
+Number of digits
+
+</li>
+
+<li>
+
+Number of uppercase letters
+
+</li>
+
+<li>
+
+Number of lowercase letters
+
+</li>
+
+</ul>
+
+</li>
+
+
+<li>
+
+Searches for a word or substring entered by the user.
+
+</li>
+
+
+<li>
+
+Replaces a specified word with another word.
+
+</li>
+
+
+<li>
+
+Converts the feedback into lowercase and uppercase forms.
+
+</li>
+
+
+<li>
+
+Uses <strong>exception handling (try-except)</strong> to handle an
+appropriate input error.
+
+</li>
+
+
+<li>
+
+Displays the results clearly.
+
+</li>
+
+</ol>
+
+
+
+<h3>
+
+Python Concepts Involved
+
+</h3>
+
+
+<div class="course-card">
+
+<p>
+
+Strings, indexing, slicing, string methods, <code>split()</code>,
+<code>find()</code>, <code>replace()</code>, <code>lower()</code>,
+<code>upper()</code>, loops, and exception handling.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+CASE STUDY 4
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Case Study 4 — Student Record Management Using Lists and Tuples
+
+</h2>
+
+
+<h3>
+
+Problem Scenario
+
+</h3>
+
+
+<p>
+
+A college wants to maintain basic student information using Python. The
+system should store student names and marks and provide simple operations
+for analyzing the records.
+
+</p>
+
+
+
+<h3>
+
+Task
+
+</h3>
+
+
+<p>
+
+Develop a Python program that:
+
+</p>
+
+
+<ol>
+
+<li>
+
+Creates a list containing student names.
+
+</li>
+
+
+<li>
+
+Creates a corresponding list of marks.
+
+</li>
+
+
+<li>
+
+Allows a new student to be added.
+
+</li>
+
+
+<li>
+
+Allows an existing student's marks to be updated.
+
+</li>
+
+
+<li>
+
+Sorts the marks in ascending and descending order.
+
+</li>
+
+
+<li>
+
+Finds the highest and lowest marks.
+
+</li>
+
+
+<li>
+
+Calculates the number of students and average marks.
+
+</li>
+
+
+<li>
+
+Uses a <strong>tuple</strong> to store the fixed details of a student,
+such as:
+
+<ul>
+
+<li>
+
+Roll number
+
+</li>
+
+<li>
+
+Name
+
+</li>
+
+<li>
+
+Course
+
+</li>
+
+</ul>
+
+</li>
+
+
+<li>
+
+Demonstrates at least one <strong>list slicing</strong> or
+<strong>list comprehension</strong> operation.
+
+</li>
+
+
+<li>
+
+Displays the final student records.
+
+</li>
+
+</ol>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+REPORT REQUIREMENTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Report Requirements
+
+</h2>
+
+
+<p>
+
+The selected case study report should be organized using the following
+sections:
+
+</p>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Sr. No.
+
+</th>
+
+<th>
+
+Report Section
+
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>Problem Statement</td>
+
+</tr>
+
+
+<tr>
+
+<td>2</td>
+
+<td>Concept &amp; Method</td>
+
+</tr>
+
+
+<tr>
+
+<td>3</td>
+
+<td>Approach / Formulation &amp; Data</td>
+
+</tr>
+
+
+<tr>
+
+<td>4</td>
+
+<td>Implementation / Analysis &amp; Results</td>
+
+</tr>
+
+
+<tr>
+
+<td>5</td>
+
+<td>Discussion</td>
+
+</tr>
+
+
+<tr>
+
+<td>6</td>
+
+<td>Conclusion &amp; Takeaway</td>
+
+</tr>
+
+
+<tr>
+
+<td>7</td>
+
+<td>References</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+SUBMISSION REQUIREMENTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Submission Requirements
+
+</h2>
+
+
+<div class="course-card">
+
+<p>
+
+<strong>Report Length:</strong>
+
+4–6 pages, typed
+
+</p>
+
+
+<p>
+
+<strong>Presentation:</strong>
+
+Present your key findings.
+
+</p>
+
+
+<p>
+
+<strong>Submission:</strong>
+
+Submit the hard copy of the report and presentation slides, if used.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+NOTE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+
+Note
+
+</h2>
+
+
+<div class="course-card">
+
+<p>
+
+Choose <strong>ONE</strong> case study from the list and prepare the report
+according to the given report structure.
+
+</p>
+
+
+<p>
+
+The report should clearly explain the problem, concept and method,
+approach or formulation, implementation or analysis, results, discussion,
+conclusion, and references.
+
+</p>
+
+
+<p>
+
+For programming-based case studies, students should include the
+<strong>Python source code, sample input/output, and relevant
+screenshots</strong> wherever appropriate.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<hr>
+
+
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section>
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+margin:20px 0;
+">
+
+
+<a href="../index.html"
+class="course-button">
+
+← Back to Python Programming
+
+</a>
+
+
+<a href="presentation.html"
+class="course-button">
+
+← Previous Assessment
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 PU's Academics | Python Programming Learning Portal
+
+</p>
+
+</div>
+
+</footer>
+
+
+
+<script src="../../../assets/js/main.js"></script>
+
+
+</body>
+
+</html>
