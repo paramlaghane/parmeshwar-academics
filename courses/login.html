@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Student Login | PU's Academics
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../assets/css/style.css">
+
+<style>
+
+.login-wrapper {
+
+min-height: 70vh;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+padding: 40px 20px;
+
+}
+
+.login-card {
+
+width: 100%;
+
+max-width: 450px;
+
+}
+
+.login-card input {
+
+width: 100%;
+
+padding: 12px;
+
+margin-top: 6px;
+
+margin-bottom: 18px;
+
+box-sizing: border-box;
+
+font-family: inherit;
+
+}
+
+.login-card label {
+
+font-weight: 600;
+
+}
+
+.login-button {
+
+width: 100%;
+
+border: none;
+
+cursor: pointer;
+
+}
+
+.message {
+
+margin-top: 20px;
+
+padding: 12px;
+
+display: none;
+
+}
+
+.error {
+
+background: #ffe5e5;
+
+color: #a00000;
+
+}
+
+.success {
+
+background: #e5f7e5;
+
+color: #176b17;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+PU's Academics
+</h1>
+
+<p class="site-tagline">
+Learn Today. Lead Tomorrow.
+</p>
+
+</div>
+
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+Student Login
+</h2>
+
+<p>
+PU's Academics Learning Portal
+</p>
+
+</div>
+
+</section>
+
+
+
+<main class="container login-wrapper">
+
+
+<div class="course-card login-card">
+
+<h2 class="section-title">
+Login
+</h2>
+
+
+<form id="loginForm">
+
+
+<label for="email">
+Email Address
+</label>
+
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required
+autocomplete="email"
+>
+
+
+
+<label for="password">
+Password
+</label>
+
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+required
+autocomplete="current-password"
+>
+
+
+
+<button
+type="submit"
+class="course-button login-button">
+
+Login
+
+</button>
+
+
+</form>
+
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+</div>
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 PU's Academics | Learning Portal
+
+</p>
+
+</div>
+
+</footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../assets/js/main.js"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+"YOUR_SUPABASE_PROJECT_URL";
+
+const SUPABASE_KEY =
+"YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+const loginForm =
+document.getElementById("loginForm");
+
+const message =
+document.getElementById("message");
+
+
+loginForm.addEventListener("submit", async function(event) {
+
+event.preventDefault();
+
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+
+message.style.display = "none";
+
+message.className = "message";
+
+
+const { data, error } =
+await supabaseClient.auth.signInWithPassword({
+
+email: email,
+
+password: password
+
+});
+
+
+if (error) {
+
+message.textContent =
+"Login failed: " + error.message;
+
+message.classList.add("error");
+
+message.style.display = "block";
+
+return;
+
+}
+
+
+message.textContent =
+"Login successful. Redirecting...";
+
+message.classList.add("success");
+
+message.style.display = "block";
+
+
+setTimeout(function() {
+
+window.location.href =
+"index.html";
+
+}, 1000);
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>
