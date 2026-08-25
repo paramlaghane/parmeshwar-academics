@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Student Registration | PU's Academics
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="../assets/css/style.css">
+
+
+<style>
+
+.register-wrapper {
+
+min-height: 70vh;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+padding: 40px 20px;
+
+}
+
+
+.register-card {
+
+width: 100%;
+
+max-width: 500px;
+
+}
+
+
+.form-group {
+
+margin-bottom: 18px;
+
+}
+
+
+.form-group label {
+
+display: block;
+
+font-weight: 600;
+
+margin-bottom: 6px;
+
+}
+
+
+.form-group input,
+
+.form-group select {
+
+width: 100%;
+
+padding: 12px;
+
+box-sizing: border-box;
+
+font-family: inherit;
+
+font-size: 15px;
+
+}
+
+
+.register-button {
+
+width: 100%;
+
+border: none;
+
+cursor: pointer;
+
+}
+
+
+.message {
+
+display: none;
+
+margin-top: 20px;
+
+padding: 12px;
+
+border-radius: 4px;
+
+}
+
+
+.error {
+
+background: #ffe5e5;
+
+color: #a00000;
+
+}
+
+
+.success {
+
+background: #e5f7e5;
+
+color: #176b17;
+
+}
+
+
+.login-link {
+
+text-align: center;
+
+margin-top: 20px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+
+PU's Academics
+
+</h1>
+
+<p class="site-tagline">
+
+Learn Today. Lead Tomorrow.
+
+</p>
+
+</div>
+
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+
+Student Registration
+
+</h2>
+
+<p>
+
+Create your account to access the learning portal
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<main class="container register-wrapper">
+
+
+<div class="course-card register-card">
+
+
+<h2 class="section-title">
+
+Create Account
+
+</h2>
+
+
+<form id="registerForm">
+
+
+<!-- FIRST NAME -->
+
+<div class="form-group">
+
+<label for="firstName">
+
+First Name
+
+</label>
+
+<input
+type="text"
+id="firstName"
+placeholder="Enter first name"
+required
+autocomplete="given-name">
+
+</div>
+
+
+
+<!-- LAST NAME -->
+
+<div class="form-group">
+
+<label for="lastName">
+
+Last Name
+
+</label>
+
+<input
+type="text"
+id="lastName"
+placeholder="Enter last name"
+required
+autocomplete="family-name">
+
+</div>
+
+
+
+<!-- ROLL NUMBER -->
+
+<div class="form-group">
+
+<label for="rollNo">
+
+Roll Number
+
+</label>
+
+<input
+type="text"
+id="rollNo"
+placeholder="Enter roll number"
+required>
+
+</div>
+
+
+
+<!-- COURSE -->
+
+<div class="form-group">
+
+<label for="course">
+
+Course
+
+</label>
+
+<select
+id="course"
+required>
+
+<option value="">
+
+-- Select Course --
+
+</option>
+
+<option value="Python Programming">
+
+Python Programming
+
+</option>
+
+<option value="Core Java">
+
+Core Java
+
+</option>
+
+<option value="Machine Learning">
+
+Machine Learning
+
+</option>
+
+<option value="AIML Essentials">
+
+AIML Essentials
+
+</option>
+
+</select>
+
+</div>
+
+
+
+<!-- EMAIL -->
+
+<div class="form-group">
+
+<label for="email">
+
+Email Address
+
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter email address"
+required
+autocomplete="email">
+
+</div>
+
+
+
+<!-- PASSWORD -->
+
+<div class="form-group">
+
+<label for="password">
+
+Password
+
+</label>
+
+<input
+type="password"
+id="password"
+placeholder="Create a password"
+required
+minlength="6"
+autocomplete="new-password">
+
+</div>
+
+
+
+<button
+type="submit"
+class="course-button register-button">
+
+Register
+
+</button>
+
+
+</form>
+
+
+
+<div
+id="message"
+class="message">
+</div>
+
+
+
+<div class="login-link">
+
+<p>
+
+Already registered?
+
+<a href="login.html">
+
+Login here
+
+</a>
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>
+
+© 2026 PU's Academics | Learning Portal
+
+</p>
+
+</div>
+
+</footer>
+
+
+
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+
+<script
+src="../assets/js/main.js">
+</script>
+
+
+
+<script>
+
+
+/* =========================================================
+   SUPABASE CONFIGURATION
+   ========================================================= */
+
+
+const SUPABASE_URL =
+"YOUR_SUPABASE_PROJECT_URL";
+
+
+const SUPABASE_KEY =
+"YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
+
+const registerForm =
+document.getElementById("registerForm");
+
+
+const message =
+document.getElementById("message");
+
+
+
+/* =========================================================
+   REGISTRATION
+   ========================================================= */
+
+
+registerForm.addEventListener(
+"submit",
+async function(event) {
+
+
+event.preventDefault();
+
+
+message.style.display = "none";
+
+message.className = "message";
+
+
+
+/* Get form values */
+
+
+const firstName =
+document.getElementById(
+"firstName"
+).value.trim();
+
+
+const lastName =
+document.getElementById(
+"lastName"
+).value.trim();
+
+
+const rollNo =
+document.getElementById(
+"rollNo"
+).value.trim();
+
+
+const course =
+document.getElementById(
+"course"
+).value;
+
+
+const email =
+document.getElementById(
+"email"
+).value.trim();
+
+
+const password =
+document.getElementById(
+"password"
+).value;
+
+
+
+/* =====================================================
+   CREATE SUPABASE AUTH USER
+   ===================================================== */
+
+
+const {
+
+data: authData,
+
+error: authError
+
+} = await supabaseClient.auth.signUp({
+
+email: email,
+
+password: password
+
+});
+
+
+
+if (authError) {
+
+
+message.textContent =
+"Registration failed: "
++ authError.message;
+
+
+message.classList.add("error");
+
+message.style.display = "block";
+
+
+return;
+
+}
+
+
+
+/* =====================================================
+   GET USER ID
+   ===================================================== */
+
+
+const user =
+authData.user;
+
+
+if (!user) {
+
+
+message.textContent =
+"Registration could not be completed.";
+
+message.classList.add("error");
+
+message.style.display = "block";
+
+
+return;
+
+}
+
+
+
+/* =====================================================
+   CREATE STUDENT PROFILE
+   ===================================================== */
+
+
+const {
+
+error: profileError
+
+} = await supabaseClient
+.from("profiles")
+.insert({
+
+id: user.id,
+
+first_name: firstName,
+
+last_name: lastName,
+
+roll_no: rollNo,
+
+course: course
+
+});
+
+
+
+if (profileError) {
+
+
+message.textContent =
+"Profile creation failed: "
++ profileError.message;
+
+
+message.classList.add("error");
+
+message.style.display = "block";
+
+
+return;
+
+}
+
+
+
+/* =====================================================
+   SUCCESS
+   ===================================================== */
+
+
+message.textContent =
+"Registration successful! Redirecting to login...";
+
+
+message.classList.add("success");
+
+message.style.display = "block";
+
+
+
+setTimeout(function() {
+
+
+window.location.href =
+"login.html";
+
+
+}, 1500);
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
