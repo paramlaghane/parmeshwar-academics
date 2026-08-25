@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <html lang="en">
 
@@ -13,16 +13,26 @@ content="width=device-width, initial-scale=1.0">
 Student Registration | PU's Academics
 </title>
 
+
+<!-- ==========================================================
+GOOGLE FONTS
+========================================================== -->
+
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
+href="https://fonts.googleapis.com"
 crossorigin>
 
 <link
 href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
 rel="stylesheet">
+
+
+<!-- ==========================================================
+MAIN CSS
+========================================================== -->
 
 <link
 rel="stylesheet"
@@ -31,44 +41,48 @@ href="../assets/css/style.css">
 
 <style>
 
+/* ==========================================================
+REGISTRATION PAGE
+========================================================== */
+
 .register-wrapper {
 
-min-height: 70vh;
+    min-height: 70vh;
 
-display: flex;
+    display: flex;
 
-align-items: center;
+    align-items: center;
 
-justify-content: center;
+    justify-content: center;
 
-padding: 40px 20px;
+    padding: 40px 20px;
 
 }
 
 
 .register-card {
 
-width: 100%;
+    width: 100%;
 
-max-width: 500px;
+    max-width: 500px;
 
 }
 
 
 .form-group {
 
-margin-bottom: 18px;
+    margin-bottom: 18px;
 
 }
 
 
 .form-group label {
 
-display: block;
+    display: block;
 
-font-weight: 600;
+    font-weight: 600;
 
-margin-bottom: 6px;
+    margin-bottom: 6px;
 
 }
 
@@ -77,69 +91,77 @@ margin-bottom: 6px;
 
 .form-group select {
 
-width: 100%;
+    width: 100%;
 
-padding: 12px;
+    padding: 12px;
 
-box-sizing: border-box;
+    box-sizing: border-box;
 
-font-family: inherit;
+    font-family: inherit;
 
-font-size: 15px;
+    font-size: 15px;
 
 }
 
 
 .register-button {
 
-width: 100%;
+    width: 100%;
 
-border: none;
+    border: none;
 
-cursor: pointer;
+    cursor: pointer;
 
 }
 
 
 .message {
 
-display: none;
+    display: none;
 
-margin-top: 20px;
+    margin-top: 20px;
 
-padding: 12px;
+    padding: 12px;
 
-border-radius: 4px;
+    border-radius: 4px;
 
 }
 
 
 .error {
 
-background: #ffe5e5;
+    background: #ffe5e5;
 
-color: #a00000;
+    color: #a00000;
 
 }
 
 
 .success {
 
-background: #e5f7e5;
+    background: #e5f7e5;
 
-color: #176b17;
+    color: #176b17;
 
 }
 
 
 .login-link {
 
-text-align: center;
+    text-align: center;
 
-margin-top: 20px;
+    margin-top: 20px;
 
 }
 
+
+.loading {
+
+    opacity: 0.7;
+
+    pointer-events: none;
+
+}
 
 </style>
 
@@ -148,6 +170,10 @@ margin-top: 20px;
 
 <body>
 
+
+<!-- ==========================================================
+HEADER
+========================================================== -->
 
 <header class="site-header">
 
@@ -184,6 +210,10 @@ class="theme-toggle">
 
 
 
+<!-- ==========================================================
+HERO
+========================================================== -->
+
 <section class="hero">
 
 <div class="container">
@@ -206,6 +236,10 @@ Create your account to access the learning portal
 
 
 
+<!-- ==========================================================
+REGISTRATION FORM
+========================================================== -->
+
 <main class="container register-wrapper">
 
 
@@ -222,7 +256,9 @@ Create Account
 <form id="registerForm">
 
 
-<!-- FIRST NAME -->
+<!-- ========================================================
+FIRST NAME
+========================================================= -->
 
 <div class="form-group">
 
@@ -243,7 +279,9 @@ autocomplete="given-name">
 
 
 
-<!-- LAST NAME -->
+<!-- ========================================================
+LAST NAME
+========================================================= -->
 
 <div class="form-group">
 
@@ -264,7 +302,9 @@ autocomplete="family-name">
 
 
 
-<!-- ROLL NUMBER -->
+<!-- ========================================================
+ROLL NUMBER
+========================================================= -->
 
 <div class="form-group">
 
@@ -284,7 +324,9 @@ required>
 
 
 
-<!-- COURSE -->
+<!-- ========================================================
+COURSE
+========================================================= -->
 
 <div class="form-group">
 
@@ -334,7 +376,9 @@ AIML Essentials
 
 
 
-<!-- EMAIL -->
+<!-- ========================================================
+EMAIL
+========================================================= -->
 
 <div class="form-group">
 
@@ -355,7 +399,9 @@ autocomplete="email">
 
 
 
-<!-- PASSWORD -->
+<!-- ========================================================
+PASSWORD
+========================================================= -->
 
 <div class="form-group">
 
@@ -377,8 +423,13 @@ autocomplete="new-password">
 
 
 
+<!-- ========================================================
+REGISTER BUTTON
+========================================================= -->
+
 <button
 type="submit"
+id="registerButton"
 class="course-button register-button">
 
 Register
@@ -390,12 +441,20 @@ Register
 
 
 
+<!-- ========================================================
+MESSAGE
+========================================================= -->
+
 <div
 id="message"
 class="message">
 </div>
 
 
+
+<!-- ========================================================
+LOGIN LINK
+========================================================= -->
 
 <div class="login-link">
 
@@ -421,6 +480,10 @@ Login here
 
 
 
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
 <footer class="site-footer">
 
 <div class="container">
@@ -437,10 +500,19 @@ Login here
 
 
 
+<!-- ==========================================================
+SUPABASE JAVASCRIPT LIBRARY
+========================================================== -->
+
 <script
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
 </script>
 
+
+
+<!-- ==========================================================
+MAIN JAVASCRIPT
+========================================================== -->
 
 <script
 src="../assets/js/main.js">
@@ -448,34 +520,43 @@ src="../assets/js/main.js">
 
 
 
+<!-- ==========================================================
+SUPABASE REGISTRATION
+========================================================== -->
+
 <script>
 
 
-/* =========================================================
-   SUPABASE CONFIGURATION
-   ========================================================= */
+/* ==========================================================
+SUPABASE CONFIGURATION
+========================================================== */
+
+/*
+   IMPORTANT:
+   Replace these two values with your actual
+   Supabase Project URL and Publishable Key.
+*/
 
 
 const SUPABASE_URL =
-"https://hlffptshgsqhrslrycji.supabase.co";
+"YOUR_SUPABASE_PROJECT_URL";
 
 
 const SUPABASE_KEY =
-"sb_publishable_48Nmv1EBi9katkdWEld6Ag_UlYvGWjz";
+"YOUR_SUPABASE_PUBLISHABLE_KEY";
 
 
 const supabaseClient =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
 
-/* =========================================================
-   FORM ELEMENTS
-   ========================================================= */
-
+/* ==========================================================
+FORM ELEMENTS
+========================================================== */
 
 const registerForm =
 document.getElementById("registerForm");
@@ -485,205 +566,313 @@ const message =
 document.getElementById("message");
 
 
+const registerButton =
+document.getElementById("registerButton");
 
-/* =========================================================
-   REGISTRATION
-   ========================================================= */
 
+
+/* ==========================================================
+SHOW MESSAGE FUNCTION
+========================================================== */
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display =
+        "block";
+
+}
+
+
+
+/* ==========================================================
+REGISTRATION
+========================================================== */
 
 registerForm.addEventListener(
-"submit",
-async function(event) {
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
 
 
-event.preventDefault();
+        /* Hide previous message */
+
+        message.style.display =
+            "none";
 
 
-message.style.display = "none";
+        /* Disable button */
 
-message.className = "message";
+        registerButton.disabled =
+            true;
 
+        registerButton.textContent =
+            "Registering...";
 
-
-/* Get form values */
-
-
-const firstName =
-document.getElementById(
-"firstName"
-).value.trim();
-
-
-const lastName =
-document.getElementById(
-"lastName"
-).value.trim();
-
-
-const rollNo =
-document.getElementById(
-"rollNo"
-).value.trim();
-
-
-const course =
-document.getElementById(
-"course"
-).value;
-
-
-const email =
-document.getElementById(
-"email"
-).value.trim();
-
-
-const password =
-document.getElementById(
-"password"
-).value;
+        registerButton.classList.add(
+            "loading"
+        );
 
 
 
-/* =====================================================
-   CREATE SUPABASE AUTH USER
-   ===================================================== */
+        /* ==================================================
+           GET FORM VALUES
+        ================================================== */
+
+        const firstName =
+            document.getElementById(
+                "firstName"
+            ).value.trim();
 
 
-const {
-
-data: authData,
-
-error: authError
-
-} = await supabaseClient.auth.signUp({
-
-email: email,
-
-password: password
-
-});
+        const lastName =
+            document.getElementById(
+                "lastName"
+            ).value.trim();
 
 
-
-if (authError) {
-
-
-message.textContent =
-"Registration failed: "
-+ authError.message;
+        const rollNo =
+            document.getElementById(
+                "rollNo"
+            ).value.trim();
 
 
-message.classList.add("error");
+        const course =
+            document.getElementById(
+                "course"
+            ).value;
 
-message.style.display = "block";
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
 
 
-return;
+        const password =
+            document.getElementById(
+                "password"
+            ).value;
+
+
+
+        /* ==================================================
+           BASIC VALIDATION
+        ================================================== */
+
+        if (
+            !firstName ||
+            !lastName ||
+            !rollNo ||
+            !course ||
+            !email ||
+            !password
+        ) {
+
+            showMessage(
+                "Please fill in all fields.",
+                "error"
+            );
+
+            resetButton();
+
+            return;
+
+        }
+
+
+
+        if (password.length < 6) {
+
+            showMessage(
+                "Password must contain at least 6 characters.",
+                "error"
+            );
+
+            resetButton();
+
+            return;
+
+        }
+
+
+
+        /* ==================================================
+           CREATE SUPABASE AUTH USER
+           
+           IMPORTANT:
+           Student information is stored in user metadata.
+           
+           The database trigger automatically creates
+           the corresponding profile record.
+        ================================================== */
+
+        const {
+
+            data: authData,
+
+            error: authError
+
+        } = await supabaseClient.auth.signUp({
+
+            email: email,
+
+            password: password,
+
+            options: {
+
+                data: {
+
+                    first_name:
+                        firstName,
+
+                    last_name:
+                        lastName,
+
+                    roll_no:
+                        rollNo,
+
+                    course:
+                        course
+
+                }
+
+            }
+
+        });
+
+
+
+        /* ==================================================
+           HANDLE AUTH ERROR
+        ================================================== */
+
+        if (authError) {
+
+            console.error(
+                "Registration error:",
+                authError
+            );
+
+
+            let errorMessage =
+                authError.message;
+
+
+            /*
+               Make common messages easier
+               for students to understand.
+            */
+
+            if (
+                errorMessage
+                    .toLowerCase()
+                    .includes("already registered")
+            ) {
+
+                errorMessage =
+                    "This email is already registered. Please login instead.";
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+            resetButton();
+
+            return;
+
+        }
+
+
+
+        /* ==================================================
+           CHECK USER
+        ================================================== */
+
+        if (
+            !authData ||
+            !authData.user
+        ) {
+
+            showMessage(
+                "Registration could not be completed. Please try again.",
+                "error"
+            );
+
+
+            resetButton();
+
+            return;
+
+        }
+
+
+
+        /* ==================================================
+           SUCCESS
+        ================================================== */
+
+        /*
+           The Supabase database trigger should now
+           automatically create the student's profile.
+        */
+
+
+        showMessage(
+            "Registration successful! Redirecting to login...",
+            "success"
+        );
+
+
+
+        /* ==================================================
+           REDIRECT
+        ================================================== */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "login.html";
+
+            },
+            2000
+        );
+
+
+
+    }
+);
+
+
+
+/* ==========================================================
+RESET BUTTON
+========================================================== */
+
+function resetButton() {
+
+    registerButton.disabled =
+        false;
+
+    registerButton.textContent =
+        "Register";
+
+    registerButton.classList.remove(
+        "loading"
+    );
 
 }
-
-
-
-/* =====================================================
-   GET USER ID
-   ===================================================== */
-
-
-const user =
-authData.user;
-
-
-if (!user) {
-
-
-message.textContent =
-"Registration could not be completed.";
-
-message.classList.add("error");
-
-message.style.display = "block";
-
-
-return;
-
-}
-
-
-
-/* =====================================================
-   CREATE STUDENT PROFILE
-   ===================================================== */
-
-
-const {
-
-error: profileError
-
-} = await supabaseClient
-.from("profiles")
-.insert({
-
-id: user.id,
-
-first_name: firstName,
-
-last_name: lastName,
-
-roll_no: rollNo,
-
-course: course
-
-});
-
-
-
-if (profileError) {
-
-
-message.textContent =
-"Profile creation failed: "
-+ profileError.message;
-
-
-message.classList.add("error");
-
-message.style.display = "block";
-
-
-return;
-
-}
-
-
-
-/* =====================================================
-   SUCCESS
-   ===================================================== */
-
-
-message.textContent =
-"Registration successful! Redirecting to login...";
-
-
-message.classList.add("success");
-
-message.style.display = "block";
-
-
-
-setTimeout(function() {
-
-
-window.location.href =
-"login.html";
-
-
-}, 1500);
-
-
-});
-
 
 </script>
 
