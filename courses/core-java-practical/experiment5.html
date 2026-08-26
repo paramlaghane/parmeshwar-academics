@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical No. 05 | Core Java Practical</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <div>
+                <h1 class="site-title">PU's Academics</h1>
+                <p class="site-tagline">Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Practical No. 05</h2>
+            <p>Reverse a String</p>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <!-- ==========================================================
+        TITLE
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">Reverse a String</h2>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        AIM
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">1. Aim</h2>
+
+            <p>
+                To write, compile, execute, and test a Java program that accepts
+                a string from the user and displays the string in reverse order.
+            </p>
+
+            <h3>Example</h3>
+
+            <pre><code>
+Input  : Java
+Output : avaJ
+            </code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        STRING CONCEPT
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">2. Concept: What is a String?</h2>
+
+            <p>
+                A <strong>String</strong> is a sequence of characters.
+            </p>
+
+            <p>For example, <code>"Java"</code> contains four characters:</p>
+
+            <pre><code>
+J   a   v   a
+            </code></pre>
+
+            <p>Each character has an index:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Character</th>
+                        <th>J</th>
+                        <th>a</th>
+                        <th>v</th>
+                        <th>a</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Index</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                The first character is at index <strong>0</strong>, and the last
+                character is at:
+            </p>
+
+            <pre><code>
+length - 1
+            </code></pre>
+
+            <p>Therefore, for <code>"Java"</code>:</p>
+
+            <pre><code>
+length = 4
+last index = 4 - 1 = 3
+            </code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        IMMUTABILITY
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">3. Important Concept: String Immutability</h2>
+
+            <p>
+                One of the most important properties of Java strings is:
+                <strong>String objects are immutable.</strong>
+            </p>
+
+            <p>
+                <strong>Immutable</strong> means that once a String object is
+                created, its contents cannot be changed.
+            </p>
+
+            <p>For example:</p>
+
+            <pre><code>
+String str = "Java";
+            </code></pre>
+
+            <p>
+                We cannot directly change the existing <code>"Java"</code> object
+                into <code>"avaJ"</code>. Instead, we create a <strong>new
+                string</strong> containing the characters in reverse order.
+            </p>
+
+            <p>
+                This is why classes such as <code>StringBuilder</code> and
+                <code>StringBuffer</code> are useful when we need to modify
+                character sequences.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        STRING COMPARISON
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">4. String vs StringBuilder vs StringBuffer</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class</th>
+                        <th>Mutable?</th>
+                        <th>Thread-Safe?</th>
+                        <th>Main Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>String</td>
+                        <td>No</td>
+                        <td>Yes, because it is immutable</td>
+                        <td>Fixed text</td>
+                    </tr>
+                    <tr>
+                        <td>StringBuilder</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Fast string manipulation in a single thread</td>
+                    </tr>
+                    <tr>
+                        <td>StringBuffer</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>String manipulation where thread safety is required</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Remember</h3>
+
+            <pre><code>
+String
+   ↓
+Cannot be modified directly
+
+StringBuilder
+   ↓
+Can be modified
+Fast
+
+StringBuffer
+   ↓
+Can be modified
+Thread-safe
+            </code></pre>
+
+            <p>
+                This practical connects the string reversal exercise with the
+                Unit 4 study of the <strong>String and StringBuffer classes</strong>.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        APPROACH
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">5. Approach — Character Array and Two-Pointer Method</h2>
+
+            <p>
+                The first approach uses a <strong>character array</strong>.
+            </p>
+
+            <h3>Basic Idea</h3>
+
+            <p>Suppose the input is:</p>
+
+            <pre><code>
+Java
+            </code></pre>
+
+            <p>Convert it into:</p>
+
+            <pre><code>
+[J, a, v, a]
+            </code></pre>
+
+            <p>Then use two pointers:</p>
+
+            <ul>
+                <li><strong>left</strong> → first character</li>
+                <li><strong>right</strong> → last character</li>
+            </ul>
+
+            <p>Swap them:</p>
+
+            <pre><code>
+[J, a, v, a]
+ ↓         ↓
+left      right
+
+After swapping:
+
+[a, a, v, J]
+            </code></pre>
+
+            <p>
+                Move the pointers toward the center and swap again:
+            </p>
+
+            <pre><code>
+[a, a, v, J]
+    ↓   ↓
+
+[a, v, a, J]
+            </code></pre>
+
+            <p>
+                Therefore, the reversed string is:
+                <strong>avaJ</strong>.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        ALGORITHM
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">6. Algorithm — Character Array Method</h2>
+
+            <ol>
+                <li>Start the program.</li>
+                <li>Read the string <code>str</code> from the user.</li>
+                <li>Convert the string into a character array.</li>
+                <li>
+                    Initialize two pointers:
+                    <pre><code>
+left = 0
+right = chars.length - 1
+                    </code></pre>
+                </li>
+                <li>
+                    Repeat while <code>left &lt; right</code>.
+                </li>
+                <li>
+                    Swap the characters:
+                    <pre><code>
+temp = chars[left]
+chars[left] = chars[right]
+chars[right] = temp
+                    </code></pre>
+                </li>
+                <li>Move the pointers using <code>left++</code> and <code>right--</code>.</li>
+                <li>Convert the character array back into a string.</li>
+                <li>Display the original and reversed strings.</li>
+                <li>Stop the program.</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        FLOWCHART
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">7. Flowchart</h2>
+
+            <pre><code>
+                 START
+                   ↓
+           Read input string
+                   ↓
+        Convert String to char[]
+                   ↓
+       left = 0, right = length - 1
+                   ↓
+             left &lt; right?
+              /         \
+            Yes          No
+             ↓            ↓
+       Swap characters   Create String
+             ↓            ↓
+       left++, right--  Display result
+             ↓            ↓
+          Repeat         STOP
+            </code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        PROGRAM 1
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">8. Program — Reverse String Using Character Array</h2>
+
+            <h3>Aim</h3>
+
+            <p>
+                To write a Java program that reverses a string using a character
+                array and two-pointer swapping.
+            </p>
+
+            <h3>Program</h3>
+
+            <pre><code>import java.util.Scanner;
+
+public class ReverseString {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String str = sc.nextLine();
+
+        // Convert String into a character array
+        char[] chars = str.toCharArray();
+
+        // Two pointers
+        int left = 0;
+        int right = chars.length - 1;
+
+        // Swap characters
+        while (left &lt; right) {
+
+            char temp = chars[left];
+
+            chars[left] = chars[right];
+
+            chars[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        // Convert character array back to String
+        String reversed = new String(chars);
+
+        System.out.println("Original : " + str);
+        System.out.println("Reversed : " + reversed);
+
+        sc.close();
+    }
+}</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        OUTPUT
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">9. Sample Output</h2>
+
+            <h3>Example 1</h3>
+
+            <pre><code>
+Enter a string: Java
+Original : Java
+Reversed : avaJ
+            </code></pre>
+
+            <h3>Example 2</h3>
+
+            <pre><code>
+Enter a string: Hello World
+Original : Hello World
+Reversed : dlroW olleH
+            </code></pre>
+
+            <h3>Important</h3>
+
+            <p>We use:</p>
+
+            <pre><code>
+sc.nextLine();
+            </code></pre>
+
+            <p>instead of:</p>
+
+            <pre><code>
+sc.next();
+            </code></pre>
+
+            <p>
+                because <code>nextLine()</code> reads the <strong>complete
+                line</strong>, including spaces.
+            </p>
+
+            <p>
+                For example, <code>Hello World</code> is read completely using
+                <code>nextLine()</code>, whereas <code>next()</code> would read
+                only <code>Hello</code>.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        IMPORTANT STATEMENTS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">10. Important Statements in Program 1</h2>
+
+            <h3>10.1 nextLine()</h3>
+
+            <pre><code>String str = sc.nextLine();</code></pre>
+
+            <p>
+                Reads the complete line entered by the user.
+            </p>
+
+            <p>Example:</p>
+
+            <pre><code>
+Input:
+Hello World
+
+nextLine() reads:
+"Hello World"
+
+Whereas next() would read only:
+"Hello"
+            </code></pre>
+
+            <h3>10.2 toCharArray()</h3>
+
+            <pre><code>char[] chars = str.toCharArray();</code></pre>
+
+            <p>
+                Converts a String into a character array.
+            </p>
+
+            <p>For example:</p>
+
+            <pre><code>
+"Java"
+   ↓
+[J, a, v, a]
+            </code></pre>
+
+            <p>
+                This allows us to modify the characters.
+            </p>
+
+            <h3>10.3 Finding the Last Character</h3>
+
+            <pre><code>int right = chars.length - 1;</code></pre>
+
+            <p>
+                Array indexing starts from 0. Therefore, if the array contains
+                four characters:
+            </p>
+
+            <pre><code>
+Indexes:
+0   1   2   3
+
+Last index:
+4 - 1 = 3
+            </code></pre>
+
+            <p>
+                Hence, <code>chars.length - 1</code> gives the last valid index.
+            </p>
+
+            <h3>10.4 Understanding the Swap</h3>
+
+            <p>
+                The following code swaps two characters:
+            </p>
+
+            <pre><code>char temp = chars[left];
+chars[left] = chars[right];
+chars[right] = temp;</code></pre>
+
+            <p>Suppose:</p>
+
+            <pre><code>
+chars[left]  = J
+chars[right] = a
+            </code></pre>
+
+            <p>First:</p>
+
+            <pre><code>
+temp = J
+            </code></pre>
+
+            <p>Then:</p>
+
+            <pre><code>
+chars[left] = a
+            </code></pre>
+
+            <p>Finally:</p>
+
+            <pre><code>
+chars[right] = J
+            </code></pre>
+
+            <p>The result becomes:</p>
+
+            <pre><code>
+a ... J
+            </code></pre>
+
+            <h3>Why Do We Need temp?</h3>
+
+            <p>
+                Without <code>temp</code>, the original value of
+                <code>chars[left]</code> would be lost.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        KEY POINTS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">11. Key Points to Remember</h2>
+
+            <ul>
+                <li>A String is a sequence of characters.</li>
+                <li>String indexing starts from 0.</li>
+                <li>The last valid index is <code>length - 1</code>.</li>
+                <li>String objects are immutable.</li>
+                <li><code>toCharArray()</code> converts a String into a character array.</li>
+                <li>Two pointers can be used to reverse a character array efficiently.</li>
+                <li><code>left</code> starts from the beginning and <code>right</code> starts from the end.</li>
+                <li><code>temp</code> is used to safely swap two characters.</li>
+                <li><code>nextLine()</code> reads the complete line, including spaces.</li>
+                <li><code>StringBuilder</code> is mutable and is useful for fast string manipulation.</li>
+                <li><code>StringBuffer</code> is mutable and thread-safe.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        VIVA QUESTIONS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">12. Viva Questions</h2>
+
+            <ol>
+                <li>What is a String in Java?</li>
+                <li>What is the first index of a String?</li>
+                <li>How do you find the last valid index of a String?</li>
+                <li>What does it mean that String objects are immutable?</li>
+                <li>Why can we not directly modify an existing String object?</li>
+                <li>What is the purpose of <code>toCharArray()</code>?</li>
+                <li>Why are two pointers used in the character-array method?</li>
+                <li>Why is <code>chars.length - 1</code> used for the right pointer?</li>
+                <li>Why is a temporary variable required during swapping?</li>
+                <li>What is the difference between <code>next()</code> and <code>nextLine()</code>?</li>
+                <li>What is the difference between String, StringBuilder, and StringBuffer?</li>
+                <li>Is StringBuilder thread-safe?</li>
+                <li>Is StringBuffer thread-safe?</li>
+                <li>Why is StringBuilder generally preferred for fast string manipulation in a single thread?</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        CONCLUSION
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">13. Conclusion</h2>
+
+            <p>
+                In this practical, we learned how to <strong>reverse a string
+                in Java</strong> using a character array and the two-pointer
+                swapping technique. We also studied String immutability and
+                understood the differences between <code>String</code>,
+                <code>StringBuilder</code>, and <code>StringBuffer</code>.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        NAVIGATION
+        ========================================================== -->
+
+        <section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+            <a href="experiment4.html" class="primary-button">
+                ← Previous Practical
+            </a>
+
+            <a href="index.html" class="primary-button">
+                Back to Practicals
+            </a>
+
+            <a href="experiment6.html" class="primary-button">
+                Next Practical →
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- ==========================================================
+    FOOTER
+    ========================================================== -->
+
+    <footer>
+        <div class="container">
+
+            <h3>PU's Academics</h3>
+
+            <p>Learn Today. Lead Tomorrow.</p>
+
+            <p>
+                Digital Learning Platform for Python Programming,
+                Artificial Intelligence, Machine Learning and Core Java.
+            </p>
+
+            <p>© 2026 PU's Academics. All Rights Reserved.</p>
+
+        </div>
+    </footer>
+
+    <script src="../../assets/js/theme.js"></script>
+
+</body>
+</html>
