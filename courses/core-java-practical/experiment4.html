@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical No. 04 | Core Java Practical</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <div>
+                <h1 class="site-title">PU's Academics</h1>
+                <p class="site-tagline">Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Practical No. 04</h2>
+            <p>Addition of Two Binary Numbers</p>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <!-- ==========================================================
+        TITLE
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">Addition of Two Binary Numbers</h2>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        AIM
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">1. Aim</h2>
+
+            <p>
+                To write, compile, execute, and test a Java program that accepts
+                two binary numbers from the user and displays their sum in binary form.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        INTRODUCTION
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">2. Introduction</h2>
+
+            <p>
+                Computers use the <strong>binary number system</strong>, which contains
+                only two digits: <strong>0</strong> and <strong>1</strong>.
+            </p>
+
+            <p>
+                In this practical, we learn how to add two binary numbers using Java.
+                The first program performs the addition manually, bit by bit, while
+                handling the carry ourselves. The second program uses Java's built-in
+                methods for binary conversion.
+            </p>
+
+            <h3>Example</h3>
+
+            <pre><code>
+    1010₂
+  + 1101₂
+  --------
+   10111₂
+            </code></pre>
+
+            <p>
+                Therefore:
+                <strong>1010₂ + 1101₂ = 10111₂</strong>
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        BINARY NUMBERS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">3. Concept: Binary Numbers</h2>
+
+            <p>
+                A binary number contains only the digits <strong>0</strong> and
+                <strong>1</strong>. Each position in a binary number represents
+                a power of 2.
+            </p>
+
+            <h3>Example: 1010₂</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Binary Digit</th>
+                        <th>1</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>0</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Power of 2</td>
+                        <td>2³</td>
+                        <td>2²</td>
+                        <td>2¹</td>
+                        <td>2⁰</td>
+                    </tr>
+                    <tr>
+                        <td>Place Value</td>
+                        <td>8</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Therefore:
+            </p>
+
+            <pre><code>
+1010₂ = (1 × 2³) + (0 × 2²) + (1 × 2¹) + (0 × 2⁰)
+      = 8 + 0 + 2 + 0
+      = 10₁₀
+            </code></pre>
+
+            <p>
+                So, <strong>1010₂ = 10₁₀</strong>.
+            </p>
+
+            <h3>Simple Rule</h3>
+
+            <p>
+                To convert binary to decimal, multiply each binary digit by its
+                corresponding power of 2 and add the results.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        BINARY ADDITION RULES
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">4. Rules of Binary Addition</h2>
+
+            <p>
+                There are four basic rules of binary addition:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Addition</th>
+                        <th>Sum</th>
+                        <th>Carry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0 + 0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0 + 1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1 + 0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1 + 1</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Important Rule</h3>
+
+            <pre><code>
+1 + 1 = 10₂
+            </code></pre>
+
+            <p>This means:</p>
+
+            <ul>
+                <li>Write <strong>0</strong> in the current position.</li>
+                <li>Carry <strong>1</strong> to the next position.</li>
+            </ul>
+
+            <h3>When a Carry is Already Present</h3>
+
+            <p>
+                Sometimes we need to add two bits plus a carry-in.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>bit1</th>
+                        <th>bit2</th>
+                        <th>carry-in</th>
+                        <th>Sum bit</th>
+                        <th>Carry-out</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                For example:
+            </p>
+
+            <pre><code>
+1 + 1 + 1 = 11₂
+            </code></pre>
+
+            <p>Therefore:</p>
+
+            <ul>
+                <li>Sum bit = <strong>1</strong></li>
+                <li>Carry = <strong>1</strong></li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        WORKED EXAMPLE
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">5. Worked Example</h2>
+
+            <p>Add:</p>
+
+            <pre><code>
+      1010
+    + 1101
+    -------
+     10111
+            </code></pre>
+
+            <p>
+                Start from the <strong>rightmost bit</strong> and perform the
+                addition while keeping track of the carry.
+            </p>
+
+            <h3>Verification Using Decimal Values</h3>
+
+            <pre><code>
+1010₂ = 10₁₀
+1101₂ = 13₁₀
+
+10 + 13 = 23
+
+23₁₀ = 10111₂
+            </code></pre>
+
+            <p>
+                Therefore:
+                <strong>1010₂ + 1101₂ = 10111₂</strong>
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        ALGORITHM
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">6. Algorithm — Manual Binary Addition</h2>
+
+            <ol>
+                <li>Start the program.</li>
+                <li>Read two binary numbers as strings <code>b1</code> and <code>b2</code>.</li>
+                <li>Check whether both strings contain only 0 and 1.</li>
+                <li>Find the length of the longer binary number.</li>
+                <li>Initialize <code>carry = 0</code> and <code>result = empty string</code>.</li>
+                <li>Process the numbers from <strong>right to left</strong>.</li>
+                <li>
+                    For every position, obtain <code>bit1</code> and <code>bit2</code>,
+                    then calculate:
+                    <pre><code>
+sum = bit1 + bit2 + carry
+result bit = sum % 2
+carry = sum / 2
+                    </code></pre>
+                </li>
+                <li>After all bits have been processed, check whether a carry is still present.</li>
+                <li>If <code>carry == 1</code>, append 1 to the result.</li>
+                <li>Reverse the result.</li>
+                <li>Display the binary sum.</li>
+                <li>Stop the program.</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        PROGRAM 1
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">7. Program 1 — Manual Bit-by-Bit Addition</h2>
+
+            <h3>Aim</h3>
+
+            <p>
+                To write a Java program that adds two binary numbers manually,
+                processing each bit from right to left and handling the carry.
+            </p>
+
+            <h3>Program</h3>
+
+            <pre><code>import java.util.Scanner;
+
+public class AddBinary {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read first binary number
+        System.out.print("Enter first binary number : ");
+        String b1 = sc.next();
+
+        // Read second binary number
+        System.out.print("Enter second binary number: ");
+        String b2 = sc.next();
+
+        // Validate input
+        if (!b1.matches("[01]+") || !b2.matches("[01]+")) {
+
+            System.out.println("Error: Input must contain only 0 and 1.");
+
+            sc.close();
+            return;
+        }
+
+        int len1 = b1.length();
+        int len2 = b2.length();
+
+        // Length of the longer number
+        int n = Math.max(len1, len2);
+
+        int carry = 0;
+        StringBuilder result = new StringBuilder();
+
+        // Add bits from right to left
+        for (int i = 0; i &lt; n; i++) {
+
+            int bit1 = (i &lt; len1)
+                    ? b1.charAt(len1 - 1 - i) - '0'
+                    : 0;
+
+            int bit2 = (i &lt; len2)
+                    ? b2.charAt(len2 - 1 - i) - '0'
+                    : 0;
+
+            int sum = bit1 + bit2 + carry;
+
+            // Store the result bit
+            result.append(sum % 2);
+
+            // Calculate carry
+            carry = sum / 2;
+        }
+
+        // Add final carry, if present
+        if (carry == 1) {
+            result.append('1');
+        }
+
+        // Reverse and display the result
+        System.out.println("Sum = " + result.reverse());
+
+        sc.close();
+    }
+}</code></pre>
+
+            <h3>Explanation</h3>
+
+            <p>
+                The program reads the two binary numbers as strings. It validates
+                the input, processes the bits from right to left, calculates the
+                sum and carry for each position, and finally reverses the result
+                before displaying it.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        SAMPLE OUTPUT
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">8. Sample Output</h2>
+
+            <h3>Example 1</h3>
+
+            <pre><code>
+Enter first binary number : 1010
+Enter second binary number: 1101
+Sum = 10111
+            </code></pre>
+
+            <h3>Example 2</h3>
+
+            <pre><code>
+Enter first binary number : 111
+Enter second binary number: 1
+Sum = 1000
+            </code></pre>
+
+            <h3>Example 3 — Invalid Input</h3>
+
+            <pre><code>
+Enter first binary number : 1020
+Enter second binary number: 1101
+Error: Input must contain only 0 and 1.
+            </code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        IMPORTANT CODE STATEMENTS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">9. Important Code Statements</h2>
+
+            <h3>9.1 Input Validation</h3>
+
+            <pre><code>b1.matches("[01]+")</code></pre>
+
+            <p>
+                This checks that the string contains only <strong>0</strong> or
+                <strong>1</strong>. The <code>+</code> means that there must be
+                at least one character.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Input</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>10101</code></td>
+                        <td>Valid</td>
+                    </tr>
+                    <tr>
+                        <td><code>111</code></td>
+                        <td>Valid</td>
+                    </tr>
+                    <tr>
+                        <td><code>1020</code></td>
+                        <td>Invalid</td>
+                    </tr>
+                    <tr>
+                        <td><code>12AB</code></td>
+                        <td>Invalid</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>9.2 Finding the Longer Number</h3>
+
+            <pre><code>int n = Math.max(len1, len2);</code></pre>
+
+            <p>
+                The addition loop must continue until all digits of the longer
+                number have been processed.
+            </p>
+
+            <h3>9.3 Reading from Right to Left</h3>
+
+            <pre><code>b1.charAt(len1 - 1 - i)</code></pre>
+
+            <p>
+                This expression gets characters starting from the rightmost
+                position.
+            </p>
+
+            <p>For example, if:</p>
+
+            <pre><code>b1 = "1010"</code></pre>
+
+            <p>The indexes are:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Character</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                When <code>i = 0</code>:
+            </p>
+
+            <pre><code>len1 - 1 - i
+= 4 - 1 - 0
+= 3</code></pre>
+
+            <p>
+                Therefore, the last character <code>'0'</code> is obtained.
+            </p>
+
+            <h3>9.4 Converting Character to Integer</h3>
+
+            <pre><code>b1.charAt(...) - '0'</code></pre>
+
+            <p>
+                The result of <code>charAt()</code> is a character. For example,
+                <code>'1'</code> is a character, not the integer <code>1</code>.
+                Subtracting <code>'0'</code> converts the character digit into
+                its numeric value.
+            </p>
+
+            <pre><code>'1' - '0' = 1</code></pre>
+
+            <h3>9.5 Calculating the Result Bit</h3>
+
+            <pre><code>sum % 2</code></pre>
+
+            <p>
+                The remainder after division by 2 gives the binary digit that
+                should be written.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expression</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>0 % 2</code></td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code>1 % 2</code></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><code>2 % 2</code></td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code>3 % 2</code></td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Therefore, the result bit is always either <strong>0</strong>
+                or <strong>1</strong>.
+            </p>
+
+            <h3>9.6 Calculating the Carry</h3>
+
+            <pre><code>carry = sum / 2;</code></pre>
+
+            <p>
+                Integer division gives the carry.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expression</th>
+                        <th>Carry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>0 / 2</code></td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code>1 / 2</code></td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><code>2 / 2</code></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><code>3 / 2</code></td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>9.7 Reversing the Result</h3>
+
+            <pre><code>result.reverse()</code></pre>
+
+            <p>
+                The result was constructed from right to left, so it must be
+                reversed before displaying it.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        PROGRAM 2
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">10. Program 2 — Using Java Built-in Methods</h2>
+
+            <p>
+                Java provides built-in methods that make binary conversion easier.
+                In this approach, the binary strings are converted to decimal
+                integers, the values are added, and the result is converted back
+                to binary.
+            </p>
+
+            <h3>Program</h3>
+
+            <pre><code>import java.util.Scanner;
+
+public class AddBinaryShort {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first binary number : ");
+        String b1 = sc.next();
+
+        System.out.print("Enter second binary number: ");
+        String b2 = sc.next();
+
+        // Convert binary strings to decimal integers
+        int n1 = Integer.parseInt(b1, 2);
+        int n2 = Integer.parseInt(b2, 2);
+
+        // Add the numbers
+        int sum = n1 + n2;
+
+        // Display decimal and binary results
+        System.out.println("Sum (decimal) = " + sum);
+
+        System.out.println("Sum (binary)  = "
+                + Integer.toBinaryString(sum));
+
+        sc.close();
+    }
+}</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        PROGRAM 2 OUTPUT
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">11. Output of Program 2</h2>
+
+            <pre><code>
+Enter first binary number : 1010
+Enter second binary number: 1101
+Sum (decimal) = 23
+Sum (binary)  = 10111
+            </code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        BUILT-IN METHODS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">12. Important Built-in Methods</h2>
+
+            <h3>12.1 Integer.parseInt()</h3>
+
+            <pre><code>Integer.parseInt("1010", 2)</code></pre>
+
+            <p>
+                The second argument <code>2</code> tells Java that the number
+                is in <strong>base 2</strong>, i.e., binary.
+            </p>
+
+            <pre><code>"1010" → 10</code></pre>
+
+            <h3>12.2 Integer.toBinaryString()</h3>
+
+            <pre><code>Integer.toBinaryString(23)</code></pre>
+
+            <p>
+                This converts the decimal integer <code>23</code> into its
+                binary representation.
+            </p>
+
+            <pre><code>23 → "10111"</code></pre>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        COMPARISON
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">13. Comparison of the Two Approaches</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Manual Bit-by-Bit Addition</th>
+                        <th>Java Built-in Methods</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Processes each binary bit manually.</td>
+                        <td>Uses Java's built-in conversion methods.</td>
+                    </tr>
+                    <tr>
+                        <td>Carry is calculated explicitly.</td>
+                        <td>Conversion and addition are handled by Java.</td>
+                    </tr>
+                    <tr>
+                        <td>Helps understand the binary addition process.</td>
+                        <td>Provides a shorter and simpler solution.</td>
+                    </tr>
+                    <tr>
+                        <td>Useful for learning how binary addition works internally.</td>
+                        <td>Useful when a concise implementation is required.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        VIVA QUESTIONS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">14. Viva Questions</h2>
+
+            <ol>
+                <li>What is the binary number system?</li>
+                <li>Which digits are used in the binary number system?</li>
+                <li>What is the decimal value of <code>1010₂</code>?</li>
+                <li>What happens when we add <code>1 + 1</code> in binary?</li>
+                <li>What is a carry in binary addition?</li>
+                <li>Why are the binary numbers processed from right to left?</li>
+                <li>What is the purpose of <code>StringBuilder</code> in Program 1?</li>
+                <li>What does <code>b1.matches("[01]+")</code> do?</li>
+                <li>Why is <code>sum % 2</code> used?</li>
+                <li>Why is <code>carry = sum / 2</code> used?</li>
+                <li>Why is <code>result.reverse()</code> required?</li>
+                <li>What is the purpose of <code>Integer.parseInt(b1, 2)</code>?</li>
+                <li>What does <code>Integer.toBinaryString(sum)</code> do?</li>
+                <li>What is the difference between the two programs?</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        KEY POINTS
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">15. Key Points to Remember</h2>
+
+            <ul>
+                <li>Binary numbers use only <strong>0</strong> and <strong>1</strong>.</li>
+                <li>Each binary position represents a power of 2.</li>
+                <li>In binary addition, <strong>1 + 1 = 10₂</strong>.</li>
+                <li>Binary addition is performed from right to left.</li>
+                <li>A carry may be generated during binary addition.</li>
+                <li><code>sum % 2</code> gives the result bit.</li>
+                <li><code>sum / 2</code> gives the carry using integer division.</li>
+                <li><code>Integer.parseInt(value, 2)</code> converts binary to decimal.</li>
+                <li><code>Integer.toBinaryString(value)</code> converts decimal to binary.</li>
+                <li>Manual addition helps understand the binary addition process.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        CONCLUSION
+        ========================================================== -->
+
+        <section>
+            <h2 class="section-title">16. Conclusion</h2>
+
+            <p>
+                In this practical, we learned how to add two binary numbers using
+                Java. We implemented the problem using two approaches:
+                <strong>manual bit-by-bit addition</strong>, where we handled the
+                binary digits and carry ourselves, and <strong>Java built-in
+                methods</strong>, where <code>Integer.parseInt()</code> and
+                <code>Integer.toBinaryString()</code> were used for conversion.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ==========================================================
+        NAVIGATION
+        ========================================================== -->
+
+        <section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+            <a href="experiment3.html" class="primary-button">
+                ← Previous Practical
+            </a>
+
+            <a href="index.html" class="primary-button">
+                Back to Practicals
+            </a>
+
+            <a href="experiment5.html" class="primary-button">
+                Next Practical →
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- ==========================================================
+    FOOTER
+    ========================================================== -->
+
+    <footer>
+        <div class="container">
+            <h3>PU's Academics</h3>
+
+            <p>Learn Today. Lead Tomorrow.</p>
+
+            <p>
+                Digital Learning Platform for Python Programming,
+                Artificial Intelligence, Machine Learning and Core Java.
+            </p>
+
+            <p>© 2026 PU's Academics. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/theme.js"></script>
+
+</body>
+</html>
