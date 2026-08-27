@@ -482,3 +482,35 @@ body.dark-mode .notice-box {
 body.dark-mode .notice-heading {
     color: #fca5a5;
 }
+
+/* ==========================================================
+   CONTENT PROTECTION
+   Prevent normal text selection and copying
+   ========================================================== */
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Allow normal interaction with form fields */
+input,
+textarea,
+select {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Prevent dragging text/images */
+body {
+    -webkit-user-drag: none;
+}
+
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+}
