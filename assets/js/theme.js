@@ -107,3 +107,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* ==========================================================
+   DLP CONTENT PROTECTION
+   ========================================================== */
+
+// Disable right-click
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+});
+
+// Disable text selection
+document.addEventListener("selectstart", function (event) {
+    // Allow selection inside form fields
+    const tag = event.target.tagName;
+
+    if (
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        tag === "SELECT"
+    ) {
+        return;
+    }
+
+    event.preventDefault();
+});
+
+// Disable dragging
+document.addEventListener("dragstart", function (event) {
+    event.preventDefault();
+});
+
+// Disable common copy/cut shortcuts
+document.addEventListener("keydown", function (event) {
+
+    if (
+        event.ctrlKey &&
+        (
+            event.key.toLowerCase() === "c" ||
+            event.key.toLowerCase() === "x"
+        )
+    ) {
+        event.preventDefault();
+    }
+
+});
