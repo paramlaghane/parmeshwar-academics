@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Practical No. 06 | Python Programming Practical
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+PU's Academics
+</h1>
+
+<p class="site-tagline">
+Learn Today. Lead Tomorrow.
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+Practical No. 06
+</h2>
+
+<p>
+Display a Multiplication Table Using Functions in Python
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+1. Aim
+</h2>
+
+<p>
+
+To write a Python program using a <strong>user-defined function</strong>
+to display the multiplication table of a given number.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+THEORY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+2. Theory
+</h2>
+
+<h3>
+What is a Function?
+</h3>
+
+<p>
+
+A <strong>function</strong> is a reusable block of code designed to
+perform a specific task. Functions help to organize programs and
+avoid writing the same code repeatedly.
+
+</p>
+
+<p>
+
+In Python, a function is defined using the
+<strong>def</strong> keyword.
+
+</p>
+
+<pre><code>
+def function_name(parameters):
+    # statements
+</code></pre>
+
+<h3>
+Parameters and Return Values
+</h3>
+
+<p>
+
+A function can receive values through
+<strong>parameters</strong>. It can also send a result back to the
+calling program using the <strong>return</strong> statement.
+
+</p>
+
+<p>
+
+In this practical, the function receives a number and generates
+its multiplication table using a <strong>for loop</strong>.
+
+</p>
+
+<h3>
+Using a for Loop</h3>
+
+<p>
+
+The <strong>for loop</strong> is used to repeat the multiplication
+operation for a sequence of numbers. The <strong>range()</strong>
+function generates the required sequence.
+
+</p>
+
+<pre><code>
+for i in range(1, 11):
+    print(n * i)
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+MULTIPLICATION TABLE
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+3. Multiplication Table
+</h2>
+
+<p>
+
+Consider the number:
+
+</p>
+
+<pre><code>
+n = 7
+</code></pre>
+
+<p>
+
+Its multiplication table from 1 to 10 is:
+
+</p>
+
+<pre><code>
+7 × 1 = 7
+7 × 2 = 14
+7 × 3 = 21
+7 × 4 = 28
+7 × 5 = 35
+7 × 6 = 42
+7 × 7 = 49
+7 × 8 = 56
+7 × 9 = 63
+7 × 10 = 70
+</code></pre>
+
+<p>
+
+Instead of writing ten separate multiplication statements,
+we can use a <strong>for loop inside a user-defined function</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+ALGORITHM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+4. Algorithm
+</h2>
+
+<ol>
+
+<li>
+Start.
+</li>
+
+<li>
+Define a function
+<strong>multiplication_table(n, upto=10)</strong>.
+</li>
+
+<li>
+Use a <strong>for loop</strong> from 1 to <strong>upto</strong>.
+</li>
+
+<li>
+Calculate and display <strong>n × i</strong>.
+</li>
+
+<li>
+Read the number from the user.
+</li>
+
+<li>
+Call the <strong>multiplication_table()</strong> function.
+</li>
+
+<li>
+Stop.
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PROGRAM 1
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+5. Program Codes
+</h2>
+
+<h3>
+Program A — Using a Default Parameter
+</h3>
+
+<p>
+
+The following program displays the multiplication table from
+1 to 10 using a user-defined function.
+
+</p>
+
+<pre><code>
+# Program 6A
+# Display a multiplication table using a function
+
+def multiplication_table(n, upto=10):
+
+    for i in range(1, upto + 1):
+
+        print(f"{n} × {i} = {n * i}")
+
+
+# Main program
+num = int(input("Enter a number: "))
+
+multiplication_table(num)
+</code></pre>
+
+
+<h3>
+Output
+</h3>
+
+<pre><code>
+Enter a number: 7
+
+7 × 1 = 7
+7 × 2 = 14
+7 × 3 = 21
+7 × 4 = 28
+7 × 5 = 35
+7 × 6 = 42
+7 × 7 = 49
+7 × 8 = 56
+7 × 9 = 63
+7 × 10 = 70
+</code></pre>
+
+
+<h3>
+Explanation
+</h3>
+
+<p>
+
+The function:
+
+</p>
+
+<pre><code>
+def multiplication_table(n, upto=10):
+</code></pre>
+
+<p>
+
+has two parameters:
+
+</p>
+
+<ul>
+
+<li>
+<strong>n</strong> — the number whose multiplication table is required.
+</li>
+
+<li>
+<strong>upto=10</strong> — a default parameter that specifies the
+table limit as 10.
+</li>
+
+</ul>
+
+<p>
+
+The statement:
+
+</p>
+
+<pre><code>
+range(1, upto + 1)
+</code></pre>
+
+<p>
+
+generates numbers from <strong>1 to 10</strong> when the default
+value of <strong>upto</strong> is used.
+
+</p>
+
+<p>
+
+The expression:
+
+</p>
+
+<pre><code>
+f"{n} × {i} = {n * i}"
+</code></pre>
+
+<p>
+
+uses an <strong>f-string</strong> to display the multiplication
+operation and its result in a formatted manner.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+KEY POINTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+6. Key Points
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Concept</th>
+
+<th>Description</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+<strong>n</strong>
+</td>
+
+<td>
+Parameter that receives the number for the multiplication table.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>num</strong>
+</td>
+
+<td>
+Argument passed to the function.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>upto=10</strong>
+</td>
+
+<td>
+Default parameter. The table is displayed up to 10 by default.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>range(1, upto + 1)</strong>
+</td>
+
+<td>
+Generates the sequence from 1 to the specified limit.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>for loop</strong>
+</td>
+
+<td>
+Repeats the multiplication operation.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>f-string</strong>
+</td>
+
+<td>
+Formats the multiplication expression and result for display.
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PROGRAM 2
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+7. Program B — Using a User-Defined Multiplication Limit
+</h2>
+
+<p>
+
+The function can also accept a second argument so that the user
+can decide how far the multiplication table should be displayed.
+
+</p>
+
+<pre><code>
+# Program 6B
+# Display a multiplication table up to a user-defined limit
+
+def multiplication_table(n, upto=10):
+
+    for i in range(1, upto + 1):
+
+        print(f"{n} × {i} = {n * i}")
+
+
+# Main program
+num = int(input("Enter a number: "))
+
+limit = int(input("Enter the multiplication limit: "))
+
+multiplication_table(num, limit)
+</code></pre>
+
+
+<h3>
+Output
+</h3>
+
+<pre><code>
+Enter a number: 8
+Enter the multiplication limit: 5
+
+8 × 1 = 8
+8 × 2 = 16
+8 × 3 = 24
+8 × 4 = 32
+8 × 5 = 40
+</code></pre>
+
+
+<h3>
+Explanation
+</h3>
+
+<p>
+
+In this program, two values are entered by the user:
+
+</p>
+
+<pre><code>
+num
+limit
+</code></pre>
+
+<p>
+
+The function is called using:
+
+</p>
+
+<pre><code>
+multiplication_table(num, limit)
+</code></pre>
+
+<p>
+
+Here, <strong>num</strong> is passed to parameter
+<strong>n</strong>, while <strong>limit</strong> is passed to
+parameter <strong>upto</strong>.
+
+</p>
+
+<p>
+
+Therefore, the function displays the multiplication table only up
+to the limit entered by the user.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+FUNCTION CALL
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+8. Understanding the Function Call
+</h2>
+
+<p>
+
+Suppose the user enters:
+
+</p>
+
+<pre><code>
+Enter a number: 8
+Enter the multiplication limit: 5
+</code></pre>
+
+<p>
+
+The function call is:
+
+</p>
+
+<pre><code>
+multiplication_table(8, 5)
+</code></pre>
+
+<p>
+
+Therefore:
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Parameter</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+<strong>n</strong>
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>upto</strong>
+</td>
+
+<td>
+5
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+The loop then executes:
+
+</p>
+
+<pre><code>
+i = 1
+i = 2
+i = 3
+i = 4
+i = 5
+</code></pre>
+
+<p>
+
+and produces the multiplication table from 1 to 5.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+IMPORTANT STATEMENTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+9. Important Statements
+</h2>
+
+<h3>
+Function Definition
+</h3>
+
+<pre><code>
+def multiplication_table(n, upto=10):
+</code></pre>
+
+<p>
+
+Defines a function named
+<strong>multiplication_table</strong> with two parameters.
+
+</p>
+
+
+<h3>
+for Loop
+</h3>
+
+<pre><code>
+for i in range(1, upto + 1):
+</code></pre>
+
+<p>
+
+Repeats the statements for each value from 1 to the specified
+multiplication limit.
+
+</p>
+
+
+<h3>
+Multiplication
+</h3>
+
+<pre><code>
+n * i
+</code></pre>
+
+<p>
+
+Calculates the product of the given number and the current loop
+value.
+
+</p>
+
+
+<h3>
+Function Call
+</h3>
+
+<pre><code>
+multiplication_table(num)
+</code></pre>
+
+<p>
+
+Calls the function using the number entered by the user.
+
+</p>
+
+
+<h3>
+Function Call with Two Arguments
+</h3>
+
+<pre><code>
+multiplication_table(num, limit)
+</code></pre>
+
+<p>
+
+Calls the function and specifies the multiplication limit.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+RESULT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+10. Result
+</h2>
+
+<p>
+
+The Python program to display a multiplication table was
+successfully implemented using a <strong>user-defined function,
+parameters, default parameters, for loop, range() function, and
+formatted output</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CONCLUSION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+11. Conclusion
+</h2>
+
+<p>
+
+In this practical, we learned how to define and call a
+user-defined function in Python.
+
+</p>
+
+<p>
+
+We also learned how to pass arguments to a function, use a
+default parameter, repeat operations using a <strong>for loop</strong>,
+and display formatted output using an <strong>f-string</strong>.
+
+</p>
+
+<p>
+
+The practical also demonstrated how the same function can be
+reused with different multiplication limits.
+
+</p>
+
+</section>
+
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="experiment5.html"
+class="primary-button">
+
+← Previous Practical
+
+</a>
+
+<a href="index.html"
+class="primary-button">
+
+Back to Practicals
+
+</a>
+
+<a href="experiment7.html"
+class="primary-button">
+
+Next Practical →
+
+</a>
+
+</section>
+
+
+</main>
+
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+PU's Academics
+</h3>
+
+<p>
+Learn Today. Lead Tomorrow.
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+© 2026 PU's Academics. All Rights Reserved.
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
