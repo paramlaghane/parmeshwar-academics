@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Practical No. 07 | Core Java Practical
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">
+PU's Academics
+</h1>
+
+<p class="site-tagline">
+Learn Today. Lead Tomorrow.
+</p>
+
+</div>
+
+<button
+id="themeToggle"
+class="theme-toggle">
+
+🌙
+
+</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>
+Practical No. 07
+</h2>
+
+<p>
+Sum of Digits in a Character Array
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<!-- ==========================================================
+AIM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+1. Aim
+</h2>
+
+<p>
+
+To write a Java program containing a <strong>function (method)</strong>
+that accepts a character array as a parameter and <strong>returns the
+sum of all digit characters</strong> present in the array.
+
+</p>
+
+<p>
+
+Non-digit characters should be ignored.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+THEORY
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+2. Theory
+</h2>
+
+<p>
+
+A <strong>character array</strong> is an array that stores individual
+characters. In Java, a character array is declared using the
+<strong>char[]</strong> data type.
+
+</p>
+
+<pre><code>
+char[] data = {'1', '2', '3', 'a', ' ', '9'};
+</code></pre>
+
+<p>
+
+In this practical, the program examines every character in the array
+and checks whether it is a digit.
+
+</p>
+
+<p>
+
+Java provides the <strong>Character.isDigit()</strong> method to check
+whether a character represents a digit.
+
+</p>
+
+<p>
+
+When a digit character is found, it is converted into its numeric value
+using:
+
+</p>
+
+<pre><code>
+ch - '0'
+</code></pre>
+
+<p>
+
+The numeric value is then added to a variable named
+<strong>sum</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+ALGORITHM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+3. Algorithm
+</h2>
+
+<h3>
+Method: sumOfDigits(arr)
+</h3>
+
+<ol>
+
+<li>
+<strong>Start.</strong>
+</li>
+
+<li>
+Set <strong>sum = 0</strong>.
+</li>
+
+<li>
+Traverse every element of the character array.
+</li>
+
+<li>
+Store the current character in <strong>ch</strong>.
+</li>
+
+<li>
+Check whether <strong>ch</strong> is a digit.
+</li>
+
+<li>
+If it is a digit:
+<ul>
+<li>Convert it into its numeric value using <strong>ch - '0'</strong>.</li>
+<li>Add the value to <strong>sum</strong>.</li>
+</ul>
+</li>
+
+<li>
+Ignore non-digit characters.
+</li>
+
+<li>
+Return <strong>sum</strong>.
+</li>
+
+</ol>
+
+
+<h3>
+Main Program
+</h3>
+
+<ol>
+
+<li>
+Create a character array.
+</li>
+
+<li>
+Pass the array to <strong>sumOfDigits()</strong>.
+</li>
+
+<li>
+Store the returned value in <strong>result</strong>.
+</li>
+
+<li>
+Display the array.
+</li>
+
+<li>
+Display the calculated sum.
+</li>
+
+<li>
+<strong>Stop.</strong>
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+JAVA PROGRAM
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+4. Java Program
+</h2>
+
+<pre><code>
+public class SumOfDigits {
+
+    // Method to calculate the sum of digit characters
+    static int sumOfDigits(char[] arr) {
+
+        int sum = 0;
+
+        for (int i = 0; i &lt; arr.length; i++) {
+
+            char ch = arr[i];
+
+            if (Character.isDigit(ch)) {
+
+                sum = sum + (ch - '0');
+
+            }
+
+        }
+
+        return sum;
+
+    }
+
+
+    public static void main(String[] args) {
+
+        char[] data = {'1', '2', '3', 'a', ' ', '9'};
+
+        int result = sumOfDigits(data);
+
+        System.out.print("Array: ");
+
+        for (char ch : data) {
+
+            System.out.print("[" + ch + "] ");
+
+        }
+
+        System.out.println();
+
+        System.out.println("Sum of digits = " + result);
+
+    }
+
+}
+</code></pre>
+
+<h3>
+Sample Output
+</h3>
+
+<pre><code>
+Array: [1] [2] [3] [a] [ ] [9]
+
+Sum of digits = 15
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+PROGRAM EXPLANATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+5. Program Explanation
+</h2>
+
+
+<h3>
+1. Creating the Character Array
+</h3>
+
+<pre><code>
+char[] data = {'1', '2', '3', 'a', ' ', '9'};
+</code></pre>
+
+<p>
+
+The array contains six characters:
+
+</p>
+
+<pre><code>
+1   2   3   a   [space]   9
+</code></pre>
+
+<p>
+
+Only <strong>1, 2, 3, and 9</strong> are digits.
+
+</p>
+
+
+<h3>
+2. Calling the Method
+</h3>
+
+<pre><code>
+int result = sumOfDigits(data);
+</code></pre>
+
+<p>
+
+The array <strong>data</strong> is passed to the method.
+
+</p>
+
+<p>
+
+The method calculates:
+
+</p>
+
+<pre><code>
+1 + 2 + 3 + 9 = 15
+</code></pre>
+
+<p>
+
+and returns <strong>15</strong>.
+
+</p>
+
+<p>
+
+Therefore:
+
+</p>
+
+<pre><code>
+result = 15
+</code></pre>
+
+
+<h3>
+3. Accessing Array Elements
+</h3>
+
+<p>
+
+Inside the method:
+
+</p>
+
+<pre><code>
+char ch = arr[i];
+</code></pre>
+
+<p>
+
+gets one character from the array at a time.
+
+</p>
+
+<p>
+
+For a character array, we use:
+
+</p>
+
+<pre><code>
+arr.length
+</code></pre>
+
+<p>
+
+Notice that there are <strong>no parentheses</strong>.
+
+</p>
+
+<p>
+
+This is different from a String:
+
+</p>
+
+<pre><code>
+str.length()
+</code></pre>
+
+<p>
+
+because <strong>String.length()</strong> is a method, whereas an
+array's <strong>length</strong> is a field.
+
+</p>
+
+
+<h3>
+4. Checking for a Digit
+</h3>
+
+<pre><code>
+if (Character.isDigit(ch))
+</code></pre>
+
+<p>
+
+checks whether the current character is a digit.
+
+</p>
+
+<p>
+
+For example:
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Character</th>
+
+<th>Result</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>'5'</td>
+
+<td>true</td>
+
+</tr>
+
+<tr>
+
+<td>'9'</td>
+
+<td>true</td>
+
+</tr>
+
+<tr>
+
+<td>'a'</td>
+
+<td>false</td>
+
+</tr>
+
+<tr>
+
+<td>'@'</td>
+
+<td>false</td>
+
+</tr>
+
+<tr>
+
+<td>' '</td>
+
+<td>false</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+
+<h3>
+5. Converting the Character
+</h3>
+
+<pre><code>
+ch - '0'
+</code></pre>
+
+<p>
+
+converts a digit character to its numeric value.
+
+</p>
+
+<p>
+
+For example:
+
+</p>
+
+<pre><code>
+'1' - '0' = 1
+
+'2' - '0' = 2
+
+'9' - '0' = 9
+</code></pre>
+
+<p>
+
+The converted value can then be added to <strong>sum</strong>.
+
+</p>
+
+
+<h3>
+6. Returning the Result
+</h3>
+
+<pre><code>
+return sum;
+</code></pre>
+
+<p>
+
+sends the calculated sum back to the statement that called the method.
+
+</p>
+
+<pre><code>
+int result = sumOfDigits(data);
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+STEP BY STEP WORKING
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+6. Step-by-Step Working
+</h2>
+
+<p>
+
+The character array is:
+
+</p>
+
+<pre><code>
+{'1', '2', '3', 'a', ' ', '9'}
+</code></pre>
+
+<p>
+
+The program examines each character one by one.
+
+</p>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Character</th>
+
+<th>Is Digit?</th>
+
+<th>Numeric Value</th>
+
+<th>Sum</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>'1'</td>
+
+<td>Yes</td>
+
+<td>1</td>
+
+<td>1</td>
+
+</tr>
+
+<tr>
+
+<td>'2'</td>
+
+<td>Yes</td>
+
+<td>2</td>
+
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>'3'</td>
+
+<td>Yes</td>
+
+<td>3</td>
+
+<td>6</td>
+
+</tr>
+
+<tr>
+
+<td>'a'</td>
+
+<td>No</td>
+
+<td>Ignored</td>
+
+<td>6</td>
+
+</tr>
+
+<tr>
+
+<td>' '</td>
+
+<td>No</td>
+
+<td>Ignored</td>
+
+<td>6</td>
+
+</tr>
+
+<tr>
+
+<td>'9'</td>
+
+<td>Yes</td>
+
+<td>9</td>
+
+<td>15</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>
+
+Therefore, the final value of <strong>sum</strong> is:
+
+</p>
+
+<pre><code>
+15
+</code></pre>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+HAND CALCULATION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+7. Hand Calculation
+</h2>
+
+<p>
+
+The array is:
+
+</p>
+
+<pre><code>
+{'1', '2', '3', 'a', ' ', '9'}
+</code></pre>
+
+<p>
+
+Digit characters are:
+
+</p>
+
+<pre><code>
+'1'   '2'   '3'   '9'
+</code></pre>
+
+<p>
+
+Their numeric values are:
+
+</p>
+
+<pre><code>
+1 + 2 + 3 + 9 = 15
+</code></pre>
+
+<p>
+
+Therefore:
+
+</p>
+
+<pre><code>
+Sum of digits = 15
+</code></pre>
+
+<p>
+
+The characters <strong>'a'</strong> and <strong>' '</strong> are ignored
+because they are not digits.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+IMPORTANT CONCEPTS
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+8. Important Concepts
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Concept</th>
+
+<th>Explanation</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+<strong>char[]</strong>
+</td>
+
+<td>
+Used to create an array of characters.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>arr.length</strong>
+</td>
+
+<td>
+Returns the number of elements in the character array.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>arr[i]</strong>
+</td>
+
+<td>
+Accesses the character at index <strong>i</strong>.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>Character.isDigit(ch)</strong>
+</td>
+
+<td>
+Checks whether the character is a digit.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>ch - '0'</strong>
+</td>
+
+<td>
+Converts a digit character into its numeric value.
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<strong>return sum</strong>
+</td>
+
+<td>
+Returns the calculated sum to the calling statement.
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+RESULT
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+9. Result
+</h2>
+
+<p>
+
+The Java program to calculate the <strong>sum of all digit characters
+in a character array</strong> was successfully implemented using a
+user-defined method, character array traversal,
+<strong>Character.isDigit()</strong>, and character-to-integer
+conversion using <strong>ch - '0'</strong>.
+
+</p>
+
+</section>
+
+<hr>
+
+
+<!-- ==========================================================
+CONCLUSION
+========================================================== -->
+
+<section>
+
+<h2 class="section-title">
+10. Conclusion
+</h2>
+
+<p>
+
+In this practical, we learned how to pass a character array to a
+user-defined method and return a calculated value from the method.
+
+</p>
+
+<p>
+
+We also learned how to identify digit characters using
+<strong>Character.isDigit()</strong> and convert digit characters into
+their corresponding numeric values using <strong>ch - '0'</strong>.
+
+</p>
+
+<p>
+
+Non-digit characters such as letters, spaces, and symbols are ignored
+while calculating the sum.
+
+</p>
+
+</section>
+
+
+<!-- ==========================================================
+NAVIGATION
+========================================================== -->
+
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;">
+
+<a href="experiment6.html"
+class="primary-button">
+
+← Previous Practical
+
+</a>
+
+<a href="index.html"
+class="primary-button">
+
+Back to Practicals
+
+</a>
+
+<a href="experiment8.html"
+class="primary-button">
+
+Next Practical →
+
+</a>
+
+</section>
+
+
+</main>
+
+
+<!-- ==========================================================
+FOOTER
+========================================================== -->
+
+<footer>
+
+<div class="container">
+
+<h3>
+PU's Academics
+</h3>
+
+<p>
+Learn Today. Lead Tomorrow.
+</p>
+
+<p>
+
+Digital Learning Platform for Python Programming, Artificial Intelligence,
+Machine Learning and Core Java.
+
+</p>
+
+<p>
+© 2026 PU's Academics. All Rights Reserved.
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
