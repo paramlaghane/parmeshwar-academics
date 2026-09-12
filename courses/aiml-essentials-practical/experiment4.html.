@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI & ML Essentials Practical 4 | Evaluation of Classification Model Predictions | PU's Academics">
+    <title>Practical No. 04 | AI & ML Essentials Practical</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .formula-box {
+            margin: 1.25rem 0;
+            padding: 1rem 1.25rem;
+            border-left: 4px solid currentColor;
+            background: rgba(127, 127, 127, 0.08);
+            font-family: "IBM Plex Mono", monospace;
+            overflow-x: auto;
+        }
+        .answer-space {
+            min-height: 70px;
+            margin: 0.75rem 0 1.25rem;
+            border: 1px dashed rgba(127, 127, 127, 0.5);
+            border-radius: 4px;
+        }
+        .cm-table th, .cm-table td { text-align: center; vertical-align: middle; }
+        .data-table th, .data-table td { text-align: center; }
+        .note-box {
+            margin: 1.25rem 0;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgba(127, 127, 127, 0.35);
+            border-radius: 4px;
+        }
+        .question-list li { margin-bottom: 0.75rem; }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div>
+            <h1 class="site-title">PU's Academics</h1>
+            <p class="site-tagline">Digital Learning Platform</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <p>Practical No. 04</p>
+        <h2>Evaluation of Classification Model Predictions</h2>
+        <p>AI &amp; ML Essentials Practical</p>
+    </div>
+</section>
+
+<main class="container">
+
+<section>
+    <h2 class="section-title">Aim</h2>
+    <p>To understand and evaluate the performance of a classification model using a <strong>Confusion Matrix, Accuracy, Precision, Recall, and F1-Score</strong>.</p>
+</section>
+
+<section>
+    <h2 class="section-title">Learning Objectives</h2>
+    <p>After completing this practical, students should be able to:</p>
+    <ol>
+        <li>Understand the relationship between <strong>Actual</strong> and <strong>Predicted</strong> classes.</li>
+        <li>Identify <strong>True Positive (TP), True Negative (TN), False Positive (FP), and False Negative (FN)</strong>.</li>
+        <li>Construct a <strong>Confusion Matrix</strong>.</li>
+        <li>Calculate <strong>Accuracy, Precision, Recall, and F1-Score</strong>.</li>
+        <li>Compare the performance of two classification models.</li>
+        <li>Select an appropriate evaluation metric based on the application.</li>
+    </ol>
+</section>
+
+<section>
+    <h2 class="section-title">Task 1: Construct a Confusion Matrix</h2>
+    <p>A classification model is used to predict whether a student will <strong>Pass (1)</strong> or <strong>Fail (0)</strong>.</p>
+    <p>The actual outcomes and model predictions are given below.</p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Student</th><th>Actual Class</th><th>Predicted Class</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>S1</td><td>1</td><td>1</td></tr>
+            <tr><td>S2</td><td>1</td><td>1</td></tr>
+            <tr><td>S3</td><td>1</td><td>0</td></tr>
+            <tr><td>S4</td><td>0</td><td>0</td></tr>
+            <tr><td>S5</td><td>0</td><td>0</td></tr>
+            <tr><td>S6</td><td>0</td><td>1</td></tr>
+            <tr><td>S7</td><td>1</td><td>1</td></tr>
+            <tr><td>S8</td><td>0</td><td>0</td></tr>
+            <tr><td>S9</td><td>1</td><td>1</td></tr>
+            <tr><td>S10</td><td>0</td><td>0</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Questions</h3>
+    <ol class="question-list">
+        <li>Identify the <strong>True Positive (TP)</strong> cases.</li>
+        <li>Identify the <strong>True Negative (TN)</strong> cases.</li>
+        <li>Identify the <strong>False Positive (FP)</strong> cases.</li>
+        <li>Identify the <strong>False Negative (FN)</strong> cases.</li>
+        <li>Calculate the values of TP, TN, FP, and FN.</li>
+        <li>Construct the confusion matrix.</li>
+    </ol>
+
+    <h3>Confusion Matrix Format</h3>
+    <table class="cm-table">
+        <thead>
+            <tr>
+                <th>Actual \ Predicted</th>
+                <th>Predicted Positive (1)</th>
+                <th>Predicted Negative (0)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><th>Actual Positive (1)</th><td>TP = ?</td><td>FN = ?</td></tr>
+            <tr><th>Actual Negative (0)</th><td>FP = ?</td><td>TN = ?</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="section-title">Task 2: Calculate Classification Evaluation Metrics</h2>
+    <p>Using the TP, TN, FP, and FN values obtained in <strong>Task 1</strong>, calculate the following:</p>
+
+    <h3>1. Accuracy</h3>
+    <div class="formula-box">Accuracy = (TP + TN) / (TP + TN + FP + FN)</div>
+
+    <h3>2. Precision</h3>
+    <div class="formula-box">Precision = TP / (TP + FP)</div>
+
+    <h3>3. Recall</h3>
+    <div class="formula-box">Recall = TP / (TP + FN)</div>
+
+    <h3>4. F1-Score</h3>
+    <div class="formula-box">F1-Score = 2 × (Precision × Recall) / (Precision + Recall)</div>
+</section>
+
+<section>
+    <h2 class="section-title">Task 3: Compare Two Classification Models</h2>
+    <p>Two classification models, <strong>Model A</strong> and <strong>Model B</strong>, have been evaluated on the same dataset.</p>
+    <p>The resulting confusion matrices are given below.</p>
+
+    <h3>Model A</h3>
+    <table class="cm-table">
+        <thead>
+            <tr>
+                <th>Actual \ Predicted</th>
+                <th>Predicted Positive</th>
+                <th>Predicted Negative</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><th>Actual Positive</th><td>90</td><td>10</td></tr>
+            <tr><th>Actual Negative</th><td>10</td><td>90</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Model B</h3>
+    <table class="cm-table">
+        <thead>
+            <tr>
+                <th>Actual \ Predicted</th>
+                <th>Predicted Positive</th>
+                <th>Predicted Negative</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><th>Actual Positive</th><td>95</td><td>5</td></tr>
+            <tr><th>Actual Negative</th><td>25</td><td>75</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Questions</h3>
+    <p>For <strong>both Model A and Model B</strong>:</p>
+    <ol class="question-list">
+        <li>Identify TP, TN, FP, and FN.</li>
+        <li>Calculate Accuracy.</li>
+        <li>Calculate Precision.</li>
+        <li>Calculate Recall.</li>
+        <li>Calculate F1-Score.</li>
+        <li>Compare the two models.</li>
+        <li>Which model has higher Accuracy?</li>
+        <li>Which model has higher Precision?</li>
+        <li>Which model has higher Recall?</li>
+        <li>Which model has higher F1-Score?</li>
+        <li>If both Precision and Recall are important, which model would you prefer? Give a reason.</li>
+    </ol>
+
+    <div class="note-box">
+        <h3>Important Question</h3>
+        <p><strong>Is the model with the highest Accuracy necessarily the best model? Explain your answer.</strong></p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Task 4: Choose the Appropriate Evaluation Metric</h2>
+    <p>In machine learning, different applications have different consequences for incorrect predictions.</p>
+    <p>For each situation below:</p>
+    <ol>
+        <li>Identify the <strong>positive class</strong>.</li>
+        <li>Identify whether <strong>False Positive</strong> or <strong>False Negative</strong> is more harmful.</li>
+        <li>Select the most appropriate evaluation metric.</li>
+        <li>Give a brief justification.</li>
+    </ol>
+
+    <h3>Situation A: Disease Detection</h3>
+    <p>A machine learning model predicts whether a patient has a serious disease.</p>
+    <p>A <strong>False Negative</strong> means that a patient who actually has the disease is predicted as healthy.</p>
+    <p><strong>Question:</strong> Which metric should receive greater importance: <strong>Precision or Recall</strong>?</p>
+    <p>Explain why.</p>
+
+    <h3>Situation B: Email Spam Detection</h3>
+    <p>A machine learning model classifies emails as <strong>Spam</strong> or <strong>Not Spam</strong>.</p>
+    <p>A <strong>False Positive</strong> means that a genuine and important email is incorrectly classified as spam.</p>
+    <p><strong>Question:</strong> Which metric should receive greater importance: <strong>Precision or Recall</strong>?</p>
+    <p>Explain why.</p>
+
+    <h3>Situation C: Fraud Detection</h3>
+    <p>A bank uses a machine learning model to identify fraudulent transactions.</p>
+    <p>A <strong>False Negative</strong> means that a fraudulent transaction is incorrectly classified as a genuine transaction.</p>
+    <p><strong>Questions:</strong></p>
+    <ol>
+        <li>Which type of error is particularly dangerous?</li>
+        <li>Which metric should receive greater importance?</li>
+        <li>Why?</li>
+    </ol>
+
+    <h3>Situation D: Student Pass/Fail Prediction</h3>
+    <p>A college uses a classification model to predict whether students will pass or fail.</p>
+    <p>Suppose the consequences of False Positive and False Negative are approximately similar.</p>
+    <p><strong>Questions:</strong></p>
+    <ol>
+        <li>Which evaluation metrics could be considered?</li>
+        <li>Would Accuracy alone be sufficient?</li>
+        <li>Why might F1-Score also be useful?</li>
+    </ol>
+</section>
+
+<section>
+    <h2 class="section-title">Conclusion</h2>
+    <p>Write a short conclusion explaining:</p>
+    <p>What you learned about evaluating a classification model and why choosing an appropriate evaluation metric is important.</p>
+    <div class="answer-space"></div>
+</section>
+
+<section>
+    <h2 class="section-title">Student Record</h2>
+    <table>
+        <tbody>
+            <tr><th>Name</th><td>&nbsp;</td><th>Roll No.</th><td>&nbsp;</td></tr>
+            <tr><th>Class / Division</th><td>&nbsp;</td><th>Date</th><td>&nbsp;</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="navigation">
+    <a href="experiment3.html" class="course-button">← Previous Practical</a>
+    <a href="index.html" class="course-button">Back to Practicals</a>
+    <a href="experiment5.html" class="course-button">Next Practical →</a>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>PU's Academics • AI &amp; ML Essentials Practical</p>
+        <p>Learn Today. Lead Tomorrow.</p>
+    </div>
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+</body>
+</html>
