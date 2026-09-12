@@ -4,148 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practical No. 04 | AIML Essentials Practical</title>
-<link rel="stylesheet" href="../../../assets/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-<header class="site-header">
-<div class="container header-content">
-<div><h1 class="site-title">PU's Academics</h1><p class="site-tagline">Learn Today. Lead Tomorrow.</p></div>
-<button id="themeToggle" class="theme-toggle" type="button">🌙</button>
-</div>
-</header>
-
-<section class="hero"><div class="container">
-<h2>AIML Essentials Practical</h2>
-<p>Practical No. 04 – Evaluation of Classification Model Predictions</p>
-</div></section>
-
+<header class="site-header"><div class="container header-content"><div><h1 class="site-title">PU's Academics</h1><p class="site-tagline">Learn Today. Lead Tomorrow.</p></div><button id="themeToggle" class="theme-toggle">🌙</button></div></header>
+<section class="hero"><div class="container"><h2>Practical No. 04</h2><p>Evaluation of Classification Model Predictions</p></div></section>
 <main class="container">
-
-<section class="course-card">
-<h2 class="section-title">1. Aim</h2>
-<p>To understand and evaluate the performance of a classification model using a <strong>Confusion Matrix, Accuracy, Precision, Recall, and F1-Score</strong>.</p>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">2. Learning Objectives</h2>
-<p>After completing this practical, students should be able to:</p>
-<ol>
-<li>Understand the relationship between <strong>Actual</strong> and <strong>Predicted</strong> classes.</li>
-<li>Identify <strong>True Positive (TP), True Negative (TN), False Positive (FP), and False Negative (FN)</strong>.</li>
-<li>Construct a <strong>Confusion Matrix</strong>.</li>
-<li>Calculate <strong>Accuracy, Precision, Recall, and F1-Score</strong>.</li>
-<li>Compare the performance of two classification models.</li>
-<li>Select an appropriate evaluation metric based on the application.</li>
-</ol>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">3. Task 1: Construct a Confusion Matrix</h2>
-<p>A classification model is used to predict whether a student will <strong>Pass (1)</strong> or <strong>Fail (0)</strong>.</p>
-<p>The actual outcomes and model predictions are given below.</p>
-<table>
-<tr><th>Student</th><th>Actual Class</th><th>Predicted Class</th></tr>
-<tr><td>S1</td><td>1</td><td>1</td></tr><tr><td>S2</td><td>1</td><td>1</td></tr>
-<tr><td>S3</td><td>1</td><td>0</td></tr><tr><td>S4</td><td>0</td><td>0</td></tr>
-<tr><td>S5</td><td>0</td><td>0</td></tr><tr><td>S6</td><td>0</td><td>1</td></tr>
-<tr><td>S7</td><td>1</td><td>1</td></tr><tr><td>S8</td><td>0</td><td>0</td></tr>
-<tr><td>S9</td><td>1</td><td>1</td></tr><tr><td>S10</td><td>0</td><td>0</td></tr>
-</table>
-<h3>Questions</h3>
-<ol><li>Identify the <strong>True Positive (TP)</strong> cases.</li><li>Identify the <strong>True Negative (TN)</strong> cases.</li><li>Identify the <strong>False Positive (FP)</strong> cases.</li><li>Identify the <strong>False Negative (FN)</strong> cases.</li><li>Calculate the values of TP, TN, FP, and FN.</li><li>Construct the confusion matrix.</li></ol>
-<h3>Confusion Matrix Format</h3>
-<table>
-<tr><th>Actual / Predicted</th><th>Predicted Positive (1)</th><th>Predicted Negative (0)</th></tr>
-<tr><th>Actual Positive (1)</th><td><strong>TP = ?</strong></td><td><strong>FN = ?</strong></td></tr>
-<tr><th>Actual Negative (0)</th><td><strong>FP = ?</strong></td><td><strong>TN = ?</strong></td></tr>
-</table>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">4. Task 2: Calculate Classification Evaluation Metrics</h2>
-<p>Using the TP, TN, FP, and FN values obtained in <strong>Task 1</strong>, calculate:</p>
-<ol><li><strong>Accuracy</strong></li><li><strong>Precision</strong></li><li><strong>Recall</strong></li><li><strong>F1-Score</strong></li></ol>
-<h3>Evaluation Metric Formulas</h3>
-<table><tr><th>Metric</th><th>Formula</th></tr>
-<tr><td>Accuracy</td><td><code>(TP + TN) / (TP + TN + FP + FN)</code></td></tr>
-<tr><td>Precision</td><td><code>TP / (TP + FP)</code></td></tr>
-<tr><td>Recall</td><td><code>TP / (TP + FN)</code></td></tr>
-<tr><td>F1-Score</td><td><code>2 × (Precision × Recall) / (Precision + Recall)</code></td></tr></table>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">5. Task 3: Compare Two Classification Models</h2>
-<p>Two classification models, <strong>Model A</strong> and <strong>Model B</strong>, have been evaluated on the same dataset.</p>
-<h3>Model A</h3>
-<table><tr><th>Actual / Predicted</th><th>Predicted Positive</th><th>Predicted Negative</th></tr>
-<tr><th>Actual Positive</th><td>90</td><td>10</td></tr><tr><th>Actual Negative</th><td>10</td><td>90</td></tr></table>
-<h3>Model B</h3>
-<table><tr><th>Actual / Predicted</th><th>Predicted Positive</th><th>Predicted Negative</th></tr>
-<tr><th>Actual Positive</th><td>95</td><td>5</td></tr><tr><th>Actual Negative</th><td>25</td><td>75</td></tr></table>
-<h3>Questions</h3>
-<ol><li>Identify TP, TN, FP, and FN.</li><li>Calculate Accuracy.</li><li>Calculate Precision.</li><li>Calculate Recall.</li><li>Calculate F1-Score.</li><li>Compare the two models.</li><li>Which model has higher Accuracy?</li><li>Which model has higher Precision?</li><li>Which model has higher Recall?</li><li>Which model has higher F1-Score?</li><li>If both Precision and Recall are important, which model would you prefer? Give a reason.</li></ol>
-<h3>Important Question</h3>
-<p><strong>Is the model with the highest Accuracy necessarily the best model? Explain your answer.</strong></p>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">6. Task 4: Choose the Appropriate Evaluation Metric</h2>
-<p>In machine learning, different applications have different consequences for incorrect predictions.</p>
-<p>For each situation below:</p>
-<ol><li>Identify the <strong>positive class</strong>.</li><li>Identify whether <strong>False Positive</strong> or <strong>False Negative</strong> is more harmful.</li><li>Select the most appropriate evaluation metric.</li><li>Give a brief justification.</li></ol>
-
-<h3>Situation A: Disease Detection</h3>
-<p>A machine learning model predicts whether a patient has a serious disease.</p>
-<p>A <strong>False Negative</strong> means that a patient who actually has the disease is predicted as healthy.</p>
-<p><strong>Question:</strong> Which metric should receive greater importance: <strong>Precision or Recall?</strong> Explain why.</p>
-
-<h3>Situation B: Email Spam Detection</h3>
-<p>A machine learning model classifies emails as <strong>Spam</strong> or <strong>Not Spam</strong>.</p>
-<p>A <strong>False Positive</strong> means that a genuine and important email is incorrectly classified as spam.</p>
-<p><strong>Question:</strong> Which metric should receive greater importance: <strong>Precision or Recall?</strong> Explain why.</p>
-
-<h3>Situation C: Fraud Detection</h3>
-<p>A bank uses a machine learning model to identify fraudulent transactions.</p>
-<p>A <strong>False Negative</strong> means that a fraudulent transaction is incorrectly classified as a genuine transaction.</p>
-<ol><li>Which type of error is particularly dangerous?</li><li>Which metric should receive greater importance?</li><li>Why?</li></ol>
-
-<h3>Situation D: Student Pass/Fail Prediction</h3>
-<p>A college uses a classification model to predict whether students will pass or fail.</p>
-<p>Suppose the consequences of False Positive and False Negative are approximately similar.</p>
-<ol><li>Which evaluation metrics could be considered?</li><li>Would Accuracy alone be sufficient?</li><li>Why might F1-Score also be useful?</li></ol>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">7. Suggested Analysis Table</h2>
-<table><tr><th>Metric</th><th>Model A</th><th>Model B</th><th>Better Model</th></tr>
-<tr><td>Accuracy</td><td>________</td><td>________</td><td>________</td></tr>
-<tr><td>Precision</td><td>________</td><td>________</td><td>________</td></tr>
-<tr><td>Recall</td><td>________</td><td>________</td><td>________</td></tr>
-<tr><td>F1-Score</td><td>________</td><td>________</td><td>________</td></tr></table>
-</section><hr>
-
-<section class="course-card">
-<h2 class="section-title">8. Conclusion</h2>
-<p>Write a short conclusion explaining what you learned about evaluating a classification model and why choosing an appropriate evaluation metric is important.</p>
-<p>Your conclusion should mention the role of the <strong>Confusion Matrix, Accuracy, Precision, Recall, and F1-Score</strong> in evaluating classification models.</p>
-</section><hr>
-
-<section class="course-card">
-<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-<a href="experiment3.html" class="primary-button">← Previous Practical</a>
-<a href="index.html" class="primary-button">Back to Practicals</a>
-<a href="experiment5.html" class="primary-button">Next Practical →</a>
-</div>
-</section>
-
+<section><h2 class="section-title">AIML Essentials Practical – Practical No. 4</h2><h3>EXPERIMENT 4: Evaluation of Classification Model Predictions</h3></section><hr>
+<section><h2 class="section-title">1. Aim</h2><p>To understand and evaluate the performance of a classification model using a <strong>Confusion Matrix, Accuracy, Precision, Recall, and F1-Score</strong>.</p></section><hr>
+<section><h2 class="section-title">2. Learning Objectives</h2><p>After completing this practical, students should be able to:</p><ol><li>Understand the relationship between <strong>Actual</strong> and <strong>Predicted</strong> classes.</li><li>Identify <strong>True Positive (TP), True Negative (TN), False Positive (FP), and False Negative (FN)</strong>.</li><li>Construct a <strong>Confusion Matrix</strong>.</li><li>Calculate <strong>Accuracy, Precision, Recall, and F1-Score</strong>.</li><li>Compare the performance of two classification models.</li><li>Select an appropriate evaluation metric based on the application.</li></ol></section><hr>
+<section><h2 class="section-title">3. Task 1 – Construct a Confusion Matrix</h2><p>A classification model is used to predict whether a student will <strong>Pass (1)</strong> or <strong>Fail (0)</strong>.</p><p>The actual outcomes and model predictions are given below.</p><table><thead><tr><th>Student</th><th>Actual Class</th><th>Predicted Class</th></tr></thead><tbody><tr><td>S1</td><td>1</td><td>1</td></tr><tr><td>S2</td><td>1</td><td>1</td></tr><tr><td>S3</td><td>1</td><td>0</td></tr><tr><td>S4</td><td>0</td><td>0</td></tr><tr><td>S5</td><td>0</td><td>0</td></tr><tr><td>S6</td><td>0</td><td>1</td></tr><tr><td>S7</td><td>1</td><td>1</td></tr><tr><td>S8</td><td>0</td><td>0</td></tr><tr><td>S9</td><td>1</td><td>1</td></tr><tr><td>S10</td><td>0</td><td>0</td></tr></tbody></table>
+<h3>Questions</h3><ol><li>Identify the <strong>True Positive (TP)</strong> cases.</li><li>Identify the <strong>True Negative (TN)</strong> cases.</li><li>Identify the <strong>False Positive (FP)</strong> cases.</li><li>Identify the <strong>False Negative (FN)</strong> cases.</li><li>Calculate the values of TP, TN, FP, and FN.</li><li>Construct the confusion matrix.</li></ol>
+<h3>Confusion Matrix Format</h3><table><thead><tr><th></th><th>Predicted Positive (1)</th><th>Predicted Negative (0)</th></tr></thead><tbody><tr><th>Actual Positive (1)</th><td>TP = ?</td><td>FN = ?</td></tr><tr><th>Actual Negative (0)</th><td>FP = ?</td><td>TN = ?</td></tr></tbody></table></section><hr>
+<section><h2 class="section-title">4. Task 2 – Calculate Classification Evaluation Metrics</h2><p>Using the TP, TN, FP, and FN values obtained in <strong>Task 1</strong>, calculate the following:</p><ol><li><strong>Accuracy</strong></li><li><strong>Precision</strong></li><li><strong>Recall</strong></li><li><strong>F1-Score</strong></li></ol><h3>Formula Reference</h3><table><thead><tr><th>Metric</th><th>Formula</th></tr></thead><tbody><tr><td>Accuracy</td><td>(TP + TN) / (TP + TN + FP + FN)</td></tr><tr><td>Precision</td><td>TP / (TP + FP)</td></tr><tr><td>Recall</td><td>TP / (TP + FN)</td></tr><tr><td>F1-Score</td><td>2 × Precision × Recall / (Precision + Recall)</td></tr></tbody></table></section><hr>
+<section><h2 class="section-title">5. Task 3 – Compare Two Classification Models</h2><p>Two classification models, <strong>Model A</strong> and <strong>Model B</strong>, have been evaluated on the same dataset.</p><h3>Model A</h3><table><thead><tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr></thead><tbody><tr><th>Actual Positive</th><td>90</td><td>10</td></tr><tr><th>Actual Negative</th><td>10</td><td>90</td></tr></tbody></table><h3>Model B</h3><table><thead><tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr></thead><tbody><tr><th>Actual Positive</th><td>95</td><td>5</td></tr><tr><th>Actual Negative</th><td>25</td><td>75</td></tr></tbody></table><h3>Questions</h3><p>For <strong>both Model A and Model B</strong>:</p><ol><li>Identify TP, TN, FP, and FN.</li><li>Calculate Accuracy.</li><li>Calculate Precision.</li><li>Calculate Recall.</li><li>Calculate F1-Score.</li><li>Compare the two models.</li><li>Which model has higher Accuracy?</li><li>Which model has higher Precision?</li><li>Which model has higher Recall?</li><li>Which model has higher F1-Score?</li><li>If both Precision and Recall are important, which model would you prefer? Give a reason.</li></ol></section><hr>
+<section><h2 class="section-title">6. Important Question</h2><p><strong>Is the model with the highest Accuracy necessarily the best model? Explain your answer.</strong></p></section><hr>
+<section><h2 class="section-title">7. Task 4 – Choose the Appropriate Evaluation Metric</h2><p>In machine learning, different applications have different consequences for incorrect predictions.</p><p>For each situation:</p><ol><li>Identify the <strong>positive class</strong>.</li><li>Identify whether <strong>False Positive</strong> or <strong>False Negative</strong> is more harmful.</li><li>Select the most appropriate evaluation metric.</li><li>Give a brief justification.</li></ol><h3>Situation A: Disease Detection</h3><p>A machine learning model predicts whether a patient has a serious disease.</p><p>A <strong>False Negative</strong> means that a patient who actually has the disease is predicted as healthy.</p><p><strong>Question:</strong> Which metric should receive greater importance: <strong>Precision or Recall</strong>? Explain why.</p><h3>Situation B: Email Spam Detection</h3><p>A machine learning model classifies emails as <strong>Spam</strong> or <strong>Not Spam</strong>.</p><p>A <strong>False Positive</strong> means that a genuine and important email is incorrectly classified as spam.</p><p><strong>Question:</strong> Which metric should receive greater importance: <strong>Precision or Recall</strong>? Explain why.</p><h3>Situation C: Fraud Detection</h3><p>A bank uses a machine learning model to identify fraudulent transactions.</p><p>A <strong>False Negative</strong> means that a fraudulent transaction is incorrectly classified as a genuine transaction.</p><ol><li>Which type of error is particularly dangerous?</li><li>Which metric should receive greater importance?</li><li>Why?</li></ol><h3>Situation D: Student Pass/Fail Prediction</h3><p>A college uses a classification model to predict whether students will pass or fail.</p><p>Suppose the consequences of False Positive and False Negative are approximately similar.</p><ol><li>Which evaluation metrics could be considered?</li><li>Would Accuracy alone be sufficient?</li><li>Why might F1-Score also be useful?</li></ol></section><hr>
+<section><h2 class="section-title">8. Conclusion</h2><p>Write a short conclusion explaining:</p><p>What you learned about evaluating a classification model and why choosing an appropriate evaluation metric is important.</p></section><hr>
+<section style="display:flex;justify-content:space-between;gap:20px;margin:60px 0;flex-wrap:wrap;"><a href="experiment3.html" class="primary-button">← Previous Practical</a><a href="index.html" class="primary-button">Back to Practicals</a><a href="experiment5.html" class="primary-button">Next Practical →</a></section>
 </main>
-
-<footer class="site-footer"><div class="container">
-<p><strong>PU's Academics</strong></p><p>Learn Today. Lead Tomorrow.</p>
-<p>Digital learning platform for academic resources and practical learning.</p>
-<p>&copy; 2026 PU's Academics. All rights reserved.</p>
-</div></footer>
-
-<script src="../../../assets/js/theme.js"></script>
+<footer><div class="container"><div class="container"><h3>PU's Academics</h3><p>Learn Today. Lead Tomorrow.</p><p>Digital Learning Platform for Python Programming, Artificial Intelligence, Machine Learning and Core Java.</p><p>© 2026 PU's Academics. All Rights Reserved.</p></div></div></footer>
+<script src="../../assets/js/theme.js"></script>
 </body>
 </html>
