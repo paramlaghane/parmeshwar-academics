@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical No. 07 | Python Programming Practical</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+<div class="container header-content">
+<div>
+<h1 class="site-title">PU's Academics</h1>
+<p class="site-tagline">Learn Today. Lead Tomorrow.</p>
+</div>
+<button id="themeToggle" class="theme-toggle">🌙</button>
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+<h2>Practical No. 07</h2>
+<p>Split a List into Chunks of Size N</p>
+</div>
+</section>
+
+<main class="container">
+
+<section>
+<h2 class="section-title">1. Aim</h2>
+<p>To write a Python program to split a list into smaller chunks of a specified size <strong>N</strong> using list slicing.</p>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">2. Theory</h2>
+<p>List chunking means dividing a list into smaller lists containing a maximum of <strong>N</strong> elements each.</p>
+<p>Python list slicing uses the syntax:</p>
+<pre><code>list[start:stop]</code></pre>
+<p>For chunking, we use:</p>
+<pre><code>lst[i:i+n]</code></pre>
+<p>The starting index <strong>i</strong> is increased by <strong>n</strong> for every chunk using:</p>
+<pre><code>range(0, len(lst), n)</code></pre>
+<p>If the number of elements is not exactly divisible by <strong>N</strong>, the last chunk contains the remaining elements.</p>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">3. Algorithm</h2>
+<ol>
+<li>Start.</li>
+<li>Initialize a list and the required chunk size <strong>N</strong>.</li>
+<li>Create an empty list to store the chunks.</li>
+<li>Use <code>range(0, len(lst), N)</code> to generate the starting indices.</li>
+<li>For each index <strong>i</strong>, extract the chunk using <code>lst[i:i+N]</code>.</li>
+<li>Add the chunk to the result list.</li>
+<li>Display the resulting chunks.</li>
+<li>Stop.</li>
+</ol>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">4. Python Program</h2>
+<pre><code># Split a list into chunks of size N
+
+lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+n = 3
+
+if n &lt;= 0:
+    print("Chunk size must be a positive integer.")
+else:
+    chunks = [lst[i:i+n] for i in range(0, len(lst), n)]
+
+    print("Original List:", lst)
+    print("Chunk Size:", n)
+    print("Chunks:", chunks)</code></pre>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">5. Program Explanation</h2>
+
+<h3>5.1 Creating the List</h3>
+<pre><code>lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code></pre>
+<p>This creates a list containing ten integer elements.</p>
+
+<h3>5.2 Specifying the Chunk Size</h3>
+<pre><code>n = 3</code></pre>
+<p>The value <strong>3</strong> specifies that each chunk should contain a maximum of three elements.</p>
+
+<h3>5.3 Checking the Chunk Size</h3>
+<pre><code>if n &lt;= 0:
+    print("Chunk size must be a positive integer.")</code></pre>
+<p>A chunk size must be greater than zero. If the value of <strong>n</strong> is zero or negative, the program displays an appropriate message.</p>
+
+<h3>5.4 Creating the Chunks</h3>
+<pre><code>chunks = [lst[i:i+n] for i in range(0, len(lst), n)]</code></pre>
+<p>This list comprehension divides the original list into smaller lists. The starting index increases by <strong>n</strong> after every chunk.</p>
+
+<h3>5.5 Understanding List Slicing</h3>
+<pre><code>lst[i:i+n]</code></pre>
+<p>The expression extracts elements starting from index <strong>i</strong> up to, but not including, index <strong>i+n</strong>.</p>
+
+<h3>5.6 Understanding the Range</h3>
+<pre><code>range(0, len(lst), n)</code></pre>
+<p>For the given list and <strong>n = 3</strong>, the starting indices are:</p>
+<pre><code>0, 3, 6, 9</code></pre>
+<p>Therefore, the chunks are:</p>
+<pre><code>[1, 2, 3]
+[4, 5, 6]
+[7, 8, 9]
+[10]</code></pre>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">6. Step-by-Step Working</h2>
+<table>
+<thead><tr><th>Starting Index (i)</th><th>Slicing Expression</th><th>Resulting Chunk</th></tr></thead>
+<tbody>
+<tr><td>0</td><td><code>lst[0:3]</code></td><td>[1, 2, 3]</td></tr>
+<tr><td>3</td><td><code>lst[3:6]</code></td><td>[4, 5, 6]</td></tr>
+<tr><td>6</td><td><code>lst[6:9]</code></td><td>[7, 8, 9]</td></tr>
+<tr><td>9</td><td><code>lst[9:12]</code></td><td>[10]</td></tr>
+</tbody>
+</table>
+<p>The last chunk contains only one element because the list contains ten elements, which is not exactly divisible by three.</p>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">7. Output</h2>
+<pre><code>Original List: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Chunk Size: 3
+Chunks: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]</code></pre>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">8. Important Concepts</h2>
+<table>
+<thead><tr><th>Concept</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>List</td><td>Stores multiple values in a single variable.</td></tr>
+<tr><td>List Slicing</td><td>Extracts a portion of a list.</td></tr>
+<tr><td><code>len()</code></td><td>Returns the number of elements in a list.</td></tr>
+<tr><td><code>range()</code></td><td>Generates starting indices at a specified interval.</td></tr>
+<tr><td>List Comprehension</td><td>Provides a concise way to create the list of chunks.</td></tr>
+</tbody>
+</table>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">9. Result</h2>
+<p>The Python program was successfully executed to divide a list into smaller chunks of the specified size <strong>N</strong>. The final chunk contains the remaining elements when the list length is not exactly divisible by <strong>N</strong>.</p>
+</section>
+<hr>
+
+<section>
+<h2 class="section-title">10. Conclusion</h2>
+<p>In this practical, we learned how to divide a Python list into smaller chunks using list slicing, <code>range()</code>, and list comprehension. We also observed how the final chunk contains the remaining elements when the list size is not exactly divisible by the specified chunk size.</p>
+</section>
+<hr>
+
+<section>
+<div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:40px 0;">
+<a href="experiment6.html" class="primary-button">← Previous Practical</a>
+<a href="index.html" class="primary-button">Back to Practicals</a>
+<a href="experiment8.html" class="primary-button">Next Practical →</a>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<div class="container">
+<p><strong>PU's Academics</strong></p>
+<p>Learn Today. Lead Tomorrow.</p>
+<p>Digital learning platform for academic resources and practical learning.</p>
+<p>&copy; 2026 PU's Academics. All rights reserved.</p>
+</div>
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+</body>
+</html>
