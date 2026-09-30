@@ -1,479 +1,276 @@
-```html
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment No. 9 – Class Demonstrating Constructor and Destructor</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Experiment No. 9 | Core Java Practical</title>
-
-    <meta name="description"
-          content="Core Java Practical Experiment No. 9 - Class Demonstrating Constructor and Destructor">
-
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- Shared Stylesheet -->
     <link rel="stylesheet" href="../../assets/css/style.css">
-
-    <!-- Theme Script -->
     <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .practical-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .practical-content section {
+            margin: 36px 0;
+        }
+
+        .practical-content h2 {
+            margin-bottom: 18px;
+        }
+
+        .practical-content p,
+        .practical-content li {
+            line-height: 1.8;
+        }
+
+        .practical-content ul,
+        .practical-content ol {
+            padding-left: 28px;
+        }
+
+        .code-block,
+        .flowchart {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
+
+        .code-block pre,
+        .flowchart pre {
+            margin: 0;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            white-space: pre;
+        }
+
+        .theory-list {
+            padding-left: 28px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            text-decoration: none;
+        }
+
+        .hero-subtitle {
+            margin-top: 8px;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
 <header class="site-header">
-
     <div class="container">
-
         <div class="header-content">
-
             <div class="brand">
-
-                <h1>PU’s Academics</h1>
-
+                <h1>PU's Academics</h1>
                 <p>Learn Today. Lead Tomorrow.</p>
-
             </div>
 
-            <button
-                id="themeToggle"
-                class="theme-toggle"
-                aria-label="Toggle dark and light theme">
-                🌙
+            <button id="theme-toggle" class="theme-toggle" type="button">
+                Toggle Theme
             </button>
-
         </div>
-
     </div>
-
 </header>
 
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-<section class="hero">
-
-    <div class="container">
-
-        <p class="hero-label">
-            Core Java Practical
-        </p>
-
-        <h1>
-            Experiment No. 9
-        </h1>
-
-        <p class="hero-subtitle">
-            Class Demonstrating Constructor and Destructor
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
-<main class="container">
-
-    <!-- =====================================================
-         TITLE
-    ====================================================== -->
-    <section>
-
-        <h2 class="section-title">
-            Experiment No. 9
-        </h2>
-
-        <h3>
-            Class Demonstrating Constructor and Destructor
-        </h3>
-
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1>Experiment No. 9</h1>
+            <p class="hero-subtitle">Class Demonstrating Constructor and Destructor</p>
+        </div>
     </section>
 
-    <hr>
+    <div class="container practical-content">
 
+        <section>
+            <h2 class="section-title">Aim</h2>
+            <p>
+                To design a Java class that demonstrates <strong>default and parameterized constructors</strong>,
+                constructor chaining using the <code>this</code> keyword, and the concept of
+                <strong>object cleanup</strong> in Java.
+            </p>
+        </section>
 
-    <!-- =====================================================
-         AIM
-    ====================================================== -->
-    <section>
+        <section>
+            <h2 class="section-title">Theory</h2>
 
-        <h2 class="section-title">
-            Aim
-        </h2>
+            <p>
+                A <strong>constructor</strong> is a special method that is automatically called when an object is created using <code>new</code>.
+            </p>
 
-        <p>
-            Design a Java class that demonstrates:
-        </p>
+            <ul class="theory-list">
+                <li>A constructor has the <strong>same name as the class</strong>.</li>
+                <li>It has <strong>no return type</strong>.</li>
+                <li>A <strong>default constructor</strong> takes no arguments.</li>
+                <li>A <strong>parameterized constructor</strong> takes arguments to initialize an object.</li>
+                <li>The <code>this</code> keyword refers to the current object and can also be used for constructor chaining.</li>
+            </ul>
 
-        <ol>
+            <p>
+                Java does not have a destructor like C++. Objects that are no longer referenced may be handled by the
+                <strong>Garbage Collector</strong>. The <code>cleanup()</code> method demonstrates explicit cleanup,
+                while <code>finalize()</code> demonstrates the traditional garbage-collection concept.
+            </p>
+        </section>
 
-            <li>
-                Constructors — default, parameterized, and overloaded
-                using the <code>this</code> keyword.
-            </li>
+        <section>
+            <h2 class="section-title">Algorithm</h2>
 
-            <li>
-                “Destructor” behaviour — since Java has no destructor,
-                demonstrate the <code>cleanup</code> method,
-                <code>finalize</code> method, and
-                <code>AutoCloseable</code> / <code>try-with-resources</code>
-                approach.
-            </li>
+            <ol>
+                <li>Start.</li>
+                <li>Define the <code>Student</code> class with <code>name</code> and <code>rollNo</code>.</li>
+                <li>Define a default constructor using <code>this</code>.</li>
+                <li>Define a parameterized constructor.</li>
+                <li>Define methods to display details and perform cleanup.</li>
+                <li>Create three <code>Student</code> objects.</li>
+                <li>Display the details of all objects.</li>
+                <li>Call the <code>cleanup()</code> method for one object.</li>
+                <li>Set one object reference to <code>null</code> and request garbage collection.</li>
+                <li>Stop.</li>
+            </ol>
+        </section>
 
-        </ol>
+        <section>
+            <h2 class="section-title">Flowchart</h2>
 
-    </section>
+            <div class="flowchart">
+<pre>          ┌─────────────┐
+          │    START    │
+          └──────┬──────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Define Student class│
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Create Student      │
+      │ objects using       │
+      │ constructors        │
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Display student     │
+      │ details             │
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Call cleanup()      │
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Set reference null  │
+      │ and call System.gc()│
+      └──────────┬──────────┘
+                 ↓
+          ┌─────────────┐
+          │    STOP     │
+          └─────────────┘</pre>
+            </div>
+        </section>
 
-    <hr>
+        <section>
+            <h2 class="section-title">Program</h2>
 
-
-    <!-- =====================================================
-         THEORY
-    ====================================================== -->
-    <section>
-
-        <h2 class="section-title">
-            Theory
-        </h2>
-
-        <p>
-            A <strong>constructor</strong> is a special member method
-            that runs automatically when an object is created using
-            <code>new</code>. It is used to initialize the object's fields.
-        </p>
-
-        <p>
-            A constructor:
-        </p>
-
-        <ul>
-
-            <li>
-                Has the <strong>same name as the class</strong>.
-            </li>
-
-            <li>
-                Has <strong>no return type</strong>, not even
-                <code>void</code>.
-            </li>
-
-            <li>
-                Runs automatically when an object is created using
-                <code>new</code>.
-            </li>
-
-        </ul>
-
-        <p>
-            The constructors demonstrated are:
-        </p>
-
-        <ul>
-
-            <li>
-                <strong>Default constructor</strong> – creates an object
-                with default values.
-            </li>
-
-            <li>
-                <strong>Parameterized constructor</strong> – creates and
-                initializes an object in one step.
-            </li>
-
-            <li>
-                <strong>Overloaded constructors</strong> – provide
-                different ways to create objects.
-            </li>
-
-        </ul>
-
-        <p>
-            The <code>this</code> keyword is used to refer to the current
-            object and for constructor chaining.
-        </p>
-
-        <p>
-            <strong>Java has no destructor.</strong> Unlike C++, Java
-            uses garbage collection. The <code>finalize</code> method is
-            not reliable because the garbage collector may run late or
-            never. <code>System.gc()</code> is only a request to the JVM.
-        </p>
-
-        <p>
-            A <code>cleanup</code> / <code>close</code> method provides
-            deterministic cleanup. <code>AutoCloseable</code> with
-            <code>try-with-resources</code> provides automatic and
-            deterministic cleanup.
-        </p>
-
-    </section>
-
-    <hr>
-
-
-    <!-- =====================================================
-         ALGORITHM
-    ====================================================== -->
-    <section>
-
-        <h2 class="section-title">
-            Algorithm
-        </h2>
-
-        <pre><code>CLASS Student:
-    Fields: name, rollNo, static count
-
-    CONSTRUCTOR Student():
-        call Student("Unknown", 0)
-
-    CONSTRUCTOR Student(name, rollNo):
-        this.name = name
-        this.rollNo = rollNo
-        count = count + 1
-        PRINT "Constructor called: object created"
-
-    METHOD display():
-        PRINT name and rollNo
-
-    METHOD cleanup():
-        count = count - 1
-        PRINT "Cleanup done"
-
-    METHOD finalize():
-        PRINT "finalize() called"
-
-MAIN:
-    1. Start
-    2. Create object with default constructor
-    3. Create two objects with parameterized constructor
-    4. Display all three objects and live object count
-    5. Call cleanup() on one object
-    6. Set a reference to null and request System.gc()
-    7. Stop</code></pre>
-
-    </section>
-
-    <hr>
-
-
-    <!-- =====================================================
-         FLOWCHART
-    ====================================================== -->
-    <section>
-
-        <h2 class="section-title">
-            Flowchart
-        </h2>
-
-        <pre><code>             ┌─────────────┐
-             │    START    │
-             └──────┬──────┘
-                    ↓
-       ┌────────────────────────┐
-       │ Create object using    │
-       │ default constructor    │
-       └───────────┬────────────┘
-                   ↓
-       ┌────────────────────────┐
-       │ Create two objects     │
-       │ using parameterized    │
-       │ constructor            │
-       └───────────┬────────────┘
-                   ↓
-       ┌────────────────────────┐
-       │ Display objects and    │
-       │ live object count      │
-       └───────────┬────────────┘
-                   ↓
-       ┌────────────────────────┐
-       │ Call cleanup() on      │
-       │ one object             │
-       └───────────┬────────────┘
-                   ↓
-       ┌────────────────────────┐
-       │ Set reference to null  │
-       │ and request System.gc()│
-       └───────────┬────────────┘
-                   ↓
-             ┌─────────────┐
-             │    STOP     │
-             └─────────────┘</code></pre>
-
-    </section>
-
-    <hr>
-
-
-    <!-- =====================================================
-         PROGRAM
-    ====================================================== -->
-    <section>
-
-        <h2 class="section-title">
-            Program
-        </h2>
-
-        <pre><code>class Student {
+            <div class="code-block">
+<pre><code>class Student {
     String name;
     int rollNo;
-    static int count = 0;
 
     // Default constructor
     Student() {
         this("Unknown", 0);
-        System.out.println(
-            "  (default constructor used)"
-        );
     }
 
     // Parameterized constructor
     Student(String name, int rollNo) {
         this.name = name;
         this.rollNo = rollNo;
-        count++;
-
-        System.out.println(
-            "Constructor called: object created -> " + name
-        );
     }
 
-    // Display student details
+    // Display details
     void display() {
-        System.out.println(
-            "  Name: " + name + ", Roll No: " + rollNo
-        );
+        System.out.println(name + " - " + rollNo);
     }
 
     // Cleanup method
     void cleanup() {
-        count--;
-
-        System.out.println(
-            "Cleanup done for: " + name
-        );
+        System.out.println("Cleanup done for " + name);
     }
 
-    // Legacy finalize() method
-    @Override
+    // finalize method
     protected void finalize() {
-        System.out.println(
-            "finalize() called by GC for: " + name
-        );
+        System.out.println("finalize() called for " + name);
     }
 }
 
 public class ConstructorDemo {
     public static void main(String[] args) {
 
-        System.out.println("--- Creating objects ---");
-
         Student s1 = new Student();
         Student s2 = new Student("Parmeshwar", 101);
         Student s3 = new Student("Aarti", 102);
-
-        System.out.println("\n--- Displaying objects ---");
 
         s1.display();
         s2.display();
         s3.display();
 
-        System.out.println(
-            "\nLive objects = " + Student.count
-        );
-
-        System.out.println(
-            "\n--- Manual cleanup (the 'destructor' role) ---"
-        );
-
         s3.cleanup();
 
-        System.out.println(
-            "Live objects after cleanup = "
-            + Student.count
-        );
-
-        System.out.println(
-            "\n--- Requesting garbage collection ---"
-        );
-
         s1 = null;
-
         System.gc();
-
-        System.out.println("End of main()");
     }
 }</code></pre>
+            </div>
+        </section>
 
-    </section>
+        <section>
+            <h2 class="section-title">Result</h2>
 
-    <hr>
+            <p>
+                The Java program successfully demonstrates <strong>constructors, constructor chaining using
+                <code>this</code>, object initialization, cleanup, and the concept of garbage collection</strong>.
+            </p>
+        </section>
 
-
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
-    <section>
-
-        <div class="course-navigation">
-
-            <a href="experiment8.html" class="primary-button">
-                ← Previous Practical
-            </a>
-
-            <a href="index.html" class="primary-button">
-                Back to Practicals
-            </a>
-
-            <a href="experiment10.html" class="primary-button">
-                Next Practical →
-            </a>
-
+        <div class="navigation">
+            <a href="experiment8.html" class="primary-button">← Previous Practical</a>
+            <a href="index.html" class="primary-button">Back to Practicals</a>
+            <a href="experiment10.html" class="primary-button">Next Practical →</a>
         </div>
 
-    </section>
-
+    </div>
 </main>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
 <footer class="site-footer">
-
     <div class="container">
-
-        <h3>PU’s Academics</h3>
-
-        <p>
-            Learn Today. Lead Tomorrow.
-        </p>
-
-        <p>
-            Digital Learning Platform
-        </p>
-
-        <p>
-            &copy; 2026 PU’s Academics. All rights reserved.
-        </p>
-
+        <h3>PU's Academics</h3>
+        <p>Digital Learning Platform</p>
+        <p>Learn Today. Lead Tomorrow.</p>
+        <p>© 2026 PU's Academics</p>
     </div>
-
 </footer>
 
 </body>
 </html>
-```
