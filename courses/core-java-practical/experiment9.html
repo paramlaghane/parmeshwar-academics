@@ -1,0 +1,808 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Practical No. 09 | Core Java Practical</title>
+
+    <meta name="description"
+          content="Core Java Practical No. 09 - Demonstration of Constructors and Object Cleanup in Java">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <!-- Theme Script -->
+    <script src="../../assets/js/theme.js" defer></script>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="site-header">
+
+    <div class="container">
+
+        <div class="header-content">
+
+            <div class="brand">
+
+                <h1>PU’s Academics</h1>
+
+                <p>Learn Today. Lead Tomorrow.</p>
+
+            </div>
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                aria-label="Toggle dark and light theme">
+                🌙
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero">
+
+    <div class="container">
+
+        <p class="hero-label">
+            Core Java Practical
+        </p>
+
+        <h1>
+            Practical No. 09
+        </h1>
+
+        <p class="hero-subtitle">
+            Demonstration of Constructors and Object Cleanup in Java
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+<main class="container">
+
+    <!-- =====================================================
+         TITLE
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Practical No. 9
+        </h2>
+
+        <h3>
+            Demonstration of Constructors and Object Cleanup in Java
+        </h3>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         AIM
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            1. Aim
+        </h2>
+
+        <p>
+            To write a Java program to demonstrate
+            <strong>default, parameterized, and overloaded constructors</strong>
+            using the <strong>this</strong> keyword and understand the concept of
+            <strong>object cleanup in Java</strong>.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         THEORY
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            2. Theory
+        </h2>
+
+        <p>
+            A <strong>constructor</strong> is a special method that is
+            automatically called when an object is created.
+        </p>
+
+        <h3>Types of Constructors</h3>
+
+        <ol>
+
+            <li>
+                <strong>Default/No-argument constructor</strong> –
+                takes no arguments.
+            </li>
+
+            <li>
+                <strong>Parameterized constructor</strong> –
+                takes arguments to initialize an object.
+            </li>
+
+            <li>
+                <strong>Overloaded constructors</strong> –
+                multiple constructors with different parameter lists.
+            </li>
+
+        </ol>
+
+        <p>
+            The <strong>this</strong> keyword refers to the current object.
+            It can also be used for <strong>constructor chaining</strong>,
+            such as <code>this("Unknown", 0)</code>.
+        </p>
+
+        <p>
+            Java does <strong>not have a destructor</strong> like C++.
+            Objects that are no longer reachable are automatically handled
+            by the <strong>Garbage Collector (GC)</strong>.
+            Explicit cleanup methods can be used when required.
+            The old <code>finalize()</code> mechanism should not be used
+            for normal cleanup.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         ALGORITHM
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            3. Algorithm
+        </h2>
+
+        <ol>
+
+            <li>
+                Start the program.
+            </li>
+
+            <li>
+                Define a <code>Student</code> class with
+                <code>name</code>, <code>rollNo</code>, and object count.
+            </li>
+
+            <li>
+                Define a no-argument constructor using
+                <code>this</code>.
+            </li>
+
+            <li>
+                Define a parameterized constructor to initialize
+                student details.
+            </li>
+
+            <li>
+                Create three student objects.
+            </li>
+
+            <li>
+                Display the details of all objects.
+            </li>
+
+            <li>
+                Display the number of created objects.
+            </li>
+
+            <li>
+                Perform explicit cleanup for one object.
+            </li>
+
+            <li>
+                Set one reference to <code>null</code> to demonstrate
+                garbage-collection eligibility.
+            </li>
+
+            <li>
+                Display the final message and stop.
+            </li>
+
+        </ol>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         FLOWCHART
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            4. Flowchart
+        </h2>
+
+        <pre><code>
+          ┌──────────────┐
+          │    START     │
+          └──────┬───────┘
+                 ↓
+       ┌─────────────────────┐
+       │ Define Student class│
+       └─────────┬───────────┘
+                 ↓
+       ┌─────────────────────┐
+       │ Create 3 objects    │
+       │ using constructors  │
+       └─────────┬───────────┘
+                 ↓
+       ┌─────────────────────┐
+       │ Display student     │
+       │ details             │
+       └─────────┬───────────┘
+                 ↓
+       ┌─────────────────────┐
+       │ Display object count│
+       └─────────┬───────────┘
+                 ↓
+       ┌─────────────────────┐
+       │ Perform explicit    │
+       │ cleanup             │
+       └─────────┬───────────┘
+                 ↓
+       ┌─────────────────────┐
+       │ Set reference to    │
+       │ null                │
+       └─────────┬───────────┘
+                 ↓
+          ┌──────────────┐
+          │     END      │
+          └──────────────┘
+        </code></pre>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         PROGRAM
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            5. Java Program
+        </h2>
+
+        <pre><code>class Student {
+
+    String name;
+    int rollNo;
+    static int count = 0;
+
+    // No-argument constructor
+    Student() {
+        this("Unknown", 0);
+        System.out.println("No-argument constructor used");
+    }
+
+    // Parameterized constructor
+    Student(String name, int rollNo) {
+        this.name = name;
+        this.rollNo = rollNo;
+        count++;
+
+        System.out.println(
+            "Constructor called for: " + name
+        );
+    }
+
+    // Display student details
+    void display() {
+        System.out.println(
+            "Name: " + name + ", Roll No: " + rollNo
+        );
+    }
+
+    // Explicit cleanup method
+    void cleanup() {
+        if (count &gt; 0) {
+            count--;
+        }
+
+        System.out.println(
+            "Cleanup performed for: " + name
+        );
+    }
+}
+
+public class ConstructorDemo {
+
+    public static void main(String[] args) {
+
+        // Creating objects
+        Student s1 = new Student();
+        Student s2 = new Student("Parmeshwar", 101);
+        Student s3 = new Student("Aarti", 102);
+
+        // Display details
+        System.out.println("\nStudent Details:");
+
+        s1.display();
+        s2.display();
+        s3.display();
+
+        // Display object count
+        System.out.println(
+            "\nNumber of objects = " + Student.count
+        );
+
+        // Explicit cleanup
+        s3.cleanup();
+
+        System.out.println(
+            "Objects after cleanup = " + Student.count
+        );
+
+        // Object becomes eligible for garbage collection
+        s1 = null;
+
+        System.out.println(
+            "\ns1 is now null and its object may be "
+            + "eligible for garbage collection."
+        );
+    }
+}</code></pre>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         PROGRAM EXPLANATION
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            6. Program Explanation
+        </h2>
+
+        <h3>6.1 Student Class</h3>
+
+        <p>
+            The <code>Student</code> class contains the student name,
+            roll number, and a static variable <code>count</code>
+            to keep track of the number of created objects.
+        </p>
+
+
+        <h3>6.2 No-Argument Constructor</h3>
+
+        <p>
+            The no-argument constructor does not directly initialize
+            the values. Instead, it uses <code>this("Unknown", 0)</code>
+            to call the parameterized constructor.
+        </p>
+
+        <p>
+            This is an example of <strong>constructor chaining</strong>.
+        </p>
+
+
+        <h3>6.3 Parameterized Constructor</h3>
+
+        <p>
+            The parameterized constructor accepts the student's
+            name and roll number and initializes the corresponding
+            instance variables.
+        </p>
+
+        <p>
+            The <code>this</code> keyword is used to distinguish the
+            instance variables from the constructor parameters.
+        </p>
+
+
+        <h3>6.4 Object Creation</h3>
+
+        <p>
+            Three <code>Student</code> objects are created using
+            different constructor calls.
+        </p>
+
+        <ul>
+
+            <li>
+                <code>s1</code> uses the no-argument constructor.
+            </li>
+
+            <li>
+                <code>s2</code> uses the parameterized constructor.
+            </li>
+
+            <li>
+                <code>s3</code> uses the parameterized constructor.
+            </li>
+
+        </ul>
+
+
+        <h3>6.5 Explicit Cleanup</h3>
+
+        <p>
+            The <code>cleanup()</code> method demonstrates explicit
+            cleanup for one object and decreases the object count.
+        </p>
+
+
+        <h3>6.6 Garbage Collection Eligibility</h3>
+
+        <p>
+            When <code>s1</code> is assigned <code>null</code>, the
+            object previously referenced by <code>s1</code> becomes
+            eligible for garbage collection if no other reference
+            points to it.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         STEP-BY-STEP DRY RUN
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            7. Step-by-Step Dry Run
+        </h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Step</th>
+                    <th>Statement / Action</th>
+                    <th>Object Count</th>
+                    <th>Explanation</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td><code>Student s1 = new Student();</code></td>
+                    <td>1</td>
+                    <td>
+                        No-argument constructor is called through
+                        constructor chaining.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td><code>Student s2 = new Student("Parmeshwar", 101);</code></td>
+                    <td>2</td>
+                    <td>
+                        Parameterized constructor initializes s2.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td><code>Student s3 = new Student("Aarti", 102);</code></td>
+                    <td>3</td>
+                    <td>
+                        Parameterized constructor initializes s3.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Display student details</td>
+                    <td>3</td>
+                    <td>
+                        Details of all three students are displayed.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td><code>s3.cleanup();</code></td>
+                    <td>2</td>
+                    <td>
+                        Explicit cleanup method decreases the count.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td><code>s1 = null;</code></td>
+                    <td>2</td>
+                    <td>
+                        The object referenced by s1 becomes eligible
+                        for garbage collection.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         SAMPLE OUTPUT
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            8. Sample Output
+        </h2>
+
+        <pre><code>Constructor called for: Unknown
+No-argument constructor used
+Constructor called for: Parmeshwar
+Constructor called for: Aarti
+
+Student Details:
+Name: Unknown, Roll No: 0
+Name: Parmeshwar, Roll No: 101
+Name: Aarti, Roll No: 102
+
+Number of objects = 3
+Cleanup performed for: Aarti
+Objects after cleanup = 2
+
+s1 is now null and its object may be eligible for garbage collection.</code></pre>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         KEY POINTS
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            9. Key Points to Remember
+        </h2>
+
+        <ul>
+
+            <li>
+                A constructor is automatically called when an object
+                is created.
+            </li>
+
+            <li>
+                A no-argument constructor does not take parameters.
+            </li>
+
+            <li>
+                A parameterized constructor accepts values during
+                object creation.
+            </li>
+
+            <li>
+                Multiple constructors with different parameter lists
+                demonstrate constructor overloading.
+            </li>
+
+            <li>
+                The <code>this</code> keyword refers to the current
+                object.
+            </li>
+
+            <li>
+                <code>this()</code> can be used for constructor chaining.
+            </li>
+
+            <li>
+                Java does not use destructors like C++.
+            </li>
+
+            <li>
+                Objects that are no longer reachable may become
+                eligible for garbage collection.
+            </li>
+
+            <li>
+                Explicit cleanup methods can be used when required.
+            </li>
+
+            <li>
+                The old <code>finalize()</code> mechanism should not
+                be used for normal cleanup.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         VIVA QUESTIONS
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            10. Viva Questions
+        </h2>
+
+        <ol>
+
+            <li>
+                <strong>What is a constructor in Java?</strong>
+            </li>
+
+            <li>
+                <strong>When is a constructor called?</strong>
+            </li>
+
+            <li>
+                <strong>What is a no-argument constructor?</strong>
+            </li>
+
+            <li>
+                <strong>What is a parameterized constructor?</strong>
+            </li>
+
+            <li>
+                <strong>What is constructor overloading?</strong>
+            </li>
+
+            <li>
+                <strong>What is the purpose of the
+                <code>this</code> keyword?</strong>
+            </li>
+
+            <li>
+                <strong>What is constructor chaining?</strong>
+            </li>
+
+            <li>
+                <strong>Does Java have a destructor?</strong>
+            </li>
+
+            <li>
+                <strong>What is garbage collection?</strong>
+            </li>
+
+            <li>
+                <strong>When does an object become eligible for
+                garbage collection?</strong>
+            </li>
+
+            <li>
+                <strong>Why should <code>finalize()</code> not be used
+                for normal cleanup?</strong>
+            </li>
+
+        </ol>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            11. Result
+        </h2>
+
+        <p>
+            The Java program successfully demonstrates
+            <strong>no-argument and parameterized constructors,
+            constructor chaining using <code>this</code>,
+            object creation, and explicit object cleanup</strong>.
+            It also demonstrates that Java uses
+            <strong>garbage collection instead of destructors</strong>.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+    <section>
+
+        <div class="course-navigation">
+
+            <a href="experiment8.html" class="primary-button">
+                ← Previous Practical
+            </a>
+
+            <a href="index.html" class="primary-button">
+                Back to Practicals
+            </a>
+
+            <a href="experiment10.html" class="primary-button">
+                Next Practical →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="site-footer">
+
+    <div class="container">
+
+        <h3>PU’s Academics</h3>
+
+        <p>
+            Learn Today. Lead Tomorrow.
+        </p>
+
+        <p>
+            Digital Learning Platform
+        </p>
+
+        <p>
+            &copy; 2026 PU’s Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+```
