@@ -1,0 +1,402 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Practical No. 10 | Core Java Practical</title>
+
+    <meta name="description"
+          content="Core Java Practical No. 10 - Program to Implement Single-Level Inheritance">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Shared Stylesheet -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <!-- Theme Script -->
+    <script src="../../assets/js/theme.js" defer></script>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="site-header">
+
+    <div class="container">
+
+        <div class="header-content">
+
+            <div class="brand">
+
+                <h1>PU’s Academics</h1>
+
+                <p>Learn Today. Lead Tomorrow.</p>
+
+            </div>
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                aria-label="Toggle dark and light theme">
+                🌙
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero">
+
+    <div class="container">
+
+        <p class="hero-label">
+            Core Java Practical
+        </p>
+
+        <h1>
+            Practical No. 10
+        </h1>
+
+        <p class="hero-subtitle">
+            Program to Implement Single-Level Inheritance
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+<main class="container">
+
+    <!-- =====================================================
+         TITLE
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Practical No. 10
+        </h2>
+
+        <h3>
+            Program to Implement Single-Level Inheritance
+        </h3>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         AIM
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Aim
+        </h2>
+
+        <p>
+            To write a Java program to demonstrate
+            <strong>single-level inheritance</strong>, where one subclass
+            inherits the properties and methods of a superclass.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         THEORY
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Theory
+        </h2>
+
+        <p>
+            <strong>Inheritance</strong> is an important feature of
+            Object-Oriented Programming that allows a new class to acquire
+            the properties and methods of an existing class.
+        </p>
+
+        <p>
+            In <strong>single-level inheritance</strong>, there is
+            <strong>one superclass and one subclass</strong>.
+        </p>
+
+        <pre><code>Superclass
+    ↓
+Subclass</code></pre>
+
+        <p>
+            In Java, inheritance is implemented using the
+            <code>extends</code> keyword.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         ALGORITHM
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Algorithm
+        </h2>
+
+        <ol>
+
+            <li>Start.</li>
+
+            <li>
+                Create a superclass <code>Vehicle</code> with a field
+                and method.
+            </li>
+
+            <li>
+                Create a subclass <code>Car</code> using
+                <code>extends Vehicle</code>.
+            </li>
+
+            <li>
+                Add a field and method to the <code>Car</code> class.
+            </li>
+
+            <li>
+                Create an object of <code>Car</code>.
+            </li>
+
+            <li>
+                Access the inherited field and method.
+            </li>
+
+            <li>
+                Call the subclass method.
+            </li>
+
+            <li>
+                Display the output.
+            </li>
+
+            <li>Stop.</li>
+
+        </ol>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         FLOWCHART
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Flowchart
+        </h2>
+
+        <pre><code>        ┌─────────────┐
+        │    START    │
+        └──────┬──────┘
+               ↓
+     ┌───────────────────┐
+     │ Define Vehicle    │
+     │ superclass        │
+     └─────────┬─────────┘
+               ↓
+     ┌───────────────────┐
+     │ Define Car using  │
+     │ extends Vehicle   │
+     └─────────┬─────────┘
+               ↓
+     ┌───────────────────┐
+     │ Create Car object │
+     └─────────┬─────────┘
+               ↓
+     ┌───────────────────┐
+     │ Access inherited  │
+     │ members           │
+     └─────────┬─────────┘
+               ↓
+     ┌───────────────────┐
+     │ Call Car's method │
+     └─────────┬─────────┘
+               ↓
+     ┌───────────────────┐
+     │ Display output    │
+     └─────────┬─────────┘
+               ↓
+        ┌─────────────┐
+        │     STOP    │
+        └─────────────┘</code></pre>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         PROGRAM
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Program
+        </h2>
+
+        <pre><code>// Superclass
+class Vehicle {
+    String brand = "Toyota";
+
+    void start() {
+        System.out.println("Vehicle starts");
+    }
+}
+
+// Subclass
+class Car extends Vehicle {
+    int wheels = 4;
+
+    void drive() {
+        System.out.println("Car drives on " + wheels + " wheels");
+    }
+}
+
+// Main class
+public class SingleInheritanceDemo {
+    public static void main(String[] args) {
+
+        Car c = new Car();
+
+        // Inherited members
+        System.out.println("Brand: " + c.brand);
+        c.start();
+
+        // Subclass member
+        c.drive();
+    }
+}</code></pre>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         OUTPUT
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Output
+        </h2>
+
+        <pre><code>Brand: Toyota
+Vehicle starts
+Car drives on 4 wheels</code></pre>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
+    <section>
+
+        <h2 class="section-title">
+            Result
+        </h2>
+
+        <p>
+            The Java program successfully demonstrates
+            <strong>single-level inheritance</strong> using the
+            <code>extends</code> keyword.
+        </p>
+
+    </section>
+
+    <hr>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+    <section>
+
+        <div class="course-navigation">
+
+            <a href="experiment9.html" class="primary-button">
+                ← Previous Practical
+            </a>
+
+            <a href="index.html" class="primary-button">
+                Back to Practicals
+            </a>
+
+            <a href="experiment11.html" class="primary-button">
+                Next Practical →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="site-footer">
+
+    <div class="container">
+
+        <h3>PU’s Academics</h3>
+
+        <p>
+            Learn Today. Lead Tomorrow.
+        </p>
+
+        <p>
+            Digital Learning Platform
+        </p>
+
+        <p>
+            &copy; 2026 PU’s Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+```
