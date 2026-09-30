@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Experiment 10 – Linear Regression | PU's Academics">
+<title>Experiment 10 – Linear Regression | PU's Academics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<style>
+.lab-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin:24px 0}
+.lab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+textarea.code{width:100%;min-height:260px;background:#111;color:#f4f4f4;border:1px solid var(--border);border-radius:6px;padding:16px;font:14px/1.55 "IBM Plex Mono",monospace;box-sizing:border-box;resize:vertical}
+input[type=number]{width:100%;box-sizing:border-box;padding:10px;background:var(--background);color:var(--text);border:1px solid var(--border);border-radius:6px}
+button.action{border:0;border-radius:6px;padding:11px 16px;background:var(--primary);color:white;cursor:pointer;font:inherit;font-weight:600}
+button.action:hover{background:var(--primary-hover)}
+button.secondary{background:var(--surface-hover)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.metric{border:1px solid var(--border);border-radius:6px;padding:14px;background:var(--background)}
+.metric strong{display:block;font-size:1.2rem;margin-top:5px}
+.table-wrap{overflow-x:auto}
+table.result-table{width:100%;border-collapse:collapse}
+.result-table th,.result-table td{border:1px solid var(--border);padding:9px;text-align:left}
+.result-table th{background:var(--surface-hover)}
+canvas{width:100%;height:360px;border:1px solid var(--border);border-radius:6px;background:var(--background)}
+.notice{padding:14px 16px;border-left:4px solid var(--primary);background:var(--background);border-radius:4px;margin:16px 0}
+@media(max-width:700px){.lab-grid,.metrics,.input-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-content">
+    <div>
+      <h1 class="site-title">PU's Academics</h1>
+      <p class="site-tagline">Digital Learning Platform</p>
+    </div>
+    <button id="themeToggle" class="theme-toggle">🌙</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h2>Experiment 10 – Linear Regression</h2>
+    <p>AI &amp; ML Essentials Practical • Interactive Laboratory</p>
+  </div>
+</section>
+
+<main class="container">
+<section class="lab-card">
+  <h2 class="section-title">Aim</h2>
+  <p>Implement a Simple Linear Regression model and understand the regression line, slope, intercept, predictions and model evaluation measures.</p>
+</section>
+
+<section class="lab-card">
+  <h2 class="section-title">Interactive Linear Regression</h2>
+  <div class="notice"><strong>Try it:</strong> Change the study-hours and marks values, then select <strong>Run Regression</strong>. The regression line and evaluation values update in the browser.</div>
+  <div class="lab-grid">
+    <div>
+      <h3>Study Hours (X)</h3>
+      <input id="xData" value="1,2,3,4,5" aria-label="Study hours">
+    </div>
+    <div>
+      <h3>Marks (y)</h3>
+      <input id="yData" value="2,5,6,9,13" aria-label="Marks">
+    </div>
+  </div>
+  <div style="margin-top:18px">
+    <label for="predictX"><strong>New student's study hours:</strong></label>
+    <input id="predictX" type="number" value="6" step="0.1" style="max-width:180px;margin-left:8px">
+  </div>
+  <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+    <button class="action" onclick="runRegression()">▶ Run Regression</button>
+    <button class="action secondary" onclick="resetExample()">↺ Reset Example</button>
+  </div>
+  <div class="metrics">
+    <div class="metric">Slope (θ₁)<strong id="slope">—</strong></div>
+    <div class="metric">Intercept (θ₀)<strong id="intercept">—</strong></div>
+    <div class="metric">Prediction<strong id="prediction">—</strong></div>
+    <div class="metric">MSE<strong id="mse">—</strong></div>
+    <div class="metric">RMSE<strong id="rmse">—</strong></div>
+    <div class="metric">R²<strong id="r2">—</strong></div>
+  </div>
+</section>
+
+<section class="lab-card">
+  <h2 class="section-title">Regression Line</h2>
+  <canvas id="plot" width="1000" height="420"></canvas>
+</section>
+
+<section class="lab-card">
+  <h2 class="section-title">Predictions and Residuals</h2>
+  <div class="table-wrap">
+    <table class="result-table">
+      <thead><tr><th>X</th><th>Actual y</th><th>Predicted ŷ</th><th>Residual (y − ŷ)</th></tr></thead>
+      <tbody id="resultsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="lab-card">
+  <h2 class="section-title">Python / Scikit-learn Code</h2>
+  <p>The following corresponds to the core Python implementation used in the practical notebook.</p>
+  <textarea class="code" readonly>import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+# Our five students: study hours vs marks
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 5, 6, 9, 13])
+
+model = LinearRegression()
+model.fit(X, y)
+
+print("slope (m):", round(float(model.coef_[0]), 3))
+print("intercept (c):", round(float(model.intercept_), 3))
+
+y_hat = model.predict(X)
+
+print("MSE :", round(mean_squared_error(y, y_hat), 3))
+print("RMSE:", round(np.sqrt(mean_squared_error(y, y_hat)), 3))
+print("MAE :", round(mean_absolute_error(y, y_hat), 3))
+print("R2  :", round(r2_score(y, y_hat), 3))</textarea>
+</section>
+
+<section class="lab-card">
+  <h2 class="section-title">Interactive Learning</h2>
+  <p><strong>Regression equation:</strong> ŷ = θ₁x + θ₀</p>
+  <p><strong>Residual:</strong> actual value − predicted value</p>
+  <p>Use the controls above to see how changing the data changes the fitted line and evaluation values.</p>
+</section>
+
+<nav style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:30px 0">
+  <a href="experiment9.html" class="course-button">← Previous Practical</a>
+  <a href="index.html" class="course-button">Back to Practicals</a>
+</nav>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>PU's Academics</strong></p>
+    <p>Digital Learning Platform</p>
+    <p>Learn Today. Lead Tomorrow.</p>
+    <p>© 2026 PU's Academics</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+<script>
+function nums(id){
+  return document.getElementById(id).value.split(',').map(v=>Number(v.trim())).filter(v=>Number.isFinite(v));
+}
+function regression(x,y){
+  const n=x.length;
+  const mx=x.reduce((a,b)=>a+b,0)/n, my=y.reduce((a,b)=>a+b,0)/n;
+  const sxx=x.reduce((s,v)=>s+(v-mx)**2,0);
+  const sxy=x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0);
+  const m=sxy/sxx, c=my-m*mx;
+  const pred=x.map(v=>m*v+c);
+  const residual=y.map((v,i)=>v-pred[i]);
+  const mse=residual.reduce((s,v)=>s+v*v,0)/n;
+  const rmse=Math.sqrt(mse);
+  const mae=residual.reduce((s,v)=>s+Math.abs(v),0)/n;
+  const sst=y.reduce((s,v)=>s+(v-my)**2,0);
+  const r2=1-(residual.reduce((s,v)=>s+v*v,0)/sst);
+  return {m,c,pred,residual,mse,rmse,mae,r2};
+}
+function fmt(v){return Number.isFinite(v)?v.toFixed(3):'—'}
+function runRegression(){
+  const x=nums('xData'), y=nums('yData');
+  if(x.length<2 || x.length!==y.length){alert('Enter the same number of numeric X and y values.');return;}
+  const r=regression(x,y);
+  document.getElementById('slope').textContent=fmt(r.m);
+  document.getElementById('intercept').textContent=fmt(r.c);
+  const px=Number(document.getElementById('predictX').value);
+  document.getElementById('prediction').textContent=fmt(r.m*px+r.c);
+  document.getElementById('mse').textContent=fmt(r.mse);
+  document.getElementById('rmse').textContent=fmt(r.rmse);
+  document.getElementById('r2').textContent=fmt(r.r2);
+  document.getElementById('resultsBody').innerHTML=x.map((v,i)=>`<tr><td>${v}</td><td>${y[i]}</td><td>${fmt(r.pred[i])}</td><td>${fmt(r.residual[i])}</td></tr>`).join('');
+  drawPlot(x,y,r.m,r.c,px);
+}
+function drawPlot(x,y,m,c,px){
+  const canvas=document.getElementById('plot'), ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height,pad=55;
+  ctx.clearRect(0,0,W,H);
+  const minX=Math.min(...x,px),maxX=Math.max(...x,px);
+  const ys=y.map(v=>v).concat([m*minX+c,m*maxX+c,m*px+c]);
+  const minY=Math.min(...ys),maxY=Math.max(...ys);
+  const sx=v=>pad+(v-minX)/(maxX-minX||1)*(W-2*pad);
+  const sy=v=>H-pad-(v-minY)/(maxY-minY||1)*(H-2*pad);
+  ctx.strokeStyle='#777';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,H-pad);ctx.lineTo(W-pad,H-pad);ctx.stroke();
+  ctx.strokeStyle='#0f62fe';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(sx(minX),sy(m*minX+c));ctx.lineTo(sx(maxX),sy(m*maxX+c));ctx.stroke();
+  ctx.fillStyle='#f1c21b';
+  x.forEach((v,i)=>{ctx.beginPath();ctx.arc(sx(v),sy(y[i]),6,0,Math.PI*2);ctx.fill();});
+  ctx.fillStyle='#24a148';ctx.beginPath();ctx.arc(sx(px),sy(m*px+c),7,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=getComputedStyle(document.body).color||'#fff';
+  ctx.font='14px IBM Plex Sans';
+  ctx.fillText('Study Hours',W/2-40,H-15);
+  ctx.save();ctx.translate(16,H/2+35);ctx.rotate(-Math.PI/2);ctx.fillText('Marks',0,0);ctx.restore();
+  ctx.fillText('● Data',W-150,25);ctx.fillText('— Regression line',W-150,45);ctx.fillText('● New prediction',W-150,65);
+}
+function resetExample(){
+  document.getElementById('xData').value='1,2,3,4,5';
+  document.getElementById('yData').value='2,5,6,9,13';
+  document.getElementById('predictX').value='6';
+  runRegression();
+}
+runRegression();
+</script>
+</body>
+</html>
