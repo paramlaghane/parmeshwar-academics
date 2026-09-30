@@ -1,1 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment No. 9 – Class Demonstrating Constructor and Destructor</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .practical-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .practical-content section {
+            margin: 36px 0;
+        }
+
+        .practical-content h2 {
+            margin-bottom: 18px;
+        }
+
+        .practical-content p,
+        .practical-content li {
+            line-height: 1.8;
+        }
+
+        .practical-content ul,
+        .practical-content ol {
+            padding-left: 28px;
+        }
+
+        .code-block,
+        .flowchart {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+        }
+
+        .code-block pre,
+        .flowchart pre {
+            margin: 0;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            white-space: pre;
+        }
+
+        .theory-list {
+            padding-left: 28px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            text-decoration: none;
+        }
+
+        .hero-subtitle {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="brand">
+                <h1>PU's Academics</h1>
+                <p>Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="theme-toggle" class="theme-toggle" type="button">
+                Toggle Theme
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1>Experiment No. 9</h1>
+            <p class="hero-subtitle">Class Demonstrating Constructor and Destructor</p>
+        </div>
+    </section>
+
+    <div class="container practical-content">
+
+        <section>
+            <h2 class="section-title">Aim</h2>
+            <p>
+                To design a Java class that demonstrates <strong>default and parameterized constructors</strong>,
+                constructor chaining using the <code>this</code> keyword, and the concept of
+                <strong>object cleanup</strong> in Java.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Theory</h2>
+
+            <p>
+                A <strong>constructor</strong> is a special method that is automatically called when an object is created using <code>new</code>.
+            </p>
+
+            <ul class="theory-list">
+                <li>A constructor has the <strong>same name as the class</strong>.</li>
+                <li>It has <strong>no return type</strong>.</li>
+                <li>A <strong>default constructor</strong> takes no arguments.</li>
+                <li>A <strong>parameterized constructor</strong> takes arguments to initialize an object.</li>
+                <li>The <code>this</code> keyword refers to the current object and can also be used for constructor chaining.</li>
+            </ul>
+
+            <p>
+                Java does not have a destructor like C++. Objects that are no longer referenced may be handled by the
+                <strong>Garbage Collector</strong>. The <code>cleanup()</code> method demonstrates explicit cleanup,
+                while <code>finalize()</code> demonstrates the traditional garbage-collection concept.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="section-title">Algorithm</h2>
+
+            <ol>
+                <li>Start.</li>
+                <li>Define the <code>Student</code> class with <code>name</code> and <code>rollNo</code>.</li>
+                <li>Define a default constructor using <code>this</code>.</li>
+                <li>Define a parameterized constructor.</li>
+                <li>Define methods to display details and perform cleanup.</li>
+                <li>Create three <code>Student</code> objects.</li>
+                <li>Display the details of all objects.</li>
+                <li>Call the <code>cleanup()</code> method for one object.</li>
+                <li>Set one object reference to <code>null</code> and request garbage collection.</li>
+                <li>Stop.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2 class="section-title">Flowchart</h2>
+
+            <div class="flowchart">
+<pre>          ┌─────────────┐
+          │    START    │
+          └──────┬──────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Define Student class│
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Create Student      │
+      │ objects using       │
+      │ constructors        │
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Display student     │
+      │ details             │
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Call cleanup()      │
+      └──────────┬──────────┘
+                 ↓
+      ┌─────────────────────┐
+      │ Set reference null  │
+      │ and call System.gc()│
+      └──────────┬──────────┘
+                 ↓
+          ┌─────────────┐
+          │    STOP     │
+          └─────────────┘</pre>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Program</h2>
+
+            <div class="code-block">
+<pre><code>class Student {
+    String name;
+    int rollNo;
+
+    // Default constructor
+    Student() {
+        this("Unknown", 0);
+    }
+
+    // Parameterized constructor
+    Student(String name, int rollNo) {
+        this.name = name;
+        this.rollNo = rollNo;
+    }
+
+    // Display details
+    void display() {
+        System.out.println(name + " - " + rollNo);
+    }
+
+    // Cleanup method
+    void cleanup() {
+        System.out.println("Cleanup done for " + name);
+    }
+
+    // finalize method
+    protected void finalize() {
+        System.out.println("finalize() called for " + name);
+    }
+}
+
+public class ConstructorDemo {
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+        Student s2 = new Student("Parmeshwar", 101);
+        Student s3 = new Student("Aarti", 102);
+
+        s1.display();
+        s2.display();
+        s3.display();
+
+        s3.cleanup();
+
+        s1 = null;
+        System.gc();
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Result</h2>
+
+            <p>
+                The Java program successfully demonstrates <strong>constructors, constructor chaining using
+                <code>this</code>, object initialization, cleanup, and the concept of garbage collection</strong>.
+            </p>
+        </section>
+
+        <div class="navigation">
+            <a href="experiment8.html" class="primary-button">← Previous Practical</a>
+            <a href="index.html" class="primary-button">Back to Practicals</a>
+            <a href="experiment10.html" class="primary-button">Next Practical →</a>
+        </div>
+
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <h3>PU's Academics</h3>
+        <p>Digital Learning Platform</p>
+        <p>Learn Today. Lead Tomorrow.</p>
+        <p>© 2026 PU's Academics</p>
+    </div>
+</footer>
+
+</body>
+</html>
