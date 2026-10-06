@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical No. 3 | Machine Learning Practical</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div>
+            <h1 class="site-title">PU's Academics</h1>
+            <p class="site-tagline">Learn Today. Lead Tomorrow.</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h2>Practical No. 3</h2>
+        <p>Exploratory Data Analysis: Summarizing Distributions and Visualizing Patterns and Relationships using Data Visualization</p>
+    </div>
+</section>
+
+<main class="container">
+
+    <section>
+        <h2>1. Aim</h2>
+        <p>
+            To perform Exploratory Data Analysis on a dataset by computing summary statistics
+            and generating appropriate visualizations in order to understand the distribution
+            of individual variables and the relationships between them.
+        </p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>2. Objectives</h2>
+
+        <ul>
+            <li>To summarize data using measures of central tendency, dispersion, and frequency.</li>
+            <li>To visualize single-variable (univariate) distributions using bar charts, histograms, density plots, and box plots.</li>
+            <li>To compare distributions across groups.</li>
+            <li>To examine relationships between variables using scatter plots, pair plots, and correlation heatmaps.</li>
+            <li>To identify outliers, skewness, and potential patterns before model building.</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>3. Theory</h2>
+
+        <p>
+            EDA is the first analytical step after data cleaning. It uses graphical and numerical
+            summaries to reveal the underlying structure of data — how variables are distributed,
+            whether they are skewed, where outliers lie, and how strongly variables are related.
+            Correlation quantifies the linear association between two numeric variables (ranging
+            from −1 to +1), while plots make such patterns visually interpretable. EDA guides the
+            choice of subsequent models and feature selection.
+        </p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>4. Tools / Libraries</h2>
+
+        <p>
+            Python with <strong>Pandas</strong> (data handling and summary statistics) and
+            <strong>Matplotlib / Seaborn</strong> (visualization).
+        </p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>5. Procedure</h2>
+
+        <ol>
+            <li>
+                <strong>Load the dataset</strong> into a Pandas DataFrame and inspect its structure
+                using <code>.head</code>, <code>.info</code>, and <code>.shape</code>.
+            </li>
+
+            <li>
+                <strong>Summarize the data</strong> using <code>.describe</code> to obtain count,
+                mean, standard deviation, minimum, quartiles, and maximum for numeric columns;
+                use <code>.value_counts</code> for categorical columns.
+            </li>
+
+            <li>
+                <strong>Draw a Bar Chart</strong> to display the frequency of categories in a
+                categorical variable.
+            </li>
+
+            <li>
+                <strong>Plot a Histogram</strong> to show the frequency distribution of a numeric variable.
+            </li>
+
+            <li>
+                <strong>Plot a Distribution/Density Plot</strong> to view the shape (skewness, modality)
+                of a variable's distribution.
+            </li>
+
+            <li>
+                <strong>Draw a Box Plot</strong> to visualize the median, quartiles, and outliers
+                of a numeric variable.
+            </li>
+
+            <li>
+                <strong>Compare Distributions</strong> across groups (e.g., box plots or density plots
+                split by a category).
+            </li>
+
+            <li>
+                <strong>Draw a Scatter Plot</strong> between two numeric variables to observe the
+                nature of their relationship.
+            </li>
+
+            <li>
+                <strong>Generate a Pair Plot</strong> to view pairwise scatter plots and distributions
+                across multiple variables at once.
+            </li>
+
+            <li>
+                <strong>Compute the Correlation matrix</strong> and visualize it using a
+                <strong>Heatmap</strong> to identify strongly related variables.
+            </li>
+        </ol>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>6. Expected Outcome</h2>
+
+        <p>The student will be able to:</p>
+
+        <ul>
+            <li>Interpret summary statistics and identify skewed or outlier-prone variables.</li>
+            <li>Select the correct plot type for a given analytical question.</li>
+            <li>Detect relationships, trends, and correlations between variables.</li>
+            <li>Produce a set of visualizations that support further modeling decisions.</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>7. Conclusion</h2>
+
+        <p>
+            Exploratory Data Analysis using summary statistics and visualizations provides a clear
+            understanding of data distribution and inter-variable relationships, forming a reliable
+            foundation for building and evaluating Machine Learning models.
+        </p>
+    </section>
+
+    <hr>
+
+    <section class="practical-navigation">
+        <a href="experiment2.html" class="course-button">← Previous Practical</a>
+        <a href="index.html" class="course-button">Back to Practicals</a>
+        <a href="experiment4.html" class="course-button">Next Practical →</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <h3>PU's Academics</h3>
+        <p>Learn Today. Lead Tomorrow.</p>
+        <p>Digital learning platform for academic resources and practical learning.</p>
+        <p>© 2026 PU's Academics. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+</html>
