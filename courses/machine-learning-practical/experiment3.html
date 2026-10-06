@@ -1,10 +1,79 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Practical No. 3 | Machine Learning Practical</title>
+
     <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <!-- Plotly for Interactive Graphs -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <style>
+        .interactive-panel {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color, #444);
+            border-radius: 12px;
+        }
+
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .control-row label {
+            font-weight: 600;
+        }
+
+        .control-row select,
+        .control-row button {
+            padding: 0.65rem 0.85rem;
+            border-radius: 6px;
+            border: 1px solid #777;
+            font: inherit;
+        }
+
+        .control-row button {
+            cursor: pointer;
+        }
+
+        .graph-box {
+            width: 100%;
+            min-height: 500px;
+            margin: 1rem 0;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 0.65rem;
+            border: 1px solid #777;
+            text-align: left;
+        }
+
+        .note {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 700px) {
+            .graph-box {
+                min-height: 400px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -15,171 +84,1691 @@
             <h1 class="site-title">PU's Academics</h1>
             <p class="site-tagline">Learn Today. Lead Tomorrow.</p>
         </div>
+
         <button id="themeToggle" class="theme-toggle">🌙</button>
     </div>
 </header>
 
+
 <section class="hero">
     <div class="container">
+
         <h2>Practical No. 3</h2>
-        <p>Exploratory Data Analysis: Summarizing Distributions and Visualizing Patterns and Relationships using Data Visualization</p>
+
+        <p>
+            Exploratory Data Analysis: Summarizing Distributions and
+            Visualizing Patterns and Relationships Using Data Visualization
+        </p>
+
     </div>
 </section>
 
+
 <main class="container">
 
+    <!-- AIM -->
+
     <section>
+
         <h2>1. Aim</h2>
+
         <p>
-            To perform Exploratory Data Analysis on a dataset by computing summary statistics
-            and generating appropriate visualizations in order to understand the distribution
-            of individual variables and the relationships between them.
+            To perform Exploratory Data Analysis (EDA) on a dataset using
+            Python by computing summary statistics and generating appropriate
+            visualizations to understand variable distributions, patterns,
+            and relationships.
         </p>
+
     </section>
+
 
     <hr>
 
+
+    <!-- TOOLS -->
+
     <section>
-        <h2>2. Objectives</h2>
+
+        <h2>2. Tools / Libraries Required</h2>
 
         <ul>
-            <li>To summarize data using measures of central tendency, dispersion, and frequency.</li>
-            <li>To visualize single-variable (univariate) distributions using bar charts, histograms, density plots, and box plots.</li>
-            <li>To compare distributions across groups.</li>
-            <li>To examine relationships between variables using scatter plots, pair plots, and correlation heatmaps.</li>
-            <li>To identify outliers, skewness, and potential patterns before model building.</li>
+
+            <li>Python</li>
+            <li>Pandas</li>
+            <li>Matplotlib</li>
+            <li>Seaborn</li>
+            <li>Iris Dataset</li>
+
         </ul>
+
     </section>
+
 
     <hr>
 
+
+    <!-- IMPLEMENTATION -->
+
     <section>
-        <h2>3. Theory</h2>
+
+        <h2>3. Implementation</h2>
+
+
+        <!-- STEP 1 -->
+
+        <h3>Step 1 — Load the Dataset and Inspect Its Structure</h3>
+
+        <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the Iris dataset
+df = sns.load_dataset('iris')
+
+# Display the first five rows
+print(df.head())
+
+# Display dataset information
+print(df.info())
+
+# Display the shape of the dataset
+print(df.shape)</code></pre>
+
+
+        <p><strong>Output:</strong></p>
 
         <p>
-            EDA is the first analytical step after data cleaning. It uses graphical and numerical
-            summaries to reveal the underlying structure of data — how variables are distributed,
-            whether they are skewed, where outliers lie, and how strongly variables are related.
-            Correlation quantifies the linear association between two numeric variables (ranging
-            from −1 to +1), while plots make such patterns visually interpretable. EDA guides the
-            choice of subsequent models and feature selection.
+            The dataset contains <strong>150 rows and 5 columns</strong>.
+            The columns are <code>sepal_length</code>,
+            <code>sepal_width</code>, <code>petal_length</code>,
+            <code>petal_width</code>, and <code>species</code>.
+            The four numerical columns contain floating-point values,
+            while <code>species</code> is a categorical column.
+            The dataset contains no missing values.
         </p>
-    </section>
 
-    <hr>
 
-    <section>
-        <h2>4. Tools / Libraries</h2>
+        <!-- STEP 2 -->
+
+        <h3>Step 2 — Calculate Summary Statistics</h3>
+
+        <pre><code># Display summary statistics for numerical columns
+print(df.describe())
+
+# Display the frequency of each species
+print(df['species'].value_counts())</code></pre>
+
+
+        <p><strong>Output:</strong></p>
 
         <p>
-            Python with <strong>Pandas</strong> (data handling and summary statistics) and
-            <strong>Matplotlib / Seaborn</strong> (visualization).
+            The <code>describe()</code> function displays the count,
+            mean, standard deviation, minimum, 25th percentile,
+            median, 75th percentile, and maximum values for each
+            numerical variable.
         </p>
+
+        <p>
+            The <code>value_counts()</code> function shows that
+            <code>setosa</code>, <code>versicolor</code>, and
+            <code>virginica</code> each contain
+            <strong>50 records</strong>.
+        </p>
+
+
+        <!-- STEP 3 -->
+
+        <h3>Step 3 — Bar Chart for Categorical Frequency</h3>
+
+        <pre><code>sns.countplot(x='species', data=df)
+
+plt.title('Count of Each Species')
+plt.xlabel('Species')
+plt.ylabel('Count')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The bar chart contains three bars of equal height,
+            with each species having a frequency of
+            <strong>50</strong>. This indicates that the Iris
+            dataset has balanced classes.
+        </p>
+
+
+        <!-- STEP 4 -->
+
+        <h3>Step 4 — Histogram for Distribution of a Numerical Variable</h3>
+
+        <pre><code>sns.histplot(df['sepal_length'], bins=15, kde=True)
+
+plt.title('Histogram of Sepal Length')
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Frequency')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The histogram shows the frequency distribution of sepal
+            length. The KDE curve provides a smooth representation
+            of the distribution. Most observations are concentrated
+            around the middle range of sepal length.
+        </p>
+
+
+        <!-- STEP 5 -->
+
+        <h3>Step 5 — Density Plot</h3>
+
+        <pre><code>sns.kdeplot(df['petal_length'], fill=True)
+
+plt.title('Density Plot of Petal Length')
+plt.xlabel('Petal Length (cm)')
+plt.ylabel('Density')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The density plot shows the distribution of petal length.
+            The distribution is approximately
+            <strong>bimodal</strong>, indicating the presence of
+            distinct groups within the dataset corresponding mainly
+            to different Iris species.
+        </p>
+
+
+        <!-- STEP 6 -->
+
+        <h3>Step 6 — Box Plot for Spread and Outliers</h3>
+
+        <pre><code>sns.boxplot(x=df['sepal_width'])
+
+plt.title('Box Plot of Sepal Width')
+plt.xlabel('Sepal Width (cm)')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The box plot displays the median, interquartile range,
+            and whiskers of sepal width. Individual points beyond
+            the whiskers represent potential outliers.
+        </p>
+
+
+        <!-- STEP 7 -->
+
+        <h3>Step 7 — Grouped Box Plot for Comparing Distributions</h3>
+
+        <pre><code>sns.boxplot(x='species', y='petal_length', data=df)
+
+plt.title('Petal Length by Species')
+plt.xlabel('Species')
+plt.ylabel('Petal Length (cm)')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The box plot compares petal length across the three
+            species. <code>setosa</code> has a substantially smaller
+            petal length than <code>versicolor</code> and
+            <code>virginica</code>. The distributions of
+            <code>versicolor</code> and <code>virginica</code>
+            are higher and show some overlap.
+        </p>
+
+        <p>
+            This indicates that petal length is an important variable
+            for distinguishing the species.
+        </p>
+
+
+        <!-- STEP 8 -->
+
+        <h3>Step 8 — Scatter Plot for the Relationship Between Two Variables</h3>
+
+        <pre><code>sns.scatterplot(
+    x='sepal_length',
+    y='petal_length',
+    hue='species',
+    data=df
+)
+
+plt.title('Sepal Length vs Petal Length')
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Petal Length (cm)')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The scatter plot shows the relationship between sepal
+            length and petal length, with different colours
+            representing the three species.
+        </p>
+
+        <p>
+            Petal length generally increases as sepal length increases.
+            The species form relatively distinct clusters, particularly
+            for <code>setosa</code>.
+        </p>
+
+
+        <!-- STEP 9 -->
+
+        <h3>Step 9 — Pair Plot for Pairwise Relationships</h3>
+
+        <pre><code>sns.pairplot(df, hue='species')
+
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The pair plot displays scatter plots for all pairs of
+            numerical variables and distributions along the diagonal.
+            The observations are coloured according to species.
+        </p>
+
+        <p>
+            It provides an overall view of relationships among variables
+            and shows that petal measurements provide particularly good
+            separation between the species.
+        </p>
+
+
+        <!-- STEP 10 -->
+
+        <h3>Step 10 — Correlation Matrix and Heatmap</h3>
+
+        <pre><code># Calculate the correlation matrix
+corr = df.drop('species', axis=1).corr()
+
+# Display the correlation heatmap
+sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f')
+
+plt.title('Correlation Heatmap')
+plt.show()</code></pre>
+
+
+        <p><strong>Graph Interpretation:</strong></p>
+
+        <p>
+            The heatmap displays the correlation coefficients between
+            the numerical variables. Petal length and petal width show
+            a strong positive correlation.
+        </p>
+
+        <p>
+            Sepal width has weaker relationships with the petal
+            measurements. Correlation analysis helps identify variables
+            that may be useful for further analysis and modelling.
+        </p>
+
     </section>
+
 
     <hr>
 
+
+    <!-- INTERACTIVE SECTION -->
+
     <section>
-        <h2>5. Procedure</h2>
+
+        <h2>4. Interactive Data Visualization</h2>
+
+        <p>
+            Explore the Iris dataset interactively using the graphs below.
+            You can hover over observations, zoom, pan, and change variables
+            using the controls.
+        </p>
+
+
+        <!-- DATASET SUMMARY -->
+
+        <div class="interactive-panel">
+
+            <h3>Dataset Summary</h3>
+
+            <div class="control-row">
+
+                <button onclick="showDatasetSummary()">
+                    Show Dataset Summary
+                </button>
+
+            </div>
+
+            <div id="summaryOutput"></div>
+
+        </div>
+
+
+        <!-- BAR CHART -->
+
+        <div class="interactive-panel">
+
+            <h3>1. Species Frequency — Interactive Bar Chart</h3>
+
+            <div class="control-row">
+
+                <button onclick="drawCountPlot()">
+                    Generate Graph
+                </button>
+
+            </div>
+
+            <div id="countPlot" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- HISTOGRAM -->
+
+        <div class="interactive-panel">
+
+            <h3>2. Histogram — Distribution of a Numerical Variable</h3>
+
+            <div class="control-row">
+
+                <label for="histFeature">
+                    Select Variable:
+                </label>
+
+                <select id="histFeature" onchange="drawHistogram()">
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="histPlot" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- BOX PLOT -->
+
+        <div class="interactive-panel">
+
+            <h3>3. Box Plot — Distribution and Outliers</h3>
+
+            <div class="control-row">
+
+                <label for="boxFeature">
+                    Select Variable:
+                </label>
+
+                <select id="boxFeature" onchange="drawBoxPlot">
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="boxPlot" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- GROUPED BOX PLOT -->
+
+        <div class="interactive-panel">
+
+            <h3>4. Grouped Box Plot — Compare Species</h3>
+
+            <div class="control-row">
+
+                <label for="groupFeature">
+                    Select Variable:
+                </label>
+
+                <select id="groupFeature" onchange="drawGroupedBoxPlot()">
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="groupBoxPlot" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- SCATTER PLOT -->
+
+        <div class="interactive-panel">
+
+            <h3>5. Scatter Plot — Explore Relationships</h3>
+
+            <div class="control-row">
+
+                <label for="scatterX">
+                    X Variable:
+                </label>
+
+                <select id="scatterX" onchange="drawScatterPlot()">
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                </select>
+
+
+                <label for="scatterY">
+                    Y Variable:
+                </label>
+
+                <select id="scatterY" onchange="drawScatterPlot()">
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="scatterPlot" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- PAIRWISE -->
+
+        <div class="interactive-panel">
+
+            <h3>6. Pairwise Relationships</h3>
+
+            <div class="control-row">
+
+                <label for="pairX">
+                    X Variable:
+                </label>
+
+                <select id="pairX" onchange="drawPairwisePlot()">
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                </select>
+
+
+                <label for="pairY">
+                    Y Variable:
+                </label>
+
+                <select id="pairY" onchange="drawPairwisePlot()">
+
+                    <option value="petal_length">
+                        Petal Length
+                    </option>
+
+                    <option value="petal_width">
+                        Petal Width
+                    </option>
+
+                    <option value="sepal_length">
+                        Sepal Length
+                    </option>
+
+                    <option value="sepal_width">
+                        Sepal Width
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div id="pairPlot" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- HEATMAP -->
+
+        <div class="interactive-panel">
+
+            <h3>7. Correlation Heatmap</h3>
+
+            <div class="control-row">
+
+                <button onclick="drawHeatmap()">
+                    Generate Heatmap
+                </button>
+
+            </div>
+
+            <div id="heatmapPlot" class="graph-box"></div>
+
+        </div>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- EXPECTED OUTCOME -->
+
+    <section>
+
+        <h2>5. Expected Outcome</h2>
+
+        <p>
+            After completing this practical, the student will be able to:
+        </p>
 
         <ol>
+
             <li>
-                <strong>Load the dataset</strong> into a Pandas DataFrame and inspect its structure
-                using <code>.head</code>, <code>.info</code>, and <code>.shape</code>.
+                Compute and interpret summary statistics using Pandas.
             </li>
 
             <li>
-                <strong>Summarize the data</strong> using <code>.describe</code> to obtain count,
-                mean, standard deviation, minimum, quartiles, and maximum for numeric columns;
-                use <code>.value_counts</code> for categorical columns.
+                Identify the frequency of categorical variables.
             </li>
 
             <li>
-                <strong>Draw a Bar Chart</strong> to display the frequency of categories in a
-                categorical variable.
+                Select appropriate visualizations for analysing
+                distributions, comparisons, and relationships.
             </li>
 
             <li>
-                <strong>Plot a Histogram</strong> to show the frequency distribution of a numeric variable.
+                Detect patterns, skewness, modality, and potential
+                outliers using graphs.
             </li>
 
             <li>
-                <strong>Plot a Distribution/Density Plot</strong> to view the shape (skewness, modality)
-                of a variable's distribution.
+                Compare distributions across different categories.
             </li>
 
             <li>
-                <strong>Draw a Box Plot</strong> to visualize the median, quartiles, and outliers
-                of a numeric variable.
+                Identify relationships and correlations between
+                numerical variables.
             </li>
 
             <li>
-                <strong>Compare Distributions</strong> across groups (e.g., box plots or density plots
-                split by a category).
+                Use Exploratory Data Analysis as a preliminary step
+                for machine learning and statistical modelling.
             </li>
 
-            <li>
-                <strong>Draw a Scatter Plot</strong> between two numeric variables to observe the
-                nature of their relationship.
-            </li>
-
-            <li>
-                <strong>Generate a Pair Plot</strong> to view pairwise scatter plots and distributions
-                across multiple variables at once.
-            </li>
-
-            <li>
-                <strong>Compute the Correlation matrix</strong> and visualize it using a
-                <strong>Heatmap</strong> to identify strongly related variables.
-            </li>
         </ol>
+
     </section>
+
 
     <hr>
 
-    <section>
-        <h2>6. Expected Outcome</h2>
 
-        <p>The student will be able to:</p>
-
-        <ul>
-            <li>Interpret summary statistics and identify skewed or outlier-prone variables.</li>
-            <li>Select the correct plot type for a given analytical question.</li>
-            <li>Detect relationships, trends, and correlations between variables.</li>
-            <li>Produce a set of visualizations that support further modeling decisions.</li>
-        </ul>
-    </section>
-
-    <hr>
+    <!-- CONCLUSION -->
 
     <section>
-        <h2>7. Conclusion</h2>
+
+        <h2>6. Conclusion</h2>
 
         <p>
-            Exploratory Data Analysis using summary statistics and visualizations provides a clear
-            understanding of data distribution and inter-variable relationships, forming a reliable
-            foundation for building and evaluating Machine Learning models.
+            Exploratory Data Analysis (EDA) helps transform raw data into
+            meaningful numerical and visual insights. In this practical,
+            the Iris dataset was analysed using Pandas, Matplotlib, and
+            Seaborn. Summary statistics and different visualizations were
+            used to understand the distribution of variables, compare species,
+            identify potential outliers, examine relationships, and analyse
+            correlations.
         </p>
+
+        <p>
+            The analysis provides a strong foundation for further statistical
+            analysis and machine learning tasks such as regression and
+            classification.
+        </p>
+
     </section>
+
 
     <hr>
 
+
+    <!-- NAVIGATION -->
+
     <section class="practical-navigation">
-        <a href="experiment2.html" class="course-button">← Previous Practical</a>
-        <a href="index.html" class="course-button">Back to Practicals</a>
-        <a href="experiment4.html" class="course-button">Next Practical →</a>
+
+        <a href="experiment2.html" class="course-button">
+            ← Previous Practical
+        </a>
+
+        <a href="index.html" class="course-button">
+            Back to Practicals
+        </a>
+
+        <a href="experiment4.html" class="course-button">
+            Next Practical →
+        </a>
+
     </section>
 
 </main>
 
+
 <footer class="site-footer">
+
     <div class="container">
+
         <h3>PU's Academics</h3>
-        <p>Learn Today. Lead Tomorrow.</p>
-        <p>Digital learning platform for academic resources and practical learning.</p>
-        <p>© 2026 PU's Academics. All rights reserved.</p>
+
+        <p>
+            Learn Today. Lead Tomorrow.
+        </p>
+
+        <p>
+            Digital learning platform for academic resources and practical learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
     </div>
+
 </footer>
+
+
+<script>
+
+/* =========================================================
+   IRIS DATASET
+   ========================================================= */
+
+const iris = [
+
+    [5.1,3.5,1.4,0.2,"setosa"],
+    [4.9,3.0,1.4,0.2,"setosa"],
+    [4.7,3.2,1.3,0.2,"setosa"],
+    [4.6,3.1,1.5,0.2,"setosa"],
+    [5.0,3.6,1.4,0.2,"setosa"],
+    [5.4,3.9,1.7,0.4,"setosa"],
+    [4.6,3.4,1.4,0.3,"setosa"],
+    [5.0,3.4,1.5,0.2,"setosa"],
+    [4.4,2.9,1.4,0.2,"setosa"],
+    [4.9,3.1,1.5,0.1,"setosa"],
+    [5.4,3.7,1.5,0.2,"setosa"],
+    [4.8,3.4,1.6,0.2,"setosa"],
+    [4.8,3.0,1.4,0.1,"setosa"],
+    [4.3,3.0,1.1,0.1,"setosa"],
+    [5.8,4.0,1.2,0.2,"setosa"],
+    [5.7,4.4,1.5,0.4,"setosa"],
+    [5.4,3.9,1.3,0.4,"setosa"],
+    [5.1,3.5,1.4,0.3,"setosa"],
+    [5.7,3.8,1.7,0.3,"setosa"],
+    [5.1,3.8,1.5,0.3,"setosa"],
+    [5.4,3.4,1.7,0.2,"setosa"],
+    [5.1,3.7,1.5,0.4,"setosa"],
+    [4.6,3.6,1.0,0.2,"setosa"],
+    [5.1,3.3,1.7,0.5,"setosa"],
+    [4.8,3.4,1.9,0.2,"setosa"],
+    [5.0,3.0,1.6,0.2,"setosa"],
+    [5.0,3.4,1.6,0.4,"setosa"],
+    [5.2,3.5,1.5,0.2,"setosa"],
+    [5.2,3.4,1.4,0.2,"setosa"],
+    [4.7,3.2,1.6,0.2,"setosa"],
+    [4.8,3.1,1.6,0.2,"setosa"],
+    [5.4,3.4,1.5,0.4,"setosa"],
+    [5.2,4.1,1.5,0.1,"setosa"],
+    [5.5,4.2,1.4,0.2,"setosa"],
+    [4.9,3.1,1.5,0.2,"setosa"],
+    [5.0,3.2,1.2,0.2,"setosa"],
+    [5.5,3.5,1.3,0.2,"setosa"],
+    [4.9,3.6,1.4,0.1,"setosa"],
+    [4.4,3.0,1.3,0.2,"setosa"],
+    [5.1,3.4,1.5,0.2,"setosa"],
+    [5.0,3.5,1.3,0.3,"setosa"],
+    [4.5,2.3,1.3,0.3,"setosa"],
+    [4.4,3.2,1.3,0.2,"setosa"],
+    [5.0,3.5,1.6,0.6,"setosa"],
+    [5.1,3.8,1.9,0.4,"setosa"],
+    [4.8,3.0,1.4,0.3,"setosa"],
+    [5.1,3.8,1.6,0.2,"setosa"],
+    [4.6,3.2,1.4,0.2,"setosa"],
+    [5.3,3.7,1.5,0.2,"setosa"],
+    [5.0,3.3,1.4,0.2,"setosa"],
+
+    [7.0,3.2,4.7,1.4,"versicolor"],
+    [6.4,3.2,4.5,1.5,"versicolor"],
+    [6.9,3.1,4.9,1.5,"versicolor"],
+    [5.5,2.3,4.0,1.3,"versicolor"],
+    [6.5,2.8,4.6,1.5,"versicolor"],
+    [5.7,2.8,4.5,1.3,"versicolor"],
+    [6.3,3.3,4.7,1.6,"versicolor"],
+    [4.9,2.4,3.3,1.0,"versicolor"],
+    [6.6,2.9,4.6,1.3,"versicolor"],
+    [5.2,2.7,3.9,1.4,"versicolor"],
+    [5.0,2.0,3.5,1.0,"versicolor"],
+    [5.9,3.0,4.2,1.5,"versicolor"],
+    [6.0,2.2,4.0,1.0,"versicolor"],
+    [6.1,2.9,4.7,1.4,"versicolor"],
+    [5.6,2.9,3.6,1.3,"versicolor"],
+    [6.7,3.1,4.4,1.4,"versicolor"],
+    [5.6,3.0,4.5,1.5,"versicolor"],
+    [5.8,2.7,4.1,1.0,"versicolor"],
+    [6.2,2.2,4.5,1.5,"versicolor"],
+    [5.6,2.5,3.9,1.1,"versicolor"],
+    [5.9,3.2,4.8,1.8,"versicolor"],
+    [6.1,2.8,4.0,1.3,"versicolor"],
+    [6.3,2.5,4.9,1.5,"versicolor"],
+    [6.1,2.8,4.7,1.2,"versicolor"],
+    [6.4,2.9,4.3,1.3,"versicolor"],
+    [6.6,3.0,4.4,1.4,"versicolor"],
+    [6.8,2.8,4.8,1.4,"versicolor"],
+    [6.7,3.0,5.0,1.7,"versicolor"],
+    [6.0,2.9,4.5,1.5,"versicolor"],
+    [5.7,2.6,3.5,1.0,"versicolor"],
+    [5.5,2.4,3.8,1.1,"versicolor"],
+    [5.5,2.4,3.7,1.0,"versicolor"],
+    [5.8,2.7,3.9,1.2,"versicolor"],
+    [6.0,2.7,5.1,1.6,"versicolor"],
+    [5.4,3.0,4.5,1.5,"versicolor"],
+    [6.0,3.4,4.5,1.6,"versicolor"],
+    [6.7,3.1,4.7,1.5,"versicolor"],
+    [6.3,2.3,4.4,1.3,"versicolor"],
+    [5.6,3.0,4.1,1.3,"versicolor"],
+    [5.5,2.5,4.0,1.3,"versicolor"],
+    [5.5,2.6,4.4,1.2,"versicolor"],
+    [6.1,3.0,4.6,1.4,"versicolor"],
+    [5.8,2.6,4.0,1.2,"versicolor"],
+    [5.0,2.3,3.3,1.0,"versicolor"],
+    [5.6,2.7,4.2,1.3,"versicolor"],
+    [5.7,3.0,4.2,1.2,"versicolor"],
+    [5.7,2.9,4.2,1.3,"versicolor"],
+    [6.2,2.9,4.3,1.3,"versicolor"],
+    [5.1,2.5,3.0,1.1,"versicolor"],
+    [5.7,2.8,4.1,1.3,"versicolor"],
+
+    [6.3,3.3,6.0,2.5,"virginica"],
+    [5.8,2.7,5.1,1.9,"virginica"],
+    [7.1,3.0,5.9,2.1,"virginica"],
+    [6.3,2.9,5.6,1.8,"virginica"],
+    [6.5,3.0,5.8,2.2,"virginica"],
+    [7.6,3.0,6.6,2.1,"virginica"],
+    [4.9,2.5,4.5,1.7,"virginica"],
+    [7.3,2.9,6.3,1.8,"virginica"],
+    [6.7,2.5,5.8,1.8,"virginica"],
+    [7.2,3.6,6.1,2.5,"virginica"],
+    [6.5,3.2,5.1,2.0,"virginica"],
+    [6.4,2.7,5.3,1.9,"virginica"],
+    [6.8,3.0,5.5,2.1,"virginica"],
+    [5.7,2.5,5.0,2.0,"virginica"],
+    [5.8,2.8,5.1,2.4,"virginica"],
+    [6.4,3.2,5.3,2.3,"virginica"],
+    [6.5,3.0,5.5,1.8,"virginica"],
+    [7.7,3.8,6.7,2.2,"virginica"],
+    [7.7,2.6,6.9,2.3,"virginica"],
+    [6.0,2.2,5.0,1.5,"virginica"],
+    [6.9,3.2,5.7,2.3,"virginica"],
+    [5.6,2.8,4.9,2.0,"virginica"],
+    [7.7,2.8,6.7,2.0,"virginica"],
+    [6.3,2.7,4.9,1.8,"virginica"],
+    [6.7,3.3,5.7,2.1,"virginica"],
+    [7.2,3.2,6.0,1.8,"virginica"],
+    [6.2,2.8,4.8,1.8,"virginica"],
+    [6.1,3.0,4.9,1.8,"virginica"],
+    [6.4,2.8,5.6,2.1,"virginica"],
+    [7.2,3.0,5.8,1.6,"virginica"],
+    [7.4,2.8,6.1,1.9,"virginica"],
+    [7.9,3.8,6.4,2.0,"virginica"],
+    [6.4,2.8,5.6,2.2,"virginica"],
+    [6.3,2.8,5.1,1.5,"virginica"],
+    [6.1,2.6,5.6,1.4,"virginica"],
+    [7.7,3.0,6.1,2.3,"virginica"],
+    [6.3,3.4,5.6,2.4,"virginica"],
+    [6.4,3.1,5.5,1.8,"virginica"],
+    [6.0,3.0,4.8,1.8,"virginica"],
+    [6.9,3.1,5.4,2.1,"virginica"],
+    [6.7,3.1,5.6,2.4,"virginica"],
+    [6.9,3.1,5.1,2.3,"virginica"],
+    [5.8,2.7,5.1,1.9,"virginica"],
+    [6.8,3.2,5.9,2.3,"virginica"],
+    [6.7,3.3,5.7,2.5,"virginica"],
+    [6.7,3.0,5.2,2.3,"virginica"],
+    [6.3,2.5,5.0,1.9,"virginica"],
+    [6.5,3.0,5.2,2.0,"virginica"],
+    [6.2,3.4,5.4,2.3,"virginica"],
+    [5.9,3.0,5.1,1.8,"virginica"]
+];
+
+
+/* =========================================================
+   FEATURE INFORMATION
+   ========================================================= */
+
+const features = {
+
+    sepal_length: "Sepal Length",
+    sepal_width: "Sepal Width",
+    petal_length: "Petal Length",
+    petal_width: "Petal Width"
+
+};
+
+
+const indexMap = {
+
+    sepal_length: 0,
+    sepal_width: 1,
+    petal_length: 2,
+    petal_width: 3
+
+};
+
+
+const speciesList = [
+
+    "setosa",
+    "versicolor",
+    "virginica"
+
+];
+
+
+/* =========================================================
+   GET VALUES
+   ========================================================= */
+
+function values(feature) {
+
+    return iris.map(
+        row => row[indexMap[feature]]
+    );
+
+}
+
+
+/* =========================================================
+   DATASET SUMMARY
+   ========================================================= */
+
+function showDatasetSummary() {
+
+    const counts = {};
+
+    speciesList.forEach(
+        species => {
+            counts[species] =
+                iris.filter(
+                    row => row[4] === species
+                ).length;
+        }
+    );
+
+
+    document.getElementById(
+        "summaryOutput"
+    ).innerHTML = `
+
+        <table class="stats-table">
+
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
+
+            <tr>
+                <td>Rows</td>
+                <td>${iris.length}</td>
+            </tr>
+
+            <tr>
+                <td>Columns</td>
+                <td>5</td>
+            </tr>
+
+            <tr>
+                <td>Numerical Variables</td>
+                <td>4</td>
+            </tr>
+
+            <tr>
+                <td>Categorical Variable</td>
+                <td>species</td>
+            </tr>
+
+            <tr>
+                <td>Missing Values</td>
+                <td>None</td>
+            </tr>
+
+            <tr>
+                <td>Setosa</td>
+                <td>${counts.setosa}</td>
+            </tr>
+
+            <tr>
+                <td>Versicolor</td>
+                <td>${counts.versicolor}</td>
+            </tr>
+
+            <tr>
+                <td>Virginica</td>
+                <td>${counts.virginica}</td>
+            </tr>
+
+        </table>
+
+    `;
+
+}
+
+
+/* =========================================================
+   BAR CHART
+   ========================================================= */
+
+function drawCountPlot() {
+
+    const counts =
+        speciesList.map(
+            species =>
+                iris.filter(
+                    row => row[4] === species
+                ).length
+        );
+
+
+    Plotly.newPlot(
+
+        "countPlot",
+
+        [
+
+            {
+                x: speciesList,
+                y: counts,
+                type: "bar",
+                text: counts,
+                textposition: "auto"
+            }
+
+        ],
+
+        {
+
+            title: "Count of Each Species",
+
+            xaxis: {
+                title: "Species"
+            },
+
+            yaxis: {
+                title: "Count"
+            }
+
+        },
+
+        {
+            responsive: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   HISTOGRAM
+   ========================================================= */
+
+function drawHistogram() {
+
+    const feature =
+        document.getElementById(
+            "histFeature"
+        ).value;
+
+
+    Plotly.newPlot(
+
+        "histPlot",
+
+        [
+
+            {
+                x: values(feature),
+                type: "histogram",
+                nbinsx: 15
+            }
+
+        ],
+
+        {
+
+            title:
+                `Histogram of ${features[feature]}`,
+
+            xaxis: {
+                title:
+                    `${features[feature]} (cm)`
+            },
+
+            yaxis: {
+                title: "Frequency"
+            }
+
+        },
+
+        {
+            responsive: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   BOX PLOT
+   ========================================================= */
+
+function drawBoxPlot() {
+
+    const feature =
+        document.getElementById(
+            "boxFeature"
+        ).value;
+
+
+    Plotly.newPlot(
+
+        "boxPlot",
+
+        [
+
+            {
+
+                y: values(feature),
+
+                type: "box",
+
+                boxpoints: "outliers",
+
+                name: features[feature]
+
+            }
+
+        ],
+
+        {
+
+            title:
+                `Box Plot of ${features[feature]}`,
+
+            yaxis: {
+                title:
+                    `${features[feature]} (cm)`
+            }
+
+        },
+
+        {
+            responsive: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   GROUPED BOX PLOT
+   ========================================================= */
+
+function drawGroupedBoxPlot() {
+
+    const feature =
+        document.getElementById(
+            "groupFeature"
+        ).value;
+
+
+    const traces =
+        speciesList.map(
+
+            species => ({
+
+                y:
+
+                    iris
+                    .filter(
+                        row => row[4] === species
+                    )
+                    .map(
+                        row =>
+                            row[indexMap[feature]]
+                    ),
+
+                type: "box",
+
+                name: species
+
+            })
+
+        );
+
+
+    Plotly.newPlot(
+
+        "groupBoxPlot",
+
+        traces,
+
+        {
+
+            title:
+                `${features[feature]} by Species`,
+
+            xaxis: {
+                title: "Species"
+            },
+
+            yaxis: {
+                title:
+                    `${features[feature]} (cm)`
+            },
+
+            boxmode: "group"
+
+        },
+
+        {
+            responsive: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   SCATTER PLOT
+   ========================================================= */
+
+function drawScatterPlot() {
+
+    const xFeature =
+        document.getElementById(
+            "scatterX"
+        ).value;
+
+
+    const yFeature =
+        document.getElementById(
+            "scatterY"
+        ).value;
+
+
+    const traces =
+        speciesList.map(
+
+            species => {
+
+                const rows =
+                    iris.filter(
+                        row => row[4] === species
+                    );
+
+
+                return {
+
+                    x:
+                        rows.map(
+                            row =>
+                                row[indexMap[xFeature]]
+                        ),
+
+                    y:
+                        rows.map(
+                            row =>
+                                row[indexMap[yFeature]]
+                        ),
+
+                    mode: "markers",
+
+                    type: "scatter",
+
+                    name: species,
+
+                    text:
+                        rows.map(
+                            () => species
+                        ),
+
+                    hovertemplate:
+
+                        `${features[xFeature]}: %{x}<br>` +
+
+                        `${features[yFeature]}: %{y}<br>` +
+
+                        `Species: %{text}<extra></extra>`
+
+                };
+
+            }
+
+        );
+
+
+    Plotly.newPlot(
+
+        "scatterPlot",
+
+        traces,
+
+        {
+
+            title:
+                `${features[xFeature]} vs ${features[yFeature]}`,
+
+            xaxis: {
+                title:
+                    `${features[xFeature]} (cm)`
+            },
+
+            yaxis: {
+                title:
+                    `${features[yFeature]} (cm)`
+            }
+
+        },
+
+        {
+            responsive: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   CORRELATION
+   ========================================================= */
+
+function correlation(a, b) {
+
+    const meanA =
+        a.reduce(
+            (sum, value) =>
+                sum + value,
+            0
+        ) / a.length;
+
+
+    const meanB =
+        b.reduce(
+            (sum, value) =>
+                sum + value,
+            0
+        ) / b.length;
+
+
+    let numerator = 0;
+
+    let denominatorA = 0;
+
+    let denominatorB = 0;
+
+
+    for (
+        let i = 0;
+        i < a.length;
+        i++
+    ) {
+
+        const da =
+            a[i] - meanA;
+
+        const db =
+            b[i] - meanB;
+
+
+        numerator +=
+            da * db;
+
+        denominatorA +=
+            da * da;
+
+        denominatorB +=
+            db * db;
+
+    }
+
+
+    return numerator /
+        Math.sqrt(
+            denominatorA *
+            denominatorB
+        );
+
+}
+
+
+/* =========================================================
+   PAIRWISE SCATTER PLOT
+   ========================================================= */
+
+function drawPairwisePlot() {
+
+    const xFeature =
+        document.getElementById(
+            "pairX"
+        ).value;
+
+
+    const yFeature =
+        document.getElementById(
+            "pairY"
+        ).value;
+
+
+    const traces =
+        speciesList.map(
+
+            species => {
+
+                const rows =
+                    iris.filter(
+                        row => row[4] === species
+                    );
+
+
+                return {
+
+                    x:
+                        rows.map(
+                            row =>
+                                row[indexMap[xFeature]]
+                        ),
+
+                    y:
+                        rows.map(
+                            row =>
+                                row[indexMap[yFeature]]
+                        ),
+
+                    mode: "markers",
+
+                    type: "scatter",
+
+                    name: species,
+
+                    text:
+                        rows.map(
+                            () => species
+                        ),
+
+                    hovertemplate:
+
+                        `${features[xFeature]}: %{x}<br>` +
+
+                        `${features[yFeature]}: %{y}<br>` +
+
+                        `Species: %{text}<extra></extra>`
+
+                };
+
+            }
+
+        );
+
+
+    Plotly.newPlot(
+
+        "pairPlot",
+
+        traces,
+
+        {
+
+            title:
+                `${features[xFeature]} vs ${features[yFeature]}`,
+
+            xaxis: {
+                title:
+                    `${features[xFeature]} (cm)`
+            },
+
+            yaxis: {
+                title:
+                    `${features[yFeature]} (cm)`
+            }
+
+        },
+
+        {
+            responsive: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   CORRELATION HEATMAP
+   ========================================================= */
+
+function drawHeatmap() {
+
+    const featureNames =
+        Object.keys(features);
+
+
+    const matrix =
+        featureNames.map(
+
+            a =>
+
+                featureNames.map(
+
+                    b =>
+                        correlation(
+                            values(a),
+                            values(b)
+                        )
+
+                )
+
+        );
+
+
+    Plotly.newPlot(
+
+        "heatmapPlot",
+
+        [
+
+            {
+
+                z: matrix,
+
+                x:
+                    featureNames.map(
+                        feature =>
+                            features[feature]
+                    ),
+
+                y:
+                    featureNames.map(
+                        feature =>
+                            features[feature]
+                    ),
+
+                type: "heatmap",
+
+                zmin: -1,
+
+                zmax: 1,
+
+                text:
+                    matrix.map(
+                        row =>
+                            row.map(
+                                value =>
+                                    value.toFixed(2)
+                            )
+                    ),
+
+                texttemplate:
+                    "%{text}",
+
+                colorscale:
+                    "RdBu"
+
+            }
+
+        ],
+
+        {
+
+            title:
+                "Correlation Heatmap"
+
+        },
+
+        {
+
+            responsive: true
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   LOAD INITIAL GRAPHS
+   ========================================================= */
+
+window.addEventListener(
+
+    "load",
+
+    function () {
+
+        showDatasetSummary();
+
+        drawCountPlot();
+
+        drawHistogram();
+
+        drawBoxPlot();
+
+        drawGroupedBoxPlot();
+
+        drawScatterPlot();
+
+        drawPairwisePlot();
+
+        drawHeatmap();
+
+    }
+
+);
+
+</script>
+
 
 <script src="../../assets/js/theme.js"></script>
 
