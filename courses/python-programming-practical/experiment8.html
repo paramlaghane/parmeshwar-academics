@@ -1,38 +1,141 @@
- PU's Academics
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Practical No. 08 | Python Programming Practical</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">PU's Academics</h1>
+
+<p class="site-tagline">
 Learn Today. Lead Tomorrow.
+</p>
 
-🌙
-Practical No. 08
+</div>
+
+<button id="themeToggle" class="theme-toggle">🌙</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>Practical No. 08</h2>
+
+<p>
 Find Duplicate Characters in a String Using Counter
+</p>
 
-1. Aim
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<section>
+
+<h2 class="section-title">1. Aim</h2>
+
+<p>
 To write a Python program to find duplicate characters in a string using the Counter class from the collections module.
+</p>
 
-2. Theory
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">2. Theory</h2>
+
+<p>
 A duplicate character is a character that occurs more than once in a string. Python provides the Counter class in the collections module to count the frequency of characters.
+</p>
 
+<p>
 Example:
+</p>
 
-from collections import Counter
+<pre><code>from collections import Counter
 
-Counter("programming")
+Counter("programming")</code></pre>
+
+<p>
 Output:
+</p>
 
-Counter({'r': 2, 'g': 2, 'm': 2, 'p': 1, 'o': 1, 'a': 1, 'i': 1, 'n': 1})
+<pre><code>Counter({'r': 2, 'g': 2, 'm': 2, 'p': 1, 'o': 1, 'a': 1, 'i': 1, 'n': 1})</code></pre>
+
+<p>
 The .items() method is used to access each character and its frequency. A character is considered a duplicate when its frequency is greater than 1.
+</p>
 
-3. Algorithm
-Start.
-Read a string from the user.
-Convert the string to lowercase and remove spaces.
-Create a Counter object to count each character.
-Traverse the Counter using .items().
-Select characters whose frequency is greater than 1.
-Display the duplicate characters and their frequencies.
-If there are no duplicates, display "No duplicate characters found."
-Stop.
-4. Program
-from collections import Counter
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">3. Algorithm</h2>
+
+<ol>
+
+<li>Start.</li>
+
+<li>Read a string from the user.</li>
+
+<li>Convert the string to lowercase and remove spaces.</li>
+
+<li>Create a Counter object to count each character.</li>
+
+<li>Traverse the Counter using .items().</li>
+
+<li>Select characters whose frequency is greater than 1.</li>
+
+<li>Display the duplicate characters and their frequencies.</li>
+
+<li>If there are no duplicates, display "No duplicate characters found."</li>
+
+<li>Stop.</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">4. Program</h2>
+
+<pre><code>from collections import Counter
 
 
 def find_duplicates(text):
@@ -63,16 +166,73 @@ if not duplicates:
 else:
     print("Duplicate characters:")
     for ch, freq in duplicates.items():
-        print(f"{ch!r} -> {freq} times")
-5. Conclusion
+        print(f"{ch!r} -> {freq} times")</code></pre>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">5. Conclusion</h2>
+
+<p>
 The program successfully finds and displays the duplicate characters in a given string along with their frequencies using Python's Counter class.
+</p>
 
+</section>
+
+<hr>
+
+
+<section>
+
+<div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:40px 0;">
+
+<a href="experiment7.html" class="primary-button">
 ← Previous Practical
+</a>
+
+<a href="index.html" class="primary-button">
 Back to Practicals
-PU's Academics
+</a>
 
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>
+<strong>PU's Academics</strong>
+</p>
+
+<p>
 Learn Today. Lead Tomorrow.
+</p>
 
+<p>
 Digital learning platform for academic resources and practical learning.
+</p>
 
-© 2026 PU's Academics. All rights reserved.
+<p>
+&copy; 2026 PU's Academics. All rights reserved.
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+
+</html>
