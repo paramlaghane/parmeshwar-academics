@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Practical No. 09 | Python Programming Practical</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="container header-content">
+
+<div>
+
+<h1 class="site-title">PU's Academics</h1>
+
+<p class="site-tagline">
+Learn Today. Lead Tomorrow.
+</p>
+
+</div>
+
+<button id="themeToggle" class="theme-toggle">🌙</button>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="container">
+
+<h2>Practical No. 09</h2>
+
+<p>
+Generate Possible Words from Given Characters
+</p>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<section>
+
+<h2 class="section-title">1. Aim</h2>
+
+<p>
+To write a Python program that generates <strong>all possible arrangements of a given set of characters</strong> and, optionally, filters them down to <strong>real words</strong> using a small dictionary.
+</p>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">2. Prerequisites</h2>
+
+<p>
+Strings as iterable sequences · <code>for</code> loops and nested loops ·
+<code>def</code> and <code>return</code> · <code>set</code> ·
+<code>"".join</code> · <code>import</code> of a standard-library module.
+</p>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">3. Learning Outcomes</h2>
+
+<p>
+After this practical, students can:
+</p>
+
+<ol>
+
+<li>
+Explain what a <strong>permutation</strong> is and why generating words is a permutation problem.
+</li>
+
+<li>
+Use <code>itertools.permutations(chars, r)</code> to get every ordering of <code>r</code> characters.
+</li>
+
+<li>
+Turn each tuple of characters into a string with <code>"".join</code>.
+</li>
+
+<li>
+Use a <code>set</code> to remove duplicates automatically (important when letters repeat).
+</li>
+
+<li>
+Filter candidates against a dictionary to separate <strong>valid words</strong> from <strong>mere arrangements</strong>.
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">4. Theory</h2>
+
+<p>
+If you are given the characters <code>c</code>, <code>a</code>, <code>t</code>,
+the question "what words can I make?" is really the question
+<strong>"in how many orders can I arrange these letters?"</strong> — that is a
+<strong>permutation</strong>.
+</p>
+
+<ul>
+
+<li>
+For <code>n</code> characters taken <code>r</code> at a time, the number of arrangements is
+<strong>n! / (n − r)!</strong>. For <code>cat</code> (n = 3), taking all 3 gives
+3! = 6 arrangements; taking 2 at a time gives 3!/1! = 6.
+</li>
+
+<li>
+<code>itertools.permutations(chars, r)</code> yields every ordering as a
+<strong>tuple</strong> of length <code>r</code>, so the program never needs nested loops of unknown depth:
+</li>
+
+</ul>
+
+<pre><code>from itertools import permutations
+
+list(permutations("cat", 2))
+
+# [('c','a'), ('c','t'), ('a','c'),
+#  ('a','t'), ('t','c'), ('t','a')]</code></pre>
+
+
+<p>
+Two details do most of the work:
+</p>
+
+<ul>
+
+<li>
+<code>"".join(combo)</code> converts the tuple
+<code>('c','a','t')</code> into the string <code>"cat"</code>.
+</li>
+
+<li>
+<code>set</code> stores the results, so when a letter repeats (as in
+<code>aab</code>) the duplicate arrangements collapse automatically —
+no manual checking needed.
+</li>
+
+</ul>
+
+
+<p>
+Finally, <strong>not every arrangement is a word</strong>.
+<code>atc</code> is a valid arrangement of <code>cat</code> but not an English word,
+so a <strong>dictionary filter</strong>
+(<code>if word in dictionary</code>) is what turns a list of candidates into a list of words.
+</p>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">5. Algorithm</h2>
+
+<ol>
+
+<li>Start.</li>
+
+<li>
+Read the characters from the user; remove spaces and convert to lower case.
+</li>
+
+<li>
+If no characters were given, print a message and stop.
+</li>
+
+<li>
+Import <code>permutations</code> from <code>itertools</code>.
+</li>
+
+<li>
+For each length <code>r</code> from <code>min_len</code> to <code>max_len</code>:
+
+<ul>
+
+<li>
+Generate every ordering of <code>r</code> characters with
+<code>permutations(chars, r)</code>.
+</li>
+
+<li>
+Join each tuple into a string and add it to a
+<strong>set</strong> (duplicates removed automatically).
+</li>
+
+</ul>
+
+</li>
+
+<li>
+Convert the set to a <strong>sorted list</strong> — the candidates.
+</li>
+
+<li>
+Compare each candidate with the words in the dictionary; keep only the matches.
+</li>
+
+<li>
+Print the number of candidates, the candidate list, and the valid words found.
+</li>
+
+<li>
+Stop.
+</li>
+
+</ol>
+
+
+<pre><code>flowchart TD
+    A["Read characters"] --> B["Generate arrangements for each length r"]
+    B --> C["Join tuples to strings, store in a set"]
+    C --> D["Sort to get candidates"]
+    D --> E["Keep candidates found in the dictionary"]
+    E --> F["Display candidates and valid words"]</code></pre>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">6. Program</h2>
+
+<pre><code>"""Practical 9 - Generate possible words from given characters."""
+
+from itertools import permutations
+
+
+def generate_candidates(chars, min_len=2, max_len=None):
+    """Return a sorted list of unique strings built from the given characters.
+
+    min_len : shortest string to generate (default 2)
+    max_len : longest string to generate (default = number of characters)
+    """
+
+    if not chars:
+        return []
+
+    chars = list(chars)                              # e.g. ['c', 'a', 't']
+
+    max_len = max_len if max_len is not None else len(chars)
+
+    max_len = min(max_len, len(chars))
+
+    candidates = set()                               # set removes duplicates
+
+    for r in range(min_len, max_len + 1):
+
+        for combo in permutations(chars, r):         # every ordering of r chars
+
+            candidates.add("".join(combo))           # tuple -> string
+
+    return sorted(candidates)
+
+
+def filter_valid(candidates, dictionary):
+    """Keep only the candidates that appear in the dictionary."""
+
+    valid = {word.lower() for word in dictionary}
+
+    return [word for word in candidates if word in valid]
+
+
+# ------------------------------ main program ------------------------------
+
+chars = input("Enter characters (e.g. cat): ").replace(" ", "").lower()
+
+
+if not chars:
+
+    print("No characters given.")
+
+else:
+
+    DICTIONARY = {
+        "at",
+        "act",
+        "cat",
+        "car",
+        "arc",
+        "ant",
+        "an"
+    }
+
+    candidates = generate_candidates(chars, min_len=2)
+
+    words = filter_valid(candidates, DICTIONARY)
+
+    print(f"\nCharacters      : {list(chars)}")
+
+    print(f"Candidates ({len(candidates)}) : {candidates}")
+
+    print(f"Real words ({len(words)})  : {words}")</code></pre>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">7. Sample Output</h2>
+
+<pre><code>Enter characters (e.g. cat): cat
+
+Characters      : ['c', 'a', 't']
+Candidates (12) : ['ac', 'act', 'at', 'atc', 'ca', 'cat',
+                   'ct', 'cta', 'ta', 'tac', 'tc', 'tca']
+Real words (3)  : ['act', 'at', 'cat']</code></pre>
+
+
+<pre><code>Enter characters (e.g. cat): aab
+
+Characters      : ['a', 'a', 'b']
+Candidates (6)  : ['aa', 'aab', 'ab', 'aba', 'ba', 'baa']
+Real words (0)  : []</code></pre>
+
+
+<p>
+In the second run the repeated <code>a</code> produces duplicate arrangements
+(for example <code>aab</code> arises twice); the <code>set</code> keeps only one copy,
+so 6 unique strings survive instead of the 9 raw tuples.
+</p>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">8. Edge Cases</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Input</th>
+
+<th>Result</th>
+
+<th>Why</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td><code>""</code> (nothing entered)</td>
+
+<td>"No characters given."</td>
+
+<td>Guard clause stops the program early</td>
+
+</tr>
+
+<tr>
+
+<td><code>"a"</code></td>
+
+<td>no candidates</td>
+
+<td>A single character has no arrangement of length ≥ 2</td>
+
+</tr>
+
+<tr>
+
+<td><code>"cat"</code></td>
+
+<td>12 candidates</td>
+
+<td>3P2 = 6 and 3P3 = 6</td>
+
+</tr>
+
+<tr>
+
+<td><code>"aab"</code></td>
+
+<td>6 candidates</td>
+
+<td>The <code>set</code> collapses repeated arrangements</td>
+
+</tr>
+
+<tr>
+
+<td><code>"abc"</code></td>
+
+<td>12 candidates</td>
+
+<td>All characters distinct, so no collisions</td>
+
+</tr>
+
+<tr>
+
+<td><code>"cat"</code> with <code>min_len=1</code></td>
+
+<td>includes <code>a</code>, <code>c</code>, <code>t</code></td>
+
+<td>Short words appear only when allowed by <code>min_len</code></td>
+
+</tr>
+
+<tr>
+
+<td>10 distinct characters, all lengths</td>
+
+<td>10! arrangements at the full length alone</td>
+
+<td>Factorial growth — see the warning below</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+
+<p>
+⚠️ <strong>Performance warning:</strong> the count of arrangements grows factorially.
+Ten distinct characters taken all at length gives
+10! = 3,628,800 arrangements, so keep the input short (3–6 characters) in the lab,
+or restrict <code>max_len</code>.
+</p>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">9. Exercises</h2>
+
+<ol>
+
+<li>
+Let the user choose <code>min_len</code> and <code>max_len</code> at run time.
+</li>
+
+<li>
+Print the candidates grouped by length using a dictionary of lists.
+</li>
+
+<li>
+Write a version that generates arrangements of <strong>exactly one</strong>
+length <code>r</code> (remove the outer loop).
+</li>
+
+<li>
+Extend <code>filter_valid</code> so it also reports how many candidates were rejected as non-words.
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<h2 class="section-title">10. Viva Questions</h2>
+
+<ol>
+
+<li>
+What is a permutation, and how many arrangements does
+<code>n</code> characters taken <code>r</code> at a time give?
+(<code>n! / (n − r)!</code>)
+</li>
+
+<li>
+What does <code>permutations("cat", 2)</code> return — strings or tuples?
+</li>
+
+<li>
+What is the job of <code>"".join(combo)</code>?
+</li>
+
+<li>
+Why is a <code>set</code> used instead of a <code>list</code> while collecting candidates?
+</li>
+
+<li>
+What happens to the number of unique results when a character repeats, and why?
+</li>
+
+<li>
+Why is <code>atc</code> a candidate but not a real word?
+</li>
+
+<li>
+Why is <code>sorted</code> applied before displaying the results?
+</li>
+
+<li>
+Why is <code>itertools.permutations</code> preferred over three nested loops for this problem?
+</li>
+
+</ol>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<p>
+<strong>Teacher's note:</strong>
+<em>
+The idea to land is that "generating words" is two separate jobs —
+enumerate every ordering (a permutation task, handled in one line by
+<code>itertools</code>), then decide which orderings are words (a lookup task).
+Keep the dictionary small and the input at three or four letters, and the
+factorial growth never becomes a problem in class.
+</em>
+</p>
+
+</section>
+
+<hr>
+
+
+<section>
+
+<div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:40px 0;">
+
+<a href="experiment8.html" class="primary-button">
+← Previous Practical
+</a>
+
+<a href="index.html" class="primary-button">
+Back to Practicals
+</a>
+
+<a href="experiment10.html" class="primary-button">
+Next Practical →
+</a>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer class="site-footer">
+
+<div class="container">
+
+<p>
+<strong>PU's Academics</strong>
+</p>
+
+<p>
+Learn Today. Lead Tomorrow.
+</p>
+
+<p>
+Digital learning platform for academic resources and practical learning.
+</p>
+
+<p>
+&copy; 2026 PU's Academics. All rights reserved.
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+</html>
