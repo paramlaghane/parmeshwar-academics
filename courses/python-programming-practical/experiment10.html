@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical No. 10 | Python Programming Practical</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div>
+            <h1 class="site-title">PU's Academics</h1>
+            <p class="site-tagline">Learn Today. Lead Tomorrow.</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h2>Practical No. 10</h2>
+        <p>Implement the Tower of Hanoi Algorithm in Python</p>
+    </div>
+</section>
+
+<main class="container">
+
+    <section>
+        <h2>1. Aim</h2>
+        <p>
+            To implement the Tower of Hanoi puzzle using a recursive function in Python
+            and verify that the minimum number of moves is 2ⁿ − 1.
+        </p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>2. Theory</h2>
+
+        <p>
+            The Tower of Hanoi consists of three pegs and n disks of different sizes.
+            Initially, all disks are placed on the source peg in decreasing order of size.
+        </p>
+
+        <p><strong>Rules:</strong></p>
+
+        <ol>
+            <li>Only one disk can be moved at a time.</li>
+            <li>Only the top disk of a peg can be moved.</li>
+            <li>A larger disk cannot be placed on a smaller disk.</li>
+        </ol>
+
+        <p>
+            The problem is solved using recursion. To move n disks:
+        </p>
+
+        <ol>
+            <li>Move the top n−1 disks from the source to the auxiliary peg.</li>
+            <li>Move the largest disk from the source to the target peg.</li>
+            <li>Move the n−1 disks from the auxiliary peg to the target peg.</li>
+        </ol>
+
+        <p>
+            The minimum number of moves is:
+        </p>
+
+        <p><strong>2ⁿ − 1</strong></p>
+
+        <p>For example:</p>
+
+        <ul>
+            <li>1 disk → 1 move</li>
+            <li>2 disks → 3 moves</li>
+            <li>3 disks → 7 moves</li>
+            <li>4 disks → 15 moves</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>3. Algorithm</h2>
+
+        <ol start="4">
+            <li>Start.</li>
+            <li>Read the number of disks n.</li>
+            <li>If n ≤ 0, display an error message and stop.</li>
+            <li>Define the recursive function <code>hanoi(n, source, auxiliary, target)</code>.</li>
+            <li>If n == 1, move the disk from source to target and return.</li>
+            <li>Move n−1 disks from source to auxiliary.</li>
+            <li>Move disk n from source to target.</li>
+            <li>Move n−1 disks from auxiliary to target.</li>
+            <li>Call the function with A as source, B as auxiliary, and C as target.</li>
+            <li>Display the total number of moves and the expected minimum, 2ⁿ − 1.</li>
+            <li>Stop.</li>
+        </ol>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>4. Program</h2>
+
+        <pre><code>def hanoi(n, source, auxiliary, target, moves):
+    if n == 1:
+        moves.append((source, target))
+        print(f"Move disk 1 from {source} to {target}")
+        return
+
+    # Move n-1 disks to auxiliary peg
+    hanoi(n - 1, source, target, auxiliary, moves)
+
+    # Move the largest disk to target peg
+    moves.append((source, target))
+    print(f"Move disk {n} from {source} to {target}")
+
+    # Move n-1 disks to target peg
+    hanoi(n - 1, auxiliary, source, target, moves)
+
+
+n = int(input("Enter the number of disks: "))
+
+if n &lt;= 0:
+    print("Please enter a positive number of disks.")
+else:
+    print(f"\nSequence of moves for {n} disk(s) from A to C:\n")
+
+    moves = []
+    hanoi(n, "A", "B", "C", moves)
+
+    print(f"\nTotal moves made : {len(moves)}")
+    print(f"Expected minimum : {2 ** n - 1}")</code></pre>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>5. Sample Output</h2>
+
+        <pre><code>Enter the number of disks: 3
+
+Sequence of moves for 3 disk(s) from A to C:
+
+Move disk 1 from A to C
+Move disk 2 from A to B
+Move disk 1 from C to B
+Move disk 3 from A to C
+Move disk 1 from B to A
+Move disk 2 from B to C
+Move disk 1 from A to C
+
+Total moves made : 7
+Expected minimum : 7</code></pre>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>6. Conclusion</h2>
+
+        <p>
+            The Tower of Hanoi problem was successfully implemented using recursion.
+            The program generates the correct sequence of moves and verifies that the
+            minimum number of moves is 2ⁿ − 1.
+        </p>
+    </section>
+
+    <hr>
+
+    <section class="practical-navigation">
+        <a href="experiment9.html" class="course-button">← Previous Practical</a>
+        <a href="index.html" class="course-button">Back to Practicals</a>
+        <a href="experiment11.html" class="course-button">Next Practical →</a>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <h3>PU's Academics</h3>
+        <p>Learn Today. Lead Tomorrow.</p>
+        <p>Digital learning platform for academic resources and practical learning.</p>
+        <p>© 2026 PU's Academics. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="../../assets/js/theme.js"></script>
+
+</body>
+</html>
