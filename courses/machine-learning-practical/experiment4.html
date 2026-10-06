@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical No. 4 | Machine Learning Practical</title>
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <!-- Plotly for Interactive Graphs -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <style>
+        .interactive-panel {
+            margin: 25px 0;
+            padding: 24px;
+            border: 1px solid var(--border-color, #d0d0d0);
+            border-radius: 10px;
+        }
+
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .control-row label {
+            font-weight: 600;
+        }
+
+        .control-row input {
+            padding: 9px 12px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            width: 100px;
+        }
+
+        .interactive-button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 8px;
+            background: rgba(127, 127, 127, 0.08);
+        }
+
+        .result-box strong {
+            font-size: 1.05rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            padding: 18px;
+            border: 1px solid var(--border-color, #d0d0d0);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-card .metric-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .graph-box {
+            width: 100%;
+            min-height: 450px;
+            margin: 20px 0;
+        }
+
+        .equation-box {
+            padding: 18px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            background: rgba(127, 127, 127, 0.08);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #aaa;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .data-table th {
+            font-weight: 700;
+        }
+
+        .note-box {
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #777;
+            background: rgba(127, 127, 127, 0.08);
+        }
+
+        @media (max-width: 600px) {
+            .graph-box {
+                min-height: 350px;
+            }
+
+            .control-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+
+        <div>
+            <h1 class="site-title">PU's Academics</h1>
+            <p class="site-tagline">Learn Today. Lead Tomorrow.</p>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="container">
+
+        <h2>Practical No. 4</h2>
+
+        <p>
+            Simple Linear Regression: Modeling the Relationship Between One
+            Independent Variable and One Dependent Variable and Interpreting
+            Slope and Intercept
+        </p>
+
+        <p><strong>Unit:</strong> II</p>
+
+    </div>
+</section>
+
+
+<main class="container">
+
+    <!-- ========================================================= -->
+    <!-- 1. AIM -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>1. Aim</h2>
+
+        <p>
+            To build a Simple Linear Regression model in Python to predict a
+            student's <strong>Final Marks</strong> from their weekly
+            <strong>Study Hours</strong> and to interpret the slope and
+            intercept of the fitted regression line.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- 2. TOOLS / LIBRARIES -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>2. Tools / Libraries</h2>
+
+        <ul>
+            <li>Python</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Matplotlib</li>
+            <li>Seaborn</li>
+            <li>Scikit-learn</li>
+        </ul>
+
+        <p>
+            The same <strong>Student Performance</strong> dataset used in
+            Practical No. 3 is reused. This allows students to extend the
+            relationship identified during Exploratory Data Analysis into
+            a predictive regression model.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- 3. THEORY -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>3. Theory</h2>
+
+        <p>
+            Simple Linear Regression is a supervised learning technique used
+            to model the relationship between one independent variable and
+            one dependent variable.
+        </p>
+
+        <p>
+            The general equation of Simple Linear Regression is:
+        </p>
+
+        <div class="equation-box">
+            y = a + bx
+        </div>
+
+        <p>where:</p>
+
+        <ul>
+            <li><strong>y</strong> = dependent or target variable</li>
+            <li><strong>x</strong> = independent or predictor variable</li>
+            <li><strong>a</strong> = intercept</li>
+            <li><strong>b</strong> = slope or regression coefficient</li>
+        </ul>
+
+        <p>
+            The <strong>slope</strong> represents the expected change in the
+            dependent variable for a one-unit increase in the independent
+            variable.
+        </p>
+
+        <p>
+            The <strong>intercept</strong> represents the predicted value of
+            the dependent variable when the independent variable is zero.
+        </p>
+
+        <p>
+            The regression line is estimated using the
+            <strong>Least Squares Method</strong>, which minimizes the sum
+            of the squared differences between the observed values and the
+            values predicted by the regression line.
+        </p>
+
+        <p>In this practical:</p>
+
+        <ul>
+            <li>
+                Independent variable (<strong>x</strong>) =
+                <strong>Study Hours</strong>
+            </li>
+
+            <li>
+                Dependent variable (<strong>y</strong>) =
+                <strong>Final Marks</strong>
+            </li>
+        </ul>
+
+        <p>
+            Therefore, the regression equation takes the form:
+        </p>
+
+        <div class="equation-box">
+            Final Marks = a + b(Study Hours)
+        </div>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- 4. IMPLEMENTATION -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>4. Implementation</h2>
+
+
+        <!-- STEP 1 -->
+
+        <h3>Step 1 — Create the Dataset</h3>
+
+<pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+data = {
+    'Study_Hours': [2, 3, 5, 6, 8,
+                    2, 4, 6, 7, 9,
+                    3, 4, 5, 7, 8],
+
+    'Final_Marks': [55, 62, 78, 85, 92,
+                    50, 68, 82, 88, 94,
+                    60, 71, 76, 84, 90]
+}
+
+df = pd.DataFrame(data)
+
+print(df.head())
+print(df.shape)</code></pre>
+
+        <h4>Output</h4>
+
+        <p>
+            The dataset contains <strong>15 rows and 2 columns</strong>.
+            The two variables are <code>Study_Hours</code> and
+            <code>Final_Marks</code>. There are no missing values.
+        </p>
+
+
+        <!-- STEP 2 -->
+
+        <h3>Step 2 — Select the Independent and Dependent Variables</h3>
+
+<pre><code># Independent variable
+X = df[['Study_Hours']]
+
+# Dependent variable
+y = df['Final_Marks']</code></pre>
+
+        <p>
+            Here, <code>Study_Hours</code> is the independent variable used
+            to predict <code>Final_Marks</code>.
+        </p>
+
+        <p>
+            <code>X</code> is written using double square brackets because
+            Scikit-learn expects the input features in a
+            <strong>two-dimensional format</strong>.
+        </p>
+
+
+        <!-- STEP 3 -->
+
+        <h3>Step 3 — Visualize the Relationship Using a Scatter Plot</h3>
+
+<pre><code>sns.scatterplot(
+    x='Study_Hours',
+    y='Final_Marks',
+    data=df
+)
+
+plt.title('Study Hours vs Final Marks')
+plt.xlabel('Study Hours per Week')
+plt.ylabel('Final Marks')
+plt.show()</code></pre>
+
+        <h4>Graph Interpretation</h4>
+
+        <p>
+            The scatter plot shows a clear positive and approximately linear
+            relationship between study hours and final marks. In general,
+            students who study for more hours tend to obtain higher final
+            marks.
+        </p>
+
+        <p>
+            This relationship suggests that Simple Linear Regression may be
+            appropriate for modelling the relationship between the two
+            variables.
+        </p>
+
+
+        <!-- STEP 4 -->
+
+        <h3>Step 4 — Fit the Simple Linear Regression Model</h3>
+
+<pre><code>model = LinearRegression()
+
+# Train the model
+model.fit(X, y)
+
+print("Slope (b)     :", round(model.coef_[0], 2))
+print("Intercept (a) :", round(model.intercept_, 2))</code></pre>
+
+        <h4>Output</h4>
+
+<pre><code>Slope (b)     : 6.09
+Intercept (a) : 43.57</code></pre>
+
+        <p>
+            Therefore, the fitted regression equation is approximately:
+        </p>
+
+        <div class="equation-box">
+            Final Marks = 43.57 + 6.09(Study Hours)
+        </div>
+
+
+        <!-- STEP 5 -->
+
+        <h3>Step 5 — Interpret the Slope and Intercept</h3>
+
+        <p><strong>Slope = 6.09</strong></p>
+
+        <p>
+            The slope indicates that for every
+            <strong>one-hour increase in weekly study time</strong>,
+            the predicted final marks increase by approximately
+            <strong>6.09 marks</strong>, on average, according to this
+            fitted model.
+        </p>
+
+        <p><strong>Intercept = 43.57</strong></p>
+
+        <p>
+            The intercept indicates that the model predicts approximately
+            <strong>43.57 marks</strong> when study hours are zero.
+        </p>
+
+        <p>
+            However, zero study hours are outside the observed range of the
+            dataset, so the intercept should mainly be interpreted as the
+            mathematical baseline required to define the regression line
+            rather than as a realistic prediction.
+        </p>
+
+
+        <!-- STEP 6 -->
+
+        <h3>Step 6 — Draw the Regression Line</h3>
+
+<pre><code>sns.scatterplot(
+    x='Study_Hours',
+    y='Final_Marks',
+    data=df
+)
+
+plt.plot(
+    X,
+    model.predict(X),
+    color='red',
+    label='Regression Line'
+)
+
+plt.title('Regression Line: Study Hours vs Final Marks')
+plt.xlabel('Study Hours per Week')
+plt.ylabel('Final Marks')
+plt.legend()
+plt.show()</code></pre>
+
+        <h4>Graph Interpretation</h4>
+
+        <p>
+            The graph displays the observed data points together with the
+            fitted regression line. The line represents the best linear fit
+            to the observed data according to the Least Squares Method.
+        </p>
+
+        <p>
+            Most observations lie relatively close to the regression line,
+            indicating a strong linear relationship in this dataset.
+        </p>
+
+
+        <!-- STEP 7 -->
+
+        <h3>Step 7 — Make a Prediction</h3>
+
+<pre><code># Predict final marks for a student who studies 6 hours per week
+hours = [[6]]
+
+predicted_marks = model.predict(hours)
+
+print(
+    "Predicted marks for 6 study hours:",
+    round(predicted_marks[0], 2)
+)</code></pre>
+
+        <h4>Output</h4>
+
+<pre><code>Predicted marks for 6 study hours: 80.14</code></pre>
+
+        <h4>Interpretation</h4>
+
+        <p>
+            According to the fitted regression model, a student who studies
+            <strong>6 hours per week</strong> is predicted to score
+            approximately <strong>80.14 marks</strong>.
+        </p>
+
+        <p>
+            The prediction is an estimated value based on the fitted
+            relationship between study hours and final marks.
+        </p>
+
+
+        <!-- STEP 8 -->
+
+        <h3>Step 8 — Evaluate the Regression Model</h3>
+
+<pre><code># Generate predictions for the existing observations
+y_pred = model.predict(X)
+
+# Calculate R²
+r2 = r2_score(y, y_pred)
+
+# Calculate RMSE
+rmse = np.sqrt(mean_squared_error(y, y_pred))
+
+print("R² Score :", round(r2, 2))
+print("RMSE     :", round(rmse, 2))</code></pre>
+
+        <h4>Output</h4>
+
+<pre><code>R² Score : 0.95
+RMSE     : 2.90</code></pre>
+
+        <h4>Interpretation of R²</h4>
+
+        <p>
+            The R² value is approximately <strong>0.95</strong>.
+        </p>
+
+        <p>
+            This means that approximately <strong>95% of the variation in
+            Final Marks is explained by Study Hours</strong> in this fitted
+            model.
+        </p>
+
+        <p>
+            The remaining variation is associated with other factors and
+            random variation not represented by this one-predictor model.
+        </p>
+
+        <h4>Interpretation of RMSE</h4>
+
+        <p>
+            The RMSE is approximately <strong>2.90 marks</strong>.
+        </p>
+
+        <p>
+            This indicates that the typical size of the prediction error is
+            about <strong>2.9 marks</strong>, measured in the same units as
+            the dependent variable.
+        </p>
+
+
+        <!-- STEP 9 -->
+
+        <h3>Step 9 — Plot the Residuals</h3>
+
+<pre><code># Calculate residuals
+residuals = y - y_pred
+
+sns.scatterplot(
+    x=y_pred,
+    y=residuals
+)
+
+plt.axhline(
+    0,
+    color='red',
+    linestyle='--'
+)
+
+plt.title('Residual Plot')
+plt.xlabel('Predicted Marks')
+plt.ylabel('Residuals')
+plt.show()</code></pre>
+
+        <h4>Graph Interpretation</h4>
+
+        <p>
+            The residual plot displays the differences between the observed
+            and predicted final marks.
+        </p>
+
+        <p>
+            The residuals are distributed around the zero line without a
+            strong systematic pattern. This provides visual support for the
+            suitability of a linear relationship for this dataset.
+        </p>
+
+        <p>
+            However, a residual plot alone is not sufficient to establish
+            all regression assumptions; it is primarily used here as a basic
+            diagnostic of the fitted linear model.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- 5. INTERACTIVE REGRESSION LAB -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>5. Interactive Simple Linear Regression</h2>
+
+        <p>
+            Use the interactive tools below to explore the relationship
+            between <strong>Study Hours</strong> and
+            <strong>Final Marks</strong>.
+        </p>
+
+
+        <!-- DATASET SUMMARY -->
+
+        <div class="interactive-panel">
+
+            <h3>5.1 Dataset Summary</h3>
+
+            <div class="metric-grid">
+
+                <div class="metric-card">
+                    <span>Observations</span>
+                    <span class="metric-value">15</span>
+                </div>
+
+                <div class="metric-card">
+                    <span>Predictor</span>
+                    <span class="metric-value">Study Hours</span>
+                </div>
+
+                <div class="metric-card">
+                    <span>Target</span>
+                    <span class="metric-value">Final Marks</span>
+                </div>
+
+                <div class="metric-card">
+                    <span>R²</span>
+                    <span class="metric-value" id="r2Value">0.95</span>
+                </div>
+
+                <div class="metric-card">
+                    <span>RMSE</span>
+                    <span class="metric-value" id="rmseValue">2.90</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- REGRESSION GRAPH -->
+
+        <div class="interactive-panel">
+
+            <h3>5.2 Interactive Regression Line</h3>
+
+            <p>
+                Hover over the points to inspect individual observations.
+                The line represents the fitted Simple Linear Regression model.
+            </p>
+
+            <div id="regressionGraph" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- PREDICTION -->
+
+        <div class="interactive-panel">
+
+            <h3>5.3 Interactive Prediction</h3>
+
+            <p>
+                Enter the weekly study hours to predict the student's final
+                marks using the fitted regression equation.
+            </p>
+
+            <div class="control-row">
+
+                <label for="studyHours">
+                    Study Hours:
+                </label>
+
+                <input
+                    type="number"
+                    id="studyHours"
+                    value="6"
+                    min="0"
+                    max="15"
+                    step="0.5"
+                >
+
+                <button
+                    class="interactive-button"
+                    onclick="makePrediction()"
+                >
+                    Predict Marks
+                </button>
+
+            </div>
+
+            <div class="result-box" id="predictionResult">
+                Predicted marks for 6 study hours:
+                <strong>80.11</strong>
+            </div>
+
+        </div>
+
+
+        <!-- SLOPE / INTERCEPT -->
+
+        <div class="interactive-panel">
+
+            <h3>5.4 Slope and Intercept</h3>
+
+            <div class="metric-grid">
+
+                <div class="metric-card">
+                    <span>Slope (b)</span>
+                    <span class="metric-value">6.09</span>
+                </div>
+
+                <div class="metric-card">
+                    <span>Intercept (a)</span>
+                    <span class="metric-value">43.57</span>
+                </div>
+
+            </div>
+
+            <div class="equation-box">
+                Final Marks = 43.57 + 6.09 × Study Hours
+            </div>
+
+        </div>
+
+
+        <!-- RESIDUAL GRAPH -->
+
+        <div class="interactive-panel">
+
+            <h3>5.5 Interactive Residual Plot</h3>
+
+            <p>
+                The residual is calculated as:
+            </p>
+
+            <div class="equation-box">
+                Residual = Actual Marks − Predicted Marks
+            </div>
+
+            <div id="residualGraph" class="graph-box"></div>
+
+        </div>
+
+
+        <!-- PREDICTION TABLE -->
+
+        <div class="interactive-panel">
+
+            <h3>5.6 Observed vs Predicted Values</h3>
+
+            <div class="table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+                        <tr>
+                            <th>Study Hours</th>
+                            <th>Actual Marks</th>
+                            <th>Predicted Marks</th>
+                            <th>Residual</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="predictionTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- INTERACTIVE INTERPRETATION -->
+
+        <div class="interactive-panel">
+
+            <h3>5.7 Model Interpretation</h3>
+
+            <div class="note-box">
+
+                <p>
+                    <strong>Slope:</strong>
+                    For every one-hour increase in weekly study time,
+                    the predicted final marks increase by approximately
+                    6.09 marks.
+                </p>
+
+            </div>
+
+            <div class="note-box">
+
+                <p>
+                    <strong>Intercept:</strong>
+                    The model predicts approximately 43.57 marks when
+                    study hours are zero.
+                </p>
+
+            </div>
+
+            <div class="note-box">
+
+                <p>
+                    <strong>R²:</strong>
+                    Approximately 95% of the variation in Final Marks is
+                    explained by Study Hours in this fitted model.
+                </p>
+
+            </div>
+
+            <div class="note-box">
+
+                <p>
+                    <strong>RMSE:</strong>
+                    The typical prediction error is approximately
+                    2.90 marks.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- 6. EXPECTED OUTCOME -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>6. Expected Outcome</h2>
+
+        <p>
+            After completing this practical, the student will be able to:
+        </p>
+
+        <ol>
+
+            <li>
+                Understand the concept of Simple Linear Regression.
+            </li>
+
+            <li>
+                Identify independent and dependent variables.
+            </li>
+
+            <li>
+                Build a Simple Linear Regression model using Scikit-learn.
+            </li>
+
+            <li>
+                Calculate and interpret the <strong>slope</strong> and
+                <strong>intercept</strong>.
+            </li>
+
+            <li>
+                Formulate the regression equation.
+            </li>
+
+            <li>
+                Use the regression model to predict values for new
+                observations.
+            </li>
+
+            <li>
+                Evaluate model performance using
+                <strong>R²</strong> and <strong>RMSE</strong>.
+            </li>
+
+            <li>
+                Use a residual plot as a basic diagnostic for assessing
+                the suitability of a linear model.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- 7. CONCLUSION -->
+    <!-- ========================================================= -->
+
+    <section>
+
+        <h2>7. Conclusion</h2>
+
+        <p>
+            Simple Linear Regression was used to model the relationship
+            between <strong>Study Hours</strong> and
+            <strong>Final Marks</strong>.
+        </p>
+
+        <p>
+            The fitted model produced the regression equation:
+        </p>
+
+        <div class="equation-box">
+            Final Marks = 43.57 + 6.09(Study Hours)
+        </div>
+
+        <p>
+            The model achieved an R² value of approximately
+            <strong>0.95</strong> and an RMSE of approximately
+            <strong>2.90 marks</strong> for this dataset.
+        </p>
+
+        <p>
+            The results indicate a strong positive linear association
+            between study hours and final marks in the sample.
+        </p>
+
+        <p>
+            This practical demonstrates how a relationship identified
+            during Exploratory Data Analysis can be converted into a
+            mathematical model for prediction.
+        </p>
+
+        <p>
+            It should be noted that <strong>regression describes an
+            observed association and does not, by itself, establish a
+            causal relationship</strong>.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <!-- ========================================================= -->
+    <!-- NAVIGATION -->
+    <!-- ========================================================= -->
+
+    <section class="practical-navigation">
+
+        <a href="experiment3.html" class="course-button">
+            ← Previous Practical
+        </a>
+
+        <a href="index.html" class="course-button">
+            Back to Practicals
+        </a>
+
+        <a href="experiment5.html" class="course-button">
+            Next Practical →
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <h3>PU's Academics</h3>
+
+        <p>Learn Today. Lead Tomorrow.</p>
+
+        <p>
+            Digital learning platform for academic resources and practical learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="../../assets/js/theme.js"></script>
+
+
+<script>
+
+/* ============================================================
+   STUDENT PERFORMANCE DATA
+   ============================================================ */
+
+const studentData = [
+    {Study_Hours: 2, Final_Marks: 55},
+    {Study_Hours: 3, Final_Marks: 62},
+    {Study_Hours: 5, Final_Marks: 78},
+    {Study_Hours: 6, Final_Marks: 85},
+    {Study_Hours: 8, Final_Marks: 92},
+
+    {Study_Hours: 2, Final_Marks: 50},
+    {Study_Hours: 4, Final_Marks: 68},
+    {Study_Hours: 6, Final_Marks: 82},
+    {Study_Hours: 7, Final_Marks: 88},
+    {Study_Hours: 9, Final_Marks: 94},
+
+    {Study_Hours: 3, Final_Marks: 60},
+    {Study_Hours: 4, Final_Marks: 71},
+    {Study_Hours: 5, Final_Marks: 76},
+    {Study_Hours: 7, Final_Marks: 84},
+    {Study_Hours: 8, Final_Marks: 90}
+];
+
+
+/* ============================================================
+   REGRESSION CALCULATION
+   ============================================================ */
+
+const x = studentData.map(d => d.Study_Hours);
+const y = studentData.map(d => d.Final_Marks);
+
+const n = x.length;
+
+const meanX =
+    x.reduce((sum, value) => sum + value, 0) / n;
+
+const meanY =
+    y.reduce((sum, value) => sum + value, 0) / n;
+
+
+/* Slope */
+
+let numerator = 0;
+let denominator = 0;
+
+for (let i = 0; i < n; i++) {
+
+    numerator +=
+        (x[i] - meanX) *
+        (y[i] - meanY);
+
+    denominator +=
+        Math.pow(x[i] - meanX, 2);
+}
+
+const slope = numerator / denominator;
+
+
+/* Intercept */
+
+const intercept =
+    meanY - slope * meanX;
+
+
+/* Predictions */
+
+const predictions =
+    x.map(value => intercept + slope * value);
+
+
+/* Residuals */
+
+const residuals =
+    y.map((value, i) =>
+        value - predictions[i]
+    );
+
+
+/* ============================================================
+   R²
+   ============================================================ */
+
+const ssTotal =
+    y.reduce(
+        (sum, value) =>
+            sum + Math.pow(value - meanY, 2),
+        0
+    );
+
+const ssResidual =
+    y.reduce(
+        (sum, value, i) =>
+            sum + Math.pow(value - predictions[i], 2),
+        0
+    );
+
+const r2 =
+    1 - (ssResidual / ssTotal);
+
+
+/* ============================================================
+   RMSE
+   ============================================================ */
+
+const rmse =
+    Math.sqrt(
+        ssResidual / n
+    );
+
+
+/* ============================================================
+   REGRESSION GRAPH
+   ============================================================ */
+
+function drawRegressionGraph() {
+
+    const minX = Math.min(...x) - 0.5;
+    const maxX = Math.max(...x) + 0.5;
+
+    const lineX = [
+        minX,
+        maxX
+    ];
+
+    const lineY = lineX.map(
+        value =>
+            intercept + slope * value
+    );
+
+
+    const scatterTrace = {
+
+        x: x,
+
+        y: y,
+
+        mode: 'markers',
+
+        type: 'scatter',
+
+        name: 'Observed Data',
+
+        text: studentData.map(
+            d =>
+                `Study Hours: ${d.Study_Hours}<br>
+                 Final Marks: ${d.Final_Marks}`
+        ),
+
+        hovertemplate:
+            '%{text}<extra></extra>'
+    };
+
+
+    const lineTrace = {
+
+        x: lineX,
+
+        y: lineY,
+
+        mode: 'lines',
+
+        type: 'scatter',
+
+        name: 'Regression Line',
+
+        hovertemplate:
+            'Predicted Marks: %{y:.2f}<extra></extra>'
+    };
+
+
+    const layout = {
+
+        title:
+            'Study Hours vs Final Marks',
+
+        xaxis: {
+            title: 'Study Hours per Week'
+        },
+
+        yaxis: {
+            title: 'Final Marks'
+        },
+
+        hovermode: 'closest',
+
+        margin: {
+            t: 60,
+            l: 60,
+            r: 30,
+            b: 60
+        }
+    };
+
+
+    Plotly.newPlot(
+        'regressionGraph',
+        [
+            scatterTrace,
+            lineTrace
+        ],
+        layout,
+        {
+            responsive: true
+        }
+    );
+}
+
+
+/* ============================================================
+   PREDICTION FUNCTION
+   ============================================================ */
+
+function makePrediction() {
+
+    const hours =
+        parseFloat(
+            document.getElementById(
+                'studyHours'
+            ).value
+        );
+
+
+    if (isNaN(hours)) {
+
+        document.getElementById(
+            'predictionResult'
+        ).innerHTML =
+            'Please enter a valid number of study hours.';
+
+        return;
+    }
+
+
+    const prediction =
+        intercept + slope * hours;
+
+
+    document.getElementById(
+        'predictionResult'
+    ).innerHTML =
+        `Predicted marks for ${hours} study hours:
+        <strong>${prediction.toFixed(2)}</strong>`;
+}
+
+
+/* ============================================================
+   RESIDUAL GRAPH
+   ============================================================ */
+
+function drawResidualGraph() {
+
+    const trace = {
+
+        x: predictions,
+
+        y: residuals,
+
+        mode: 'markers',
+
+        type: 'scatter',
+
+        name: 'Residuals',
+
+        text: studentData.map(
+            (d, i) =>
+                `Study Hours: ${d.Study_Hours}<br>
+                 Actual: ${d.Final_Marks}<br>
+                 Predicted: ${predictions[i].toFixed(2)}<br>
+                 Residual: ${residuals[i].toFixed(2)}`
+        ),
+
+        hovertemplate:
+            '%{text}<extra></extra>'
+    };
+
+
+    const zeroLine = {
+
+        x: [
+            Math.min(...predictions) - 2,
+            Math.max(...predictions) + 2
+        ],
+
+        y: [0, 0],
+
+        mode: 'lines',
+
+        type: 'scatter',
+
+        name: 'Zero Line',
+
+        line: {
+            dash: 'dash'
+        }
+    };
+
+
+    const layout = {
+
+        title:
+            'Residual Plot',
+
+        xaxis: {
+            title: 'Predicted Marks'
+        },
+
+        yaxis: {
+            title: 'Residuals'
+        },
+
+        hovermode: 'closest',
+
+        margin: {
+            t: 60,
+            l: 60,
+            r: 30,
+            b: 60
+        }
+    };
+
+
+    Plotly.newPlot(
+        'residualGraph',
+        [
+            trace,
+            zeroLine
+        ],
+        layout,
+        {
+            responsive: true
+        }
+    );
+}
+
+
+/* ============================================================
+   PREDICTION TABLE
+   ============================================================ */
+
+function createPredictionTable() {
+
+    const table =
+        document.getElementById(
+            'predictionTable'
+        );
+
+
+    table.innerHTML = '';
+
+
+    studentData.forEach(
+        (student, i) => {
+
+            const row =
+                document.createElement('tr');
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${student.Study_Hours}
+                </td>
+
+                <td>
+                    ${student.Final_Marks}
+                </td>
+
+                <td>
+                    ${predictions[i].toFixed(2)}
+                </td>
+
+                <td>
+                    ${residuals[i].toFixed(2)}
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+}
+
+
+/* ============================================================
+   UPDATE METRICS
+   ============================================================ */
+
+function updateMetrics() {
+
+    document.getElementById(
+        'r2Value'
+    ).textContent =
+        r2.toFixed(2);
+
+
+    document.getElementById(
+        'rmseValue'
+    ).textContent =
+        rmse.toFixed(2);
+}
+
+
+/* ============================================================
+   INITIALIZE
+   ============================================================ */
+
+window.addEventListener(
+    'load',
+    function() {
+
+        drawRegressionGraph();
+
+        drawResidualGraph();
+
+        createPredictionTable();
+
+        updateMetrics();
+
+        makePrediction();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
