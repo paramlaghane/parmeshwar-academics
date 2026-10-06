@@ -1,0 +1,79 @@
+PU's Academics
+Learn Today. Lead Tomorrow.
+
+Toggle Theme
+Practical 8
+Find Duplicate Characters in a String Using Counter
+
+Course: Python Programming | B.Sc. IT — Semester V | Duration: 45 min
+
+1. Aim
+To write a Python program to find duplicate characters in a string using the Counter class from the collections module.
+
+2. Theory
+A duplicate character is a character that occurs more than once in a string. Python provides the Counter class in the collections module to count the frequency of characters.
+
+Example:
+
+from collections import Counter
+
+Counter("programming")
+Output:
+
+Counter({'r': 2, 'g': 2, 'm': 2, 'p': 1, 'o': 1, 'a': 1, 'i': 1, 'n': 1})
+The .items() method is used to access each character and its frequency. A character is considered a duplicate when its frequency is greater than 1.
+
+3. Algorithm
+Start.
+Read a string from the user.
+Convert the string to lowercase and remove spaces.
+Create a Counter object to count each character.
+Traverse the Counter using .items().
+Select characters whose frequency is greater than 1.
+Display the duplicate characters and their frequencies.
+If there are no duplicates, display "No duplicate characters found."
+Stop.
+4. Program
+from collections import Counter
+
+
+def find_duplicates(text):
+    # Convert to lowercase and remove spaces
+    cleaned = text.lower().replace(" ", "")
+
+    # Count each character
+    counts = Counter(cleaned)
+
+    # Find duplicate characters
+    duplicates = {}
+
+    for ch, freq in counts.items():
+        if freq > 1:
+            duplicates[ch] = freq
+
+    return duplicates
+
+
+text = input("Enter a string: ")
+
+
+duplicates = find_duplicates(text)
+
+
+if not duplicates:
+    print("No duplicate characters found.")
+else:
+    print("Duplicate characters:")
+    for ch, freq in duplicates.items():
+        print(f"{ch!r} -> {freq} times")
+5. Conclusion
+The program successfully finds and displays the duplicate characters in a given string along with their frequencies using Python's Counter class.
+
+← Previous Practical
+Back to Practicals
+PU's Academics
+Digital Learning Platform
+
+Learn Today. Lead Tomorrow.
+
+© 2026 PU's Academics
