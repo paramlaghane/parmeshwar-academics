@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical 6 – Multiple Linear Regression | PU's Academics</title>
+
+    <meta name="description"
+          content="Machine Learning Practical 6 – Multiple Linear Regression">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .formula {
+            background: var(--code-bg, #f5f5f5);
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 1.05rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .result-table th,
+        .result-table td {
+            border: 1px solid var(--border-color, #ccc);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .result-table th {
+            font-weight: 600;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            text-decoration: none;
+        }
+
+        .note {
+            padding: 15px;
+            border-left: 4px solid currentColor;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 700px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div>
+                <h1>PU's Academics</h1>
+                <p>Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                🌙
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="container">
+        <h2>Practical No. 6</h2>
+        <p>
+            Multiple Linear Regression: Building Multivariate Prediction Models
+            and Evaluating Performance using R², RMSE, and MAE
+        </p>
+    </div>
+</section>
+
+
+<main class="container">
+
+    <hr>
+
+    <section>
+        <h2>Practical No. 6</h2>
+
+        <p>
+            <strong>Title:</strong>
+            Multiple Linear Regression: Building Multivariate Prediction Models
+            and Evaluating Performance using R², RMSE, and MAE
+        </p>
+
+        <p><strong>Unit:</strong> II</p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>1. Aim</h2>
+
+        <p>
+            To build a Multiple Linear Regression model in Python that predicts
+            a student's Final Marks using more than one independent variable —
+            Study Hours, Attendance, and Internal Marks — and to evaluate model
+            performance using R², RMSE, MAE.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>2. Concept/Theory</h2>
+
+        <p>
+            Multiple Linear Regression extends Simple Linear Regression by
+            modelling target as linear combination of two or more predictors:
+        </p>
+
+        <div class="formula">
+            y = b₀ + b₁x₁ + b₂x₂ + ⋯ + bₚxₚ + ε
+        </div>
+
+        <p>Where:</p>
+
+        <ul>
+            <li><strong>y</strong> = dependent (target) variable</li>
+            <li><strong>b₀</strong> = intercept</li>
+            <li>
+                <strong>b₁, b₂, …, bₚ</strong> = regression coefficients
+            </li>
+            <li>
+                <strong>x₁, x₂, …, xₚ</strong> = independent (predictor)
+                variables
+            </li>
+            <li><strong>ε</strong> = error term</li>
+        </ul>
+
+        <p>
+            (the change in y for a one-unit change in that predictor, holding
+            the other predictors constant), and ε is the error term. The
+            coefficients are estimated by the method of least squares, which
+            minimises the sum of squared residuals.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Evaluation</h2>
+
+        <ul>
+            <li>
+                <strong>R² coefficient determination:</strong>
+                proportion variance target explained; 0 to 1 higher better.
+            </li>
+
+            <li>
+                <strong>RMSE:</strong>
+                square root average squared error; penalises large errors more.
+            </li>
+
+            <li>
+                <strong>MAE:</strong>
+                average absolute difference; easy to interpret target units.
+            </li>
+        </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Assumptions</h2>
+
+        <ul>
+            <li>Linearity</li>
+            <li>No severe multicollinearity</li>
+            <li>Homoscedasticity</li>
+            <li>Normally distributed residuals</li>
+        </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Algorithm</h2>
+
+        <ol>
+            <li>Import Pandas, NumPy, Scikit-learn, Matplotlib/Seaborn.</li>
+            <li>Load student dataset.</li>
+            <li>Separate X/y.</li>
+            <li>Check correlations.</li>
+            <li>Train/test split.</li>
+            <li>LinearRegression fit.</li>
+            <li>Display intercept/coefs and interpret.</li>
+            <li>Predict Final Marks.</li>
+            <li>Evaluate R²/RMSE/MAE.</li>
+            <li>Actual vs predicted plot.</li>
+        </ol>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Program</h2>
+
+        <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+
+data = {
+    'Study_Hours':    [2, 3, 5, 6, 8, 2, 4, 6, 7, 9, 3, 4, 5, 7, 8],
+    'Attendance':     [65, 70, 85, 90, 95, 60, 75, 88, 92, 96, 68, 78, 82, 89, 93],
+    'Internal_Marks': [18, 22, 30, 34, 38, 16, 26, 33, 36, 39, 20, 27, 29, 35, 37],
+    'Final_Marks':    [55, 62, 78, 85, 92, 50, 68, 82, 88, 94, 60, 71, 76, 84, 90]
+}
+
+df = pd.DataFrame(data)
+
+print(df.head())
+
+X = df[['Study_Hours', 'Attendance', 'Internal_Marks']]
+y = df['Final_Marks']
+
+sns.heatmap(X.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation among Predictors')
+plt.show()
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+print("Intercept :", round(model.intercept_, 2))
+
+for name, coef in zip(X.columns, model.coef_):
+    print(f"  {name} : {round(coef, 2)}")
+
+y_pred = model.predict(X_test)
+
+print("R2   :", round(r2_score(y_test, y_pred), 3))
+print("RMSE :", round(np.sqrt(mean_squared_error(y_test, y_pred)), 2))
+print("MAE  :", round(mean_absolute_error(y_test, y_pred), 2))
+
+plt.scatter(y_test, y_pred, color='blue')
+
+plt.plot(
+    [y.min(), y.max()],
+    [y.min(), y.max()],
+    'r--'
+)
+
+plt.xlabel('Actual Final Marks')
+plt.ylabel('Predicted Final Marks')
+plt.title('Actual vs Predicted')
+plt.show()</code></pre>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Output</h2>
+
+        <pre><code>   Study_Hours  Attendance  Internal_Marks  Final_Marks
+0            2          65              18           55
+1            3          70              22           62
+2            5          85              30           78
+3            6          90              34           85
+4            8          95              38           92
+
+Intercept : &lt;value printed by the script&gt;
+
+  Study_Hours : &lt;value printed by the script&gt;
+
+  Attendance : &lt;value printed by the script&gt;
+
+  Internal_Marks : &lt;value printed by the script&gt;
+
+R2   : &lt;value printed by the script&gt;
+
+RMSE : &lt;value printed by the script&gt;
+
+MAE  : &lt;value printed by the script&gt;</code></pre>
+
+        <p>
+            Heatmap and scatter plot are displayed.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Interpretation</h2>
+
+        <ul>
+            <li>
+                Each coefficient change in Final Marks for one-unit predictor
+                increase holding other two constant (study hour, 1% attendance,
+                internal mark).
+            </li>
+
+            <li>
+                Intercept baseline when all predictors zero, mathematical
+                anchor, not realistic.
+            </li>
+        </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Result</h2>
+
+        <p>
+            Model successfully trained on 3 predictors; performance measured
+            R²/RMSE/MAE; Actual vs Predicted points close diagonal, good fit;
+            record exact metrics.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Conclusion</h2>
+
+        <p>
+            Multiple regression predicts from several variables; Study Hours,
+            Attendance, Internal Marks predict Final Marks; R² variance
+            explained, RMSE error with heavier large deviations, and MAE
+            average absolute; heatmap confirms not severely collinear;
+            demonstrates multivariate models built/interpreted/evaluated and
+            why multiple metrics fuller.
+        </p>
+
+        <div class="formula">
+            y = b₀ + b₁x₁ + b₂x₂ + ⋯ + bₚxₚ + ε
+        </div>
+    </section>
+
+
+    <div class="navigation">
+        <a href="experiment4.html" class="course-button">
+            ← Previous Practical
+        </a>
+
+        <a href="index.html" class="course-button">
+            Back to Practicals
+        </a>
+
+        <a href="experiment6.html" class="course-button">
+            Next Practical →
+        </a>
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="container">
+        <h3>PU's Academics</h3>
+        <p>Learn Today. Lead Tomorrow.</p>
+        <p>
+            Digital learning platform for academic resources and practical
+            learning.
+        </p>
+        <p>© 2026 PU's Academics. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
