@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Experiment 11 – Logistic Regression | PU's Academics</title>
+
+    <meta name="description"
+          content="AIML Essentials Practical 11 – Logistic Regression">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        /* Practical-specific styles */
+
+        .formula-box {
+            background: var(--code-bg, #111);
+            border: 1px solid var(--border-color, #333);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .formula-box code {
+            font-family: "IBM Plex Mono", monospace;
+            white-space: pre-wrap;
+        }
+
+        .info-box {
+            border-left: 4px solid #4f8cff;
+            background: rgba(79, 140, 255, 0.08);
+            padding: 15px 18px;
+            margin: 18px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            border-left: 4px solid #f59e0b;
+            background: rgba(245, 158, 11, 0.08);
+            padding: 15px 18px;
+            margin: 18px 0;
+            border-radius: 5px;
+        }
+
+        .result-box {
+            border-left: 4px solid #22c55e;
+            background: rgba(34, 197, 94, 0.08);
+            padding: 15px 18px;
+            margin: 18px 0;
+            border-radius: 5px;
+        }
+
+        .step-box {
+            border: 1px solid var(--border-color, #333);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 18px 0;
+        }
+
+        .step-box h4 {
+            margin-top: 0;
+        }
+
+        .code-block {
+            position: relative;
+        }
+
+        .code-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.7;
+            margin-bottom: 6px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color, #444);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+        }
+
+        .viva-list li {
+            margin-bottom: 8px;
+        }
+
+        .flow-box {
+            text-align: center;
+            padding: 18px;
+            border: 1px solid var(--border-color, #333);
+            border-radius: 8px;
+            margin: 18px 0;
+            font-family: "IBM Plex Mono", monospace;
+            line-height: 2;
+        }
+
+        .calculation {
+            margin: 12px 0;
+        }
+
+        .calculation strong {
+            font-weight: 600;
+        }
+
+        @media (max-width: 700px) {
+            th,
+            td {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+
+        <div class="brand">
+            <div class="brand-name">PU's Academics</div>
+            <div class="brand-tagline">Learn Today. Lead Tomorrow.</div>
+        </div>
+
+        <button id="themeToggle"
+                class="theme-toggle"
+                aria-label="Toggle theme">
+            🌙
+        </button>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+
+            <p class="eyebrow">
+                AIML Essentials Practical
+            </p>
+
+            <h1>
+                Practical 11 — Logistic Regression
+            </h1>
+
+            <p class="hero-subtitle">
+                Binary Classification using Logistic Regression
+            </p>
+
+            <p>
+                <strong>Course:</strong> AIML Essentials · MDI41MMP301
+                <br>
+                <strong>Duration:</strong> 4 Hours
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+    <section class="container">
+
+        <!-- 1. AIM -->
+        <h2>1. Aim</h2>
+
+        <p>
+            To build a <strong>Logistic Regression</strong> model for a binary
+            outcome, interpret its coefficients as odds ratios, and evaluate
+            its predictions using a confusion matrix, log loss, and the ROC curve.
+        </p>
+
+
+        <hr>
+
+
+        <!-- 2. THEORY -->
+        <h2>2. Theory</h2>
+
+
+        <h3>Why Not Ordinary Linear Regression?</h3>
+
+        <p>
+            For a binary outcome, ordinary linear regression is not appropriate
+            because a straight-line model can produce predicted values outside
+            the valid probability range of <strong>0 to 1</strong>.
+        </p>
+
+        <p>
+            For example, a classification problem may have only two possible
+            outcomes:
+        </p>
+
+        <ul>
+            <li>0 = Fail</li>
+            <li>1 = Pass</li>
+        </ul>
+
+        <p>
+            Therefore, the model should produce a probability between 0 and 1.
+        </p>
+
+        <p>
+            Logistic Regression solves this problem by modelling the
+            <strong>log-odds</strong> of the outcome and transforming the
+            result into a probability using the <strong>sigmoid function</strong>.
+        </p>
+
+
+        <h3>What Logistic Regression Does</h3>
+
+        <p>
+            Logistic Regression is a classification algorithm used to model
+            the relationship between one or more independent variables and a
+            <strong>binary outcome</strong>.
+        </p>
+
+        <p>For example:</p>
+
+        <p>
+            <strong>Input:</strong> Homework hours per week
+            <br>
+            <strong>Output:</strong> Pass or Fail
+        </p>
+
+        <p>
+            The model first calculates a linear score and then converts that
+            score into a probability.
+        </p>
+
+
+        <h3>The Logistic Regression Model</h3>
+
+        <p>The linear predictor is:</p>
+
+        <div class="formula-box">
+            <code>z = b0 + b1*x1 + b2*x2 + ... + bp*xp</code>
+        </div>
+
+        <p>where:</p>
+
+        <ul>
+            <li><code>z</code> = linear predictor</li>
+            <li><code>b0</code> = intercept</li>
+            <li><code>b1, b2, ..., bp</code> = model coefficients</li>
+            <li><code>x1, x2, ..., xp</code> = input features</li>
+        </ul>
+
+        <p>
+            The linear predictor is then passed through the sigmoid function:
+        </p>
+
+        <div class="formula-box">
+            <code>P = 1 / (1 + e^(-z))</code>
+        </div>
+
+        <p>where:</p>
+
+        <ul>
+            <li><code>P</code> = predicted probability of class 1</li>
+            <li><code>e</code> = Euler's number, approximately 2.71828</li>
+        </ul>
+
+        <p>
+            The sigmoid function converts any real-valued <code>z</code> into
+            a value between 0 and 1.
+        </p>
+
+
+        <h3>Log-Odds</h3>
+
+        <p>
+            The relationship between probability and the linear predictor can
+            be written as:
+        </p>
+
+        <div class="formula-box">
+            <code>z = ln(P / (1 - P))</code>
+        </div>
+
+        <p>
+            Therefore, <code>z</code> represents the
+            <strong>log-odds</strong> of the outcome.
+        </p>
+
+
+        <div class="flow-box">
+            Features
+            <br>
+            ↓
+            <br>
+            Linear predictor
+            <br>
+            ↓
+            <br>
+            z = b0 + b1*x1 + ... + bp*xp
+            <br>
+            ↓
+            <br>
+            Sigmoid function
+            <br>
+            ↓
+            <br>
+            Probability P
+            <br>
+            ↓
+            <br>
+            Decision threshold
+            <br>
+            ↓
+            <br>
+            Predicted class
+        </div>
+
+
+        <h3>Decision Boundary</h3>
+
+        <p>
+            For the usual classification threshold of <code>P = 0.5</code>:
+        </p>
+
+        <div class="formula-box">
+            <code>P = 0.5  →  z = 0</code>
+        </div>
+
+        <p>
+            Therefore, the decision boundary occurs where the linear predictor
+            is zero.
+        </p>
+
+        <div class="info-box">
+            The threshold is a <strong>decision choice</strong>. It is not a
+            fixed law of Logistic Regression.
+        </div>
+
+
+        <h3>Cost Function</h3>
+
+        <p>
+            Logistic Regression is generally trained using
+            <strong>log loss</strong>, also called
+            <strong>cross-entropy loss</strong>.
+        </p>
+
+        <div class="formula-box">
+            <code>
+J = -(1/n) Σ [ yi log(Pi) + (1 - yi) log(1 - Pi) ]
+            </code>
+        </div>
+
+        <p>
+            The objective is to find model coefficients that minimise this loss.
+        </p>
+
+        <p>
+            A model that predicts 0.5 for every observation has a log loss of
+            approximately:
+        </p>
+
+        <div class="formula-box">
+            <code>0.693</code>
+        </div>
+
+        <p>
+            This provides a useful baseline for a balanced binary classification
+            problem.
+        </p>
+
+
+        <h3>Worked Example</h3>
+
+        <p>Consider the following model:</p>
+
+        <div class="formula-box">
+            <code>z = -2.2 + 0.24 × homework_hours</code>
+        </div>
+
+        <p>
+            The probability of passing is:
+        </p>
+
+        <div class="formula-box">
+            <code>P = 1 / (1 + e^(-z))</code>
+        </div>
+
+        <p>
+            The decision boundary occurs when:
+        </p>
+
+        <div class="formula-box">
+            <code>z = 0</code>
+        </div>
+
+        <p>Therefore:</p>
+
+        <div class="formula-box">
+            <code>
+0 = -2.2 + 0.24 × hours
+
+hours = 2.2 / 0.24
+      = 9.1667 hours
+            </code>
+        </div>
+
+        <div class="result-box">
+            Thus, approximately <strong>9.17 homework hours</strong> corresponds
+            to a predicted probability of 0.5.
+        </div>
+
+
+        <hr>
+
+
+        <!-- 3. ALGORITHM -->
+        <h2>3. Algorithm</h2>
+
+        <ol>
+            <li>
+                Check that the outcome variable is binary, such as Pass/Fail
+                or Yes/No.
+            </li>
+
+            <li>
+                Examine the relationship between the outcome and each predictor.
+            </li>
+
+            <li>
+                Prepare the data:
+                <ul>
+                    <li>Handle missing values.</li>
+                    <li>Scale continuous features when appropriate.</li>
+                    <li>
+                        Split the data into training and testing sets before
+                        fitting the model.
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                Initialise the coefficients:
+            </li>
+        </ol>
+
+        <div class="formula-box">
+            <code>
+b0 = 0
+b1 = 0
+...
+bp = 0
+            </code>
+        </div>
+
+        <ol start="5">
+            <li>
+                Repeat the following steps until the model converges:
+            </li>
+        </ol>
+
+        <div class="formula-box">
+            <code>
+z_i = b0 + b1*x_i + ...
+
+P_i = 1 / (1 + e^(-z_i))
+
+J = -(1/n) Σ [yi log(Pi) + (1-yi) log(1-Pi)]
+
+dJ/dbj = (1/n) Σ [(Pi - yi) xji]
+
+bj = bj - α(dJ/dbj)
+            </code>
+        </div>
+
+        <p>
+            where <code>α</code> is the learning rate.
+        </p>
+
+        <ol start="6">
+            <li>Stop when the cost function has converged.</li>
+
+            <li>
+                Convert each coefficient into an odds ratio:
+            </li>
+        </ol>
+
+        <div class="formula-box">
+            <code>Odds Ratio = e^b</code>
+        </div>
+
+        <ol start="8">
+            <li>
+                Select a classification threshold, commonly 0.5.
+            </li>
+
+            <li>
+                Evaluate the model using:
+                <ul>
+                    <li>Confusion matrix</li>
+                    <li>Sensitivity</li>
+                    <li>Specificity</li>
+                    <li>ROC curve</li>
+                    <li>AUC</li>
+                    <li>Log loss</li>
+                </ul>
+            </li>
+
+            <li>
+                Report coefficients together with their corresponding units.
+            </li>
+        </ol>
+
+
+        <hr>
+
+
+        <!-- 4. HAND CALCULATION -->
+        <h2>4. Hand Calculation — One Gradient-Descent Step</h2>
+
+        <p>
+            Consider three students with one feature:
+            <strong>hours of revision</strong>.
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>x (hours)</th>
+                        <th>y (passed?)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <h3>Step 1: Initial Values</h3>
+
+        <p>Start with:</p>
+
+        <div class="formula-box">
+            <code>
+b0 = 0
+b1 = 0
+            </code>
+        </div>
+
+        <p>Therefore:</p>
+
+        <div class="formula-box">
+            <code>z = 0</code>
+        </div>
+
+        <p>
+            for every student, and hence:
+        </p>
+
+        <div class="formula-box">
+            <code>P = 0.5</code>
+        </div>
+
+        <p>for every student.</p>
+
+        <p>Let the learning rate be:</p>
+
+        <div class="formula-box">
+            <code>α = 1.0</code>
+        </div>
+
+
+        <h3>Step 2: Calculate Errors</h3>
+
+        <p>
+            The error used in the gradient is:
+        </p>
+
+        <div class="formula-box">
+            <code>P - y</code>
+        </div>
+
+        <p>Therefore:</p>
+
+        <div class="formula-box">
+            <code>
+Student 1: 0.5 - 0 = +0.5
+Student 2: 0.5 - 1 = -0.5
+Student 3: 0.5 - 1 = -0.5
+            </code>
+        </div>
+
+
+        <h3>Step 3: Calculate Gradient for b1</h3>
+
+        <div class="formula-box">
+            <code>
+dJ/db1
+= (1/3) [(0.5)(1) + (-0.5)(2) + (-0.5)(3)]
+
+= (1/3) [0.5 - 1.0 - 1.5]
+
+= (1/3)(-2.0)
+
+= -0.6667
+            </code>
+        </div>
+
+
+        <h3>Step 4: Calculate Gradient for b0</h3>
+
+        <div class="formula-box">
+            <code>
+dJ/db0
+= (1/3) [0.5 - 0.5 - 0.5]
+
+= -0.1667
+            </code>
+        </div>
+
+
+        <h3>Step 5: Update the Coefficients</h3>
+
+        <p>
+            The gradient-descent update rule is:
+        </p>
+
+        <div class="formula-box">
+            <code>bj(new) = bj(old) - α(dJ/dbj)</code>
+        </div>
+
+        <p>For <code>b1</code>:</p>
+
+        <div class="formula-box">
+            <code>
+b1 = 0 - 1.0(-0.6667)
+   = +0.6667
+            </code>
+        </div>
+
+        <p>For <code>b0</code>:</p>
+
+        <div class="formula-box">
+            <code>
+b0 = 0 - 1.0(-0.1667)
+   = +0.1667
+            </code>
+        </div>
+
+        <p>Therefore, the new model is:</p>
+
+        <div class="formula-box">
+            <code>z = 0.1667 + 0.6667x</code>
+        </div>
+
+
+        <h3>Step 6: Calculate New Probabilities</h3>
+
+        <h4>For Student 1</h4>
+
+        <div class="formula-box">
+            <code>
+x = 1
+
+z = 0.1667 + 0.6667(1)
+  = 0.8333
+
+P = 1 / (1 + e^(-0.8333))
+  ≈ 0.697
+            </code>
+        </div>
+
+
+        <h4>For Student 2</h4>
+
+        <div class="formula-box">
+            <code>
+x = 2
+
+z = 0.1667 + 0.6667(2)
+  = 1.5000
+
+P ≈ 0.818
+            </code>
+        </div>
+
+
+        <h4>For Student 3</h4>
+
+        <div class="formula-box">
+            <code>
+x = 3
+
+z = 0.1667 + 0.6667(3)
+  = 2.1667
+
+P ≈ 0.897
+            </code>
+        </div>
+
+
+        <p>
+            The probabilities have therefore changed from:
+        </p>
+
+        <div class="formula-box">
+            <code>0.500, 0.500, 0.500</code>
+        </div>
+
+        <p>to approximately:</p>
+
+        <div class="formula-box">
+            <code>0.697, 0.818, 0.897</code>
+        </div>
+
+        <div class="result-box">
+            The model has learned that larger revision hours are associated
+            with a greater probability of passing.
+        </div>
+
+
+        <h3>Step 7: Compare Log Loss</h3>
+
+        <p>Before the update:</p>
+
+        <div class="formula-box">
+            <code>Log loss = 0.693</code>
+        </div>
+
+        <p>After the update:</p>
+
+        <div class="formula-box">
+            <code>Log loss ≈ 0.501</code>
+        </div>
+
+        <p>Therefore, the cost has decreased:</p>
+
+        <div class="formula-box">
+            <code>0.693 → 0.501</code>
+        </div>
+
+        <div class="result-box">
+            This indicates that the gradient-descent step improved the model.
+        </div>
+
+
+        <hr>
+
+
+        <!-- 5. IMPLEMENTATION -->
+        <h2>5. Implementation</h2>
+
+        <p>
+            The following Python program implements Logistic Regression using
+            a dataset of 20 students containing homework hours per week and
+            pass/fail outcomes.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-label">Python Program</div>
+
+<pre><code>import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    confusion_matrix,
+    roc_auc_score,
+    log_loss,
+    accuracy_score
+)
+
+# Dataset: 20 students, homework hours per week vs pass/fail
+hours = np.array([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+])
+
+passed = np.array([
+    0, 0, 0, 0, 0, 1, 0, 1, 1, 0,
+    1, 1, 1, 0, 1, 1, 1, 1, 1, 1
+])
+
+X = hours.reshape(-1, 1)
+y = passed
+
+# Fit the unregularised maximum-likelihood model
+model = LogisticRegression(
+    penalty=None,
+    max_iter=1000
+)
+
+model.fit(X, y)
+
+# Model coefficients
+b0 = float(model.intercept_[0])
+b1 = float(model.coef_[0][0])
+
+print("intercept b0    :", round(b0, 4))
+print("slope     b1    :", round(b1, 4))
+print("odds ratio e^b1 :", round(float(np.exp(b1)), 4))
+
+# Predicted probabilities across the range
+for h in [0, 5, 9.17, 10, 15, 20]:
+
+    z = b0 + b1 * h
+    p = 1.0 / (1.0 + np.exp(-z))
+
+    print(
+        f"hours={h:6.2f}   "
+        f"z={z:7.3f}   "
+        f"P={p:.4f}"
+    )
+
+# Decision boundary: z = 0, therefore P = 0.5
+print(
+    "boundary at hours =",
+    round(-b0 / b1, 3)
+)
+
+# Model evaluation
+p_hat = model.predict_proba(X)[:, 1]
+pred = model.predict(X)
+
+print("\nconfusion matrix:\n", confusion_matrix(y, pred))
+
+print(
+    "accuracy :",
+    round(accuracy_score(y, pred), 4)
+)
+
+print(
+    "log loss :",
+    round(log_loss(y, p_hat), 4),
+    " (0.693 = 'knows nothing')"
+)
+
+print(
+    "AUC      :",
+    round(roc_auc_score(y, p_hat), 4)
+)
+
+# Examine the effect of different thresholds
+for t in [0.3, 0.5, 0.7]:
+
+    pred_t = (p_hat >= t).astype(int)
+
+    tn, fp, fn, tp = confusion_matrix(
+        y, pred_t
+    ).ravel()
+
+    sensitivity = (
+        tp / (tp + fn)
+        if (tp + fn)
+        else float("nan")
+    )
+
+    specificity = (
+        tn / (tn + fp)
+        if (tn + fp)
+        else float("nan")
+    )
+
+    print(
+        f"threshold {t:.1f}   "
+        f"sensitivity {sensitivity:.3f}   "
+        f"specificity {specificity:.3f}"
+    )</code></pre>
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- 6. OBSERVATION -->
+        <h2>6. Observation</h2>
+
+
+        <h3>Part A — Hand Calculation</h3>
+
+        <p>
+            The following values should be obtained from the hand calculation:
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Expected Value</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>b0 after one step</td>
+                        <td><strong>0.1667</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>b1 after one step</td>
+                        <td><strong>0.6667</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Probabilities for x = 1, 2, 3</td>
+                        <td><strong>0.697, 0.818, 0.897</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Log loss before → after</td>
+                        <td><strong>0.693 → 0.501</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <h3>Part B — Worked Model</h3>
+
+        <p>For:</p>
+
+        <div class="formula-box">
+            <code>z = -2.2 + 0.24 × hours</code>
+        </div>
+
+        <p>
+            the corresponding probabilities are:
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Homework Hours</th>
+                        <th>z</th>
+                        <th>Probability</th>
+                        <th>Interpretation</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>0</td>
+                        <td>−2.20</td>
+                        <td><strong>0.100</strong></td>
+                        <td>10% chance of passing</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>−1.00</td>
+                        <td><strong>0.269</strong></td>
+                        <td>27%</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>9.17</strong></td>
+                        <td><strong>0.00</strong></td>
+                        <td><strong>0.500</strong></td>
+                        <td>Tipping point</td>
+                    </tr>
+
+                    <tr>
+                        <td>10</td>
+                        <td>+0.20</td>
+                        <td><strong>0.550</strong></td>
+                        <td>55%</td>
+                    </tr>
+
+                    <tr>
+                        <td>15</td>
+                        <td>+1.40</td>
+                        <td><strong>0.802</strong></td>
+                        <td>80%</td>
+                    </tr>
+
+                    <tr>
+                        <td>20</td>
+                        <td>+2.60</td>
+                        <td><strong>0.931</strong></td>
+                        <td>93%</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p>The decision boundary is:</p>
+
+        <div class="formula-box">
+            <code>
+h = 2.2 / 0.24
+  = 9.1667 hours
+            </code>
+        </div>
+
+
+        <h3>Part C — Values from Your Own Run</h3>
+
+        <p>
+            Record the values obtained after executing the Python program.
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Measurement</th>
+                        <th>Your Value</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Intercept b0</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Slope b1</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Odds ratio e^b1</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Boundary (hours where P = 0.5)</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Log loss</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Accuracy</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>AUC</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Sensitivity and specificity at
+                            t = 0.3 / 0.5 / 0.7
+                        </td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- 7. CONCLUSION -->
+        <h2>7. Conclusion</h2>
+
+        <ul>
+
+            <li>
+                Ordinary linear regression is not suitable for binary
+                classification because its predictions are not restricted
+                to the range <strong>0 to 1</strong>.
+            </li>
+
+            <li>
+                Logistic Regression uses a linear predictor and the sigmoid
+                function to produce probabilities between 0 and 1.
+            </li>
+
+            <li>
+                The linear predictor <code>z</code> represents the
+                <strong>log-odds</strong> of the positive class.
+            </li>
+
+            <li>
+                When <code>z = 0</code>, the predicted probability is
+                <code>0.5</code>, which gives the standard decision boundary.
+            </li>
+
+            <li>
+                A coefficient represents a change in
+                <strong>log-odds</strong>. Exponentiating the coefficient
+                gives the corresponding <strong>odds ratio</strong>.
+            </li>
+
+        </ul>
+
+        <p>
+            For example, if <code>b = 0.24</code>, then:
+        </p>
+
+        <div class="formula-box">
+            <code>e^0.24 ≈ 1.27</code>
+        </div>
+
+        <p>
+            This means that a one-unit increase in the corresponding feature
+            multiplies the odds by approximately <strong>1.27</strong>, or
+            increases the odds by about <strong>27%</strong>, assuming the
+            other variables remain constant.
+        </p>
+
+        <ul>
+
+            <li>
+                Log loss provides a measure of the quality of predicted
+                probabilities. A value of approximately <strong>0.693</strong>
+                corresponds to predicting a probability of 0.5 for every
+                observation in a balanced binary setting.
+            </li>
+
+            <li>
+                The classification threshold is a decision choice. Lowering
+                the threshold generally increases sensitivity while decreasing
+                specificity.
+            </li>
+
+            <li>
+                An odds ratio should not be interpreted as a risk ratio.
+                Odds and probability are different quantities.
+            </li>
+
+        </ul>
+
+
+        <hr>
+
+
+        <!-- 8. VIVA QUESTIONS -->
+        <h2>8. Viva Questions</h2>
+
+        <ol class="viva-list">
+
+            <li>
+                Why is ordinary linear regression unsuitable for a binary outcome?
+            </li>
+
+            <li>
+                Write the Logistic Regression model and identify the linear
+                predictor and sigmoid function.
+            </li>
+
+            <li>
+                What does the linear predictor <code>z</code> represent?
+            </li>
+
+            <li>
+                Show that <code>P = 0.5</code> when <code>z = 0</code>.
+            </li>
+
+            <li>
+                Why is the sigmoid function used in Logistic Regression?
+            </li>
+
+            <li>
+                How is a coefficient converted into an odds ratio?
+            </li>
+
+            <li>
+                What does an odds ratio represent?
+            </li>
+
+            <li>
+                Why should an odds ratio be reported together with its unit?
+            </li>
+
+            <li>
+                Write the log-loss formula used in Logistic Regression.
+            </li>
+
+            <li>
+                Why is log loss used instead of squared error for Logistic Regression?
+            </li>
+
+            <li>
+                What is the log loss when a model predicts 0.5 for every observation?
+            </li>
+
+            <li>
+                What is the purpose of gradient descent in Logistic Regression?
+            </li>
+
+            <li>
+                Write the gradient of the log loss with respect to a coefficient
+                <code>bj</code>.
+            </li>
+
+            <li>
+                What is a confusion matrix?
+            </li>
+
+            <li>
+                Define sensitivity and specificity.
+            </li>
+
+            <li>
+                What happens to sensitivity and specificity when the
+                classification threshold is lowered?
+            </li>
+
+            <li>
+                What does an AUC of 0.5 indicate?
+            </li>
+
+            <li>
+                What are the important assumptions of Logistic Regression?
+            </li>
+
+            <li>
+                Which assumptions of Linear Regression are not required in
+                the same form for Logistic Regression?
+            </li>
+
+            <li>
+                What is the difference between predicted probability and
+                predicted class?
+            </li>
+
+        </ol>
+
+
+        <!-- NAVIGATION -->
+        <div class="nav-buttons">
+
+            <a href="experiment10.html" class="course-button">
+                ← Previous Practical
+            </a>
+
+            <a href="index.html" class="course-button">
+                Back to Practicals
+            </a>
+
+            <a href="experiment12.html" class="course-button">
+                Next Practical →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-brand">
+            <strong>PU's Academics</strong>
+        </div>
+
+        <p>
+            Learn Today. Lead Tomorrow.
+        </p>
+
+        <p>
+            Digital learning platform for academic resources and practical learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
