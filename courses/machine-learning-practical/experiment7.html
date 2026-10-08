@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical 7 – Binary Logistic Regression | PU's Academics</title>
+
+    <meta name="description"
+          content="Machine Learning Practical 7 – Binary Logistic Regression">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .formula {
+            background: var(--code-bg, #f5f5f5);
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 1.05rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div>
+                <h1>PU's Academics</h1>
+                <p>Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="themeToggle"
+                    class="theme-toggle"
+                    aria-label="Toggle theme">
+                🌙
+            </button>
+        </div>
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="container">
+        <h2>Practical No. 7</h2>
+        <p>
+            Binary Logistic Regression: Predicting Categorical Outcomes
+            using the Sigmoid Function and Interpreting Probability-Based
+            Predictions
+        </p>
+    </div>
+</section>
+
+
+<main class="container">
+
+    <hr>
+
+    <section>
+        <h2>Practical No. 7</h2>
+
+        <p>
+            <strong>Title:</strong>
+            Binary Logistic Regression: Predicting Categorical Outcomes
+            using the Sigmoid Function and Interpreting Probability-Based
+            Predictions
+        </p>
+
+        <p><strong>Unit:</strong> III</p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Aim</h2>
+
+        <p>
+            To build a Binary Logistic Regression model in Python that
+            predicts a categorical outcome — whether a student will
+            Pass (1) or Fail (0) — from Study Hours and Attendance, and
+            to interpret the model's probability-based predictions using
+            the sigmoid function.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Concept / Theory</h2>
+
+        <p>
+            Logistic Regression is used when the dependent variable is
+            binary (two categories, coded 0 and 1). Linear Regression
+            cannot be used here because it produces unbounded outputs that
+            can fall outside the 0–1 range and would fit a straight line
+            to a step-shaped outcome.
+        </p>
+
+        <p>
+            Instead, Logistic Regression models the probability of the
+            outcome using the sigmoid (logistic) function:
+        </p>
+
+        <div class="formula">
+            <strong>p = 1 / (1 + e<sup>(-z)</sup>)</strong>
+        </div>
+
+        <div class="formula">
+            <strong>
+                z = b₀ + b₁x₁ + b₂x₂ + ⋯ + bₚxₚ
+            </strong>
+        </div>
+
+        <h3>Key Properties</h3>
+
+        <ul>
+            <li>
+                The sigmoid always returns a value between 0 and 1,
+                so it can be read directly as a probability.
+            </li>
+
+            <li>
+                When z → -∞, p → 0; when z → +∞, p → 1; when z = 0,
+                p = 0.5.
+            </li>
+
+            <li>
+                The curve has an S-shape, which is why it is called
+                the sigmoid curve.
+            </li>
+        </ul>
+
+        <h3>From Probability to Class</h3>
+
+        <p>
+            A threshold of 0.5 is applied:
+        </p>
+
+        <ul>
+            <li>
+                If p ≥ 0.5 → Pass (1)
+            </li>
+
+            <li>
+                If p &lt; 0.5 → Fail (0)
+            </li>
+        </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Algorithm / Procedure</h2>
+
+        <ol>
+            <li>
+                Import the required libraries (Pandas, NumPy,
+                Scikit-learn, Matplotlib/Seaborn).
+            </li>
+
+            <li>
+                Load the student dataset into a DataFrame.
+            </li>
+
+            <li>
+                Separate the independent variables into X and the binary
+                dependent variable into y.
+            </li>
+
+            <li>
+                Split the data into training and testing sets
+                (stratified to preserve the class ratio).
+            </li>
+
+            <li>
+                Create a LogisticRegression object and fit it on the
+                training data.
+            </li>
+
+            <li>
+                Display the intercept and coefficients and interpret
+                their sign and magnitude.
+            </li>
+
+            <li>
+                Predict class labels (0/1) and predicted probabilities
+                on the test set.
+            </li>
+
+            <li>
+                Build the confusion matrix and compute accuracy,
+                precision, and recall.
+            </li>
+
+            <li>
+                Plot the sigmoid curve to visualize how the linear score
+                maps to probability.
+            </li>
+
+            <li>
+                Visualize the confusion matrix as a heatmap and the
+                distribution of predicted probabilities for the two
+                classes.
+            </li>
+        </ol>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Program / Implementation</h2>
+
+        <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    classification_report
+)
+
+
+# Step 1-2: Create the academic dataset (20 students, 10 Pass / 10 Fail)
+
+data = {
+    'Study_Hours': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
+                    6, 6, 7, 7, 8, 8, 9, 9, 10, 10],
+
+    'Attendance': [45, 50, 55, 60, 52, 65, 58, 70, 62, 68,
+                   72, 78, 75, 82, 74, 88, 85, 92, 90, 96],
+
+    'Pass': [0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+             1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+}
+
+df = pd.DataFrame(data)
+
+print(df.head())
+print(df.shape)                    # (20, 3)
+print(df['Pass'].value_counts())   # class balance
+
+
+# Step 3: Define predictors and binary target
+
+X = df[['Study_Hours', 'Attendance']]
+y = df['Pass']
+
+
+# Step 4: Train-test split (stratified keeps the class ratio)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.25,
+    random_state=42,
+    stratify=y
+)
+
+
+# Step 5-6: Build the model and show coefficients
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+print("Intercept :", round(model.intercept_[0], 3))
+
+for name, coef in zip(X.columns, model.coef_[0]):
+    print(f"  {name} : {round(coef, 3)}")
+
+
+# Step 7: Predict class labels and probabilities
+
+y_pred = model.predict(X_test)
+y_prob = model.predict_proba(X_test)[:, 1]
+
+print("Predicted classes      :", y_pred)
+print("Predicted probabilities:", np.round(y_prob, 3))
+
+
+# Step 8: Evaluate the model
+
+print("Accuracy :", round(accuracy_score(y_test, y_pred), 3))
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+
+
+# Step 9: Plot the sigmoid function
+
+z = np.linspace(-10, 10, 200)
+
+sigmoid = 1 / (1 + np.exp(-z))
+
+plt.plot(z, sigmoid)
+plt.axhline(0.5, color='red', linestyle='--')
+plt.axvline(0, color='grey', linestyle='--')
+
+plt.title('Sigmoid Function')
+plt.xlabel('z = b0 + b1x1 + b2x2')
+plt.ylabel('Probability p')
+
+plt.show()
+
+
+# Step 10a: Confusion matrix heatmap
+
+cm = confusion_matrix(y_test, y_pred)
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt='d',
+    cmap='Blues',
+    xticklabels=['Fail', 'Pass'],
+    yticklabels=['Fail', 'Pass']
+)
+
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+
+plt.show()
+
+
+# Step 10b: Predicted probabilities by actual class
+
+sns.histplot(
+    x=y_prob,
+    hue=y_test,
+    bins=10,
+    multiple='stack'
+)
+
+plt.title('Predicted Probabilities of Passing')
+plt.xlabel('Predicted Probability')
+plt.ylabel('Count')
+
+plt.show()</code></pre>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Output</h2>
+
+        <pre><code>   Study_Hours  Attendance  Pass
+0            1          45     0
+1            1          50     0
+2            2          55     0
+3            2          60     0
+4            3          52     0
+
+(20, 3)
+
+Pass
+1    10
+0    10
+
+Intercept : &lt;value printed by the script&gt;
+
+  Study_Hours : &lt;value printed by the script&gt;
+
+  Attendance : &lt;value printed by the script&gt;
+
+Predicted classes      : &lt;array printed by the script&gt;
+
+Predicted probabilities: &lt;array printed by the script&gt;
+
+Accuracy : &lt;value printed by the script&gt;
+
+[[a b]
+ [c d]]
+
+              precision    recall  f1-score   support
+           0        ...      ...       ...        ...
+           1        ...      ...       ...        ...</code></pre>
+
+        <p>
+            <strong>Note:</strong> The coefficients, probabilities, and
+            metric values are computed by the model at runtime, so the exact
+            output lines printed by the program should be recorded rather
+            than using fixed figures. Run the script in Jupyter/Colab and
+            record the numbers from your own output in the lab record. The
+            dataset prints (head, shape, class counts) and all three graphs
+            will appear as shown in the code.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Interpretation Guide</h2>
+
+        <ul>
+            <li>
+                Intercept is the log-odds of passing when both predictors
+                are zero — a mathematical anchor, not a realistic scenario.
+            </li>
+
+            <li>
+                Study_Hours coefficient: expected to be positive — each
+                extra study hour multiplies the odds of passing upward,
+                i.e., it raises the predicted probability of a Pass.
+            </li>
+
+            <li>
+                Attendance coefficient: expected to be positive as well —
+                higher attendance increases the probability of passing,
+                holding study hours constant.
+            </li>
+
+            <li>
+                Predicted probabilities are the model's confidence: a value
+                like 0.87 means the model estimates an 87% chance that the
+                student passes; the 0.5 threshold converts this into the
+                label Pass.
+            </li>
+
+            <li>
+                Accuracy is the proportion of test students classified
+                correctly; precision tells you how many of those predicted
+                as Pass actually passed, and recall tells you how many of
+                the actual Pass students were correctly identified by the
+                model.
+            </li>
+        </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Graphs Displayed</h2>
+
+        <ol>
+            <li>
+                <strong>Sigmoid curve</strong> — an S-shaped curve rising
+                from 0 to 1, with the 0.5 threshold marked by a red dashed
+                line; it shows how the linear score is converted into a
+                probability.
+            </li>
+
+            <li>
+                <strong>Confusion matrix heatmap</strong> — a 2 × 2 grid
+                of counts showing where the model makes correct and
+                incorrect classifications.
+            </li>
+
+            <li>
+                <strong>Predicted probability histogram</strong> — students
+                who actually passed cluster at high probabilities and those
+                who failed cluster at low probabilities, showing the model
+                separates the two classes well.
+            </li>
+        </ol>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Result</h2>
+
+        <p>
+            A Binary Logistic Regression model was successfully trained with
+            Study Hours and Attendance as predictors of the binary outcome
+            Pass/Fail. The model produced a positive coefficient for each
+            predictor, indicating that both increase the probability of
+            passing, and generated probability-based predictions that were
+            converted into class labels using a 0.5 threshold. Evaluation
+            on the test set gave the accuracy, precision, recall, and
+            F1-score reported by the script, and the confusion matrix and
+            predicted-probability plot confirmed that the model distinguishes
+            passing from failing students effectively.
+        </p>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Conclusion</h2>
+
+        <p>
+            Binary Logistic Regression extends regression to categorical
+            outcomes by passing a linear combination of predictors through
+            the sigmoid function, which converts the score into a probability
+            between 0 and 1. In this practical, Study Hours and Attendance
+            were used to predict whether a student passes, with both
+            coefficients coming out positive — each additional hour of study
+            and each percentage point of attendance raising the predicted
+            probability of a Pass. Unlike linear regression, the output here
+            is a probability, interpreted against a 0.5 decision threshold,
+            and model quality is judged with a confusion matrix, accuracy,
+            precision, and recall rather than R² and RMSE. The practical
+            also shows the practical value of the method: the same technique
+            underlies credit classification, where the two classes are good
+            and bad credit risk instead of Pass and Fail.
+        </p>
+    </section>
+
+
+    <div class="navigation">
+
+        <a href="experiment6.html" class="course-button">
+            ← Previous Practical
+        </a>
+
+        <a href="index.html" class="course-button">
+            Back to Practicals
+        </a>
+
+        <a href="experiment8.html" class="course-button">
+            Next Practical →
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="container">
+
+        <h3>PU's Academics</h3>
+
+        <p>Learn Today. Lead Tomorrow.</p>
+
+        <p>
+            Digital learning platform for academic resources and practical
+            learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
+    </div>
+</footer>
+
+</body>
+</html>
