@@ -1,0 +1,217 @@
+Practical No. 4 — Decision Trees
+Course: AIML Essentials
+Course Code: MDI41MMP301
+Duration: 4 Hours
+1. Aim
+To build and interpret a Decision Tree model and classify a simple dataset using its attributes.
+________________________________________
+2. Theory
+A Decision Tree is a supervised machine learning algorithm used for both classification and regression. It recursively applies decision rules at different nodes to divide the training data into subsets containing similar target values or classes.
+A decision tree starts with the complete dataset at the root node and recursively divides the data into smaller subsets. The splitting process continues until the subsets become sufficiently pure or no further useful improvement in purity can be achieved.
+2.1 Components of a Decision Tree
+A decision tree consists of the following components:
+•	Root Node: The first and most important decision point in the tree.
+•	Internal Node: Represents a decision or condition based on an attribute.
+•	Branch: Represents the outcome of a decision.
+•	Leaf Node: Represents the final predicted class or value.
+________________________________________
+3. Splitting Criteria
+Decision trees use measures such as Entropy, Gini Index, and Information Gain to determine the best attribute for splitting the data.
+3.1 Entropy
+Entropy measures the impurity or uncertainty present in a dataset.
+Entropy(D) = -Σ(i=1 to n) pᵢ log₂(pᵢ)
+where:
+D = dataset
+pᵢ = proportion of records belonging to class i
+For a binary classification problem, entropy ranges from 0 to 1.
+•	Entropy = 0: The node is completely pure.
+•	Higher entropy: The node contains greater class uncertainty.
+________________________________________
+3.2 Gini Index
+The Gini Index is another measure of impurity.
+Gini(D) = 1 - Σ(i=1 to n) pᵢ²
+A Gini value of 0 indicates a completely pure node.
+________________________________________
+3.3 Information Gain
+Information Gain measures the reduction in entropy after splitting the dataset.
+Gain(D,A) = Entropy(D) - Σ(v ∈ Values(A)) [ |Dᵥ| / |D| × Entropy(Dᵥ) ]
+where:
+•	(D) = parent dataset
+•	(A) = selected attribute
+•	(D_v) = subset produced by a particular value of attribute (A)
+The attribute with the highest Information Gain is selected as the best split.
+Thus, the decision tree attempts to select a split that produces the purest possible child nodes.
+________________________________________
+4. Common Decision Tree Algorithms
+Different decision tree algorithms use different splitting criteria:
+Algorithm	Splitting Criterion
+ID3	Information Gain
+C4.5	Gain Ratio
+CART	Gini Index
+C4.5 uses Gain Ratio to reduce the bias toward attributes having a large number of distinct values.
+________________________________________
+5. Overfitting in Decision Trees
+A decision tree can become very deep and complex if it continues splitting the training data until the observations are almost perfectly separated.
+Such an unpruned tree may achieve very high training accuracy but perform poorly on unseen data. This is known as overfitting.
+Overfitting can be controlled using techniques such as:
+•	max_depth
+•	min_samples_leaf
+•	Cost-complexity pruning using ccp_alpha
+The cost-complexity pruning objective can be represented as:
+C(T) = E(T) + λL(T)
+where:
+T = decision tree
+E(T) = error of the tree
+L(T) = complexity or number of leaves
+λ = parameter controlling the trade-off between error and tree complexity
+________________________________________
+6. Algorithm
+1.	Load the dataset.
+2.	Separate the independent attributes (X) and target variable (y).
+3.	Encode categorical attributes into numerical form.
+4.	Calculate the entropy of the complete dataset.
+5.	For each attribute, calculate the weighted entropy of the resulting subsets.
+6.	Calculate the Information Gain for each attribute.
+7.	Select the attribute having the highest Information Gain as the root node.
+8.	Split the dataset according to the selected attribute.
+9.	Repeat the splitting process recursively for the resulting subsets.
+10.	Stop splitting when the node becomes pure, no useful gain is possible, or a specified stopping condition is reached.
+11.	Assign the majority class to the leaf node.
+12.	Use the resulting tree to predict new observations.
+13.	Evaluate the model using appropriate evaluation measures such as a confusion matrix and cross-validation.
+14.	Apply pruning or depth limitations to control overfitting.
+________________________________________
+7. Implementation in Python
+7.1 Import Required Libraries
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier, export_text, plot_tree
+import matplotlib.pyplot as plt
+7.2 Create the Dataset
+The following dataset contains information about weather conditions and whether tennis can be played.
+data = pd.DataFrame({
+    "Outlook": [
+        "Sunny", "Sunny", "Overcast", "Rain",
+        "Rain", "Rain", "Overcast", "Sunny",
+        "Sunny", "Rain", "Sunny", "Overcast",
+        "Overcast", "Rain"
+    ],
+
+    "Temperature": [
+        "Hot", "Hot", "Hot", "Mild",
+        "Cool", "Cool", "Cool", "Mild",
+        "Cool", "Mild", "Mild", "Mild",
+        "Hot", "Mild"
+    ],
+
+    "Humidity": [
+        "High", "High", "High", "High",
+        "Normal", "Normal", "Normal", "High",
+        "Normal", "Normal", "Normal", "High",
+        "Normal", "High"
+    ],
+
+    "Wind": [
+        "Weak", "Strong", "Weak", "Weak",
+        "Weak", "Strong", "Strong", "Weak",
+        "Weak", "Weak", "Strong", "Strong",
+        "Weak", "Strong"
+    ],
+
+    "Play": [
+        "No", "No", "Yes", "Yes",
+        "Yes", "No", "Yes", "No",
+        "Yes", "Yes", "Yes", "Yes",
+        "Yes", "No"
+    ]
+})
+________________________________________
+7.3 Separate Features and Target
+X = pd.get_dummies(data.drop(columns="Play"))
+y = data["Play"]
+Here:
+•	X contains the input attributes.
+•	y contains the target variable Play.
+•	pd.get_dummies() converts categorical attributes into numerical form.
+________________________________________
+7.4 Create and Train the Decision Tree
+model = DecisionTreeClassifier(
+    criterion="entropy",
+    random_state=42
+)
+
+model.fit(X, y)
+The parameter:
+criterion="entropy"
+instructs the model to use entropy and information gain for selecting splits.
+________________________________________
+7.5 Display Tree Information
+print("Depth :", model.get_depth())
+print("Leaves:", model.get_n_leaves())
+
+print(
+    export_text(
+        model,
+        feature_names=list(X.columns)
+    )
+)
+This displays:
+•	The depth of the decision tree.
+•	The number of leaf nodes.
+•	The decision rules generated by the model.
+________________________________________
+7.6 Predict a New Observation
+Consider a new day having the following conditions:
+•	Outlook = Sunny
+•	Temperature = Cool
+•	Humidity = Normal
+•	Wind = Strong
+new_day = pd.DataFrame({
+    "Outlook": ["Sunny"],
+    "Temperature": ["Cool"],
+    "Humidity": ["Normal"],
+    "Wind": ["Strong"]
+})
+
+new_day = pd.get_dummies(new_day).reindex(
+    columns=X.columns,
+    fill_value=0
+)
+
+print("Prediction:", model.predict(new_day)[0])
+________________________________________
+7.7 Visualize the Decision Tree
+plot_tree(
+    model,
+    feature_names=list(X.columns),
+    class_names=["No", "Yes"],
+    filled=True,
+    rounded=True
+)
+
+plt.title("Decision Tree — Play Tennis")
+plt.show()
+The resulting visualization shows the sequence of decisions made by the model from the root node to the leaf node.
+________________________________________
+8. Expected Results
+For the given dataset, the following results are expected.
+8.1 Entropy of the Complete Dataset
+Entropy(D) ≈ 0.940
+The entropy of the complete dataset is approximately 0.940 bits.
+8.2 Information Gain
+Attribute	Information Gain
+Outlook	0.246
+Humidity	0.151
+Wind	0.048
+Temperature	0.029
+Since Outlook has the highest Information Gain, it is selected as the root node.
+8.3 Tree Results
+•	Number of leaves: 5
+•	Training accuracy: 1.0000
+•	Prediction for Sunny, Cool, Normal, Strong: Yes
+________________________________________
+9. Conclusion
+The Decision Tree model was successfully constructed using the Play Tennis dataset.
+The attribute Outlook was selected as the root node because it produced the highest Information Gain of approximately 0.246. The resulting decision tree represents the classification process through a series of if-then decision rules.
+The model correctly classified all 14 training records, resulting in a training accuracy of 1.0000.
+However, a training accuracy of 1.0000 does not necessarily indicate that the model will perform well on unseen data. It may indicate overfitting, particularly when the tree is allowed to grow without restrictions. Therefore, techniques such as max_depth, min_samples_leaf, and ccp_alpha can be used to control tree complexity.
+
