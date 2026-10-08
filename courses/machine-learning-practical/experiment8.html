@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical 8 – Decision Tree Classification | PU's Academics</title>
+
+    <meta name="description"
+          content="Machine Learning Practical 8 – Decision Tree Classification">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .formula {
+            background: var(--code-bg, #f5f5f5);
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 1.05rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+
+            <div>
+                <h1>PU's Academics</h1>
+                <p>Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="themeToggle"
+                    class="theme-toggle"
+                    aria-label="Toggle theme">
+                🌙
+            </button>
+
+        </div>
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="container">
+
+        <h2>Practical No. 8</h2>
+
+        <p>
+            Decision Tree Classification: Building Interpretable Tree-Based
+            Models for Classification and Understanding Splitting Criteria
+        </p>
+
+    </div>
+</section>
+
+
+<main class="container">
+
+    <hr>
+
+
+    <section>
+
+        <h2>Practical No. 8</h2>
+
+        <p>
+            <strong>Title:</strong>
+            Decision Tree Classification: Building Interpretable Tree-Based
+            Models for Classification and Understanding Splitting Criteria
+        </p>
+
+        <p>
+            <strong>Unit:</strong> III
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Aim</h2>
+
+        <p>
+            To build a Decision Tree classifier in Python that predicts
+            whether a student will Pass (1) or Fail (0) from Study Hours,
+            Attendance, and Internal Marks, and to understand how the tree
+            chooses its splits using Entropy, Information Gain, and the
+            Gini Index.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Concept / Theory</h2>
+
+        <p>
+            A Decision Tree is a supervised classification algorithm that
+            recursively partitions the data into purer and purer subsets
+            by asking a sequence of yes/no questions on the predictor
+            variables. Each internal node represents a test on an attribute,
+            each branch an outcome of the test, and each leaf a class label.
+            The path from root to leaf forms an interpretable if–then rule,
+            which is why decision trees are called white-box models.
+        </p>
+
+
+        <h3>Splitting Criteria</h3>
+
+        <p>
+            The algorithm must decide which attribute to split on at each
+            node. It picks the attribute that produces the greatest
+            reduction in impurity.
+        </p>
+
+
+        <h3>1. Entropy</h3>
+
+        <p>
+            Entropy measures the impurity (disorder) of a node:
+        </p>
+
+        <div class="formula">
+            <strong>
+                Entropy(S) = −Σ p<sub>i</sub> log<sub>2</sub>(p<sub>i</sub>)
+            </strong>
+        </div>
+
+        <p>
+            where p<sub>i</sub> is the proportion of samples belonging to
+            class i. Entropy is 0 for a perfectly pure node and 1 for a
+            50–50 binary split.
+        </p>
+
+
+        <h3>2. Information Gain</h3>
+
+        <p>
+            Information Gain is the reduction in entropy achieved by a split:
+        </p>
+
+        <div class="formula">
+            <strong>
+                IG(S, A) = Entropy(S) − Σ<sub>v</sub>
+                (|S<sub>v</sub>| / |S|) × Entropy(S<sub>v</sub>)
+            </strong>
+        </div>
+
+        <p>
+            The attribute with the highest information gain is chosen
+            (this is the ID3 approach).
+        </p>
+
+
+        <h3>3. Gini Index</h3>
+
+        <p>
+            Gini Index is an alternative impurity measure:
+        </p>
+
+        <div class="formula">
+            <strong>
+                Gini(S) = 1 − Σ p<sub>i</sub><sup>2</sup>
+            </strong>
+        </div>
+
+        <p>
+            It is 0 for a pure node and 0.5 for a balanced binary split.
+            Scikit-learn's default criterion is Gini because it is
+            computationally cheaper, while Entropy often produces slightly
+            more balanced trees.
+        </p>
+
+
+        <h3>Stopping Conditions</h3>
+
+        <p>
+            The tree stops growing when a node is pure, when no attribute
+            gives a positive gain, when the maximum depth is reached, or
+            when a node has fewer than the minimum samples required to split.
+        </p>
+
+
+        <h3>Overfitting and Pruning</h3>
+
+        <p>
+            A fully grown tree memorises the training data. Limiting
+            max_depth, min_samples_split or min_samples_leaf (pre-pruning)
+            controls this and improves generalisation.
+        </p>
+
+
+        <h3>Evaluation Measures</h3>
+
+        <p>
+            Confusion matrix, accuracy, precision, recall, and F1-score.
+            Feature importance reports how much each attribute contributed
+            to reducing impurity across the whole tree.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Algorithm / Procedure</h2>
+
+        <ol>
+
+            <li>
+                Import the required libraries (Pandas, NumPy,
+                Scikit-learn, Matplotlib/Seaborn).
+            </li>
+
+            <li>
+                Load the student dataset into a DataFrame and separate
+                predictors X from the binary target y.
+            </li>
+
+            <li>
+                Split the data into training and testing sets
+                (stratified to preserve the class ratio).
+            </li>
+
+            <li>
+                Create a DecisionTreeClassifier with criterion = 'entropy'
+                and a controlled max_depth.
+            </li>
+
+            <li>
+                Fit the model on the training data.
+            </li>
+
+            <li>
+                Visualize the tree using plot_tree to read the splits
+                and rules.
+            </li>
+
+            <li>
+                Predict class labels on the test set.
+            </li>
+
+            <li>
+                Build the confusion matrix and compute accuracy,
+                precision, recall, and F1-score.
+            </li>
+
+            <li>
+                Display feature importances to see which attributes
+                drive the classification.
+            </li>
+
+            <li>
+                Repeat with criterion = 'gini' and compare accuracy,
+                and plot the effect of tree depth on training vs testing
+                accuracy to illustrate overfitting.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Program / Implementation</h2>
+
+        <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    classification_report
+)
+
+
+# Step 1-2: Create the academic dataset (20 students)
+
+data = {
+    'Study_Hours': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
+                    6, 6, 7, 7, 8, 8, 9, 9, 10, 10],
+
+    'Attendance': [45, 50, 55, 60, 52, 65, 58, 70, 62, 68,
+                   72, 78, 75, 82, 74, 88, 85, 92, 90, 96],
+
+    'Internal_Marks': [8, 10, 12, 14, 11, 16, 13, 18, 15, 17,
+                       19, 22, 21, 24, 20, 27, 26, 29, 28, 30],
+
+    'Pass': [0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+             1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+}
+
+df = pd.DataFrame(data)
+
+print(df.head())
+print(df.shape)                    # (20, 4)
+print(df['Pass'].value_counts())   # class balance
+
+
+# Step 2: Define predictors and binary target
+
+X = df[['Study_Hours', 'Attendance', 'Internal_Marks']]
+y = df['Pass']
+
+
+# Step 3: Train-test split (stratified)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.25,
+    random_state=42,
+    stratify=y
+)
+
+
+# Step 4-5: Build the Decision Tree using Entropy
+
+model = DecisionTreeClassifier(
+    criterion='entropy',
+    max_depth=3,
+    random_state=42
+)
+
+model.fit(X_train, y_train)
+
+
+# Step 6: Visualize the tree
+
+plt.figure(figsize=(12, 7))
+
+plot_tree(
+    model,
+    feature_names=X.columns,
+    class_names=['Fail', 'Pass'],
+    filled=True
+)
+
+plt.title('Decision Tree (Entropy, max_depth = 3)')
+plt.show()
+
+
+# Step 7: Predict
+
+y_pred = model.predict(X_test)
+
+
+# Step 8: Evaluate
+
+print("Accuracy :", round(accuracy_score(y_test, y_pred), 3))
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+
+
+# Step 9: Feature importances
+
+imp = pd.Series(model.feature_importances_, index=X.columns)
+
+print(imp.sort_values(ascending=False))
+
+sns.barplot(x=imp.values, y=imp.index)
+
+plt.title('Feature Importance')
+plt.xlabel('Importance')
+plt.show()
+
+
+# Step 10a: Compare Gini vs Entropy
+
+for crit in ['gini', 'entropy']:
+
+    m = DecisionTreeClassifier(
+        criterion=crit,
+        max_depth=3,
+        random_state=42
+    )
+
+    m.fit(X_train, y_train)
+
+    print(
+        crit,
+        "-> accuracy:",
+        round(accuracy_score(y_test, m.predict(X_test)), 3)
+    )
+
+
+# Step 10b: Effect of tree depth (overfitting illustration)
+
+train_acc, test_acc = [], []
+
+for d in range(1, 11):
+
+    m = DecisionTreeClassifier(
+        criterion='entropy',
+        max_depth=d,
+        random_state=42
+    )
+
+    m.fit(X_train, y_train)
+
+    train_acc.append(
+        accuracy_score(y_train, m.predict(X_train))
+    )
+
+    test_acc.append(
+        accuracy_score(y_test, m.predict(X_test))
+    )
+
+
+plt.plot(
+    range(1, 11),
+    train_acc,
+    marker='o',
+    label='Training accuracy'
+)
+
+plt.plot(
+    range(1, 11),
+    test_acc,
+    marker='s',
+    label='Testing accuracy'
+)
+
+plt.xlabel('Tree Depth')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.title('Effect of Tree Depth on Accuracy')
+plt.show()</code></pre>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Output</h2>
+
+        <pre><code>   Study_Hours  Attendance  Internal_Marks  Pass
+0            1          45               8     0
+1            1          50              10     0
+2            2          55              12     0
+3            2          60              14     0
+4            3          52              11     0
+
+(20, 4)
+
+Pass
+1    10
+0    10
+
+Accuracy : &lt;value printed by the script&gt;
+
+[[a b]
+ [c d]]
+
+              precision    recall  f1-score   support
+           0        ...      ...       ...        ...
+           1        ...      ...       ...        ...
+
+Study_Hours       &lt;value&gt;
+Attendance        &lt;value&gt;
+Internal_Marks    &lt;value&gt;
+dtype: float64
+
+gini -> accuracy: &lt;value printed by the script&gt;
+entropy -> accuracy: &lt;value printed by the script&gt;</code></pre>
+
+
+        <p>
+            <strong>Note:</strong> The accuracy, confusion matrix, feature
+            importances, and the Gini-vs-Entropy comparison are all computed
+            at runtime. Run the script in Jupyter/Colab and record the
+            numbers from your own output in the lab record. The dataset
+            prints (head, shape, class counts) appear as shown in the code.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>How to Read the Outputs</h2>
+
+
+        <h3>Tree Diagram</h3>
+
+        <p>
+            Each box shows the split condition, the entropy and samples at
+            that node, the class distribution (value = [Fail, Pass]), and
+            the predicted class (colour-coded). Reading a path from the root
+            gives a rule such as:
+        </p>
+
+        <div class="formula">
+            <strong>
+                If Study_Hours ≤ 5.5 and Attendance ≤ 65 → Fail
+            </strong>
+        </div>
+
+
+        <h3>Feature Importance</h3>
+
+        <p>
+            The attribute with the highest value caused the greatest total
+            reduction in entropy and therefore appears nearest the root of
+            the tree. Given the dataset construction, Study_Hours is expected
+            to dominate, followed by Attendance and Internal_Marks.
+        </p>
+
+
+        <h3>Confusion Matrix</h3>
+
+        <p>
+            The diagonal cells are correct classifications; off-diagonal
+            cells are the misclassifications.
+        </p>
+
+
+        <h3>Gini vs Entropy</h3>
+
+        <p>
+            Both criteria usually give similar accuracy on a small dataset.
+            The comparison shows that the choice of impurity measure rarely
+            changes the result dramatically, though it can change the shape
+            of the tree.
+        </p>
+
+
+        <h3>Depth Plot</h3>
+
+        <p>
+            Training accuracy rises monotonically with depth and reaches 1.0
+            when the tree is fully grown, while testing accuracy rises and
+            then plateaus or falls — the classic visual signature of
+            overfitting.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Graphs Displayed</h2>
+
+        <ol>
+
+            <li>
+                <strong>Decision tree diagram</strong> — the full structure
+                of nodes, branches, and leaves with split conditions and
+                entropy values.
+            </li>
+
+            <li>
+                <strong>Feature importance bar chart</strong> — a horizontal
+                bar for each predictor showing its contribution to impurity
+                reduction.
+            </li>
+
+            <li>
+                <strong>Depth vs accuracy line plot</strong> — two curves
+                (training and testing) showing where the tree begins to
+                overfit.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Result</h2>
+
+        <p>
+            A Decision Tree classifier was successfully trained on Study
+            Hours, Attendance, and Internal Marks to predict the binary
+            outcome Pass/Fail, using Entropy as the splitting criterion with
+            the tree depth limited to 3. The model produced an interpretable
+            set of if–then rules, and its performance on the test set was
+            measured using the confusion matrix, accuracy, precision, recall,
+            and F1-score. The feature importance output identified which
+            attributes contributed most to the splits, and the comparison of
+            Gini and Entropy criteria as well as the depth-vs-accuracy plot
+            illustrated the trade-off between tree complexity and
+            generalisation.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+
+    <section>
+
+        <h2>Conclusion</h2>
+
+        <p>
+            Decision Tree classification builds a model by recursively
+            splitting the data on the attribute that gives the greatest
+            reduction in impurity, measured by Entropy and Information Gain
+            or by the Gini Index. In this practical, the tree learned
+            readable rules that separated passing from failing students based
+            on study hours, attendance, and internal marks, and its accuracy
+            was assessed with a confusion matrix and standard classification
+            metrics. The practical also demonstrated two important properties
+            of decision trees: their interpretability — a tree can be drawn
+            and translated directly into decision rules, unlike regression
+            coefficients — and their tendency to overfit when grown without
+            limits, which is why max_depth and minimum-sample constraints are
+            used to control complexity. Comparing the Gini and Entropy
+            criteria showed that both are effective impurity measures,
+            differing mainly in computational cost and tree shape rather than
+            in overall accuracy.
+        </p>
+
+    </section>
+
+
+    <div class="navigation">
+
+        <a href="experiment7.html" class="course-button">
+            ← Previous Practical
+        </a>
+
+        <a href="index.html" class="course-button">
+            Back to Practicals
+        </a>
+
+        <a href="experiment9.html" class="course-button">
+            Next Practical →
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <h3>PU's Academics</h3>
+
+        <p>Learn Today. Lead Tomorrow.</p>
+
+        <p>
+            Digital learning platform for academic resources and practical
+            learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
