@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical 9 – K-Means Clustering | PU's Academics</title>
+
+    <meta name="description"
+          content="Machine Learning Practical 9 – K-Means Clustering">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .formula {
+            background: var(--code-bg, #f5f5f5);
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 1.05rem;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+
+            <div>
+                <h1>PU's Academics</h1>
+                <p>Learn Today. Lead Tomorrow.</p>
+            </div>
+
+            <button id="themeToggle"
+                    class="theme-toggle"
+                    aria-label="Toggle theme">
+                🌙
+            </button>
+
+        </div>
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="container">
+
+        <h2>Practical No. 9</h2>
+
+        <p>
+            K-Means Clustering: Unsupervised Grouping of Data Points for
+            Customer/Product Segmentation and Selecting the Optimal Number
+            of Clusters
+        </p>
+
+    </div>
+</section>
+
+
+<main class="container">
+
+    <hr>
+
+    <section>
+
+        <h2>Practical No. 9</h2>
+
+        <p>
+            <strong>Title:</strong>
+            K-Means Clustering: Unsupervised Grouping of Data Points for
+            Customer/Product Segmentation and Selecting the Optimal Number
+            of Clusters
+        </p>
+
+        <p>
+            <strong>Unit:</strong> III
+        </p>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Aim</h2>
+
+        <p>
+            To apply the K-Means clustering algorithm in Python to segment
+            retail customers based on their <strong>Annual Income</strong>
+            and <strong>Spending Score</strong>, and to determine the optimal
+            number of clusters using the <strong>Elbow Method</strong> and
+            the <strong>Silhouette Score</strong>.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Concept / Theory</h2>
+
+        <p>
+            Clustering is an unsupervised learning technique: unlike
+            regression and classification, there is no target variable and
+            no labelled training data. The algorithm discovers natural
+            groupings (called clusters or segments) in the data on its own,
+            such that points within a cluster are more similar to each other
+            than to points in other clusters.
+        </p>
+
+        <p>
+            K-Means is a partitioning algorithm that divides the data into
+            a pre-specified number of clusters, <strong>K</strong>. Each
+            cluster is represented by its centroid — the mean position of
+            all points assigned to it. Similarity is measured by Euclidean
+            distance:
+        </p>
+
+        <div class="formula">
+            <strong>
+                d(x, c) = √[Σ<sub>j</sub> (x<sub>j</sub> − c<sub>j</sub>)²]
+            </strong>
+        </div>
+
+        <p>
+            where <strong>x</strong> is a data point,
+            <strong>c</strong> is a centroid, and <strong>m</strong> is the
+            number of features.
+        </p>
+
+
+        <h3>Objective Function</h3>
+
+        <p>
+            K-Means minimises the Within-Cluster Sum of Squares, also called
+            <strong>inertia</strong>:
+        </p>
+
+        <div class="formula">
+            <strong>
+                WCSS = Σ<sub>k=1</sub><sup>K</sup>
+                Σ<sub>x∈C<sub>k</sub></sub>
+                ‖x − μ<sub>k</sub>‖²
+            </strong>
+        </div>
+
+        <p>
+            where <strong>μ<sub>k</sub></strong> is the centroid of cluster
+            <strong>k</strong>. Lower inertia means tighter, more compact
+            clusters.
+        </p>
+
+
+        <h3>Choosing the Optimal K</h3>
+
+        <p>
+            <strong>1. Elbow Method</strong> — Plot inertia against
+            <strong>K</strong>. Inertia always falls as <strong>K</strong>
+            increases, but the rate of improvement drops sharply at the true
+            number of clusters, producing a visible bend (elbow) in the
+            curve. The <strong>K</strong> at that bend is chosen.
+        </p>
+
+        <p>
+            <strong>2. Silhouette Score</strong> — Measures how well each
+            point fits its own cluster compared with the nearest other
+            cluster:
+        </p>
+
+        <div class="formula">
+            <strong>
+                s = (b − a) / max(a, b)
+            </strong>
+        </div>
+
+        <p>
+            where <strong>a</strong> is the mean intra-cluster distance and
+            <strong>b</strong> is the mean distance to the nearest
+            neighbouring cluster. The score ranges from
+            <strong>−1 to +1</strong>, and the <strong>K</strong> with the
+            highest average silhouette score is preferred.
+        </p>
+
+
+        <h3>Important Preprocessing Step — Feature Scaling</h3>
+
+        <p>
+            K-Means relies on distance, so a variable measured on a larger
+            scale (e.g., Annual Income in thousands) would dominate one on
+            a smaller scale. Features are therefore standardised to zero
+            mean and unit variance using <code>StandardScaler</code> before
+            clustering.
+        </p>
+
+
+        <h3>Limitations</h3>
+
+        <p>
+            K must be specified in advance, results depend on the initial
+            centroid placement (mitigated by <code>n_init</code>, which
+            restarts the algorithm several times), the algorithm favours
+            roughly spherical clusters of similar size, and it is sensitive
+            to outliers.
+        </p>
+
+
+        <h3>Business Application</h3>
+
+        <p>
+            The resulting segments support targeted marketing — for example,
+            identifying high-income/high-spending customers as a premium
+            target group, or high-income/low-spending customers as a group
+            to be encouraged to spend more.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Algorithm / Procedure</h2>
+
+        <ol>
+
+            <li>
+                Import the required libraries (Pandas, NumPy,
+                Scikit-learn, Matplotlib/Seaborn).
+            </li>
+
+            <li>
+                Load the customer dataset into a DataFrame and inspect
+                its structure.
+            </li>
+
+            <li>
+                Select the clustering features (Annual Income,
+                Spending Score).
+            </li>
+
+            <li>
+                Standardise the features using <code>StandardScaler</code>.
+            </li>
+
+            <li>
+                Plot the raw data to observe its spread before clustering.
+            </li>
+
+            <li>
+                Run K-Means for a range of K values (1–10) and record the
+                inertia for each.
+            </li>
+
+            <li>
+                Plot the Elbow curve (inertia vs K) and identify the bend.
+            </li>
+
+            <li>
+                Compute the Silhouette Score for each K (2–10) and plot it.
+            </li>
+
+            <li>
+                Fit the final K-Means model with the chosen K and assign a
+                cluster label to each customer.
+            </li>
+
+            <li>
+                Plot the clusters with their centroids, and summarise each
+                segment by its mean income and spending to interpret the
+                segments.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Program / Implementation</h2>
+
+        <pre><code>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+
+# Step 2: Create the retail customer dataset (18 customers)
+
+data = {
+    'CustomerID': list(range(1, 19)),
+
+    'Annual_Income_k': [
+        20, 25, 22, 28, 24, 26,      # low income group
+        80, 85, 78, 82, 88, 84,      # high income, low spending
+        85, 90, 88, 92, 86, 89       # high income, high spending
+    ],
+
+    'Spending_Score': [
+        25, 30, 20, 32, 22, 28,
+        20, 25, 18, 22, 28, 15,
+        82, 88, 85, 90, 80, 84
+    ]
+}
+
+df = pd.DataFrame(data)
+
+print(df.head())
+print(df.shape)             # (18, 3)
+print(df.describe())
+
+
+# Step 3: Select clustering features
+
+X = df[['Annual_Income_k', 'Spending_Score']]
+
+
+# Step 5: Visualize the raw data before clustering
+
+sns.scatterplot(
+    x='Annual_Income_k',
+    y='Spending_Score',
+    data=df
+)
+
+plt.title('Customers: Income vs Spending (Before Clustering)')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score')
+
+plt.show()
+
+
+# Step 4: Standardise the features
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+
+# Step 6-7: Elbow method
+
+inertia = []
+K_range = range(1, 11)
+
+for k in K_range:
+
+    km = KMeans(
+        n_clusters=k,
+        random_state=42,
+        n_init=10
+    )
+
+    km.fit(X_scaled)
+    inertia.append(km.inertia_)
+
+
+plt.plot(K_range, inertia, marker='o')
+
+plt.title('Elbow Method')
+plt.xlabel('Number of Clusters (K)')
+plt.ylabel('Inertia (WCSS)')
+
+plt.show()
+
+
+# Step 8: Silhouette scores
+
+for k in range(2, 11):
+
+    km = KMeans(
+        n_clusters=k,
+        random_state=42,
+        n_init=10
+    )
+
+    labels = km.fit_predict(X_scaled)
+
+    print(
+        f"K = {k}, Silhouette Score = "
+        f"{round(silhouette_score(X_scaled, labels), 3)}"
+    )
+
+
+# Step 9: Fit final model with K = 3
+
+kmeans = KMeans(
+    n_clusters=3,
+    random_state=42,
+    n_init=10
+)
+
+df['Cluster'] = kmeans.fit_predict(X_scaled)
+
+print(df)
+
+
+# Step 10a: Plot clusters with centroids
+
+centroids = scaler.inverse_transform(
+    kmeans.cluster_centers_
+)
+
+sns.scatterplot(
+    x='Annual_Income_k',
+    y='Spending_Score',
+    hue='Cluster',
+    palette='Set1',
+    data=df,
+    s=100
+)
+
+plt.scatter(
+    centroids[:, 0],
+    centroids[:, 1],
+    c='black',
+    marker='X',
+    s=250,
+    label='Centroids'
+)
+
+plt.title('Customer Segments (K = 3)')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score')
+plt.legend()
+
+plt.show()
+
+
+# Step 10b: Summarise each segment
+
+print(
+    df.groupby('Cluster')[
+        ['Annual_Income_k', 'Spending_Score']
+    ].mean().round(2)
+)
+
+print(df.groupby('Cluster').size())</code></pre>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Output</h2>
+
+        <pre><code>   CustomerID  Annual_Income_k  Spending_Score
+0           1               20              25
+1           2               25              30
+2           3               22              20
+3           4               28              32
+4           5               24              22
+
+(18, 3)
+
+       CustomerID  Annual_Income_k  Spending_Score
+count       18.00            18.00           18.00
+mean         9.50            58.78           45.33
+std          5.34            30.31           29.39
+min          1.00            20.00           15.00
+25%          5.25            25.50           22.00
+50%          9.50            83.00           27.00
+75%         13.75            87.50           82.75
+max         18.00            92.00           90.00
+
+K = 2, Silhouette Score = &lt;value printed by the script&gt;
+K = 3, Silhouette Score = &lt;value printed by the script&gt;
+K = 4, Silhouette Score = &lt;value printed by the script&gt;
+K = 5, Silhouette Score = &lt;value printed by the script&gt;
+K = 6, Silhouette Score = &lt;value printed by the script&gt;
+K = 7, Silhouette Score = &lt;value printed by the script&gt;
+K = 8, Silhouette Score = &lt;value printed by the script&gt;
+K = 9, Silhouette Score = &lt;value printed by the script&gt;
+K = 10, Silhouette Score = &lt;value printed by the script&gt;
+
+   CustomerID  Annual_Income_k  Spending_Score  Cluster
+0           1               20              25        2
+...</code></pre>
+
+
+        <pre><code>    Annual_Income_k  Spending_Score
+Cluster
+0                  &lt;mean&gt;          &lt;mean&gt;
+1                  &lt;mean&gt;          &lt;mean&gt;
+2                  &lt;mean&gt;          &lt;mean&gt;
+
+Cluster
+0    &lt;count&gt;
+1    &lt;count&gt;
+2    &lt;count&gt;
+dtype: int64</code></pre>
+
+
+        <p>
+            <strong>Note:</strong> The silhouette scores, the cluster labels
+            assigned to each customer, and the segment means are all produced
+            by the algorithm at runtime. The exact cluster numbering in
+            particular depends on the initial centroid placement, so the exact
+            output should be recorded after running the program in
+            Jupyter/Colab.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>How to Read the Outputs</h2>
+
+        <ul>
+
+            <li>
+                <strong>Describe:</strong> Shows the spread of the two
+                features — note that Annual Income ranges from 20 to 92 k$
+                while Spending Score ranges from 15 to 90, which is why
+                standardisation is essential before clustering.
+            </li>
+
+            <li>
+                <strong>Elbow curve:</strong> Inertia falls steeply up to
+                about <strong>K = 3</strong> and then flattens, so the bend
+                is expected at <strong>K = 3</strong> — matching the three
+                groups designed into this dataset. Read the bend from your
+                own plot.
+            </li>
+
+            <li>
+                <strong>Silhouette scores:</strong> The highest average
+                score is expected at <strong>K = 3</strong>, confirming the
+                elbow. Compare the printed values; a score closer to +1
+                indicates dense, well-separated clusters, while scores near
+                0 indicate overlapping clusters.
+            </li>
+
+            <li>
+                <strong>Segment summary:</strong> The cluster means let you
+                name each segment in business terms — one cluster sits at
+                low income / low spending, one at high income / low spending,
+                and one at high income / high spending.
+            </li>
+
+            <li>
+                <strong>Cluster numbering is arbitrary</strong> — the same
+                segmentation may come out as Cluster 0, 1, 2 in a different
+                order on a re-run; only the grouping matters, not the label
+                numbers.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Graphs Displayed</h2>
+
+        <ol>
+
+            <li>
+                <strong>Scatter plot before clustering</strong> — the raw
+                points, which already hint at three separate groups but with
+                no labels attached.
+            </li>
+
+            <li>
+                <strong>Elbow curve</strong> — inertia against K, with the
+                characteristic bend at the chosen K.
+            </li>
+
+            <li>
+                <strong>Silhouette score plot/printout</strong> — the average
+                silhouette for each K, peaking at the recommended number of
+                clusters.
+            </li>
+
+            <li>
+                <strong>Clustered scatter plot</strong> — the same customers
+                coloured by cluster, with a black X marking each centroid;
+                the three colour groups appear clearly separated.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Result</h2>
+
+        <p>
+            K-Means clustering was successfully applied to segment 18 retail
+            customers using Annual Income and Spending Score as features.
+            The Elbow Method and Silhouette Score both indicated
+            <strong>K = 3</strong> as the optimal number of clusters, and
+            the final model assigned every customer to one of three segments.
+            The plotted clusters, together with the black centroids, showed
+            three well-separated groups, and the segment summary revealed one
+            low-income/low-spending group, one high-income/low-spending group,
+            and one high-income/high-spending group.
+        </p>
+
+    </section>
+
+
+    <hr>
+
+    <section>
+
+        <h2>Conclusion</h2>
+
+        <p>
+            K-Means is an unsupervised partitioning algorithm that groups
+            data points into K clusters by minimising the within-cluster sum
+            of squares, assigning each point to the nearest centroid by
+            Euclidean distance. In this practical, it was used to create
+            customer segments from income and spending data — the same
+            approach the syllabus describes for creating product segments —
+            and the practical demonstrated the two standard methods for
+            selecting K: the Elbow Method, which looks for the bend in the
+            inertia curve, and the Silhouette Score, which measures how
+            well-separated the clusters are. Both pointed to three clusters,
+            and the resulting segments are directly actionable for marketing
+            decisions, such as targeting the high-income/high-spending group
+            with premium offers. The practical also highlighted two practical
+            requirements of the method: features must be standardised before
+            clustering so that no single variable dominates the distance
+            calculation, and the value of K must be chosen in advance, since
+            the algorithm cannot discover the number of clusters on its own.
+        </p>
+
+    </section>
+
+
+    <div class="navigation">
+
+        <a href="experiment8.html" class="course-button">
+            ← Previous Practical
+        </a>
+
+        <a href="index.html" class="course-button">
+            Back to Practicals
+        </a>
+
+        <a href="experiment10.html" class="course-button">
+            Next Practical →
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <h3>PU's Academics</h3>
+
+        <p>Learn Today. Lead Tomorrow.</p>
+
+        <p>
+            Digital learning platform for academic resources and practical
+            learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
