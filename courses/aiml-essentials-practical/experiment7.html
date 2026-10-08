@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Experiment 7 – Generative Intelligence: Creative Tasks | PU's Academics</title>
+
+    <meta name="description"
+          content="AIML Essentials Practical 7 – Generative Intelligence: Creative Tasks">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="../../assets/js/theme.js" defer></script>
+
+    <style>
+        .formula-box {
+            background: var(--code-bg, #111);
+            border: 1px solid var(--border-color, #333);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .formula-box code {
+            font-family: "IBM Plex Mono", monospace;
+            white-space: pre-wrap;
+        }
+
+        .info-box,
+        .result-box {
+            padding: 15px 18px;
+            margin: 18px 0;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            border-left: 4px solid #4f8cff;
+            background: rgba(79, 140, 255, 0.08);
+        }
+
+        .result-box {
+            border-left: 4px solid #22c55e;
+            background: rgba(34, 197, 94, 0.08);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color, #444);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        .code-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.7;
+            margin: 15px 0 6px;
+        }
+
+        pre {
+            overflow-x: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            th,
+            td {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+
+        <div class="brand">
+            <div class="brand-name">PU's Academics</div>
+            <div class="brand-tagline">Learn Today. Lead Tomorrow.</div>
+        </div>
+
+        <button id="themeToggle"
+                class="theme-toggle"
+                aria-label="Toggle theme">
+            🌙
+        </button>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- ==========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <p class="eyebrow">
+                AIML Essentials Practical
+            </p>
+
+            <h1>
+                Practical 7 — Generative Intelligence: Creative Tasks
+            </h1>
+
+            <p class="hero-subtitle">
+                Generative Intelligence: Creative Tasks
+            </p>
+
+            <p>
+                <strong>Course:</strong> AIML Essentials
+                <br>
+                <strong>Course Code:</strong> MDI41MMP301
+                <br>
+                <strong>Duration:</strong> 3 Hours
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <section class="container">
+
+
+        <!-- ======================================================
+             1. AIM
+        ====================================================== -->
+
+        <h2>1. Aim</h2>
+
+        <p>
+            To explore generative concepts by creating images and patterns,
+            and to experiment with shapes, patterns, and digital creativity
+            using rule-based generation and a deep generative model.
+        </p>
+
+
+        <hr>
+
+
+        <!-- ======================================================
+             2. THEORY
+        ====================================================== -->
+
+        <h2>2. Theory</h2>
+
+
+        <h3>2.1 Generative Models vs. Discriminative Models</h3>
+
+        <p>
+            A <strong>discriminative model</strong> learns to predict a label
+            or class from input data.
+        </p>
+
+        <p>
+            A <strong>generative model</strong> learns the underlying data
+            distribution itself and can use that learned distribution to
+            generate new data.
+        </p>
+
+        <p>
+            Generative modeling deals with learning distributions such as:
+        </p>
+
+        <div class="formula-box">
+            <code>P(X)</code>
+        </div>
+
+        <p>
+            where <code>X</code> represents the data.
+        </p>
+
+        <p>
+            For images, each data point may contain thousands or millions of
+            dimensions because an image consists of many pixels. A generative
+            model therefore needs to learn the relationships and dependencies
+            between these pixels.
+        </p>
+
+
+        <h3>2.2 Two Routes to Machine Creativity</h3>
+
+        <p>
+            There are two important approaches to generating creative outputs.
+        </p>
+
+
+        <h3>A. Rule-Based / Procedural Generation</h3>
+
+        <p>
+            In rule-based generation, the programmer defines a set of rules
+            or parameters, and the computer generates new patterns or designs
+            according to those rules.
+        </p>
+
+        <p>Typical rules may involve:</p>
+
+        <ul>
+            <li>Rotation</li>
+            <li>Scaling</li>
+            <li>Branching</li>
+            <li>Repetition</li>
+            <li>Position</li>
+            <li>Color</li>
+            <li>Randomness</li>
+        </ul>
+
+
+        <p>Important techniques include:</p>
+
+        <p>
+            <strong>Shape Grammars:</strong> Generative methods that create
+            design alternatives using geometric rules and logic.
+        </p>
+
+        <p>
+            <strong>L-Systems:</strong> A rule-based method in which a starting
+            string, called an <strong>axiom</strong>, is repeatedly rewritten
+            according to specified rules. The resulting string can then be
+            interpreted as drawing instructions.
+        </p>
+
+        <p>
+            Once a pattern or rule has been established, many variations can
+            be generated by changing parameters or random seeds.
+        </p>
+
+
+        <h3>B. Learned Generative Models</h3>
+
+        <p>
+            Deep generative models learn patterns and distributions from data.
+        </p>
+
+        <p>
+            Three important families are:
+        </p>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Mechanism</th>
+                        <th>Important Point</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>VAE</strong></td>
+
+                        <td>
+                            Encoder compresses input into a lower-dimensional
+                            latent space and decoder reconstructs the input.
+                        </td>
+
+                        <td>
+                            New data can be generated by sampling points from
+                            the latent space and decoding them.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>GAN</strong></td>
+
+                        <td>
+                            A generator and discriminator compete with each other.
+                        </td>
+
+                        <td>
+                            Can generate highly realistic data, including images.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Diffusion Model</strong></td>
+
+                        <td>
+                            Learns to gradually denoise data.
+                        </td>
+
+                        <td>
+                            Particularly powerful for text-to-image generation.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <h3>Variational Autoencoder (VAE)</h3>
+
+        <p>
+            A VAE consists mainly of:
+        </p>
+
+        <ol>
+            <li>
+                <strong>Encoder</strong> — converts an input image into
+                latent variables.
+            </li>
+
+            <li>
+                <strong>Latent Space</strong> — compact representation of
+                the input.
+            </li>
+
+            <li>
+                <strong>Decoder</strong> — reconstructs or generates an image
+                from a latent point.
+            </li>
+        </ol>
+
+
+        <p>
+            The VAE is trained using an objective based on the
+            <strong>Evidence Lower Bound (ELBO)</strong>, which contains:
+        </p>
+
+        <ul>
+            <li>Reconstruction term</li>
+            <li>KL-divergence term</li>
+        </ul>
+
+        <p>
+            The reconstruction term encourages the decoder to reconstruct the
+            original image, while the KL term encourages the latent space to
+            follow a suitable probability distribution.
+        </p>
+
+
+        <h3>Generative Adversarial Network (GAN)</h3>
+
+        <p>A GAN contains:</p>
+
+        <ul>
+            <li>
+                <strong>Generator</strong> — creates synthetic data.
+            </li>
+
+            <li>
+                <strong>Discriminator</strong> — attempts to distinguish real
+                data from generated data.
+            </li>
+        </ul>
+
+        <p>
+            The two networks compete during training.
+        </p>
+
+        <p>
+            GANs have been used for generating realistic faces, visual art,
+            music, and text.
+        </p>
+
+        <p>Important challenges include:</p>
+
+        <ul>
+            <li>Image quality</li>
+            <li>Diversity of generated samples</li>
+            <li>Training stability</li>
+        </ul>
+
+
+        <h3>Diffusion Models</h3>
+
+        <p>
+            Diffusion models generate data by learning a denoising process.
+        </p>
+
+        <p>
+            They are particularly effective for
+            <strong>text-to-image generation</strong>, where a textual
+            description can be used to generate an image containing
+            combinations of objects, shapes, textures, and other concepts.
+        </p>
+
+
+        <h3>2.3 Creativity and Human–AI Collaboration</h3>
+
+        <p>
+            Generative models can produce novel outputs, but their creativity
+            is generally based on patterns learned from existing data.
+        </p>
+
+        <p>
+            For example, GANs commonly demonstrate
+            <strong>exploratory creativity</strong>, where new outputs are
+            produced within a learned distribution.
+        </p>
+
+        <p>
+            In practical design applications, generative AI is therefore best
+            viewed as a tool for <strong>human–AI collaboration</strong>,
+            rather than simply replacing human creativity.
+        </p>
+
+
+        <hr>
+
+
+        <!-- ======================================================
+             3. ALGORITHM / PROCEDURE
+        ====================================================== -->
+
+        <h2>3. Algorithm / Procedure</h2>
+
+        <ol>
+
+            <li>
+                Define the creative goal, such as generating a pattern,
+                shape, or image.
+            </li>
+
+            <li>
+                For rule-based generation, select a shape, rule, and
+                random seed.
+            </li>
+
+            <li>
+                Generate and render the pattern.
+            </li>
+
+            <li>
+                Change <strong>one rule at a time</strong> and generate
+                the pattern again.
+            </li>
+
+            <li>
+                For an L-system, select:
+                <ul>
+                    <li>Axiom</li>
+                    <li>Rewriting rule</li>
+                    <li>Turning angle</li>
+                    <li>Depth</li>
+                </ul>
+            </li>
+
+            <li>
+                Expand the string according to the rewriting rule.
+            </li>
+
+            <li>
+                Interpret the resulting string as turtle-graphics movements
+                and plot the pattern.
+            </li>
+
+            <li>
+                For deep generative modeling, load a dataset of images.
+            </li>
+
+            <li>
+                Train an autoencoder/VAE to represent images in a latent space.
+            </li>
+
+            <li>
+                Sample a point from the latent space and decode it to generate
+                a new image.
+            </li>
+
+            <li>
+                Interpolate between two latent points to observe a smooth
+                transition between generated images.
+            </li>
+
+            <li>
+                Evaluate the generated outputs for:
+                <ul>
+                    <li>Novelty</li>
+                    <li>Variety</li>
+                    <li>Recognisability</li>
+                </ul>
+            </li>
+
+            <li>
+                Record the rules, parameters, seeds, or prompts used to
+                generate each result.
+            </li>
+
+        </ol>
+
+
+        <hr>
+
+
+        <!-- ======================================================
+             4. IMPLEMENTATION
+        ====================================================== -->
+
+        <h2>4. Implementation</h2>
+
+
+        <!-- ACTIVITY A -->
+
+        <h3>Activity A — Rule-Based Pattern</h3>
+
+        <h4>Objective</h4>
+
+        <p>
+            To investigate how changing rules and random seeds produces
+            different patterns from the same basic generation procedure.
+        </p>
+
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+
+def draw_pattern(ax, n=40, angle=7.5, shrink=0.94, seed=0):
+
+    rng = np.random.default_rng(seed)
+
+    theta = np.linspace(0, 2 * np.pi, 5)
+
+    # Base shape
+    base = np.c_[np.cos(theta), np.sin(theta)]
+
+    size = 1.0
+    rot = 0.0
+
+    for i in range(n):
+
+        # Rotation rule
+        rot += np.deg2rad(angle)
+
+        c, s = np.cos(rot), np.sin(rot)
+
+        R = np.array([
+            [c, -s],
+            [s,  c]
+        ])
+
+        # Scaling + rotation
+        pts = (base * size) @ R.T
+
+        ax.plot(
+            pts[:, 0],
+            pts[:, 1],
+            color=plt.cm.twilight(i / n),
+            lw=1.2,
+            alpha=0.9
+        )
+
+        # Scaling + controlled randomness
+        size *= shrink * rng.uniform(0.98, 1.02)
+
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+
+fig, axes = plt.subplots(1, 3, figsize=(12, 4))
+
+for ax, s in zip(axes, [0, 1, 2]):
+    draw_pattern(ax, seed=s)
+    ax.set_title(f"seed = {s}")
+
+plt.suptitle("One Rule Set, Three Different Artworks")
+plt.tight_layout()
+plt.show()</code></pre>
+
+
+        <h4>Explanation</h4>
+
+        <p>
+            The function uses:
+        </p>
+
+        <ul>
+            <li>
+                <strong>angle</strong> — controls the amount of rotation.
+            </li>
+
+            <li>
+                <strong>shrink</strong> — controls how quickly the pattern
+                decreases in size.
+            </li>
+
+            <li>
+                <strong>seed</strong> — controls reproducible randomness.
+            </li>
+
+            <li>
+                <strong>n</strong> — controls the number of repeated shapes.
+            </li>
+        </ul>
+
+        <p>
+            Changing the seed while keeping the rules unchanged produces
+            related but different patterns.
+        </p>
+
+
+        <hr>
+
+
+        <!-- ACTIVITY B -->
+
+        <h3>Activity B — L-System</h3>
+
+        <h4>Objective</h4>
+
+        <p>
+            To generate a recursively growing pattern using a
+            string-rewriting system.
+        </p>
+
+
+        <h4>Step 1 — Define the Expansion Function</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+
+def expand(axiom, rules, n):
+
+    s = axiom
+
+    for _ in range(n):
+        s = "".join(rules.get(ch, ch) for ch in s)
+
+    return s</code></pre>
+
+
+        <h4>Step 2 — Define the Renderer</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>def render(s, angle=25, step=1.0):
+
+    x, y, d = 0.0, 0.0, 90.0
+
+    xs, ys, stack = [x], [y], []
+
+    for ch in s:
+
+        if ch == "F":
+            # F = draw forward
+            x += step * np.cos(np.deg2rad(d))
+            y += step * np.sin(np.deg2rad(d))
+
+            xs.append(x)
+            ys.append(y)
+
+        elif ch == "+":
+            # + = turn left
+            d += angle
+
+        elif ch == "-":
+            # - = turn right
+            d -= angle
+
+        elif ch == "[":
+            # [ = remember position
+            stack.append((x, y, d))
+
+        elif ch == "]":
+            # ] = return to previous position
+            x, y, d = stack.pop()
+
+            xs.append(np.nan)
+            ys.append(np.nan)
+
+    return xs, ys</code></pre>
+
+
+        <h4>Step 3 — Generate the L-System</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>for depth in [2, 4]:
+
+    s = expand(
+        "F",
+        {"F": "F[+F]F[-F]F"},
+        depth
+    )
+
+    xs, ys = render(
+        s,
+        angle=25,
+        step=1.0
+    )
+
+    plt.figure(figsize=(6, 6))
+
+    plt.plot(
+        xs,
+        ys,
+        lw=0.7,
+        color="forestgreen"
+    )
+
+    plt.axis("equal")
+    plt.axis("off")
+    plt.title(f"L-system, depth {depth}")
+
+    plt.show()</code></pre>
+
+
+        <h4>Explanation of Symbols</h4>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>F</code></td>
+                        <td>Move forward and draw</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>Turn left</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>-</code></td>
+                        <td>Turn right</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>[</code></td>
+                        <td>Save the current position and direction</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>]</code></td>
+                        <td>Return to the saved position and direction</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p>
+            The pattern grows through repeated rewriting of the original string.
+        </p>
+
+
+        <hr>
+
+
+        <!-- ACTIVITY C -->
+
+        <h3>Activity C — Variational Autoencoder (VAE)</h3>
+
+        <h4>Objective</h4>
+
+        <p>
+            To train a VAE on MNIST handwritten digits and generate new
+            digit-like images by sampling points from the learned latent space.
+        </p>
+
+
+        <h4>Step 1 — Load and Prepare MNIST Data</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+
+import tensorflow as tf
+from tensorflow.keras import layers, Model
+
+
+# MNIST images scaled to [0, 1]
+(x_train, _), (x_test, _) = tf.keras.datasets.mnist.load_data()
+
+x_train = (x_train.astype("float32") / 255.0)[..., None]
+x_test  = (x_test.astype("float32") / 255.0)[..., None]</code></pre>
+
+
+        <h4>Step 2 — Define the Latent Space</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>latent_dim = 2</code></pre>
+
+        <p>
+            A two-dimensional latent space is deliberately selected so that
+            it can be visualised.
+        </p>
+
+
+        <h4>Step 3 — Build the Encoder</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>enc_in = layers.Input(shape=(28, 28, 1))
+
+h = layers.Dense(
+    128,
+    activation="relu"
+)(layers.Flatten()(enc_in))
+
+z_mean = layers.Dense(latent_dim)(h)
+
+z_log_var = layers.Dense(latent_dim)(h)</code></pre>
+
+
+        <p>
+            The encoder converts each image into:
+        </p>
+
+        <ul>
+            <li>Latent mean</li>
+            <li>Latent log-variance</li>
+        </ul>
+
+
+        <h4>Step 4 — Sampling Using the Reparameterisation Trick</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>def sampling(args):
+
+    z_mean, z_log_var = args
+
+    eps = tf.random.normal(
+        shape=tf.shape(z_mean)
+    )
+
+    return (
+        z_mean
+        + tf.exp(0.5 * z_log_var) * eps
+    )
+
+
+z = layers.Lambda(sampling)(
+    [z_mean, z_log_var]
+)
+
+encoder = Model(
+    enc_in,
+    [z_mean, z_log_var, z],
+    name="encoder"
+)</code></pre>
+
+
+        <h4>Step 5 — Build the Decoder</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>dec_in = layers.Input(
+    shape=(latent_dim,)
+)
+
+h = layers.Dense(
+    128,
+    activation="relu"
+)(dec_in)
+
+dec_out = layers.Reshape(
+    (28, 28, 1)
+)(
+    layers.Dense(
+        28 * 28,
+        activation="sigmoid"
+    )(h)
+)
+
+decoder = Model(
+    dec_in,
+    dec_out,
+    name="decoder"
+)</code></pre>
+
+
+        <p>
+            The decoder takes a point from the latent space and generates
+            an image.
+        </p>
+
+
+        <h4>Step 6 — Define the VAE Loss</h4>
+
+        <p>
+            The VAE loss contains two components:
+        </p>
+
+        <div class="formula-box">
+            <code>L = L_reconstruction + L_KL</code>
+        </div>
+
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>out = decoder(
+    encoder(enc_in)[2]
+)
+
+vae = Model(
+    enc_in,
+    out,
+    name="vae"
+)
+
+recon = tf.reduce_mean(
+    tf.reduce_sum(
+        tf.keras.losses.binary_crossentropy(
+            enc_in,
+            out
+        ),
+        axis=(1, 2)
+    )
+)
+
+kl = -0.5 * tf.reduce_mean(
+    tf.reduce_sum(
+        1
+        + z_log_var
+        - tf.square(z_mean)
+        - tf.exp(z_log_var),
+        axis=1
+    )
+)
+
+vae.add_loss(recon + kl)
+
+vae.compile(
+    optimizer="adam"
+)</code></pre>
+
+
+        <h4>Step 7 — Train the VAE</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>vae.fit(
+    x_train,
+    epochs=10,
+    batch_size=128,
+    verbose=2
+)</code></pre>
+
+
+        <h4>Step 8 — Generate New Digits</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>n = 15
+span = 2.0
+
+grid = np.linspace(
+    -span,
+    span,
+    n
+)
+
+canvas = np.zeros(
+    (28 * n, 28 * n)
+)
+
+for i, yi in enumerate(grid[::-1]):
+
+    for j, xi in enumerate(grid):
+
+        img = decoder.predict(
+            np.array([[xi, yi]]),
+            verbose=0
+        )[0, :, :, 0]
+
+        canvas[
+            i*28:(i+1)*28,
+            j*28:(j+1)*28
+        ] = img
+
+
+plt.figure(figsize=(10, 10))
+
+plt.imshow(
+    canvas,
+    cmap="gray"
+)
+
+plt.title(
+    "New Digits Decoded from a Grid of Latent Points"
+)
+
+plt.axis("off")
+plt.show()</code></pre>
+
+
+        <p>
+            The decoder generates images from different points in the latent space.
+        </p>
+
+
+        <h4>Step 9 — Latent-Space Interpolation</h4>
+
+        <div class="code-label">Python Code</div>
+
+<pre><code>a = encoder.predict(
+    x_test[0:1],
+    verbose=0
+)[0]
+
+b = encoder.predict(
+    x_test[1:2],
+    verbose=0
+)[0]
+
+steps = 10
+
+fig, axes = plt.subplots(
+    1,
+    steps,
+    figsize=(steps, 1.4)
+)
+
+for k, t in enumerate(
+    np.linspace(0, 1, steps)
+):
+
+    zt = (1 - t) * a + t * b
+
+    axes[k].imshow(
+        decoder.predict(
+            zt,
+            verbose=0
+        )[0, :, :, 0],
+        cmap="gray"
+    )
+
+    axes[k].axis("off")
+
+plt.suptitle(
+    "Latent-Space Interpolation: "
+    "One Digit Morphing into Another"
+)
+
+plt.show()</code></pre>
+
+
+        <p>
+            Interpolation demonstrates how the decoder can produce
+            intermediate outputs between two latent representations.
+        </p>
+
+
+        <hr>
+
+
+        <!-- ======================================================
+             5. OBSERVATION
+        ====================================================== -->
+
+        <h2>5. Observation</h2>
+
+
+        <h3>Activity A — Effect of Rule Changes</h3>
+
+        <p>
+            Run the program and vary one parameter at a time.
+        </p>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Change Made</th>
+                        <th>Effect on the Image</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>angle</code> (5 → 15 → 45)</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>shrink</code> (0.94 → 0.80)</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>seed</code> (0 → 1 → 2)</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>n</code> (40 → 100)</td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p>
+            <strong>Observation:</strong> The same rule set with a different
+            seed produces a different but related artwork.
+        </p>
+
+
+        <h3>Activity B — Growth of the L-System</h3>
+
+        <p>
+            Record how the pattern changes as the depth increases.
+        </p>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Depth</th>
+                        <th>Number of F Segments</th>
+                        <th>What You See</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>A single stroke</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>A small branch</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>25</td>
+                        <td>A bush</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>125</td>
+                        <td>A dense plant</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>625</td>
+                        <td>Fine detail; slower to draw</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p>
+            The string is expanded by repeatedly applying the rewriting rule.
+            The pattern therefore grows recursively as the depth increases.
+        </p>
+
+
+        <h3>Activity C — VAE Training and Generation</h3>
+
+        <p>
+            Record the results obtained from your experiment.
+        </p>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Measurement</th>
+                        <th>Your Value</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Final reconstruction loss</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Final KL loss</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Do the digits in the latent grid change smoothly
+                            as you move across it?
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Does the interpolation between two digits stay
+                            recognisable as a digit?
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>Are any generated digits blurry?</td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <p>
+            A smooth latent grid indicates that the decoder has learned a
+            continuous representation of the data.
+        </p>
+
+        <p>
+            A common limitation of VAEs is that generated samples may appear blurry.
+        </p>
+
+
+        <hr>
+
+
+        <!-- ======================================================
+             6. CONCLUSION
+        ====================================================== -->
+
+        <h2>6. Conclusion</h2>
+
+        <ol>
+
+            <li>
+                <strong>Generative models</strong> learn the underlying data
+                distribution rather than simply predicting labels. This
+                enables them to generate new data.
+            </li>
+
+            <li>
+                <strong>Rule-based generation</strong> demonstrates that
+                creative patterns can be produced by defining rules and
+                parameters. Activities A and B use rotation, scaling,
+                branching, rewriting, and randomness to generate different
+                artworks.
+            </li>
+
+            <li>
+                <strong>L-systems</strong> generate patterns through repeated
+                string rewriting and interpretation of the resulting symbols
+                as drawing instructions.
+            </li>
+
+            <li>
+                A <strong>VAE</strong> uses an encoder–decoder architecture
+                to learn a latent representation of images. New images can
+                be generated by sampling points from the latent space and
+                decoding them.
+            </li>
+
+            <li>
+                VAE training balances:
+                <ul>
+                    <li>Reconstruction loss</li>
+                    <li>KL-divergence loss</li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>GANs</strong> use a generator and discriminator that
+                compete during training. Important challenges include image
+                quality, diversity, and training stability.
+            </li>
+
+            <li>
+                <strong>Diffusion models</strong> generate data through a
+                denoising process and are particularly effective for
+                text-to-image generation.
+            </li>
+
+            <li>
+                Generative AI can produce novel outputs, but it is useful to
+                distinguish exploratory creativity from transformational creativity.
+            </li>
+
+            <li>
+                In practical applications, generative AI is best considered
+                as a tool for <strong>human–AI collaboration</strong>.
+            </li>
+
+            <li>
+                Always record the <strong>rules, parameters, random seed,
+                or prompts</strong> used to generate an output. This makes
+                the experiment reproducible, comparable, and explainable.
+            </li>
+
+        </ol>
+
+
+        <!-- ======================================================
+             NAVIGATION
+        ====================================================== -->
+
+        <div class="nav-buttons">
+
+            <a href="experiment6.html" class="course-button">
+                ← Previous Practical
+            </a>
+
+            <a href="index.html" class="course-button">
+                Back to Practicals
+            </a>
+
+            <a href="experiment8.html" class="course-button">
+                Next Practical →
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ==========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-brand">
+            <strong>PU's Academics</strong>
+        </div>
+
+        <p>
+            Learn Today. Lead Tomorrow.
+        </p>
+
+        <p>
+            Digital learning platform for academic resources and practical learning.
+        </p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
