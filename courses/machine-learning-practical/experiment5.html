@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Practical 5 – Multiple Linear Regression | PU's Academics</title>
+    <title>Practical 5 – Simple Linear Regression | PU's Academics</title>
 
     <meta name="description"
-          content="Machine Learning Practical 5 – Multiple Linear Regression">
+          content="Machine Learning Practical 5 – Simple Linear Regression">
 
     <link rel="stylesheet" href="../../assets/css/style.css">
     <script src="../../assets/js/theme.js" defer></script>
@@ -24,23 +24,6 @@
             overflow-x: auto;
         }
 
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .result-table th,
-        .result-table td {
-            border: 1px solid var(--border-color, #ccc);
-            padding: 10px;
-            text-align: left;
-        }
-
-        .result-table th {
-            font-weight: 600;
-        }
-
         .navigation {
             display: flex;
             justify-content: space-between;
@@ -51,12 +34,6 @@
 
         .navigation a {
             text-decoration: none;
-        }
-
-        .note {
-            padding: 15px;
-            border-left: 4px solid currentColor;
-            margin: 20px 0;
         }
 
         @media (max-width: 700px) {
@@ -93,8 +70,9 @@
     <div class="container">
         <h2>Practical No. 5</h2>
         <p>
-            Multiple Linear Regression: Building Multivariate Prediction Models
-            and Evaluating Performance using R², RMSE, and MAE
+            Simple Linear Regression: Modeling the Relationship between One
+            Independent and One Dependent Variable and Interpreting Slope and
+            Intercept
         </p>
     </div>
 </section>
@@ -109,8 +87,9 @@
 
         <p>
             <strong>Title:</strong>
-            Multiple Linear Regression: Building Multivariate Prediction Models
-            and Evaluating Performance using R², RMSE, and MAE
+            Simple Linear Regression: Modeling the Relationship between One
+            Independent and One Dependent Variable and Interpreting Slope and
+            Intercept
         </p>
 
         <p><strong>Unit:</strong> II</p>
@@ -120,13 +99,13 @@
     <hr>
 
     <section>
-        <h2>1. Aim</h2>
+        <h2>Aim</h2>
 
         <p>
-            To build a Multiple Linear Regression model in Python that predicts
-            a student's Final Marks using more than one independent variable —
-            Study Hours, Attendance, and Internal Marks — and to evaluate model
-            performance using R², RMSE, MAE.
+            To build a Simple Linear Regression model in Python that predicts
+            a student's <strong>Final Marks</strong> from their weekly
+            <strong>Study Hours</strong>, and to interpret the slope and
+            intercept of the fitted line.
         </p>
     </section>
 
@@ -134,95 +113,119 @@
     <hr>
 
     <section>
-        <h2>2. Concept/Theory</h2>
+        <h2>Concept / Theory</h2>
 
         <p>
-            Multiple Linear Regression extends Simple Linear Regression by
-            modelling target as linear combination of two or more predictors:
+            Simple Linear Regression models the relationship between one
+            independent variable (predictor) and one dependent variable
+            (target) as a straight line:
         </p>
 
         <div class="formula">
-            y = b₀ + b₁x₁ + b₂x₂ + ⋯ + bₚxₚ + ε
+            <strong>y = a + bx</strong>
         </div>
 
         <p>Where:</p>
 
         <ul>
-            <li><strong>y</strong> = dependent (target) variable</li>
-            <li><strong>b₀</strong> = intercept</li>
+            <li><strong>y</strong> = dependent variable</li>
+            <li><strong>x</strong> = independent variable</li>
             <li>
-                <strong>b₁, b₂, …, bₚ</strong> = regression coefficients
+                <strong>b</strong> = slope: the change in
+                <strong>y</strong> for a one-unit increase in
+                <strong>x</strong>
             </li>
             <li>
-                <strong>x₁, x₂, …, xₚ</strong> = independent (predictor)
-                variables
+                <strong>a</strong> = intercept: the value of
+                <strong>y</strong> when <strong>x = 0</strong>
             </li>
-            <li><strong>ε</strong> = error term</li>
         </ul>
 
         <p>
-            (the change in y for a one-unit change in that predictor, holding
-            the other predictors constant), and ε is the error term. The
-            coefficients are estimated by the method of least squares, which
-            minimises the sum of squared residuals.
+            The line of best fit is obtained by the
+            <strong>method of least squares</strong>, which minimises the
+            sum of squared vertical distances (residuals) between the
+            observed points and the line.
         </p>
-    </section>
 
+        <p>
+            <strong>Assumptions:</strong> Linearity of the relationship,
+            independence of observations, constant variance of residuals
+            (homoscedasticity), and normally distributed residuals.
+        </p>
 
-    <hr>
-
-    <section>
-        <h2>Evaluation</h2>
+        <p><strong>Evaluation measures:</strong></p>
 
         <ul>
             <li>
-                <strong>R² coefficient determination:</strong>
-                proportion variance target explained; 0 to 1 higher better.
+                <strong>R² (coefficient of determination):</strong>
+                Proportion of variance in the target explained by the model
+                (0 to 1; higher is better).
             </li>
 
             <li>
                 <strong>RMSE:</strong>
-                square root average squared error; penalises large errors more.
+                Square root of the average squared error; penalises large
+                errors more heavily.
+            </li>
+        </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Algorithm / Procedure</h2>
+
+        <ol>
+            <li>
+                Import the required libraries (Pandas, NumPy,
+                Scikit-learn, Matplotlib/Seaborn).
             </li>
 
             <li>
-                <strong>MAE:</strong>
-                average absolute difference; easy to interpret target units.
+                Load the student dataset into a DataFrame.
             </li>
-        </ul>
-    </section>
 
+            <li>
+                Assign the <strong>independent variable</strong> to X and
+                the <strong>dependent variable</strong> to y.
+            </li>
 
-    <hr>
+            <li>
+                Draw a <strong>scatter plot</strong> to visually confirm a
+                linear relationship.
+            </li>
 
-    <section>
-        <h2>Assumptions</h2>
+            <li>
+                Create a LinearRegression object and
+                <strong>fit</strong> it on the data.
+            </li>
 
-        <ul>
-            <li>Linearity</li>
-            <li>No severe multicollinearity</li>
-            <li>Homoscedasticity</li>
-            <li>Normally distributed residuals</li>
-        </ul>
-    </section>
+            <li>
+                Display the <strong>slope</strong> and
+                <strong>intercept</strong> and interpret them in context.
+            </li>
 
+            <li>
+                Overlay the <strong>regression line</strong> on the scatter
+                plot.
+            </li>
 
-    <hr>
+            <li>
+                <strong>Predict</strong> the target for a new value of the
+                predictor.
+            </li>
 
-    <section>
-        <h2>Algorithm</h2>
+            <li>
+                <strong>Evaluate</strong> the model using
+                <strong>R²</strong> and <strong>RMSE</strong>.
+            </li>
 
-        <ol>
-            <li>Import Pandas, NumPy, Scikit-learn, Matplotlib/Seaborn.</li>
-            <li>Load student dataset.</li>
-            <li>Separate X/y.</li>
-            <li>Check correlations.</li>
-            <li>Train/test split.</li>
-            <li>LinearRegression fit.</li>
-            <li>Display intercept/coefs and interpret.</li>
-            <li>Predict Final Marks.</li>
-            <li>Evaluate R²/RMSE/MAE.</li>
-            <li>Actual vs predicted plot.</li>
+            <li>
+                Plot <strong>residuals</strong> to check that the linearity
+                assumption holds.
+            </li>
         </ol>
     </section>
 
@@ -230,64 +233,101 @@
     <hr>
 
     <section>
-        <h2>Program</h2>
+        <h2>Program / Implementation</h2>
 
         <pre><code>import pandas as pd
+
 import numpy as np
+
 import matplotlib.pyplot as plt
+
 import seaborn as sns
 
-from sklearn.model_selection import train_test_split
+
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+
+from sklearn.metrics import mean_squared_error, r2_score
+
+
+# Step 1-2: Create the academic dataset (15 students)
 
 data = {
-    'Study_Hours':    [2, 3, 5, 6, 8, 2, 4, 6, 7, 9, 3, 4, 5, 7, 8],
-    'Attendance':     [65, 70, 85, 90, 95, 60, 75, 88, 92, 96, 68, 78, 82, 89, 93],
-    'Internal_Marks': [18, 22, 30, 34, 38, 16, 26, 33, 36, 39, 20, 27, 29, 35, 37],
-    'Final_Marks':    [55, 62, 78, 85, 92, 50, 68, 82, 88, 94, 60, 71, 76, 84, 90]
+    'Study_Hours': [2, 3, 5, 6, 8, 2, 4, 6, 7, 9, 3, 4, 5, 7, 8],
+    'Final_Marks': [55, 62, 78, 85, 92, 50, 68, 82, 88, 94, 60, 71, 76, 84, 90]
 }
 
 df = pd.DataFrame(data)
 
 print(df.head())
+print(df.shape)                     # (15, 2)
 
-X = df[['Study_Hours', 'Attendance', 'Internal_Marks']]
+
+# Step 3: Define predictor and target
+
+X = df[['Study_Hours']]             # must be 2-D for sklearn
+
 y = df['Final_Marks']
 
-sns.heatmap(X.corr(), annot=True, cmap='coolwarm', fmt='.2f')
-plt.title('Correlation among Predictors')
+
+# Step 4: Visualize the relationship
+
+sns.scatterplot(x='Study_Hours', y='Final_Marks', data=df)
+
+plt.title('Study Hours vs Final Marks')
+plt.xlabel('Study Hours per Week')
+plt.ylabel('Final Marks')
+
 plt.show()
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+
+# Step 5-6: Fit the model and print slope and intercept
 
 model = LinearRegression()
-model.fit(X_train, y_train)
 
-print("Intercept :", round(model.intercept_, 2))
+model.fit(X, y)
 
-for name, coef in zip(X.columns, model.coef_):
-    print(f"  {name} : {round(coef, 2)}")
+print("Slope (b)     :", round(model.coef_[0], 2))
+print("Intercept (a) :", round(model.intercept_, 2))
 
-y_pred = model.predict(X_test)
 
-print("R2   :", round(r2_score(y_test, y_pred), 3))
-print("RMSE :", round(np.sqrt(mean_squared_error(y_test, y_pred)), 2))
-print("MAE  :", round(mean_absolute_error(y_test, y_pred), 2))
+# Step 7: Draw the regression line
 
-plt.scatter(y_test, y_pred, color='blue')
+sns.scatterplot(x='Study_Hours', y='Final_Marks', data=df)
 
-plt.plot(
-    [y.min(), y.max()],
-    [y.min(), y.max()],
-    'r--'
-)
+plt.plot(X, model.predict(X), color='red')
 
-plt.xlabel('Actual Final Marks')
-plt.ylabel('Predicted Final Marks')
-plt.title('Actual vs Predicted')
+plt.title('Regression Line: Study Hours vs Final Marks')
+
+plt.show()
+
+
+# Step 8: Predict for a new value
+
+print("Predicted marks for 6 study hours:",
+      round(model.predict([[6]])[0], 2))
+
+
+# Step 9: Evaluate the model
+
+y_pred = model.predict(X)
+
+print("R2   :", round(r2_score(y, y_pred), 2))
+
+print("RMSE :", round(np.sqrt(mean_squared_error(y, y_pred)), 2))
+
+
+# Step 10: Residual plot
+
+residuals = y - y_pred
+
+sns.scatterplot(x=y_pred, y=residuals)
+
+plt.axhline(0, color='red', linestyle='--')
+
+plt.xlabel('Predicted Marks')
+plt.ylabel('Residuals')
+plt.title('Residual Plot')
+
 plt.show()</code></pre>
     </section>
 
@@ -297,50 +337,107 @@ plt.show()</code></pre>
     <section>
         <h2>Output</h2>
 
-        <pre><code>   Study_Hours  Attendance  Internal_Marks  Final_Marks
-0            2          65              18           55
-1            3          70              22           62
-2            5          85              30           78
-3            6          90              34           85
-4            8          95              38           92
+        <pre><code>   Study_Hours  Final_Marks
+0            2           55
+1            3           62
+2            5           78
+3            6           85
+4            8           92
 
-Intercept : &lt;value printed by the script&gt;
 
-  Study_Hours : &lt;value printed by the script&gt;
+Slope (b)     : 6.09
 
-  Attendance : &lt;value printed by the script&gt;
+Intercept (a) : 43.57
 
-  Internal_Marks : &lt;value printed by the script&gt;
+Predicted marks for 6 study hours: 80.14
 
-R2   : &lt;value printed by the script&gt;
+R2   : 0.95
 
-RMSE : &lt;value printed by the script&gt;
-
-MAE  : &lt;value printed by the script&gt;</code></pre>
-
-        <p>
-            Heatmap and scatter plot are displayed.
-        </p>
+RMSE : 2.90</code></pre>
     </section>
 
 
     <hr>
 
     <section>
-        <h2>Interpretation</h2>
+        <h2>Fitted equation</h2>
+
+        <div class="formula">
+            <strong>Final Marks = 43.57 + 6.09 × Study Hours</strong>
+        </div>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Interpretation of slope and intercept</h2>
 
         <ul>
             <li>
-                Each coefficient change in Final Marks for one-unit predictor
-                increase holding other two constant (study hour, 1% attendance,
-                internal mark).
+                <strong>Slope = 6.09</strong> → Each additional hour of
+                study per week raises final marks by about
+                <strong>6.09 marks</strong>, on average.
             </li>
 
             <li>
-                Intercept baseline when all predictors zero, mathematical
-                anchor, not realistic.
+                <strong>Intercept = 43.57</strong> → The model predicts about
+                <strong>43.57 marks</strong> for a student studying 0 hours.
+                This is only a mathematical anchor for the line, not a
+                realistic scenario.
+            </li>
+
+            <li>
+                <strong>Prediction for 6 hours = 80.14</strong> —
+                consistent with the two students in the dataset who studied
+                6 hours and scored <strong>85</strong> and <strong>82</strong>.
+            </li>
+
+            <li>
+                <strong>R² = 0.95</strong> → About <strong>95%</strong> of
+                the variation in final marks is explained by study hours
+                alone.
+            </li>
+
+            <li>
+                <strong>RMSE = 2.90</strong> → Predictions differ from actual
+                marks by about <strong>2.9 marks</strong> on average.
             </li>
         </ul>
+    </section>
+
+
+    <hr>
+
+    <section>
+        <h2>Graphs displayed</h2>
+
+        <ol>
+            <li>
+                <strong>Scatter plot</strong> — points form a clear
+                upward, near-linear trend, justifying the use of linear
+                regression.
+            </li>
+
+            <li>
+                <strong>Regression line plot</strong> — a red straight line
+                passes through the centre of the points; most points lie close
+                to it, confirming a strong fit.
+            </li>
+
+            <li>
+                <strong>Residual plot</strong> — residuals are scattered
+                randomly above and below the zero line with no pattern,
+                indicating the linearity assumption is satisfied.
+            </li>
+        </ol>
+
+        <p>
+            (The values above are those produced by running this script on the
+            15-student dataset. Since plot images can't be rendered here, each
+            graph is described by what it displays — running the code in
+            Jupyter/Colab produces all three graphs.)
+        </p>
     </section>
 
 
@@ -350,9 +447,16 @@ MAE  : &lt;value printed by the script&gt;</code></pre>
         <h2>Result</h2>
 
         <p>
-            Model successfully trained on 3 predictors; performance measured
-            R²/RMSE/MAE; Actual vs Predicted points close diagonal, good fit;
-            record exact metrics.
+            A Simple Linear Regression model was successfully fitted with
+            Study Hours as the independent variable and Final Marks as the
+            dependent variable. The model produced a
+            <strong>slope of 6.09</strong> and an
+            <strong>intercept of 43.57</strong>, giving the equation
+            <strong>Final Marks = 43.57 + 6.09 × Study Hours</strong>.
+            Evaluation on the data yielded <strong>R² = 0.95</strong> and
+            <strong>RMSE = 2.90</strong>, and the residual plot showed no
+            systematic pattern, confirming that a straight line adequately
+            describes the relationship.
         </p>
     </section>
 
@@ -363,21 +467,23 @@ MAE  : &lt;value printed by the script&gt;</code></pre>
         <h2>Conclusion</h2>
 
         <p>
-            Multiple regression predicts from several variables; Study Hours,
-            Attendance, Internal Marks predict Final Marks; R² variance
-            explained, RMSE error with heavier large deviations, and MAE
-            average absolute; heatmap confirms not severely collinear;
-            demonstrates multivariate models built/interpreted/evaluated and
-            why multiple metrics fuller.
+            Simple Linear Regression quantified the relationship between
+            study hours and final marks, showing that marks rise by roughly
+            <strong>6.09 for every extra study hour</strong> and that the
+            model explains about <strong>95% of the variation</strong> in
+            performance. The practical demonstrates how a correlation
+            observed during EDA is converted into a usable predictive
+            equation, and how the slope and intercept are interpreted in the
+            context of the problem. It also highlights the key limitation that
+            regression measures <strong>association, not causation</strong> —
+            higher study hours are associated with higher marks, but the model
+            alone does not prove that study hours cause the improvement.
         </p>
-
-        <div class="formula">
-            y = b₀ + b₁x₁ + b₂x₂ + ⋯ + bₚxₚ + ε
-        </div>
     </section>
 
 
     <div class="navigation">
+
         <a href="experiment4.html" class="course-button">
             ← Previous Practical
         </a>
@@ -389,6 +495,7 @@ MAE  : &lt;value printed by the script&gt;</code></pre>
         <a href="experiment6.html" class="course-button">
             Next Practical →
         </a>
+
     </div>
 
 </main>
@@ -396,13 +503,20 @@ MAE  : &lt;value printed by the script&gt;</code></pre>
 
 <footer class="site-footer">
     <div class="container">
+
         <h3>PU's Academics</h3>
+
         <p>Learn Today. Lead Tomorrow.</p>
+
         <p>
             Digital learning platform for academic resources and practical
             learning.
         </p>
-        <p>© 2026 PU's Academics. All rights reserved.</p>
+
+        <p>
+            © 2026 PU's Academics. All rights reserved.
+        </p>
+
     </div>
 </footer>
 
