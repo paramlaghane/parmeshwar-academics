@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +12,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Shared Website Stylesheet -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="../../../assets/css/style.css">
+
+    <style>
+        .question-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .question-list li {
+            margin-bottom: 18px;
+            padding: 16px 20px;
+            border: 1px solid var(--border-color, #d5dbe3);
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        .question-number {
+            font-weight: 700;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,10 +45,9 @@
                 <p class="site-tagline">Digital Learning Platform</p>
             </div>
 
-            <button
-                id="themeToggle"
-                class="theme-toggle"
-                aria-label="Toggle Theme">
+            <button id="themeToggle"
+                    class="theme-toggle"
+                    aria-label="Toggle Theme">
                 🌙
             </button>
         </div>
@@ -47,51 +66,85 @@
     <main class="container">
 
         <section>
-            <h2 class="section-title">
-                Unit 1 — Introduction to Artificial Intelligence
-            </h2>
+            <h2 class="section-title">Unit 1 — Introduction to Artificial Intelligence</h2>
 
             <ol class="question-list">
                 <li>
-                    Define Artificial Intelligence (AI) and differentiate
-                    between natural intelligence and artificial intelligence.
+                    <span class="question-number">Q. No.: 1</span>
+                    &nbsp;&nbsp;Define Artificial Intelligence (AI) and differentiate between natural intelligence and artificial intelligence.
                 </li>
 
                 <li>
-                    Describe the logical approach to Artificial Intelligence.
-                    Explain why logic is important for reasoning in AI systems.
+                    <span class="question-number">Q. No.: 2</span>
+                    &nbsp;&nbsp;Describe the logical approach to Artificial Intelligence. Explain why logic is important for reasoning in AI systems.
                 </li>
 
                 <li>
-                    Define a proposition in propositional logic and list any
-                    four logical connectives along with their respective symbols.
+                    <span class="question-number">Q. No.: 3</span>
+                    &nbsp;&nbsp;Define a proposition in propositional logic and list any four logical connectives along with their respective symbols.
                 </li>
 
                 <li>
-                    State any two differences between propositional logic
-                    and first-order logic (predicate logic).
+                    <span class="question-number">Q. No.: 4</span>
+                    &nbsp;&nbsp;State any two differences between propositional logic and first-order logic (predicate logic).
                 </li>
 
                 <li>
-                    Express the following statements in first-order logic:
-                    (a) Every human is mortal.
-                    (b) At least one student is intelligent.
+                    <span class="question-number">Q. No.: 5</span>
+                    &nbsp;&nbsp;Express the following statements in first-order logic: (a) Every human is mortal. (b) At least one student is intelligent.
                 </li>
 
                 <li>
-                    Explain the meaning of a proposition. Give two examples
-                    of propositions and two examples of non-propositions,
-                    providing a reason for each classification.
+                    <span class="question-number">Q. No.: 6</span>
+                    &nbsp;&nbsp;Explain the meaning of a proposition. Give two examples of propositions and two examples of non-propositions, providing a reason for each classification.
                 </li>
 
                 <li>
-                    Define a predicate, a universal quantifier, and an
-                    existential quantifier. Write the symbol for each
-                    and provide one verbal example of each.
+                    <span class="question-number">Q. No.: 7</span>
+                    &nbsp;&nbsp;Define a predicate, a universal quantifier, and an existential quantifier. Write the symbol for each and provide one verbal example of each.
                 </li>
 
                 <li>
-                    Using the predicates Teacher(x), Student(y), and
-                    Likes(y, x), represent the statement “Each teacher is
-                    liked by at least one student” in first-order logic.
-                </
+                    <span class="question-number">Q. No.: 8</span>
+                    &nbsp;&nbsp;Using the predicates Teacher(x), Student(y), and Likes(y, x), represent the statement “Each teacher is liked by at least one student” in first-order logic.
+                </li>
+
+                <li>
+                    <span class="question-number">Q. No.:9</span>
+                    &nbsp;&nbsp;Define knowledge representation and explain its importance in AI. Mention any two techniques used for knowledge representation.
+                </li>
+
+                <li>
+                    <span class="question-number">Q. No.: 10</span>
+                    &nbsp;&nbsp;Explain the meaning of a proposition. Give two examples of propositions and two examples of non-propositions, providing a reason for each classification.
+                </li>
+            </ol>
+        </section>
+
+        <!-- NAVIGATION -->
+        <section style="margin: 50px 0; text-align: center;">
+            <a href="../index.html" class="primary-button">
+                ← Back to AI &amp; ML Essentials
+            </a>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <h3>PU's Academics</h3>
+            <p>Learn Today. Lead Tomorrow.</p>
+            <p>
+                Digital Learning Platform for Artificial Intelligence,
+                Machine Learning, Python Programming, and Core Java.
+            </p>
+            <p>© 2026 PU's Academics. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- THEME SCRIPT -->
+    <script src="../../../assets/js/theme.js"></script>
+
+</body>
+</html>
